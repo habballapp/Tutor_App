@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0FFFFFFF"
+    tools:context=".Welcome.Welcome">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:scaleType="centerCrop">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tutor_logo"
+            android:layout_centerHorizontal="true"
+            android:text="Welcome to Education App"
+            android:theme="@style/TextStyle">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/tutor_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tutor_logo">
+
+        </ImageView>
+
+        <RelativeLayout
+            android:id="@+id/btn_signin"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_centerInParent="true"
+            android:paddingStart="30dp"
+            android:padding="5dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_below="@+id/tutor_logo"
+            android:background="@drawable/btn_round"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            >
+
+            <TextView
+                android:id="@+id/btn_signin_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/ButtonTextRound"
+                android:text="SIGNIN"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                />
+
+            <ImageView
+                android:id="@+id/btn_signin_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:padding="5dp"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_signup"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_centerInParent="true"
+            android:paddingStart="30dp"
+            android:padding="5dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_below="@+id/btn_signin"
+            android:background="@drawable/btn_round_white"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            >
+
+            <TextView
+                android:id="@+id/btn_signup_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/ButtonTextRoundWhite"
+                android:text="SIGNUP"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                />
+
+            <ImageView
+
+                android:id="@+id/btn_signup_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/black_arrow"
+                android:padding="5dp"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".Dashboard.Dashboard_Drawer">
+
+
+
+    <RelativeLayout
+        android:id="@+id/btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:paddingStart="30dp"
+        android:padding="5dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_below="@+id/rl_checkbox"
+        android:background="@drawable/btn_round"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        >
+
+        <TextView
+            android:id="@+id/btn_signin_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/ButtonTextRound"
+            android:text="SEARCH"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            />
+
+        <ImageView
+            android:id="@+id/btn_signin_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_search_black_24dp"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ln_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_below="@+id/btn_search"
+        >
+
+        <LinearLayout
+            android:id="@+id/ln_demo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:background="@drawable/layout_round"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="DEMO"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white_color"
+                android:theme="@style/Text"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="50"
+                android:textColor="@color/white_color"
+                android:theme="@style/Text"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_teacher"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical"
+            android:background="@drawable/blue_layout_round"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="TEACHER"
+                android:textColor="@color/white_color"
+                android:theme="@style/Text"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="20"
+                android:textColor="@color/white_color"
+                android:theme="@style/Text"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ln_below"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ln_layout"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:orientation="horizontal"
+
+        >
+
+        <LinearLayout
+
+            android:id="@+id/ln_fees"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/brown_layout_round"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="FEES"
+                android:textColor="@color/white_color"
+                android:theme="@style/Text"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="50000"
+                android:textColor="@color/white_color"
+                android:theme="@style/Text"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/ln_experience"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/pink_layout_round"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="EXPERIENCE"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white_color"
+                android:theme="@style/Text"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TWO YEARS"
+                android:textColor="@color/white_color"
+                android:theme="@style/Text"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"></ImageView>
+    </LinearLayout>
+
+</RelativeLayout>
