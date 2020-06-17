@@ -29,7 +29,7 @@ public class ReferenceFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(),"Saved",Toast.LENGTH_SHORT);
+                Toast.makeText(getContext(),"Saved",Toast.LENGTH_LONG);
 
             }
         });
