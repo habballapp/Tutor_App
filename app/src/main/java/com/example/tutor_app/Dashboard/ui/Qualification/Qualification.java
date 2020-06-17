@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.JobExperience;
+package com.example.tutor_app.Dashboard.ui.Qualification;
 
 import android.os.Bundle;
 
@@ -10,32 +10,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.example.tutor_app.Dashboard.ui.AreaofInterest.AreaFragment;
-import com.example.tutor_app.Dashboard.ui.References.ReferenceFragment;
+import com.example.tutor_app.Dashboard.ui.JobExperience.JobExperienceFragment;
 import com.example.tutor_app.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class JobExperienceFragment extends Fragment {
+public class Qualification extends Fragment {
 
-    private RelativeLayout btn_experience_next;
+    private RelativeLayout btn_qualification_next;
     private FragmentTransaction fragmentTransaction;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_job_experience, container, false);
+        View root = inflater.inflate(R.layout.fragment_section2, container, false);
 
-        btn_experience_next = root.findViewById(R.id.btn_experience_next);
+        btn_qualification_next = root.findViewById(R.id.btn_qualification_next);
 
-        btn_experience_next.setOnClickListener(new View.OnClickListener() {
+        btn_qualification_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new AreaFragment());
+                fragmentTransaction.replace(R.id.nav_host_fragment, new JobExperienceFragment());
                 fragmentTransaction.commit();
             }
         });

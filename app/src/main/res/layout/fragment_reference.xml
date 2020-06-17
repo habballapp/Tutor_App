@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".SignUp.Signup">
+    tools:context=".Dashboard.ui.References.ReferenceFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:textAllCaps="true"
-                    android:text="Personal Information"
+                    android:text="References"
                     android:theme="@style/TextStyle"
 
                     />
@@ -69,7 +69,7 @@
                 android:weightSum="18">
 
                 <EditText
-                    android:id="@+id/edt_fullname"
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -79,7 +79,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/fullname"
+                    android:text="@string/name"
                     android:theme="@style/EditText" />
 
 
@@ -93,20 +93,7 @@
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/fathername"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_mname"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/mothername"
+                    android:text="@string/fathername"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -120,22 +107,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/occupation"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_cnic"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/cnic"
+                    android:text="@string/occupation"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -150,71 +122,11 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/paddress"
+                    android:text="@string/address"
                     android:theme="@style/EditText" />
 
                 <EditText
-                    android:id="@+id/edt_permanent_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/permanent_address"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_dob"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/dob"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_nationality"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/nationality"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_religion"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/religion"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_phone1"
+                    android:id="@+id/edt_phone"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -225,49 +137,15 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/phone1"
+                    android:text="@string/telephone"
                     android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_phone2"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/phone2"
-                    android:theme="@style/EditText" />
-
-
-
-                <EditText
-                    android:id="@+id/edt_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_mail_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/mail"
-                    android:theme="@style/EditText" />
-
-
 
 
             </LinearLayout>
 
 
             <RelativeLayout
-                android:id="@+id/btn_profile_next"
+                android:id="@+id/btn_reference_user"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_below="@+id/ln_login"
@@ -289,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:padding="5dp"
-                    android:text="NEXT"
+                    android:text="SAVE"
                     android:theme="@style/ButtonTextRound" />
 
                 <ImageView

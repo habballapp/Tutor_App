@@ -6,6 +6,7 @@
     <string name="contact">Contact No</string>
 
     <string name="fullname">Full Name</string>
+    <string name="name">Name</string>
     <string name="fathername">Father/Husband Name</string>
     <string name="mothername">Mother Name/Tongue</string>
     <string name="occupation">Occupation</string>
@@ -26,6 +27,17 @@
     <string name="institute">Institute/University</string>
     <string name="pyear">Year of Passing</string>
     <string name="grade">Grade/Division</string>
+    <string name="entitlement">Job Entitlement</string>
+    <string name="organization">Name of Organization</string>
+    <string name="from">From</string>
+    <string name="till">Till</string>
+    <string name="classes">Classes to Track</string>
+    <string name="preffered">Preferred Subjects</string>
+    <string name="preferredarea">Preferred Area</string>
+    <string name="relation">Relation</string>
+    <string name="telephone">Telephone</string>
+
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

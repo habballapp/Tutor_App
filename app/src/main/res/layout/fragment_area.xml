@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".SignUp.Signup">
+    tools:context=".Dashboard.ui.AreaofInterest.AreaFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:textAllCaps="true"
-                    android:text="Personal Information"
+                    android:text="Area of Interest"
                     android:theme="@style/TextStyle"
 
                     />
@@ -58,7 +58,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ln_login"
+                android:id="@+id/ln_experience"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ln_text"
@@ -68,8 +68,10 @@
                 android:orientation="vertical"
                 android:weightSum="18">
 
+
+
                 <EditText
-                    android:id="@+id/edt_fullname"
+                    android:id="@+id/edt_qualification"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -79,7 +81,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/fullname"
+                    android:hint="@string/qualification"
                     android:theme="@style/EditText" />
 
 
@@ -93,7 +95,7 @@
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/fathername"
+                    android:hint="@string/subjects"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -106,158 +108,64 @@
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/mothername"
+                    android:hint="@string/institute"
                     android:theme="@style/EditText" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ln_login1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ln_text"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:orientation="vertical"
+                android:weightSum="18">
+
+
+
                 <EditText
-                    android:id="@+id/edt_occupation"
+                    android:id="@+id/edt_etitlement"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/occupation"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_cnic"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/cnic"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_present_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/paddress"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_permanent_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/permanent_address"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_dob"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/dob"
+                    android:hint="@string/classes"
                     android:theme="@style/EditText" />
 
+
                 <EditText
-                    android:id="@+id/edt_nationality"
+                    android:id="@+id/edt_fname1"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/nationality"
+                    android:hint="@string/preffered"
                     android:theme="@style/EditText" />
 
                 <EditText
-                    android:id="@+id/edt_religion"
+                    android:id="@+id/edt_mname1"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/religion"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_phone1"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/phone1"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_phone2"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/phone2"
-                    android:theme="@style/EditText" />
-
-
-
-                <EditText
-                    android:id="@+id/edt_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_mail_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/mail"
+                    android:hint="@string/preferredarea"
                     android:theme="@style/EditText" />
 
 
@@ -267,14 +175,14 @@
 
 
             <RelativeLayout
-                android:id="@+id/btn_profile_next"
+                android:id="@+id/btn_area_next"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_below="@+id/ln_login"
+                android:layout_below="@+id/ln_experience"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="60dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="60dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_round"
@@ -284,7 +192,7 @@
                 android:paddingLeft="30dp">
 
                 <TextView
-                    android:id="@+id/btn_signin_txt"
+                    android:id="@+id/btn_signin_next_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -293,7 +201,7 @@
                     android:theme="@style/ButtonTextRound" />
 
                 <ImageView
-                    android:id="@+id/btn_signin_image"
+                    android:id="@+id/btn_signin_image_next"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

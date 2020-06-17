@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        tools:context=".Dashboard.ui.Profile.Section2">
+        tools:context=".Dashboard.ui.Qualification.Qualification">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/qualification"
+                        android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -95,7 +95,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/subjects"
+                        android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -108,7 +108,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/institute"
+                        android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -122,7 +122,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/pyear"
+                        android:hint="@string/pyear"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -137,7 +137,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/grade"
+                        android:hint="@string/grade"
                         android:theme="@style/EditText" />
 
 
@@ -168,7 +168,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/qualification"
+                        android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -182,7 +182,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/subjects"
+                        android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -195,7 +195,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/institute"
+                        android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -209,7 +209,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/pyear"
+                        android:hint="@string/pyear"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -224,7 +224,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/grade"
+                        android:hint="@string/grade"
                         android:theme="@style/EditText" />
 
 
@@ -233,7 +233,7 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/btn_signin_user"
+                    android:id="@+id/btn_qualification_user"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_below="@+id/ln_login"
@@ -270,10 +270,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/btn_signin_next"
+                    android:id="@+id/btn_qualification_next"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_below="@+id/btn_signin_user"
+                    android:layout_below="@+id/btn_qualification_user"
                     android:layout_centerInParent="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="60dp"
