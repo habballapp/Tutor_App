@@ -78,7 +78,7 @@
         </TextView>
 
         <RelativeLayout
-            android:id="@+id/spinner_container"
+            android:id="@+id/spinner_container_subject"
             android:layout_width="wrap_content"
             android:layout_below="@+id/txt_subject"
             android:layout_height="50dp"
@@ -107,83 +107,91 @@
 
     <RelativeLayout
         android:id="@+id/rl_fees"
-        android:layout_below="@+id/rl_subjects"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_subjects"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
-        >
 
+        >
 
         <TextView
             android:id="@+id/txt_fees"
             android:layout_width="match_parent"
-            android:text="Fees"
+            android:layout_height="wrap_content"
             android:theme="@style/TextStyle"
             android:gravity="center"
-            android:layout_height="wrap_content">
+            android:text="FEES" />
 
-        </TextView>
 
-        <RelativeLayout
-            android:id="@+id/spinner_fees"
-            android:layout_width="wrap_content"
-            android:layout_below="@+id/txt_fees"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/edit_text_squared">
+            android:layout_below="@id/txt_fees"
+            android:background="@drawable/edit_text_squared"
+            android:orientation="horizontal"
+            android:weightSum="2"
+
+            >
 
             <Spinner
                 android:id="@+id/spinner_container_fees"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:dropDownWidth="match_parent"
-                android:background="@null"
-                android:popupBackground="@drawable/spinner_round" />
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@id/spinner_container_fees"
-                android:layout_alignEnd="@+id/spinner_container_fees"
-                android:layout_alignRight="@+id/spinner_container_fees"
-                android:layout_alignBottom="@+id/spinner_container_fees"
-                android:src="@drawable/ic_arrow_drop_down_black_24dp"
-                android:theme="@style/Spinner" />
-        </RelativeLayout>
+                android:layout_weight="1"
+                />
 
-        <RelativeLayout
-            android:id="@+id/spinner_fees1"
-            android:layout_width="55dp"
-            android:layout_below="@+id/txt_fees"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/spinner_fees"
-            android:background="@drawable/edit_text_squared"
+            <LinearLayout
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/line"
+                />
 
-            >
+
 
             <Spinner
                 android:id="@+id/spinner_container_fees1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:dropDownWidth="match_parent"
-                android:background="@null"
-                android:popupBackground="@drawable/spinner_round" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignTop="@id/spinner_container_fees1"
-                android:layout_alignEnd="@+id/spinner_container_fees1"
-                android:layout_alignRight="@+id/spinner_container_fees1"
-                android:layout_alignBottom="@+id/spinner_container_fees1"
-                android:src="@drawable/ic_arrow_drop_down_black_24dp"
-                android:theme="@style/Spinner" />
-        </RelativeLayout>
+
+                android:layout_weight="1"
+
+
+                />
+        </LinearLayout>
+
+      </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_next"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:paddingStart="30dp"
+        android:padding="5dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_below="@+id/rl_fees"
+        android:background="@drawable/btn_round"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        >
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/ButtonTextRound"
+            android:text="NEXT"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            />
+
 
     </RelativeLayout>
-
-
 
 
 

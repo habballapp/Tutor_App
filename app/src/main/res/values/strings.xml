@@ -5,6 +5,29 @@
     <string name="address">Address</string>
     <string name="contact">Contact No</string>
 
+    <string name="fullname">Full Name</string>
+    <string name="fathername">Father/Husband Name</string>
+    <string name="mothername">Mother Name/Tongue</string>
+    <string name="occupation">Occupation</string>
+    <string name="cnic">C.N.I.C Number</string>
+    <string name="paddress">Present Address</string>
+    <string name="permanent_address">Permanent Address</string>
+    <string name="gender">Gender</string>
+    <string name="dob">Date of Birth</string>
+    <string name="age">Age</string>
+    <string name="nationality">Nationality</string>
+    <string name="religion">Religion</string>
+    <string name="phone1">Phone#1</string>
+    <string name="phone2">Phone#2</string>
+    <string name="phone3">Phone#3</string>
+    <string name="mail">Mail</string>
+    <string name="qualification">Qualification</string>
+    <string name="subjects">Subjects/Specialization</string>
+    <string name="institute">Institute/University</string>
+    <string name="pyear">Year of Passing</string>
+    <string name="grade">Grade/Division</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_dashboard__drawer">Dashboard_Drawer</string>

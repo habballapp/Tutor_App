@@ -39,6 +39,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, new FragmentSearch());
                 fragmentTransaction.commit();
