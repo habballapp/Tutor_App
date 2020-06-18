@@ -1,77 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        tools:context=".Dashboard.ui.Qualification.Qualification">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <RelativeLayout
+            android:id="@+id/rl_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#FFFFFF">
+                android:id="@+id/ln_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp">
 
-
-                <LinearLayout
-                    android:id="@+id/ln_logo"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp">
+                    android:background="@drawable/logo"
+                    >
+                </ImageView>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/logo"
-                        >
-                    </ImageView>
+            </RelativeLayout>
 
-                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ln_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ln_logo"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:weightSum="2">
 
-                <LinearLayout
-                    android:id="@+id/ln_text"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ln_logo"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical"
-                    android:weightSum="2">
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:text="@string/qualification"
+                    android:theme="@style/TextStyle"
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:textAllCaps="true"
-                        android:text="Qualifications"
-                        android:theme="@style/TextStyle"
-
-                        />
+                    />
 
 
-                </LinearLayout>
+            </LinearLayout>
+
+
+            <RelativeLayout
+
+                android:id="@+id/relativevToSlide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ln_text"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:visibility="gone"
+                >
 
                 <LinearLayout
                     android:id="@+id/ln_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ln_text"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="40dp"
                     android:orientation="vertical"
                     android:weightSum="18">
 
-
-
                     <EditText
-                        android:id="@+id/edt_qualification"
+                        android:id="@+id/qualification"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
@@ -81,12 +89,12 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/qualification"
+                        android:text="@string/qualification"
                         android:theme="@style/EditText" />
 
 
                     <EditText
-                        android:id="@+id/edt_fname"
+                        android:id="@+id/subject"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
@@ -95,70 +103,99 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/subjects"
+                        android:text="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
-                        android:id="@+id/edt_mname"
+                        android:id="@+id/edt_institute"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
-                        android:hint="@string/institute"
-                        android:theme="@style/EditText" />
-
-                    <EditText
-                        android:id="@+id/edt_occupation"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_work_black_24dp"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/pyear"
+                        android:text="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
-                        android:id="@+id/edt_cnic"
+                        android:id="@+id/edt_passing_year"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:inputType="number"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/grade"
+                        android:text="@string/pyear"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_grade"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/grade"
+                        android:layout_marginBottom="10dp"
                         android:theme="@style/EditText" />
 
 
-
                 </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeZaplon"
+                android:background="@drawable/editbox"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/relativevToSlide"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/qualification"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:id="@+id/relativevToSlide1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeZaplon"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:visibility="gone"
+                >
 
                 <LinearLayout
                     android:id="@+id/ln_login1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ln_text"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="40dp"
                     android:orientation="vertical"
                     android:weightSum="18">
 
-
-
                     <EditText
-                        android:id="@+id/edt_qualification1"
+                        android:id="@+id/qualification1"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
@@ -168,12 +205,12 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/qualification"
+                        android:text="@string/qualification"
                         android:theme="@style/EditText" />
 
 
                     <EditText
-                        android:id="@+id/edt_fname1"
+                        android:id="@+id/subject1"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
@@ -182,134 +219,462 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/subjects"
+                        android:text="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
-                        android:id="@+id/edt_mname1"
+                        android:id="@+id/edt_institute1"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
-                        android:hint="@string/institute"
-                        android:theme="@style/EditText" />
-
-                    <EditText
-                        android:id="@+id/edt_occupation1"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_work_black_24dp"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/pyear"
+                        android:text="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
-                        android:id="@+id/edt_cnic1"
+                        android:id="@+id/edt_passing_year1"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:inputType="number"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/grade"
+                        android:text="@string/pyear"
                         android:theme="@style/EditText" />
 
+                    <EditText
+                        android:id="@+id/edt_grade1"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/grade"
+                        android:layout_marginBottom="10dp"
+                        android:theme="@style/EditText" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeZaplon1"
+                android:background="@drawable/editbox"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/relativevToSlide1"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/add_qualification"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+
+                android:id="@+id/relativevToSlide2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeZaplon1"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:visibility="gone"
+                >
+
+                <LinearLayout
+                    android:id="@+id/ln_login2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="18">
+
+                    <EditText
+                        android:id="@+id/qualification2"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/qualification"
+                        android:theme="@style/EditText" />
+
+
+                    <EditText
+                        android:id="@+id/subject2"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/subjects"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_institute2"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/institute"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_passing_year2"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/pyear"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_grade2"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/grade"
+                        android:layout_marginBottom="10dp"
+                        android:theme="@style/EditText" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeZaplon2"
+                android:background="@drawable/editbox"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/relativevToSlide2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/add_qualification"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/relativevToSlide3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeZaplon2"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:visibility="gone"
+                >
+
+                <LinearLayout
+                    android:id="@+id/ln_login3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="18">
+
+                    <EditText
+                        android:id="@+id/qualification3"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/qualification"
+                        android:theme="@style/EditText" />
+
+
+                    <EditText
+                        android:id="@+id/subject3"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/subjects"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_institute3"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/institute"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_passing_year3"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/pyear"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_grade3"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/grade"
+                        android:layout_marginBottom="10dp"
+                        android:theme="@style/EditText" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeZaplon3"
+                android:background="@drawable/editbox"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/relativevToSlide3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/add_qualification"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+
+                android:id="@+id/relativevToSlide4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeZaplon3"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:visibility="gone"
+
+                >
+
+                <LinearLayout
+                    android:id="@+id/ln_login4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="18">
+
+
+                    <EditText
+                        android:id="@+id/qualification4"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/qualification"
+                        android:theme="@style/EditText" />
+
+
+                    <EditText
+                        android:id="@+id/subject4"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/subjects"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_institute4"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/institute"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_passing_year4"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/pyear"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_grade4"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/grade"
+                        android:layout_marginBottom="10dp"
+                        android:theme="@style/EditText" />
 
 
                 </LinearLayout>
 
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeZaplon4"
+                android:background="@drawable/editbox"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/relativevToSlide4"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
 
-                <RelativeLayout
-                    android:id="@+id/btn_qualification_user"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/ln_login"
-                    android:layout_centerInParent="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="60dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/btn_round"
-                    android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:paddingStart="30dp"
-                    android:paddingLeft="30dp">
-
-                    <TextView
-                        android:id="@+id/btn_signin_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:padding="5dp"
-                        android:text="ADD"
-                        android:theme="@style/ButtonTextRound" />
-
-                    <ImageView
-                        android:id="@+id/btn_signin_image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/btn_qualification_next"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/btn_qualification_user"
-                    android:layout_centerInParent="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="60dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/btn_round"
-                    android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:paddingStart="30dp"
-                    android:paddingLeft="30dp">
-
-                    <TextView
-                        android:id="@+id/btn_signin_next_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:padding="5dp"
-                        android:text="NEXT"
-                        android:theme="@style/ButtonTextRound" />
-
-                    <ImageView
-                        android:id="@+id/btn_signin_image_next"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_arrow_forward_black_24dp" />
-
-                </RelativeLayout>
-
-
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/add_qualification"
+                    />
             </RelativeLayout>
 
-        </ScrollView>
+            <RelativeLayout
+                android:id="@+id/btn_qualification_next"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/relativeZaplon4"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_round"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
 
+                <TextView
+                    android:id="@+id/btn_signin_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="5dp"
+                    android:text="NEXT"
+                    android:theme="@style/ButtonTextRound" />
 
-    </RelativeLayout>
+                <ImageView
+                    android:id="@+id/btn_signin_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_arrow_forward_black_24dp" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

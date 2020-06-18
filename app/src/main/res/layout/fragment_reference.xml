@@ -58,7 +58,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ln_login"
+                android:id="@+id/ln_reference"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ln_text"
@@ -84,7 +84,7 @@
 
 
                 <EditText
-                    android:id="@+id/edt_fname"
+                    android:id="@+id/edt_relation"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -93,7 +93,7 @@
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:text="@string/fathername"
+                    android:text="@string/relation"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -143,17 +143,134 @@
 
             </LinearLayout>
 
+            <RelativeLayout
+
+                android:id="@+id/relativevToSlide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_below="@+id/ln_reference"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                >
+
+                <LinearLayout
+                    android:id="@+id/ln_experience1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="18">
+
+                    <EditText
+                        android:id="@+id/name1"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/name"
+                        android:theme="@style/EditText" />
+
+
+                    <EditText
+                        android:id="@+id/edt_relation1"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/relation"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_occupation1"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_work_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/occupation"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_present_address1"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_directions_car_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/address"
+                        android:theme="@style/EditText" />
+
+                    <EditText
+                        android:id="@+id/edt_phone1"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:background="@drawable/editbox"
+                        android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:padding="10dp"
+                        android:paddingLeft="30dp"
+                        android:text="@string/telephone"
+                        android:theme="@style/EditText" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/btn_reference_user"
+                android:id="@+id/relativeZaplon"
+                android:background="@drawable/editbox"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/relativevToSlide"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/add_reference"
+                    />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/btn_refernce_next"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_below="@+id/ln_login"
+                android:layout_below="@+id/relativeZaplon"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="60dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"
