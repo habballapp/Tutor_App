@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -261,35 +260,62 @@
                     android:theme="@style/EditText" />
 
 
-                <EditText
+                <RelativeLayout
                     android:id="@+id/edt_profession"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/profession"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText">
 
-                <EditText
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:dropDownWidth="match_parent"
+                        android:background="@null"
+                        android:popupBackground="@drawable/popupbackground"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/spinner"
+                        android:layout_alignEnd="@+id/spinner"
+                        android:layout_alignRight="@+id/spinner"
+                        android:layout_alignBottom="@+id/spinner"
+                        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:theme="@style/Spinner" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/edt_conveyance"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/conveyance"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText">
+
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:dropDownWidth="match_parent"
+                        android:background="@null"
+                        android:popupBackground="@drawable/popupbackground" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/spinner1"
+                        android:layout_alignEnd="@+id/spinner1"
+                        android:layout_alignRight="@+id/spinner1"
+                        android:layout_alignBottom="@+id/spinner1"
+                        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:theme="@style/Spinner" />
+                </RelativeLayout>
 
 
             </LinearLayout>
@@ -326,7 +352,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:padding="5dp"
-                    android:src="@drawable/ic_arrow_forward_black_24dp" />
+                    android:src="@drawable/ic_file_upload_black_24dp" />
 
             </RelativeLayout>
 

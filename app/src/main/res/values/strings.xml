@@ -22,7 +22,7 @@
     <string name="phone2">Phone#2</string>
     <string name="phone3">Phone#3</string>
     <string name="mail">Mail</string>
-    <string name="profession">Are you a Teacher by Profession</string>
+    <string name="profession">Are you a Teacher by Profession?</string>
     <string name="conveyance">Do you have conveyance?</string>g
     <string name="qualification">Qualification</string>
     <string name="add_qualification">Add More Qualification</string>
