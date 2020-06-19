@@ -32,7 +32,7 @@ public class SplashScreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, Dashboard_Drawer.class);
+                Intent intent = new Intent(SplashScreen.this, Welcome.class);
                 startActivity(intent);
                 finish();
             }
