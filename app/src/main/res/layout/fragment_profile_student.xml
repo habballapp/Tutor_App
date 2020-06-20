@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Dashboard.ui.Profile.Teacher.ProfileTeacher">
+    tools:context=".Dashboard.ui.Profile.Student.ProfileStudent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -157,47 +157,12 @@
 
             </LinearLayout>
 
+
             <RelativeLayout
-                android:id="@+id/btn_profile_upload"
+                android:id="@+id/btn_class_next"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_below="@+id/ln_login"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="60dp"
-                android:background="@drawable/btn_round"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:paddingStart="30dp"
-                android:paddingLeft="30dp">
-
-                <TextView
-                    android:id="@+id/btn_txt_upload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:padding="5dp"
-                    android:text="UPLOAD PHOTO"
-                    android:theme="@style/ButtonTextRound" />
-
-                <ImageView
-                    android:id="@+id/btn_signin_upload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_file_upload_black_24dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/btn_profile_next"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_below="@+id/btn_profile_upload"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="60dp"
