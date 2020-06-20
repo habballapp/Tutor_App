@@ -1,20 +1,17 @@
 package com.example.tutor_app.Dashboard.ui.Profile.Student;
 
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-
 import com.example.tutor_app.Adapters.SelectClassAdapter;
-import com.example.tutor_app.Adapters.ViewAdapter;
 import com.example.tutor_app.R;
 
 import java.util.ArrayList;
@@ -33,7 +30,6 @@ public class SelectClass extends Fragment {
     List<String> classes = new ArrayList<>();
     List<String> subjects = new ArrayList<>();
     int count = 0;
-   
 
 
     @Override
@@ -50,12 +46,6 @@ public class SelectClass extends Fragment {
         adapter = new SelectClassAdapter(getContext(), classes);
         rl_recycler.setAdapter(adapter);
 
-        if (adapter == null) {
-            adapter = new SelectClassAdapter(getContext(), classes);
-            rl_recycler.setAdapter(adapter);
-
-        } else {
-
 
         btn_class_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,17 +53,12 @@ public class SelectClass extends Fragment {
                 count++;
                 classes.add("Class " + count);
 
-                adapter = new SelectClassAdapter(getContext(),classes);
-                adapter.notifyDataSetChanged();
+                adapter = new SelectClassAdapter(getContext(), classes);
+                rl_recycler.setAdapter(adapter);
 
             }
         });
 
-        }
-
-
-
-
         return root;
-    }
+}
 }
