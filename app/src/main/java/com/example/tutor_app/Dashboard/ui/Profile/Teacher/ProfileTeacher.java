@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Profile;
+package com.example.tutor_app.Dashboard.ui.Profile.Teacher;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

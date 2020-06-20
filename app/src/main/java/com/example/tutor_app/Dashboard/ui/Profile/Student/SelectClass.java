@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Profile;
+package com.example.tutor_app.Dashboard.ui.Profile.Student;
 
 import android.os.Bundle;
 
@@ -13,9 +13,9 @@ import com.example.tutor_app.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileStudent extends Fragment {
+public class SelectClass extends Fragment {
 
-    public ProfileStudent() {
+    public SelectClass() {
         // Required empty public constructor
     }
 
@@ -24,6 +24,6 @@ public class ProfileStudent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_student, container, false);
+        return inflater.inflate(R.layout.fragment_class__selection, container, false);
     }
 }

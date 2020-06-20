@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.tutor_app.Dashboard.ui.Profile.ProfileTeacher"
+        android:name="com.example.tutor_app.Dashboard.ui.Profile.Teacher.ProfileTeacher"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
 
