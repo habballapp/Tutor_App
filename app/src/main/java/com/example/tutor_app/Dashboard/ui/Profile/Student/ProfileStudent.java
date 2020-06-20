@@ -7,18 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.example.tutor_app.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class ProfileStudent extends Fragment {
-
-    public ProfileStudent() {
-        // Required empty public constructor
-    }
-
+    private RelativeLayout btn_profile_next;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

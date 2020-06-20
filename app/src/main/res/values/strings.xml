@@ -37,7 +37,7 @@
     <string name="from">From</string>
     <string name="till">Till</string>
     <string name="classes">Classes to Track</string>
-    <string name="class_title">Select Classes</string>
+    <string name="class_title">Add Student Information</string>
     <string name="preffered">Preferred Subjects</string>
     <string name="preferredarea">Preferred Area</string>
     <string name="relation">Relation</string>
