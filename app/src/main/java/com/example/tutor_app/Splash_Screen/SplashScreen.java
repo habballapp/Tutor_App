@@ -15,7 +15,7 @@ import com.example.tutor_app.R;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 5000;
+
     private ImageView tutor_logo;
 
     @Override
@@ -36,6 +36,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 5000);
+        }, 1000);
     }
 }

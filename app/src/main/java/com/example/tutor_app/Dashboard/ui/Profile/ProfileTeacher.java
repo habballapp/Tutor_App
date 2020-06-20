@@ -17,13 +17,19 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.tutor_app.Dashboard.ui.Qualification.Qualification;
 import com.example.tutor_app.R;
 
-public class ProfileFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProfileTeacher extends Fragment {
 
     private RelativeLayout btn_profile_next;
     private FragmentTransaction fragmentTransaction;
+    private  TextView edt_conveyance_txt;
     private Spinner spinner,spinner1;
-    private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
-    private static final String[] paths1 = {"Do you have conveyance?", "Yes", "No"};
+ //   private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
+ //    private static final String[] paths1 = {"Do you have conveyance?", "Yes", "No"};
+    private List<String> paths,paths1;
+    private String Filter_selected = "";
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -32,6 +38,7 @@ public class ProfileFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
+        edt_conveyance_txt = root.findViewById(R.id.edt_conveyance_txt);
 
         btn_profile_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +49,17 @@ public class ProfileFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+        paths = new ArrayList<>();
+        paths.add("Are you a Teacher by Profession?");
+        paths.add("Yes");
+        paths.add("No");
+
+        paths1 = new ArrayList<>();
+        paths1.add("Do you have conveyance?");
+        paths1.add("Yes");
+        paths1.add("No");
+
 
         spinner = (Spinner) root.findViewById(R.id.spinner);
         spinner1 = (Spinner) root.findViewById(R.id.spinner1);
@@ -117,6 +135,29 @@ public class ProfileFragment extends Fragment {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position == 0){
+
+                    edt_conveyance_txt.setVisibility(View.GONE);
+
+                }else{
+
+
+                }
+                Filter_selected = paths1.get(position);
+
+                if (Filter_selected.equals("Yes")) {
+
+                    edt_conveyance_txt.setVisibility(View.VISIBLE);
+
+                } else if (Filter_selected.equals("No")) {
+
+                    edt_conveyance_txt.setVisibility(View.GONE);
+                }
+
+
+
+
 
             }
 

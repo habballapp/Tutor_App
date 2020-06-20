@@ -6,6 +6,7 @@
     <string name="contact">Contact No</string>
 
     <string name="fullname">Full Name</string>
+    <string name="conveyance_type">Bike/Car/Bus</string>
     <string name="name">Name</string>
     <string name="fathername">Father/Husband Name</string>
     <string name="mothername">Mother Name/Tongue</string>
@@ -47,9 +48,6 @@
     <string name="remail">Email:</string>
     <string name="rsubjects">Subjects:</string>
     <string name="rfees">Fees:</string>
-
-
-
 
 
     <!-- TODO: Remove or change this placeholder text -->
