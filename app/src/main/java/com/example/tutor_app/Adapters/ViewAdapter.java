@@ -67,7 +67,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name,name_value,contact,contact_value,email,email_value,subjects,subjects_value,
+        public  TextView name,name_value,contact,contact_value,email,email_value,subjects,subjects_value,
                 fees,fees_value;
 
         public ViewHolder(@NonNull View itemView) {

@@ -40,7 +40,7 @@ public class Dashboard_Drawer extends AppCompatActivity {
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_profile, R.id.nav_search)
+                R.id.nav_home, R.id.nav_profile, R.id.nav_search,R.id.nav_profile_student)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

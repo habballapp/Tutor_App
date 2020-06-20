@@ -1,6 +1,5 @@
 package com.example.tutor_app.Model_Classes;
 
-import android.widget.TextView;
 
 public class View_List {
 

@@ -21,6 +21,13 @@
         tools:layout="@layout/fragment_profile" />
 
     <fragment
+        android:id="@+id/nav_profile_student"
+        android:name="com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent"
+        android:label="@string/menu_student"
+        tools:layout="@layout/fragment_profile_student" />
+
+
+    <fragment
         android:id="@+id/nav_search"
         android:name="com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch"
         android:label="@string/menu_search"
