@@ -17,6 +17,8 @@ import com.example.tutor_app.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -55,6 +57,8 @@ public class SelectClass extends Fragment {
 
                 adapter = new SelectClassAdapter(getContext(), classes);
                 rl_recycler.setAdapter(adapter);
+
+
 
             }
         });
