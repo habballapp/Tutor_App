@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.R;
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
     private List<String> classes;
     private List<String> subjects;
     List<String> spinner1,spinner2;
+    final String[] select_qualification = {
+            "Select Qualification", "10th / Below", "12th", "Diploma", "UG",
+            "PG", "Phd"};
 
 
     public SelectClassAdapter(final Context context, List<String> classItem) {
@@ -108,7 +112,18 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
                 return view;
             }
         };
-        holder.spinner_subject.setAdapter(adapter1);
+
+        ArrayList<StateVO> listVOs = new ArrayList<>();
+
+        for (int i = 0; i < select_qualification.length; i++) {
+            StateVO stateVO = new StateVO();
+            stateVO.setTitle(select_qualification[i]);
+            stateVO.setSelected(false);
+            listVOs.add(stateVO);
+        }
+        MyAdapter myAdapter = new MyAdapter(this.context, 0,
+                listVOs);
+         holder.spinner_subject.setAdapter(myAdapter);
 
         holder.spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -133,6 +148,34 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
 
             }
         });
+
+        holder.spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        holder.spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
 
     }
 
@@ -143,6 +186,7 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+
         public EditText edt_email;
         public Spinner spinner_class,spinner_subject;
 
@@ -152,6 +196,8 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
             edt_email = itemView.findViewById(R.id.edt_email);
             spinner_class = itemView.findViewById(R.id.spinner_class);
             spinner_subject = itemView.findViewById(R.id.spinner_subject);
+
+
         }
     }
 }
