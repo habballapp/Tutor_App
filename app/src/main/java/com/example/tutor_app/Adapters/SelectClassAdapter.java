@@ -23,13 +23,11 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
 
 
     private Context context;
-//    String email,spinner1,spinner2;
+//    String email;
     private List<String> classes;
     private List<String> subjects;
     List<String> spinner1,spinner2;
-    final String[] select_qualification = {
-            "Select Qualification", "10th / Below", "12th", "Diploma", "UG",
-            "PG", "Phd"};
+
 
 
     public SelectClassAdapter(final Context context, List<String> classItem) {
@@ -41,7 +39,8 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
             spinner1.add("Class " + i);
         spinner1.add("O-Level");
         spinner1.add("A-Level");
-//        spinner1.addAll(classes);
+
+        
         spinner2 = new ArrayList<>();
         spinner2.add("Select Subject");
         spinner2.add("Mathematics");
@@ -115,12 +114,16 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
 
         ArrayList<StateVO> listVOs = new ArrayList<>();
 
-        for (int i = 0; i < select_qualification.length; i++) {
+        for (int i = 0; i < spinner2.size(); i++) {
             StateVO stateVO = new StateVO();
-            stateVO.setTitle(select_qualification[i]);
+            stateVO.setTitle(spinner2.get(i));
             stateVO.setSelected(false);
             listVOs.add(stateVO);
         }
+
+
+
+
         MyAdapter myAdapter = new MyAdapter(this.context, 0,
                 listVOs);
          holder.spinner_subject.setAdapter(myAdapter);
