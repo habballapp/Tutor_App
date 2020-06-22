@@ -77,7 +77,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
             name_value = (TextView)itemView.findViewById(R.id.name_value);
             contact = (TextView)itemView.findViewById(R.id.tv_contact);
             contact_value = (TextView)itemView.findViewById(R.id.contact_value);
-            email = (TextView)itemView.findViewById(R.id.edt_address);
+            email = (TextView)itemView.findViewById(R.id.email_value);
             email_value = (TextView)itemView.findViewById(R.id.email_value);
             subjects = (TextView)itemView.findViewById(R.id.tv_subjects);
             subjects_value = (TextView)itemView.findViewById(R.id.subjects_value);

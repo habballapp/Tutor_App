@@ -122,8 +122,6 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
         }
 
 
-
-
         MyAdapter myAdapter = new MyAdapter(this.context, 0,
                 listVOs);
          holder.spinner_subject.setAdapter(myAdapter);
@@ -131,6 +129,8 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
         holder.spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
 
             }
 
@@ -155,6 +155,7 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
         holder.spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
 
             }
 

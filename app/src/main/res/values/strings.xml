@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Tutor_App</string>
     <string name="email">Email/UserName</string>
+    <string name="email1">Email</string>
+    <string name="user">UserName</string>
     <string name="password">Password</string>
     <string name="address">Address</string>
     <string name="contact">Contact No</string>
@@ -13,6 +15,15 @@
     <string name="occupation">Occupation</string>
     <string name="cnic">C.N.I.C Number</string>
     <string name="paddress">Present Address</string>
+    <string name="hno">House Number</string>
+    <string name="bno">Building Number</string>
+    <string name="sno">Street Number</string>
+    <string name="blockno">Block Number</string>
+    <string name="ano">Area Number</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="cno">City Number</string>
+    <string name="country_no">Country Number</string>
     <string name="permanent_address">Permanent Address</string>
     <string name="gender">Gender</string>
     <string name="dob">Date of Birth</string>

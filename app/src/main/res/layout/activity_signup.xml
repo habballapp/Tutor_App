@@ -73,6 +73,21 @@
                 android:weightSum="18">
 
                 <EditText
+                    android:id="@+id/edt_fulname"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/editbox"
+                    android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:paddingLeft="30dp"
+                    android:text="@string/fullname"
+                    android:theme="@style/EditText" />
+
+
+                <EditText
                     android:id="@+id/edt_email"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
@@ -83,36 +98,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:text="@string/email"
-                    android:theme="@style/EditText" />
-
-
-                <EditText
-                    android:id="@+id/edt_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:text="@string/password"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_home_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:text="@string/address"
+                    android:text="@string/email1"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -128,6 +114,21 @@
                     android:paddingLeft="30dp"
                     android:text="@string/contact"
                     android:theme="@style/EditText" />
+
+                <EditText
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/editbox"
+                    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:paddingLeft="30dp"
+                    android:text="@string/password"
+                    android:theme="@style/EditText" />
+
             </LinearLayout>
 
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="40dp"
     android:background="#FFFFFF"
     tools:context=".Dashboard.Dashboard_Drawer">
 
@@ -13,7 +13,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
 
 
             <LinearLayout
@@ -78,33 +81,33 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_search"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginRight="40dp">
 
                 <LinearLayout
                     android:id="@+id/ln_demo"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="80dp"
                     android:background="@drawable/layout_round"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="50"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center"
+                        android:text="DEMO"
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="DEMO"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="50"
                         android:textColor="@color/white_color"
-                        android:theme="@style/Text" />
+                        android:theme="@style/TextNumber" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -130,27 +133,27 @@
                 <LinearLayout
                     android:id="@+id/ln_teacher"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="80dp"
                     android:background="@drawable/blue_layout_round"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="20"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center"
+                        android:text="TEACHER"
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="TEACHER"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="15dp"
+                        android:text="20"
                         android:textColor="@color/white_color"
-                        android:theme="@style/Text" />
+                        android:theme="@style/TextNumber" />
 
 
                 </LinearLayout>
@@ -172,27 +175,27 @@
                 <LinearLayout
                     android:id="@+id/ln_fees_number"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="80dp"
                     android:background="@drawable/brown_layout_round"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="50000"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center"
+                        android:text="FEES"
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="FEES"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="5000"
                         android:textColor="@color/white_color"
-                        android:theme="@style/Text" />
+                        android:theme="@style/TextNumber" />
 
 
                 </LinearLayout>
@@ -213,27 +216,27 @@
                 <LinearLayout
                     android:id="@+id/ln_subject_number"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="80dp"
                     android:background="@drawable/pink_layout_round"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="5"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center"
+                        android:text="NUMBER OF SUBJECT"
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="SUBJECTS NUMBER"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="5"
                         android:textColor="@color/white_color"
-                        android:theme="@style/Text" />
+                        android:theme="@style/TextNumber" />
 
 
                 </LinearLayout>
@@ -241,23 +244,23 @@
 
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@id/ln_subjects"
-                android:layout_marginTop="20dp"
-                android:padding="10dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/logo"></ImageView>
-            </LinearLayout>
 
         </RelativeLayout>
 
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"></ImageView>
+    </LinearLayout>
 
 
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,9 +27,9 @@ public class SelectClass extends Fragment {
 
 
     private RecyclerView rl_recycler;
-    private Parcelable recyclerViewState;
     RecyclerView.Adapter adapter;
-    private RelativeLayout btn_class_add;
+    private RelativeLayout btn_class_add,btn_profile_next;
+    private FragmentTransaction fragmentTransaction;
     List<String> classes = new ArrayList<>();
     List<String> subjects = new ArrayList<>();
     int count = 0;
@@ -41,6 +42,7 @@ public class SelectClass extends Fragment {
         View root = inflater.inflate(R.layout.fragment_class__selection, container, false);
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         btn_class_add = root.findViewById(R.id.btn_class_add);
+        btn_profile_next = root.findViewById(R.id.btn_profile_next);
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         count++;
         classes.add("Class " + count);
@@ -60,6 +62,16 @@ public class SelectClass extends Fragment {
 
 
 
+            }
+        });
+
+        btn_profile_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
+                fragmentTransaction.commit();
             }
         });
 
