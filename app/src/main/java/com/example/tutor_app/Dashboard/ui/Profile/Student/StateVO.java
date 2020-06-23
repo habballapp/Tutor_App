@@ -17,6 +17,7 @@ public class StateVO {
     }
 
     public void setSelected(boolean selected) {
+
         this.selected = selected;
     }
 }

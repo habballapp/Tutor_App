@@ -1,6 +1,7 @@
 package com.example.tutor_app.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
     private ArrayList<StateVO> listState;
     private MyAdapter myAdapter;
     private boolean isFromView = false;
+    private int totalChecked = 0;
 
     public MyAdapter(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
@@ -75,8 +77,20 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int getPosition = (Integer) buttonView.getTag();
 
-                if (!isFromView) {
-                    listState.get(position).setSelected(isChecked);
+                if (isFromView) {
+                    if (totalChecked <= 3) {
+                        listState.get(position).setSelected(isChecked);
+                        if (isChecked) {
+                            totalChecked++;
+                            Log.i("Checked Add", String.valueOf(totalChecked));
+                        }
+                        else
+                            totalChecked--; Log.i("Checked", String.valueOf(totalChecked));
+                    } else {
+                        if (!isChecked)
+                            totalChecked--; Log.i("Checked Remove", String.valueOf(totalChecked));
+
+                    }
                 }
             }
         });

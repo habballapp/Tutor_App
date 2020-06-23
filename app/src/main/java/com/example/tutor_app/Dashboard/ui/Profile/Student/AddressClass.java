@@ -41,12 +41,14 @@ public class AddressClass extends Fragment {
         gender.add("Select Preffered Gender");
         gender.add("Male");
         gender.add("Female");
+        gender.add("Any");
 
         timings = new ArrayList<>();
         timings.add("Select Preffered Timings");
         for(int i = 8; i <= 23; i++)
         {
-            timings.add(i +"-"+i++);
+            timings.add(i+"-"+ ++i);
+                                --i;
         }
 
 
