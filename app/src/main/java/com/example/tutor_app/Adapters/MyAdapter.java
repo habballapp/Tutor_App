@@ -77,7 +77,7 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int getPosition = (Integer) buttonView.getTag();
 
-                if (isFromView) {
+                if (!isFromView) {
                     if (totalChecked <= 3) {
                         listState.get(position).setSelected(isChecked);
                         if (isChecked) {
