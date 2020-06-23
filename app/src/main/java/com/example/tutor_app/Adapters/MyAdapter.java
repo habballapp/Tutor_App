@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.R;
@@ -78,18 +79,28 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
                 int getPosition = (Integer) buttonView.getTag();
 
                 if (!isFromView) {
-                    if (totalChecked <= 3) {
+                    if (totalChecked < 3) {
                         listState.get(position).setSelected(isChecked);
+                        buttonView.setChecked(isChecked);
                         if (isChecked) {
                             totalChecked++;
                             Log.i("Checked Add", String.valueOf(totalChecked));
+
                         }
                         else
-                            totalChecked--; Log.i("Checked", String.valueOf(totalChecked));
-                    } else {
-                        if (!isChecked)
-                            totalChecked--; Log.i("Checked Remove", String.valueOf(totalChecked));
+                            totalChecked--;
 
+                        Log.i("Checked", String.valueOf(totalChecked));
+                    }
+                    else {
+                        buttonView.setChecked(false);
+                        if (isChecked) {
+
+                            Toast.makeText(getContext(),
+                                    "Limit reached!!!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            totalChecked--; Log.i("Checked Remove", String.valueOf(totalChecked));
+                        }
                     }
                 }
             }
