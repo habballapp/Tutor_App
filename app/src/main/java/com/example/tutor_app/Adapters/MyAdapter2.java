@@ -1,6 +1,7 @@
 package com.example.tutor_app.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class MyAdapter2 extends ArrayAdapter<StateVO> {
     private MyAdapter2 myAdapter;
     private boolean isFromView = false;
     private int totalChecked = 0;
+    private List<String> selectedSubjects = new ArrayList<>();
 
     public MyAdapter2(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
@@ -76,7 +78,37 @@ public class MyAdapter2 extends ArrayAdapter<StateVO> {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.i("selectAll", String.valueOf(position));
+                if(position == 1) {
+                    if(isChecked) {
+                        for (int i = 0; i < listState.size(); i++) {
+                            listState.get(i).setSelected(true);
+                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
+                        }
+                    } else {
+                        for (int i = 0; i < listState.size(); i++) {
+                            listState.get(i).setSelected(false);
+                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
+                        }
+                    }
+                } else {
+                    if(isChecked) {
+                        if (!selectedSubjects.contains(listState.get(position).getTitle()))
+                            selectedSubjects.add(listState.get(position).getTitle());
+                    } else {
+                        if (selectedSubjects.contains(listState.get(position).getTitle()))
+                            selectedSubjects.remove(listState.get(position).getTitle());
+                    }
+                }
                 int getPosition = (Integer) buttonView.getTag();
+                Log.i("subjectsSelected", String.valueOf(selectedSubjects));
+
+                SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+                        Context.MODE_PRIVATE);
+                final SharedPreferences.Editor profileStudent = personal_profile.edit();
+
+                profileStudent.putString("subjects", String.valueOf(selectedSubjects));
+                profileStudent.apply();
 
                 if (!isFromView) {
                     listState.get(position).setSelected(isChecked);

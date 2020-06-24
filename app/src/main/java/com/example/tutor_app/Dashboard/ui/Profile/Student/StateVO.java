@@ -1,5 +1,7 @@
 package com.example.tutor_app.Dashboard.ui.Profile.Student;
 
+import android.util.Log;
+
 public class StateVO {
     private String title;
     private boolean selected;
@@ -19,5 +21,8 @@ public class StateVO {
     public void setSelected(boolean selected) {
 
         this.selected = selected;
+        Log.i("selectedsubject", title + " - " + selected);
     }
+
+
 }

@@ -16,9 +16,20 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
         <activity
-            android:name=".Dashboard.Dashboard_Drawer"
+            android:name=".Dashboard.ui.Dashboard_Drawer"
             android:label="@string/title_activity_dashboard__drawer"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".Dashboard.ui.Dashboard_Drawer_Student"
+            android:label="@string/title_activity_dashboard__drawer"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".Dashboard.ui.Dashboard_Drawer_Institute"
+            android:label="@string/title_activity_dashboard__drawer"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".SignUp.Signup_Teacher"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

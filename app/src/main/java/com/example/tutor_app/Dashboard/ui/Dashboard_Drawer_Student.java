@@ -1,5 +1,4 @@
-package com.example.tutor_app.Dashboard;
-
+package com.example.tutor_app.Dashboard.ui;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -74,10 +73,12 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Edit Profile")
+                .addChildModel(new ChildModel("\tProfile1"))
+                .addChildModel(new ChildModel("\tProfile2"))
         );
         navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
                 .addChildModel(new ChildModel("\tProfile1"))
-                .addChildModel(new ChildModel("\tProfile1"))
+                .addChildModel(new ChildModel("\tProfile2"))
         );
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
         );
@@ -111,12 +112,12 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
-                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.nav_host_fragment, new ProfileStudent());
-//                          fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
+//                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
+//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                            fragmentTransaction.replace(R.id.nav_host_fragment, new ProfileStudent());
+////                          fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
+//                            fragmentTransaction.commit();
+//                            drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 2) {
 

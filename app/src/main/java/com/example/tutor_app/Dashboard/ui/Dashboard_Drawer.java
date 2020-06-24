@@ -1,6 +1,5 @@
-package com.example.tutor_app.Dashboard;
+package com.example.tutor_app.Dashboard.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -23,10 +21,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
+import com.example.tutor_app.Dashboard.ui.Profile.Teacher.ProfileTeacher;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
-import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
 import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
@@ -114,12 +112,12 @@ public class Dashboard_Drawer extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
-                            Toast.makeText(Dashboard_Drawer.this, "selected"+id, Toast.LENGTH_SHORT).show();
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.nav_host_fragment, new ProfileStudent());
-//                          fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
+//                            Toast.makeText(Dashboard_Drawer.this, "selected"+id, Toast.LENGTH_SHORT).show();
+//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                            fragmentTransaction.replace(R.id.nav_host_fragment, new ProfileTeacher());
+////                          fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
+//                            fragmentTransaction.commit();
+//                            drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 2) {
 
@@ -136,7 +134,7 @@ public class Dashboard_Drawer extends AppCompatActivity {
                             Toast.makeText(Dashboard_Drawer.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 

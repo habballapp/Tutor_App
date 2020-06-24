@@ -51,7 +51,7 @@ public class Signup_Teacher extends AppCompatActivity {
             public void onClick(View v) {
 
                 String mEmail = edt_email.getText().toString().trim();
-                String mPassword = edt_email.getText().toString().trim();
+                String mPassword = edt_password.getText().toString().trim();
                 String mFullname = edt_fullname.getText().toString().trim();
                 String mContact = edt_contact.getText().toString().trim();
 

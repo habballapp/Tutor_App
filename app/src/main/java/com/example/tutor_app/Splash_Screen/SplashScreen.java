@@ -9,7 +9,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.example.tutor_app.Dashboard.Dashboard_Drawer;
 import com.example.tutor_app.Welcome.Welcome;
 import com.example.tutor_app.R;
 

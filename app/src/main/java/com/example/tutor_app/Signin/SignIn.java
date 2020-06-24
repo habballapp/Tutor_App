@@ -20,7 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Dashboard.Dashboard_Drawer;
+import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer;
+import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
 import com.example.tutor_app.ForgetPassword.Forget_Password;
 import com.example.tutor_app.R;
 import com.example.tutor_app.UserType.User_Type;
@@ -104,8 +105,19 @@ public class SignIn extends AppCompatActivity {
                     JSONObject obj = new JSONObject(result);
                     if (!obj.getString("userid").equals("null")) {
 
-                        Intent intent = new Intent(SignIn.this, Dashboard_Drawer.class);
-                        startActivity(intent);
+                        if (obj.getString("userrole").equals("Student")){
+
+                            Toast.makeText(SignIn.this, "Student", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Student.class);
+                            startActivity(intent);
+                        }
+                        else if(obj.getString("userrole").equals("Teacher")){
+
+                            Toast.makeText(SignIn.this, "Teacher", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(SignIn.this, Dashboard_Drawer.class);
+                            startActivity(intent);
+
+                        }
 
                     } else {
                         Toast.makeText(SignIn.this, "Username or password is incorrect.", Toast.LENGTH_LONG).show();
