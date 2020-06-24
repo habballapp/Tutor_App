@@ -22,6 +22,15 @@
         <activity
             android:name=".SignUp.Signup_Teacher"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".SignUp.Signup_Student"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".SignUp.Signup_Institute"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".UserType.User_Type"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
