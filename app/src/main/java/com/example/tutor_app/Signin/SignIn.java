@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Dashboard.Dashboard_Drawer;
 import com.example.tutor_app.ForgetPassword.Forget_Password;
 import com.example.tutor_app.R;
+import com.example.tutor_app.UserType.User_Type;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +34,7 @@ import java.util.Map;
 public class SignIn extends AppCompatActivity {
 
     private RelativeLayout btn_signin;
-    private TextView txt_password;
+    private TextView txt_password, txt_create;
     private EditText edt_email, edt_password;
     private String URL_LOGIN = "https://pci.matz.group/login_data.php ";
 
@@ -43,9 +44,10 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         btn_signin = findViewById(R.id.btn_signin_user);
         txt_password = findViewById(R.id.txt_password);
+        txt_create = findViewById(R.id.txt_create);
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
-        btn_signin.setOnClickListener(new View.OnClickListener(){
+        btn_signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String mEmail = edt_email.getText().toString().trim();
                 String mPassword = edt_password.getText().toString().trim();
@@ -55,13 +57,10 @@ public class SignIn extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                } else
-                    {
+                } else {
                     edt_email.setError("Please insert email");
                     edt_password.setError("Please insert password");
                 }
-
-
 
 
             }
@@ -76,7 +75,23 @@ public class SignIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        txt_create.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick (View v){
+
+        Intent intent = new Intent(SignIn.this, User_Type.class);
+        startActivity(intent);
     }
+    });
+
+    }
+
+
+
+
+
 
     private void Login() throws JSONException {
 

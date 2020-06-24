@@ -97,33 +97,32 @@ public class Dashboard_Drawer extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (id == 0) {
-                            Log.i("Dashboard", "Dashboard Activity");
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.container, new HomeFragment());
-                            fragmentTransaction.commit();
-
-                            drawer.closeDrawer(GravityCompat.START);
+//                            Log.i("Dashboard", "Dashboard Activity");
+//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                            fragmentTransaction.replace(R.id.container, new HomeFragment());
+//                            fragmentTransaction.commit();
+//                            drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
 
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-// //                           fragmentTransaction.replace(R.id.main_container_ret, new My_NetworkDashboard());
+ //                           fragmentTransaction = getSupportFragmentManager().beginTransaction();
+ //                           fragmentTransaction.replace(R.id.main_container_ret, new My_NetworkDashboard());
 //                            fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
 //                            fragmentTransaction.commit();
 //                            drawer.closeDrawer(GravityCompat.START);
                         }
-//                        else if (id == 2) {
-//
+                        else if (id == 2) {
+
 //                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                            fragmentTransaction.replace(R.id.main_container_ret, new PlaceOrderFragment());
 //                            fragmentTransaction.commit();
 //                            drawer.closeDrawer(GravityCompat.START);
 //                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new Retailer_Place_Order()).addToBackStack("tag");
+//                            fragmentTransaction.replace(R.id.conainer, new Retailer_Place_Order()).addToBackStack("tag");
 //                            fragmentTransaction.commit();
 //                            drawer.closeDrawer(GravityCompat.START);
-//
-//                        }
+
+                        }
 //                        else if (id == 3) {
 //                            Log.i("Make Payment", "Make Payment Activity");
 ////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
