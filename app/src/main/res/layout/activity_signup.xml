@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp.Signup">
+    tools:context=".SignUp.Signup_Teacher">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                 android:weightSum="18">
 
                 <EditText
-                    android:id="@+id/edt_fulname"
+                    android:id="@+id/edt_fullname"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -83,7 +83,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:text="@string/fullname"
+                    android:hint="@string/fullname"
                     android:theme="@style/EditText" />
 
 
@@ -98,7 +98,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:text="@string/email1"
+                    android:hint="@string/email1"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -111,8 +111,9 @@
                     android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
                     android:drawablePadding="10dp"
                     android:padding="10dp"
+                    android:inputType="number"
                     android:paddingLeft="30dp"
-                    android:text="@string/contact"
+                    android:hint="@string/contact"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -125,15 +126,16 @@
                     android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
                     android:drawablePadding="10dp"
                     android:padding="10dp"
+                    android:inputType="textPassword"
                     android:paddingLeft="30dp"
-                    android:text="@string/password"
+                    android:hint ="@string/password"
                     android:theme="@style/EditText" />
 
             </LinearLayout>
 
 
             <RelativeLayout
-                android:id="@+id/btn_signin_user"
+                android:id="@+id/btn_signup_user"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
@@ -173,7 +175,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_signin_user"
+                android:layout_below="@+id/btn_signup_user"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp">
 

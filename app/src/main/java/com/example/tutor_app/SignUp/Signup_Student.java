@@ -1,4 +1,4 @@
-package com.example.tutor_app.Signin;
+package com.example.tutor_app.SignUp;
 
 import android.content.Intent;
 import android.os.Build;
@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -20,9 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Dashboard.Dashboard_Drawer;
-import com.example.tutor_app.ForgetPassword.Forget_Password;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Signin.SignIn;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,70 +28,69 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignIn extends AppCompatActivity {
+public class Signup_Student extends AppCompatActivity {
 
-    private RelativeLayout btn_signin;
-    private TextView txt_password;
-    private EditText edt_email, edt_password;
-    private String URL_LOGIN = "https://pci.matz.group/login_data.php ";
+
+    private EditText edt_email,edt_password,edt_fullname,edt_contact;
+    private String Url_Teacher = "https://pci.matz.group/signup_student_data.php";
+    private RelativeLayout btn_signup_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        btn_signin = findViewById(R.id.btn_signin_user);
-        txt_password = findViewById(R.id.txt_password);
+        setContentView(R.layout.activity_signup);
+
+
+        btn_signup_user = findViewById(R.id.btn_signup_user);
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
-        btn_signin.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                String mEmail = edt_email.getText().toString().trim();
-                String mPassword = edt_password.getText().toString().trim();
-                if (!mEmail.isEmpty() || !mPassword.isEmpty()) {
-                    try {
-                        Login();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else
-                    {
-                    edt_email.setError("Please insert email");
-                    edt_password.setError("Please insert password");
-                }
+        edt_fullname = findViewById(R.id.edt_fullname);
+        edt_contact = findViewById(R.id.edt_contact);
 
-
-
-
-            }
-
-        });
-
-        txt_password.setOnClickListener(new View.OnClickListener() {
+        btn_signup_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(SignIn.this, Forget_Password.class);
-                startActivity(intent);
+                String mEmail = edt_email.getText().toString().trim();
+                String mPassword = edt_email.getText().toString().trim();
+                String mFullname = edt_fullname.getText().toString().trim();
+                String mContact = edt_contact.getText().toString().trim();
+
+                if (!mEmail.isEmpty() || !mPassword.isEmpty() || !mFullname.isEmpty() || !mContact.isEmpty()) {
+                    SignupUser();
+                }
+                else
+                {
+                    edt_email.setError("Please insert email");
+                    edt_password.setError("Please insert password");
+                    edt_fullname.setError("Please insert email");
+                    edt_contact.setError("Please insert password");
+                }
             }
         });
+
+
+
     }
 
-    private void Login() throws JSONException {
+    private void SignupUser() {
 
-        StringRequest sr = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST, Url_Teacher, new Response.Listener<String>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(String result) {
-                Log.i("loginData", String.valueOf(result));
+                Log.i("SignupData", String.valueOf(result));
                 try {
                     JSONObject obj = new JSONObject(result);
-                    if (!obj.getString("userid").equals("null")) {
+                    if (!obj.getString("studentid").equals("null")) {
 
-                        Intent intent = new Intent(SignIn.this, Dashboard_Drawer.class);
+                        Toast.makeText(Signup_Student.this, "User Account Created.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Signup_Student.this, SignIn.class);
                         startActivity(intent);
 
+
                     } else {
-                        Toast.makeText(SignIn.this, "Username or password is incorrect.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Signup_Student.this, "Username or password is incorrect.", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -127,6 +124,8 @@ public class SignIn extends AppCompatActivity {
                 Map<String, String> map = new HashMap<>();
                 map.put("email", edt_email.getText().toString());
                 map.put("password", edt_password.getText().toString());
+                map.put("phonenumber", edt_contact.getText().toString());
+                map.put("fullname", edt_fullname.getText().toString());
                 return map;
             }
         };
@@ -134,5 +133,9 @@ public class SignIn extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(sr);
     }
+
+
 }
+
+
 

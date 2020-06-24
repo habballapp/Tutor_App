@@ -3,24 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/menu_home" />
+<!--    <group android:checkableBehavior="single">-->
+<!--        <item-->
+<!--            android:id="@+id/nav_home"-->
+<!--            android:icon="@drawable/ic_home_black_24dp"-->
+<!--            android:title="@string/menu_home" />-->
 
-        <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_perm_identity_black_24dp"
-        android:title="@string/menu_profile" />
+<!--        <item-->
+<!--        android:id="@+id/nav_profile"-->
+<!--        android:icon="@drawable/ic_perm_identity_black_24dp"-->
+<!--        android:title="@string/menu_profile" />-->
 
-        <item
-            android:id="@+id/nav_profile_student"
-            android:icon="@drawable/ic_perm_identity_black_24dp"
-            android:title="@string/menu_student" />
-        <item
-            android:id="@+id/nav_search"
-            android:icon="@drawable/ic_search_black_24dp"
-            android:title="@string/menu_search" />
-    </group>
+<!--        <item-->
+<!--            android:id="@+id/nav_profile_student"-->
+<!--            android:icon="@drawable/ic_perm_identity_black_24dp"-->
+<!--            android:title="@string/menu_student" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_search"-->
+<!--            android:icon="@drawable/ic_search_black_24dp"-->
+<!--            android:title="@string/menu_search" />-->
+<!--    </group>-->
 </menu>

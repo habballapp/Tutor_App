@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.tutor_app.R;
-import com.example.tutor_app.SignUp.Signup;
+import com.example.tutor_app.SignUp.Signup_Institute;
+import com.example.tutor_app.SignUp.Signup_Student;
+import com.example.tutor_app.SignUp.Signup_Teacher;
 
 public class User_Type extends AppCompatActivity {
 
@@ -26,7 +28,7 @@ public class User_Type extends AppCompatActivity {
         rl_user.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                Intent intent = new Intent(User_Type.this, Signup.class);
+                Intent intent = new Intent(User_Type.this, Signup_Student.class);
                 startActivity(intent);
             }
 
@@ -35,7 +37,7 @@ public class User_Type extends AppCompatActivity {
         rl_user_institute.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                Intent intent = new Intent(User_Type.this, Signup.class);
+                Intent intent = new Intent(User_Type.this, Signup_Teacher.class);
                 startActivity(intent);
             }
 
@@ -44,7 +46,7 @@ public class User_Type extends AppCompatActivity {
         rl_user_teacher.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                Intent intent = new Intent(User_Type.this, Signup.class);
+                Intent intent = new Intent(User_Type.this, Signup_Institute.class);
                 startActivity(intent);
             }
 
