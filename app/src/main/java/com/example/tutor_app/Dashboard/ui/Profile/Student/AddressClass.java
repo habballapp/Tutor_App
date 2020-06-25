@@ -54,7 +54,7 @@ public class AddressClass extends Fragment {
     private EditText edt_house_number,edt_bno,edt_street,edt_block,edt_area,edt_city,edt_country;
     private String Filter_selected = "";
     String Url_Sprofile = "https://pci.matz.group/studenttutorformsubmit.php";
-    String name, fathername, email,contactno1,contactno2,contactno3,classes,subjects,schoolcollege;
+    String spinner_gender,spinner_timings,name, fathername, email,contactno1,contactno2,contactno3,classes,subjects,schoolcollege,spinnerTimings;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,6 +88,7 @@ public class AddressClass extends Fragment {
         classes = sharedPreferences.getString("classes", "");
         subjects = sharedPreferences.getString("subjects", "");
         schoolcollege = sharedPreferences.getString("schoolcollege", "");
+        spinner_timings = sharedPreferences.getString("subjects", String.valueOf(spinner_timings));
 
 
 
@@ -108,7 +109,7 @@ public class AddressClass extends Fragment {
 
 
 
-        ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
+        final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 // TODO Auto-generated method stub
@@ -137,7 +138,7 @@ public class AddressClass extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-
+                spinner_gender = gender.get(position);
             }
 
             @Override
@@ -165,6 +166,7 @@ public class AddressClass extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
 
+
             }
 
             @Override
@@ -179,6 +181,14 @@ public class AddressClass extends Fragment {
             public void onClick(View v) {
 
 
+                String houseno = edt_house_number.getText().toString().trim();
+                String buildingno = edt_bno.getText().toString().trim();
+                String streetno = edt_street.getText().toString().trim();
+                String blockno = edt_block.getText().toString().trim();
+                String city = edt_city.getText().toString().trim();
+                String area = edt_area.getText().toString().trim();
+                String country = edt_country.getText().toString().trim();
+//              String spinner_timings = spinner2.getText().toString().trim();
 
                 Address();
             }
@@ -194,15 +204,22 @@ public class AddressClass extends Fragment {
             StringRequest sr = new StringRequest(Request.Method.POST, Url_Sprofile, new Response.Listener<String>() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
-                public void onResponse(String result) {
-                    Log.i("SignupData", String.valueOf(result));
-                    try {
-                        JSONObject obj = new JSONObject(result);
+                public void onResponse(String response) {
+                    Log.i("AddProfile", String.valueOf(response));
+                    if(response != null && !response.isEmpty()){
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
+//                        try {
+//                            JSONObject obj = new JSONObject(response);
+//                            Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+
                     }
-
+                    else
+                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -232,12 +249,23 @@ public class AddressClass extends Fragment {
                     map.put("name", name);
                     map.put("fathername", fathername);
                     map.put("email", email);
-                    map.put("classes", classes);
+                    map.put("class", classes);
                     map.put("subjects", subjects);
                     map.put("contactno1", contactno1);
                     map.put("contactno2", contactno2);
                     map.put("contactno3", contactno3);
                     map.put("schoolcollege", schoolcollege);
+                    map.put("housenum",edt_house_number.getText().toString());
+                    map.put("buildingname",edt_bno.getText().toString());
+                    map.put("streetnum",edt_street.getText().toString());
+                    map.put("blocknum",edt_block.getText().toString());
+                    map.put("area",edt_area.getText().toString());
+                    map.put("city",edt_city.getText().toString());
+                    map.put("country",edt_country.getText().toString());
+                    map.put("gender",spinner_gender);
+                    map.put("desiredtiming",spinner_timings);
+
+
 
                     return map;
                 }

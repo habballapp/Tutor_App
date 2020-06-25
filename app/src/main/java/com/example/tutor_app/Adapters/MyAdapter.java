@@ -1,6 +1,7 @@
 package com.example.tutor_app.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
     private MyAdapter myAdapter;
     private boolean isFromView = false;
     private int totalChecked = 0;
+    private List<String> spinner_timings = new ArrayList<>();;
 
     public MyAdapter(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
@@ -66,6 +68,8 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
         holder.mCheckBox.setChecked(listState.get(position).isSelected());
         isFromView = false;
 
+        spinner_timings.add( listState.get(position).getTitle());
+
         if ((position == 0)) {
             holder.mCheckBox.setVisibility(View.INVISIBLE);
         } else {
@@ -74,9 +78,11 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
         holder.mCheckBox.setTag(position);
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int getPosition = (Integer) buttonView.getTag();
+
 
                 if (!isFromView) {
                     if (totalChecked < 3) {
@@ -85,10 +91,18 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
                         if (isChecked) {
                             totalChecked++;
                             Log.i("Checked Add", String.valueOf(totalChecked));
+                            if (!spinner_timings.contains(listState.get(position).getTitle()))
+                                spinner_timings.add(listState.get(position).getTitle());
+
 
                         }
-                        else
+                        else{
                             totalChecked--;
+                            if (spinner_timings.contains(listState.get(position).getTitle()))
+                                spinner_timings.remove(listState.get(position).getTitle());
+
+                        }
+
 
                         Log.i("Checked", String.valueOf(totalChecked));
                     }
@@ -103,7 +117,16 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
                         }
                     }
                 }
+
+                SharedPreferences spinner_timings = getContext().getSharedPreferences("SendData",
+                        Context.MODE_PRIVATE);
+                final SharedPreferences.Editor spinnerTimings = spinner_timings.edit();
+
+                spinnerTimings .putString("subjects", String.valueOf(spinner_timings));
+                spinnerTimings .apply();
             }
+
+
         });
         return convertView;
     }
