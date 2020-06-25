@@ -37,7 +37,7 @@ public class SignIn extends AppCompatActivity {
     private RelativeLayout btn_signin;
     private TextView txt_password, txt_create;
     private EditText edt_email, edt_password;
-    private String URL_LOGIN = "https://pci.matz.group/login_data.php ";
+    private String URL_LOGIN = "http://pci.edusol.co/Login/login_data.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

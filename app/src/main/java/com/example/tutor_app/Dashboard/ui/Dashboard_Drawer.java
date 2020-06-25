@@ -84,6 +84,7 @@ public class Dashboard_Drawer extends AppCompatActivity {
         );
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
 //        navigationExpandableListView.addHeaderModel(
 //                new HeaderModel("Payment")
 ////                                  .addChildModel(new ChildModel("\tPayments Summary"))

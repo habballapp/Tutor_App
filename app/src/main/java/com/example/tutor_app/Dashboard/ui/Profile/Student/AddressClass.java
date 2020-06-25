@@ -53,7 +53,7 @@ public class AddressClass extends Fragment {
     private List<String> gender,timings;
     private EditText edt_house_number,edt_bno,edt_street,edt_block,edt_area,edt_city,edt_country;
     private String Filter_selected = "";
-    String Url_Sprofile = "https://pci.matz.group/studenttutorformsubmit.php";
+    String Url_Sprofile = "https://pci.edusol.co/StudentPortal/studenttutorformsubmit.php";
     String spinner_gender,spinner_timings,name, fathername, email,contactno1,contactno2,contactno3,classes,subjects,schoolcollege,spinnerTimings;
 
     @Override

@@ -96,7 +96,7 @@
                     android:theme="@style/EditText" />
 
                 <EditText
-                    android:id="@+id/edt_mname"
+                    android:id="@+id/edt_mtongue"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -107,6 +107,22 @@
                     android:paddingLeft="30dp"
                     android:hint="@string/mothername"
                     android:theme="@style/EditText" />
+
+
+
+                <EditText
+                    android:id="@+id/edt_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/editbox"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:paddingLeft="30dp"
+                    android:hint="@string/age"
+                    android:theme="@style/EditText" />
+
 
                 <EditText
                     android:id="@+id/edt_occupation"
@@ -272,7 +288,7 @@
                     >
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/teacher_profession"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:dropDownWidth="match_parent"
@@ -283,10 +299,10 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_alignTop="@id/spinner"
-                        android:layout_alignEnd="@+id/spinner"
-                        android:layout_alignRight="@+id/spinner"
-                        android:layout_alignBottom="@+id/spinner"
+                        android:layout_alignTop="@id/teacher_profession"
+                        android:layout_alignEnd="@+id/teacher_profession"
+                        android:layout_alignRight="@+id/teacher_profession"
+                        android:layout_alignBottom="@+id/teacher_profession"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:theme="@style/Spinner" />
                 </RelativeLayout>
@@ -301,7 +317,7 @@
                     android:theme="@style/EditText">
 
                     <Spinner
-                        android:id="@+id/spinner1"
+                        android:id="@+id/spinner_conveyance"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:dropDownWidth="match_parent"
@@ -312,10 +328,10 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_alignTop="@id/spinner1"
-                        android:layout_alignEnd="@+id/spinner1"
-                        android:layout_alignRight="@+id/spinner1"
-                        android:layout_alignBottom="@+id/spinner1"
+                        android:layout_alignTop="@id/spinner_conveyance"
+                        android:layout_alignEnd="@+id/spinner_conveyance"
+                        android:layout_alignRight="@+id/spinner_conveyance"
+                        android:layout_alignBottom="@+id/spinner_conveyance"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:theme="@style/Spinner" />
                 </RelativeLayout>

@@ -11,7 +11,7 @@
     <string name="conveyance_type">Bike/Car/Bus</string>
     <string name="name">Name</string>
     <string name="fathername">Father/Husband Name</string>
-    <string name="mothername">Mother Name/Tongue</string>
+    <string name="mothername">Mother Tongue</string>
     <string name="occupation">Occupation</string>
     <string name="cnic">C.N.I.C Number</string>
     <string name="paddress">Present Address</string>

@@ -31,7 +31,7 @@ import java.util.Map;
 public class Signup_Teacher extends AppCompatActivity {
 
     private EditText edt_email,edt_password,edt_fullname,edt_contact;
-    private String Url_Teacher = "https://pci.matz.group/signup_teacher_data.php";
+    private String Url_Teacher = "https://pci.edusol.co/signup_teacher_data.php";
     private RelativeLayout btn_signup_user;
 
     @Override
