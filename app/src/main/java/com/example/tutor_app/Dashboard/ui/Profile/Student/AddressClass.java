@@ -26,6 +26,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter;
@@ -195,7 +196,11 @@ public class AddressClass extends Fragment {
                 String country = edt_country.getText().toString().trim();
 //              String spinner_timings = spinner2.getText().toString().trim();
 
-                Address();
+                try {
+                    Address();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -204,16 +209,38 @@ public class AddressClass extends Fragment {
     }
 
 
-        private void Address() {
+        private void Address() throws JSONException {
+            JSONObject map = new JSONObject();
+            map.put("'name'", "'"+name+"'");
+            map.put("fathername", fathername);
+            map.put("email", email);
+            map.put("class", classes);
+            map.put("subjects", subjects);
+            map.put("contactno1", contactno1);
+            map.put("contactno2", contactno2);
+            map.put("contactno3", contactno3);
+            map.put("schoolcollege", schoolcollege);
+            map.put("housenum",edt_house_number.getText().toString());
+            map.put("buildingname",edt_bno.getText().toString());
+            map.put("streetnum",edt_street.getText().toString());
+            map.put("blocknum",edt_block.getText().toString());
+            map.put("area",edt_area.getText().toString());
+            map.put("city",edt_city.getText().toString());
+            map.put("country",edt_country.getText().toString());
+            map.put("gender",spinner_gender);
+            map.put("desiredtiming",spinner_timings);
+            map.put("userid",userid);
 
-            StringRequest sr = new StringRequest(Request.Method.POST, Url_Sprofile, new Response.Listener<String>() {
+            Log.i("mapAddress", String.valueOf(map));
+
+            JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url_Sprofile, map, new Response.Listener<JSONObject>() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
-                public void onResponse(String response) {
-                    Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
+                public void onResponse(JSONObject response) {
+                    Toast.makeText(getContext(), String.valueOf(response), Toast.LENGTH_LONG).show();
 
                     Log.i("AddProfile", String.valueOf(response));
-                    if(response != null && !response.isEmpty()){
+//                    if(response != null && !response.isEmpty()){
 
 //                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
 //                        try {
@@ -224,9 +251,9 @@ public class AddressClass extends Fragment {
 //                            e.printStackTrace();
 //                        }
 
-                    }
-                    else
-                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
+//                    }
+//                    else
+//                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -245,38 +272,38 @@ public class AddressClass extends Fragment {
                     return map;
                 }
 
-                @Override
-                public String getBodyContentType() {
-                    return "json";
-                }
-
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("'name'", "'"+name+"'");
-                    map.put("fathername", fathername);
-                    map.put("email", email);
-                    map.put("class", classes);
-                    map.put("subjects", subjects);
-                    map.put("contactno1", contactno1);
-                    map.put("contactno2", contactno2);
-                    map.put("contactno3", contactno3);
-                    map.put("schoolcollege", schoolcollege);
-                    map.put("housenum",edt_house_number.getText().toString());
-                    map.put("buildingname",edt_bno.getText().toString());
-                    map.put("streetnum",edt_street.getText().toString());
-                    map.put("blocknum",edt_block.getText().toString());
-                    map.put("area",edt_area.getText().toString());
-                    map.put("city",edt_city.getText().toString());
-                    map.put("country",edt_country.getText().toString());
-                    map.put("gender",spinner_gender);
-                    map.put("desiredtiming",spinner_timings);
-                    map.put("userid",userid);
-
-                    Log.i("AddressClassDebug", String.valueOf(map));
-
-                    return map;
-                }
+//                @Override
+//                public String getBodyContentType() {
+//                    return "json";
+//                }
+//
+//                @Override
+//                protected Map<String, String> getParams() throws AuthFailureError {
+//                    Map<String, String> map = new HashMap<>();
+//                    map.put("'name'", "'"+name+"'");
+//                    map.put("fathername", fathername);
+//                    map.put("email", email);
+//                    map.put("class", classes);
+//                    map.put("subjects", subjects);
+//                    map.put("contactno1", contactno1);
+//                    map.put("contactno2", contactno2);
+//                    map.put("contactno3", contactno3);
+//                    map.put("schoolcollege", schoolcollege);
+//                    map.put("housenum",edt_house_number.getText().toString());
+//                    map.put("buildingname",edt_bno.getText().toString());
+//                    map.put("streetnum",edt_street.getText().toString());
+//                    map.put("blocknum",edt_block.getText().toString());
+//                    map.put("area",edt_area.getText().toString());
+//                    map.put("city",edt_city.getText().toString());
+//                    map.put("country",edt_country.getText().toString());
+//                    map.put("gender",spinner_gender);
+//                    map.put("desiredtiming",spinner_timings);
+//                    map.put("userid",userid);
+//
+//                    Log.i("AddressClassDebug", String.valueOf(map));
+//
+//                    return map;
+//                }
             };
             Volley.newRequestQueue(getContext()).add(sr);
             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
