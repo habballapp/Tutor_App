@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Dashboard.ui.Profile.Institute.InstituteClassFragment">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
+
+
+            <LinearLayout
+                android:id="@+id/ln_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/logo"
+                    >
+                </ImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ln_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ln_logo"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:text="Institution Information"
+                    android:theme="@style/TextStyle"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ln_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ln_text"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:orientation="vertical"
+                android:weightSum="18">
+
+                <RelativeLayout
+                    android:id="@+id/edt_class"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editbox"
+                    android:drawableLeft="@drawable/ic_work_black_24dp"
+                    android:theme="@style/EditText"
+                    >
+
+                    <Spinner
+                        android:id="@+id/spinner_class"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:dropDownWidth="match_parent"
+                        android:background="@null"
+                        android:popupBackground="@drawable/popupbackground"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/spinner_class"
+                        android:layout_alignEnd="@+id/spinner_class"
+                        android:layout_alignRight="@+id/spinner_class"
+                        android:layout_alignBottom="@+id/spinner_class"
+                        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:theme="@style/Spinner" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/edt_subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/edt_class"
+                    android:layout_weight="1"
+                    android:background="@drawable/editbox"
+                    android:theme="@style/EditText">
+
+                    <Spinner
+                        android:id="@+id/spinner_subject"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:dropDownWidth="match_parent"
+                        android:background="@null"
+                        android:popupBackground="@drawable/popupbackground"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/spinner_subject"
+                        android:layout_alignEnd="@+id/spinner_subject"
+                        android:layout_alignRight="@+id/spinner_subject"
+                        android:layout_alignBottom="@+id/spinner_subject"
+                        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:theme="@style/Spinner" />
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/btn_class_add"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/ln_login"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/btn_round"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:paddingStart="30dp"
+                android:paddingLeft="30dp">
+
+                <TextView
+                    android:id="@+id/btn_signin_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="5dp"
+                    android:text="ADD"
+                    android:theme="@style/ButtonTextRound" />
+
+                <ImageView
+                    android:id="@+id/btn_signin_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_add_black_24dp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/add_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_below="@id/btn_class_add"
+                android:orientation="vertical"
+                android:weightSum="2"
+                android:visibility="gone"
+
+                >
+
+                <EditText
+                    android:id="@+id/ctype"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/edt_subject"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:background="@drawable/editbox"
+                    android:drawableLeft="@drawable/ic_school_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:paddingLeft="30dp"
+                    android:hint="@string/stype"
+                    android:theme="@style/EditText" />
+
+                <EditText
+                    android:id="@+id/stype"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/edt_subject"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:background="@drawable/editbox"
+                    android:drawableLeft="@drawable/ic_school_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:paddingLeft="30dp"
+                    android:hint="@string/stype"
+                    android:theme="@style/EditText" />
+
+
+            </LinearLayout>
+
+
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/btn_class_next"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_round"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:paddingStart="30dp"
+        android:paddingLeft="30dp">
+
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            android:text="NEXT"
+            android:theme="@style/ButtonTextRound" />
+
+        <ImageView
+            android:id="@+id/btn_next_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:src="@drawable/ic_arrow_forward_black_24dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

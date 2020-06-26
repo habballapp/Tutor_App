@@ -8,6 +8,7 @@
     <string name="contact">Contact No</string>
 
     <string name="fullname">Full Name</string>
+    <string name="iname">Name Of Institute</string>
     <string name="conveyance_type">Bike/Car/Bus</string>
     <string name="name">Name</string>
     <string name="fathername">Father/Husband Name</string>
@@ -34,6 +35,7 @@
     <string name="phone2">Phone#2</string>
     <string name="phone3">Phone#3</string>
     <string name="mail">Email</string>
+    <string name="cperson">Contact Person</string>
     <string name="profession">Are you a Teacher by Profession?</string>
     <string name="conveyance">Do you have conveyance?</string>g
     <string name="qualification">Qualification</string>
@@ -79,4 +81,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="home_second">Home Second</string>
     <string name="school">School/College</string>
+    <string name="ctype">Enter Class</string>
+    <string name="stype">Enter Subject</string>
 </resources>

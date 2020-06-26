@@ -20,7 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer;
+import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Teacher;
+import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Institute;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
 import com.example.tutor_app.ForgetPassword.Forget_Password;
 import com.example.tutor_app.R;
@@ -114,7 +115,14 @@ public class SignIn extends AppCompatActivity {
                         else if(obj.getString("userrole").equals("Teacher")){
 
                             Toast.makeText(SignIn.this, "Teacher", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(SignIn.this, Dashboard_Drawer.class);
+                            Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Teacher.class);
+                            startActivity(intent);
+
+                        }
+                        else if(obj.getString("userrole").equals("Institute")){
+
+                            Toast.makeText(SignIn.this, "Institute", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Institute.class);
                             startActivity(intent);
 
                         }

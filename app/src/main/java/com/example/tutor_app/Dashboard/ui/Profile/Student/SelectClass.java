@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -36,7 +37,7 @@ public class SelectClass extends Fragment {
     public Spinner spinner_class,spinner_subject;
     private StateVO stateVO;
     RecyclerView.Adapter adapter;
-    private RelativeLayout btn_profile_next;
+    private Button btn_profile_next;
     private FragmentTransaction fragmentTransaction;
     List<String> classes = new ArrayList<>();
    List<String> subjects = new ArrayList<>();
@@ -60,7 +61,9 @@ public class SelectClass extends Fragment {
        // classes.add("Class " + count);
 
 
-        classes = new ArrayList<>();
+
+
+
         classes.add("Select Class");
         classes.add("O-Level");
         classes.add("A-Level");
@@ -69,7 +72,7 @@ public class SelectClass extends Fragment {
             classes.add("Class " + i);
         }
 
-        subjects = new ArrayList<>();
+
         subjects.add("Select Subject");
         subjects.add("Select All");
         subjects.add("Mathematics");

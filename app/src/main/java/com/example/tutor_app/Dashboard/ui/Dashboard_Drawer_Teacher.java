@@ -20,8 +20,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.tutor_app.Dashboard.ui.Profile.Institute.InstituteFragment;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
-import com.example.tutor_app.Dashboard.ui.Profile.Teacher.ProfileTeacher;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
@@ -30,7 +30,7 @@ import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
 import com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView;
 
-public class Dashboard_Drawer extends AppCompatActivity {
+public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 
     private ExpandableNavigationListView navigationExpandableListView;
     private AppBarConfiguration mAppBarConfiguration;
@@ -105,7 +105,7 @@ public class Dashboard_Drawer extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (id == 0) {
-                            Toast.makeText(Dashboard_Drawer.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
@@ -132,16 +132,16 @@ public class Dashboard_Drawer extends AppCompatActivity {
 //                            drawer.closeDrawer(GravityCompat.START);
 
                         } else if (id == 3) {
-                            Toast.makeText(Dashboard_Drawer.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
                         }
                         else if (id == 4) {
-                            Toast.makeText(Dashboard_Drawer.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             Log.i("Make Payment", "Make Payment Activity");
                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
                           // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");

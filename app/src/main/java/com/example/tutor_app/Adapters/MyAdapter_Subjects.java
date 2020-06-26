@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.R;
@@ -18,15 +17,15 @@ import com.example.tutor_app.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter2 extends ArrayAdapter<StateVO> {
+public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
+
     private Context mContext;
     private ArrayList<StateVO> listState;
-    private MyAdapter2 myAdapter;
+    private MyAdapter_Subjects myAdapter;
     private boolean isFromView = false;
-    private int totalChecked = 0;
     private List<String> selectedSubjects = new ArrayList<>();
 
-    public MyAdapter2(Context context, int resource, List<StateVO> objects) {
+    public MyAdapter_Subjects(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.listState = (ArrayList<StateVO>) objects;
@@ -48,8 +47,7 @@ public class MyAdapter2 extends ArrayAdapter<StateVO> {
                               ViewGroup parent) {
 
 
-
-        final ViewHolder holder;
+        final MyAdapter_Subjects.ViewHolder holder;
         if (convertView == null) {
             LayoutInflater layoutInflator = LayoutInflater.from(mContext);
             convertView = layoutInflator.inflate(R.layout.spinner_item, null);
@@ -60,7 +58,7 @@ public class MyAdapter2 extends ArrayAdapter<StateVO> {
                     .findViewById(R.id.checkbox);
             convertView.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (MyAdapter_Subjects.ViewHolder) convertView.getTag();
         }
 
         holder.mTextView.setText(listState.get(position).getTitle());
@@ -120,7 +118,6 @@ public class MyAdapter2 extends ArrayAdapter<StateVO> {
         });
         return convertView;
     }
-
     private class ViewHolder {
         private TextView mTextView;
         private CheckBox mCheckBox;

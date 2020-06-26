@@ -30,7 +30,7 @@ public class ProfileTeacher extends Fragment {
     private FragmentTransaction fragmentTransaction;
     private EditText edt_fullname,edt_fname,edt_mtongue,edt_occupation,edt_cnic,edt_present_address,
                        edt_permanent_address,edt_dob,edt_nationality,edt_religion,edt_phone1,edt_phone2,
-                      edt_phone3,edt_email,edt_conveyance_txt,edt_age;
+                      edt_email,edt_conveyance_txt,edt_age;
 
     private Spinner teacher_profession,spinner_conveyance;
  //   private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
@@ -44,10 +44,13 @@ public class ProfileTeacher extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+         final SharedPreferences.Editor profileTeacher = personal_profile.edit();
+
+
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
         edt_conveyance_txt = root.findViewById(R.id.edt_conveyance_txt);
-
-
         edt_fullname = root.findViewById(R.id.edt_fullname);
         edt_fname = root.findViewById(R.id.edt_fname);
         edt_mtongue = root.findViewById(R.id.edt_mtongue);
@@ -60,45 +63,15 @@ public class ProfileTeacher extends Fragment {
         edt_email = root.findViewById(R.id.edt_email);
         edt_phone1 = root.findViewById(R.id.edt_phone1);
         edt_phone2 = root.findViewById(R.id.edt_phone2);
-        edt_phone3 = root.findViewById(R.id.edt_phone3);
         edt_conveyance_txt = root.findViewById(R.id.edt_conveyance_txt);
+        edt_nationality = root.findViewById(R.id.edt_nationality);
+        edt_religion = root.findViewById(R.id.edt_religion);
        
 
 
 
 
-        btn_profile_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
-                        Context.MODE_PRIVATE);
-                SharedPreferences.Editor profileTeacher = personal_profile.edit();
-                profileTeacher.putString("fullname",String.valueOf(edt_fullname.getText()));
-                profileTeacher.putString("fathusname",String.valueOf(edt_fname.getText()));
-                profileTeacher.putString("mothnametounge",String.valueOf(edt_mtongue.getText()));
-                profileTeacher.putString("dob",String.valueOf(edt_dob.getText()));
-                profileTeacher.putString("age",String.valueOf(edt_age.getText()));
-                profileTeacher.putString("nationality",String.valueOf(edt_nationality.getText()));
-                profileTeacher.putString("religion",String.valueOf(edt_religion.getText()));
-                profileTeacher.putString("cnicno",String.valueOf(edt_cnic.getText()));
-                profileTeacher.putString("presentadd",String.valueOf(edt_present_address.getText()));
-                profileTeacher.putString("permanentadd",String.valueOf(edt_permanent_address.getText()));
-                profileTeacher.putString("phoneno1",String.valueOf(edt_phone1.getText()));
-                profileTeacher.putString("phoneno2",String.valueOf(edt_phone2.getText()));
-                profileTeacher.putString("phoneno3",String.valueOf(edt_phone3.getText()));
-                profileTeacher.putString("email",String.valueOf(edt_email.getText()));
-                profileTeacher.putString("personalconveyance",String.valueOf(spinner_conveyance));
-                profileTeacher.putString("carbike",String.valueOf(edt_conveyance_txt.getText()));
-                profileTeacher.putString("teacherbyprofession",String.valueOf(spinner_conveyance));
-               // profileTeacher.putString("dateofsubmission",String.valueOf(edt_da.getText()));
-                profileTeacher.apply();
-
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification());
-                fragmentTransaction.commit();
-            }
-        });
 
         paths = new ArrayList<>();
         paths.add("Are you a Teacher by Profession?");
@@ -145,6 +118,8 @@ public class ProfileTeacher extends Fragment {
         teacher_profession.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                profileTeacher.putString("teacherbyprofession",String.valueOf(teacher_profession));
 
             }
 
@@ -199,6 +174,8 @@ public class ProfileTeacher extends Fragment {
                 if (Filter_selected.equals("Yes")) {
 
                     edt_conveyance_txt.setVisibility(View.VISIBLE);
+                    profileTeacher.putString("personalconveyance",String.valueOf(spinner_conveyance));
+                    profileTeacher.putString("carbike",String.valueOf(edt_conveyance_txt.getText()));
 
                 } else if (Filter_selected.equals("No")) {
 
@@ -214,6 +191,36 @@ public class ProfileTeacher extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+
+        btn_profile_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                profileTeacher.putString("fullname",String.valueOf(edt_fullname.getText()));
+                profileTeacher.putString("fathusname",String.valueOf(edt_fname.getText()));
+                profileTeacher.putString("mothnametounge",String.valueOf(edt_mtongue.getText()));
+                profileTeacher.putString("dob",String.valueOf(edt_dob.getText()));
+                profileTeacher.putString("age",String.valueOf(edt_age.getText()));
+                profileTeacher.putString("nationality",String.valueOf(edt_nationality.getText()));
+                profileTeacher.putString("religion",String.valueOf(edt_religion.getText()));
+                profileTeacher.putString("cnicno",String.valueOf(edt_cnic.getText()));
+                profileTeacher.putString("presentadd",String.valueOf(edt_present_address.getText()));
+                profileTeacher.putString("permanentadd",String.valueOf(edt_permanent_address.getText()));
+                profileTeacher.putString("phoneno1",String.valueOf(edt_phone1.getText()));
+                profileTeacher.putString("phoneno2",String.valueOf(edt_phone2.getText()));
+                profileTeacher.putString("email",String.valueOf(edt_email.getText()));
+
+              //  profileTeacher.putString("teacherbyprofession",String.valueOf(spinner_));
+                // profileTeacher.putString("dateofsubmission",String.valueOf(edt_da.getText()));
+                profileTeacher.apply();
+
+                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification());
+                fragmentTransaction.commit();
             }
         });
 
