@@ -34,10 +34,14 @@ import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
 import com.example.tutor_app.R;
 import com.example.tutor_app.SignUp.Signup_Student;
 import com.example.tutor_app.Signin.SignIn;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,14 +52,14 @@ import java.util.Map;
  */
 public class AddressClass extends Fragment {
 
-    
-    private Spinner spinner1,spinner2;
+
+    private Spinner spinner1, spinner2;
     private RelativeLayout btn_profile_next;
-    private List<String> gender,timings;
-    private EditText edt_house_number,edt_bno,edt_street,edt_block,edt_area,edt_city,edt_country;
+    private List<String> gender, timings;
+    private EditText edt_house_number, edt_bno, edt_street, edt_block, edt_area, edt_city, edt_country;
     private String Filter_selected = "";
     String Url_Sprofile = "https://pci.edusol.co/StudentPortal/studenttutorformsubmit.php";
-    String spinner_gender,spinner_timings,name, fathername, email,contactno1,contactno2,contactno3,classes,subjects,schoolcollege,spinnerTimings;
+    String spinner_gender, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege, spinnerTimings;
     String userid;
 
     @Override
@@ -72,10 +76,8 @@ public class AddressClass extends Fragment {
         edt_block = root.findViewById(R.id.edt_block);
         edt_area = root.findViewById(R.id.edt_area);
         edt_city = root.findViewById(R.id.edt_city);
-        edt_country = root.findViewById(R.id. edt_country);
+        edt_country = root.findViewById(R.id.edt_country);
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
-
-
 
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
@@ -107,12 +109,10 @@ public class AddressClass extends Fragment {
 
         timings = new ArrayList<>();
         timings.add("Select Preffered Timings");
-        for(int i = 8; i <= 23; i++)
-        {
-            timings.add(i+"-"+ ++i);
-                         --i;
+        for (int i = 8; i <= 23; i++) {
+            timings.add(i + "-" + ++i);
+            --i;
         }
-
 
 
         final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
@@ -164,13 +164,12 @@ public class AddressClass extends Fragment {
         }
 
 
-        MyAdapter myAdapter = new MyAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item,listVOs);
+        MyAdapter myAdapter = new MyAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs);
         spinner2.setAdapter(myAdapter);
 
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
 
 
             }
@@ -209,37 +208,63 @@ public class AddressClass extends Fragment {
     }
 
 
-        private void Address() throws JSONException {
-            JSONObject map = new JSONObject();
-            map.put("'name'", "'"+name+"'");
-            map.put("fathername", fathername);
-            map.put("email", email);
-            map.put("class", classes);
-            map.put("subjects", subjects);
-            map.put("contactno1", contactno1);
-            map.put("contactno2", contactno2);
-            map.put("contactno3", contactno3);
-            map.put("schoolcollege", schoolcollege);
-            map.put("housenum",edt_house_number.getText().toString());
-            map.put("buildingname",edt_bno.getText().toString());
-            map.put("streetnum",edt_street.getText().toString());
-            map.put("blocknum",edt_block.getText().toString());
-            map.put("area",edt_area.getText().toString());
-            map.put("city",edt_city.getText().toString());
-            map.put("country",edt_country.getText().toString());
-            map.put("gender",spinner_gender);
-            map.put("desiredtiming",spinner_timings);
-            map.put("userid",userid);
+    private void Address() throws JSONException {
+        JSONObject map = new JSONObject();
+        map.put("name", name);
+        map.put("fathername", fathername);
+        map.put("email", email);
+        map.put("class", classes);
 
-            Log.i("mapAddress", String.valueOf(map));
+        /* ** Convert the string to json from adapter While putting in shared preference as well ** */
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<String>>() {
+        }.getType();
 
-            JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url_Sprofile, map, new Response.Listener<JSONObject>() {
-                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                @Override
-                public void onResponse(JSONObject response) {
-                    Toast.makeText(getContext(), String.valueOf(response), Toast.LENGTH_LONG).show();
+        List<String> selectedSubjects = gson.fromJson(subjects, type);
 
-                    Log.i("AddProfile", String.valueOf(response));
+        JSONArray jsonArray = new JSONArray(selectedSubjects);
+
+        map.put("subjects", jsonArray);
+
+        map.put("contactno1", contactno1);
+        map.put("contactno2", contactno2);
+        map.put("contactno3", contactno3);
+        map.put("schoolcollege", schoolcollege);
+        map.put("housenum", edt_house_number.getText().toString());
+        map.put("buildingname", edt_bno.getText().toString());
+        map.put("streetnum", edt_street.getText().toString());
+        map.put("blocknum", edt_block.getText().toString());
+        map.put("area", edt_area.getText().toString());
+        map.put("city", edt_city.getText().toString());
+        map.put("country", edt_country.getText().toString());
+        map.put("gender", spinner_gender);
+
+        /* ** Convert the string to json from adapter While putting in shared preference as well ** */
+        List<String> selectedtimings = gson.fromJson(spinner_timings, type);
+
+        JSONArray jsonArray_timings = new JSONArray(selectedtimings);
+
+        map.put("desiredtiming", jsonArray_timings);
+
+        map.put("userid", userid);
+
+        Log.i("mapAddress", String.valueOf(map));
+
+        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url_Sprofile, map, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (!response.getString("studentid").equals("null"))
+                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+                Log.i("AddProfile", String.valueOf(response));
 //                    if(response != null && !response.isEmpty()){
 
 //                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
@@ -255,22 +280,22 @@ public class AddressClass extends Fragment {
 //                    else
 //                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
 
-                }
+            }
 
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
 
-                    error.printStackTrace();
-                }
-            }) {
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("Content-Type", "json");
-                    return map;
-                }
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
 
 //                @Override
 //                public String getBodyContentType() {
@@ -304,15 +329,12 @@ public class AddressClass extends Fragment {
 //
 //                    return map;
 //                }
-            };
-            Volley.newRequestQueue(getContext()).add(sr);
-            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-            requestQueue.add(sr);
-        }
-
-
-
-
-
+        };
+        Volley.newRequestQueue(getContext()).add(sr);
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(sr);
     }
+
+
+}
 

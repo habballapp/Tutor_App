@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,11 +119,14 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
                     }
                 }
 
+                Gson gson = new Gson();
+                String json = gson.toJson(spinner_timings);
+
                 SharedPreferences sh_spinner_timings = getContext().getSharedPreferences("SendData",
                         Context.MODE_PRIVATE);
                 final SharedPreferences.Editor ed_spinnerTimings = sh_spinner_timings.edit();
 
-                ed_spinnerTimings.putString("desiredtiming", String.valueOf(spinner_timings));
+                ed_spinnerTimings.putString("desiredtiming", String.valueOf(json));
                 ed_spinnerTimings.apply();
             }
 
