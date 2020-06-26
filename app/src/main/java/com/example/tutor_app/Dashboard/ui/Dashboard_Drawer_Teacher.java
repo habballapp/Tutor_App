@@ -22,6 +22,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.tutor_app.Dashboard.ui.Profile.Institute.InstituteFragment;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
+import com.example.tutor_app.Dashboard.ui.Profile.Teacher.ProfileTeacher;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
@@ -135,7 +136,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 

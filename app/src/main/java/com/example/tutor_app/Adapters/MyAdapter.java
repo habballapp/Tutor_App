@@ -68,7 +68,7 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
         holder.mCheckBox.setChecked(listState.get(position).isSelected());
         isFromView = false;
 
-        spinner_timings.add( listState.get(position).getTitle());
+//        spinner_timings.add( listState.get(position).getTitle());
 
         if ((position == 0)) {
             holder.mCheckBox.setVisibility(View.INVISIBLE);
@@ -118,12 +118,12 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
                     }
                 }
 
-                SharedPreferences spinner_timings = getContext().getSharedPreferences("SendData",
+                SharedPreferences sh_spinner_timings = getContext().getSharedPreferences("SendData",
                         Context.MODE_PRIVATE);
-                final SharedPreferences.Editor spinnerTimings = spinner_timings.edit();
+                final SharedPreferences.Editor ed_spinnerTimings = sh_spinner_timings.edit();
 
-                spinnerTimings .putString("subjects", String.valueOf(spinner_timings));
-                spinnerTimings .apply();
+                ed_spinnerTimings.putString("desiredtiming", String.valueOf(spinner_timings));
+                ed_spinnerTimings.apply();
             }
 
 

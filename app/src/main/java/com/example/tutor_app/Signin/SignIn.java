@@ -1,6 +1,8 @@
 package com.example.tutor_app.Signin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -105,6 +107,13 @@ public class SignIn extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(result);
                     if (!obj.getString("userid").equals("null")) {
+                        SharedPreferences personal_profile = getSharedPreferences("LoginData",
+                                Context.MODE_PRIVATE);
+                        final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                        profileStudent.putString("userid",obj.getString("userid"));
+                        profileStudent.putString("userrole",obj.getString("userrole"));
+                        profileStudent.apply();
+
 
                         if (obj.getString("userrole").equals("Student")){
 

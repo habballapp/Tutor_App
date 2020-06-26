@@ -34,7 +34,7 @@ public class User_Type extends AppCompatActivity {
 
         });
 
-        rl_user_institute.setOnClickListener(new View.OnClickListener(){
+        rl_user_teacher.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
                 Intent intent = new Intent(User_Type.this, Signup_Teacher.class);
@@ -43,7 +43,7 @@ public class User_Type extends AppCompatActivity {
 
         });
 
-        rl_user_teacher.setOnClickListener(new View.OnClickListener(){
+        rl_user_institute.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
                 Intent intent = new Intent(User_Type.this, Signup_Institute.class);

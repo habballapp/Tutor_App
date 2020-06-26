@@ -7,12 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -212,6 +210,9 @@ public class SelectClass extends Fragment {
             @Override
             public void onClick(View v) {
 
+                profileStudent.putString("schoolcollege",String.valueOf(edt_school.getText()));
+                profileStudent.apply();
+
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
                 fragmentTransaction.commit();
@@ -219,8 +220,6 @@ public class SelectClass extends Fragment {
         });
 
 
-        profileStudent.putString("schoolcollege",String.valueOf(edt_school.getText()));
-        profileStudent.apply();
 
         return root;
 }

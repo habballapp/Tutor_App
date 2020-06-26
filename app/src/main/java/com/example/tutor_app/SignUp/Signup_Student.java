@@ -32,7 +32,7 @@ public class Signup_Student extends AppCompatActivity {
 
 
     private EditText edt_email,edt_password,edt_fullname,edt_contact;
-    private String Url_Teacher = "http://pci.edusol.co/signup_student_data.php";
+    private String Url_Student = "http://pci.edusol.co/Login/signup_student_data.php";
     private RelativeLayout btn_signup_user;
 
     @Override
@@ -75,7 +75,7 @@ public class Signup_Student extends AppCompatActivity {
 
     private void SignupUser() {
 
-        StringRequest sr = new StringRequest(Request.Method.POST, Url_Teacher, new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST, Url_Student, new Response.Listener<String>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(String result) {

@@ -55,6 +55,7 @@ public class AddressClass extends Fragment {
     private String Filter_selected = "";
     String Url_Sprofile = "https://pci.edusol.co/StudentPortal/studenttutorformsubmit.php";
     String spinner_gender,spinner_timings,name, fathername, email,contactno1,contactno2,contactno3,classes,subjects,schoolcollege,spinnerTimings;
+    String userid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,12 +86,16 @@ public class AddressClass extends Fragment {
         contactno1 = sharedPreferences.getString("contactno1", "");
         contactno2 = sharedPreferences.getString("contactno2", "");
         contactno3 = sharedPreferences.getString("contactno3", "");
-        classes = sharedPreferences.getString("classes", "");
+        classes = sharedPreferences.getString("class", "");
         subjects = sharedPreferences.getString("subjects", "");
         schoolcollege = sharedPreferences.getString("schoolcollege", "");
-        spinner_timings = sharedPreferences.getString("subjects", String.valueOf(spinner_timings));
+        spinner_timings = sharedPreferences.getString("desiredtiming", "");
 
 
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
+                Context.MODE_PRIVATE);
+
+        userid = sharedPreferences1.getString("userid", "");
 
 
         gender = new ArrayList<>();
@@ -205,10 +210,12 @@ public class AddressClass extends Fragment {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void onResponse(String response) {
+                    Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
+
                     Log.i("AddProfile", String.valueOf(response));
                     if(response != null && !response.isEmpty()){
 
-                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
 //                        try {
 //                            JSONObject obj = new JSONObject(response);
 //                            Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
@@ -234,19 +241,19 @@ public class AddressClass extends Fragment {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> map = new HashMap<>();
-                    map.put("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                    map.put("Content-Type", "json");
                     return map;
                 }
 
                 @Override
                 public String getBodyContentType() {
-                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                    return "json";
                 }
 
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> map = new HashMap<>();
-                    map.put("name", name);
+                    map.put("'name'", "'"+name+"'");
                     map.put("fathername", fathername);
                     map.put("email", email);
                     map.put("class", classes);
@@ -264,8 +271,9 @@ public class AddressClass extends Fragment {
                     map.put("country",edt_country.getText().toString());
                     map.put("gender",spinner_gender);
                     map.put("desiredtiming",spinner_timings);
+                    map.put("userid",userid);
 
-
+                    Log.i("AddressClassDebug", String.valueOf(map));
 
                     return map;
                 }
