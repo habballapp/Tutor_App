@@ -62,24 +62,34 @@ public class SelectClass extends Fragment {
 
 
 
-        classes.add("Select Class");
-        classes.add("O-Level");
-        classes.add("A-Level");
-        for(int i = 1; i <= 12; i++)
+        for(int i = 1; i <= 8; i++)
         {
             classes.add("Class " + i);
         }
-
+        classes.add("Matric 9");
+        classes.add("Matric 10");
+        classes.add("Inter year 1");
+        classes.add("Inter year 2");
+        classes.add("O-Level year 1");
+        classes.add("O-Level year 2");
+        classes.add("O-Level year 3");
+        classes.add("A-Level year 1");
+        classes.add("A-Level year 2");
 
         subjects.add("Select Subject");
         subjects.add("Select All");
-        subjects.add("Mathematics");
+        subjects.add("Maths");
         subjects.add("English");
         subjects.add("Urdu");
         subjects.add("Islamiyat");
-        subjects.add("P. St.");
+        subjects.add("Pak.Studies");
         subjects.add("Geography");
         subjects.add("History");
+        subjects.add("Chemistry");
+        subjects.add("Sindhi");
+        subjects.add("Physics");
+        subjects.add("Add. Maths");
+        subjects.add("Others");
 
 
         

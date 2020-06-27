@@ -148,11 +148,19 @@ public class InstituteAddressFragment extends Fragment {
 
         timings = new ArrayList<>();
         timings.add("Select Preffered Timings");
-        for(int i = 8; i <= 22; i++)
-        {
-            timings.add(i + ":00");
-            timings.add(i + ":30");
+
+        for (int i = 8; i <=11 ; i++) {
+            timings.add(i + ":00 am");
+            timings.add(i + ":30 am");
         }
+        timings.add( "12:00 pm");
+        timings.add( "12:30 pm");
+        for (int i = 1; i <=11 ; i++) {
+
+            timings.add(i + ":00 pm");
+            timings.add(i + ":30 pm");
+        }
+        timings.add( "12:00 am");
 
 
         final ArrayAdapter<String> spinner2_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, timings) {

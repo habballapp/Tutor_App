@@ -109,10 +109,17 @@ public class AddressClass extends Fragment {
 
         timings = new ArrayList<>();
         timings.add("Select Preffered Timings");
-        for (int i = 8; i <= 23; i++) {
-            timings.add(i + "-" + ++i);
-            --i;
+
+        for (int i = 8; i <=11 ; i++) {
+            timings.add(i+"am");
+
         }
+        timings.add( "12pm");
+        for (int i = 1; i <=11 ; i++) {
+            timings.add(i +"pm");
+
+        }
+        timings.add( "12am");
 
 
         final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
