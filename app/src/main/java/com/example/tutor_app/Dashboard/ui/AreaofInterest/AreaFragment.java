@@ -1,5 +1,7 @@
 package com.example.tutor_app.Dashboard.ui.AreaofInterest;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,13 +34,20 @@ public class AreaFragment extends Fragment {
     private Spinner spinner_area;
     private FragmentTransaction fragmentTransaction;
     private List<String> area;
+    private EditText edt_classes_track,edt_pref_subject;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_area, container, false);
+        final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData_AreaFragment",
+                Context.MODE_PRIVATE);
+        final SharedPreferences.Editor areaFragment = personal_profile.edit();
+
         spinner_area = root.findViewById(R.id.spinner_area);
+        edt_classes_track = root.findViewById(R.id.edt_classes_track);
+        edt_pref_subject = root.findViewById(R.id.edt_pref_subject);
 
         area = new ArrayList<>();
         area.add("Select Area");
@@ -89,6 +99,7 @@ public class AreaFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                areaFragment.putString("PreferredArea",String.valueOf(spinner_area));
 
             }
 
@@ -104,6 +115,12 @@ public class AreaFragment extends Fragment {
 
 
         btn_area_next = root.findViewById(R.id.btn_area_next);
+        areaFragment.putString("ClassToTeach",String.valueOf(edt_classes_track.getText()));
+        areaFragment.putString("PreferredSubjects",String.valueOf(edt_pref_subject.getText()));
+        areaFragment.apply();
+
+
+
 
         btn_area_next.setOnClickListener(new View.OnClickListener() {
             @Override

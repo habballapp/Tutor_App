@@ -128,7 +128,7 @@
 
 
                 <EditText
-                    android:id="@+id/edt_etitlement"
+                    android:id="@+id/edt_classes_track"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -143,7 +143,7 @@
 
 
                 <EditText
-                    android:id="@+id/edt_fname1"
+                    android:id="@+id/edt_pref_subject"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -165,10 +165,6 @@
                     android:drawableLeft="@drawable/ic_work_black_24dp"
                     android:theme="@style/EditText"
                     >
-
-
-                    />
-
                     <Spinner
                         android:id="@+id/spinner_area"
                         android:layout_width="match_parent"
