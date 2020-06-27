@@ -138,7 +138,8 @@
                     android:padding="10dp"
                     android:paddingLeft="30dp"
                     android:text="@string/telephone"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    tools:ignore="TextFields" />
 
 
             </LinearLayout>

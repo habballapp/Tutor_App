@@ -213,6 +213,7 @@ public class ProfileTeacher extends Fragment {
                 profileTeacher.putString("phoneno1",String.valueOf(edt_phone1.getText()));
                 profileTeacher.putString("phoneno2",String.valueOf(edt_phone2.getText()));
                 profileTeacher.putString("email",String.valueOf(edt_email.getText()));
+                profileTeacher.putString("email",String.valueOf(edt_occupation.getText()));
 
               //  profileTeacher.putString("teacherbyprofession",String.valueOf(spinner_));
                 // profileTeacher.putString("dateofsubmission",String.valueOf(edt_da.getText()));

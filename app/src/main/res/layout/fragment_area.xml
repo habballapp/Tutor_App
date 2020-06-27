@@ -128,7 +128,7 @@
 
 
                 <EditText
-                    android:id="@+id/edt_etitlement"
+                    android:id="@+id/edt_classes_track"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -143,7 +143,7 @@
 
 
                 <EditText
-                    android:id="@+id/edt_fname1"
+                    android:id="@+id/edt_pref_subject"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -155,18 +155,35 @@
                     android:hint="@string/preffered"
                     android:theme="@style/EditText" />
 
-                <EditText
-                    android:id="@+id/edt_mname1"
+                <RelativeLayout
+                    android:id="@+id/edt_area"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/preferredarea"
-                    android:theme="@style/EditText" />
+                    android:drawableLeft="@drawable/ic_work_black_24dp"
+                    android:theme="@style/EditText"
+                    >
+                    <Spinner
+                        android:id="@+id/spinner_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:dropDownWidth="match_parent"
+                        android:background="@null"
+                        android:popupBackground="@drawable/popupbackground"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/spinner_area"
+                        android:layout_alignEnd="@+id/spinner_area"
+                        android:layout_alignRight="@+id/spinner_area"
+                        android:layout_alignBottom="@+id/spinner_area"
+                        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:theme="@style/Spinner" />
+                </RelativeLayout>
 
 
 
