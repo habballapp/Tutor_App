@@ -173,9 +173,13 @@ public class ProfileTeacher extends Fragment {
 
                 if (Filter_selected.equals("Yes")) {
 
-                    edt_conveyance_txt.setVisibility(View.VISIBLE);
-                    profileTeacher.putString("personalconveyance",String.valueOf(spinner_conveyance));
-                    profileTeacher.putString("carbike",String.valueOf(edt_conveyance_txt.getText()));
+                        profileTeacher.putString("personalconveyance",String.valueOf(edt_conveyance_txt.getText()));
+
+
+
+                        profileTeacher.putString("personalconveyance"," ");
+
+
 
                 } else if (Filter_selected.equals("No")) {
 

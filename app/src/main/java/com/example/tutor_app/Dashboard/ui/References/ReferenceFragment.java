@@ -39,6 +39,8 @@ public class ReferenceFragment extends Fragment {
 
 
     //AreaFragment
+    String edt_classes_track,edt_pref_subject, spinner_area;
+
 
 
     @Override
@@ -46,7 +48,7 @@ public class ReferenceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_reference, container, false);
-
+        // profile teacher
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
 
@@ -106,7 +108,14 @@ public class ReferenceFragment extends Fragment {
         edt_organization = job_experience.getString("OrganizationName", "");
         edt_from = job_experience.getString("FromTo", "");
         edt_till = job_experience.getString("Till", "");
-        //
+        // areaFragment
+        final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData_AreaFragment",
+                Context.MODE_PRIVATE);
+
+        edt_classes_track = area_fragmnt_data.getString("PreferredArea", "");
+        edt_pref_subject = area_fragmnt_data.getString("ClassToTeach", "");
+        spinner_area = area_fragmnt_data.getString("PreferredSubjects", "");
+
 
 
 
@@ -137,10 +146,14 @@ public class ReferenceFragment extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG);
+                uploadData();
 
             }
         });
 
         return root;
+    }
+
+    private void uploadData() {
     }
 }

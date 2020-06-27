@@ -41,9 +41,9 @@ public class AreaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_area, container, false);
-        final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData_AreaFragment",
+        final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData_AreaFragment",
                 Context.MODE_PRIVATE);
-        final SharedPreferences.Editor areaFragment = personal_profile.edit();
+        final SharedPreferences.Editor areaFragment = area_fragmnt_data.edit();
 
         spinner_area = root.findViewById(R.id.spinner_area);
         edt_classes_track = root.findViewById(R.id.edt_classes_track);
