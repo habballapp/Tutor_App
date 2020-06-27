@@ -39,7 +39,7 @@ public class SelectClass extends Fragment {
     private FragmentTransaction fragmentTransaction;
     List<String> classes = new ArrayList<>();
    List<String> subjects = new ArrayList<>();
-    int count = 0;
+
    // List<String> spinner1,subjects;
     
 
@@ -55,7 +55,7 @@ public class SelectClass extends Fragment {
         spinner_class = root.findViewById(R.id.spinner_class);
         spinner_subject = root.findViewById(R.id.spinner_subject);
 //        rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        count++;
+
        // classes.add("Class " + count);
 
 

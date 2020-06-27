@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,11 +104,14 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
                 int getPosition = (Integer) buttonView.getTag();
                 Log.i("subjectsSelected", String.valueOf(selectedSubjects));
 
+                Gson gson = new Gson();
+                String json = gson.toJson(selectedSubjects);
+
                 SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
                         Context.MODE_PRIVATE);
                 final SharedPreferences.Editor profileStudent = personal_profile.edit();
 
-                profileStudent.putString("subjects", String.valueOf(selectedSubjects));
+                profileStudent.putString("subjects", String.valueOf(json));
                 profileStudent.apply();
 
                 if (!isFromView) {

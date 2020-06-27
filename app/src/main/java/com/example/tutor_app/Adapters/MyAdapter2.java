@@ -25,7 +25,7 @@ public class MyAdapter2 extends ArrayAdapter<StateVO> {
     private MyAdapter2 myAdapter;
     private boolean isFromView = false;
     private int totalChecked = 0;
-    private List<String> selectedSubjects = new ArrayList<>();
+    private List<String> selectedClasses= new ArrayList<>();
 
     public MyAdapter2(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
@@ -84,36 +84,36 @@ public class MyAdapter2 extends ArrayAdapter<StateVO> {
                 Log.i("selectAll", String.valueOf(position));
                 if(position == 1) {
                     if(isChecked) {
-                        for (int i = 0; i < listState.size(); i++) {
+                        for (int i = 1; i < listState.size(); i++) {
                             listState.get(i).setSelected(true);
                             Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
                         }
                     } else {
-                        for (int i = 0; i < listState.size(); i++) {
+                        for (int i = 1; i < listState.size(); i++) {
                             listState.get(i).setSelected(false);
                             Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
                         }
                     }
                 } else {
                     if(isChecked) {
-                        if (!selectedSubjects.contains(listState.get(position).getTitle()))
-                            selectedSubjects.add(listState.get(position).getTitle());
+                        if (!selectedClasses.contains(listState.get(position).getTitle()))
+                            selectedClasses.add(listState.get(position).getTitle());
                     } else {
-                        if (selectedSubjects.contains(listState.get(position).getTitle()))
-                            selectedSubjects.remove(listState.get(position).getTitle());
+                        if (selectedClasses.contains(listState.get(position).getTitle()))
+                            selectedClasses.remove(listState.get(position).getTitle());
                     }
                 }
                 int getPosition = (Integer) buttonView.getTag();
-                Log.i("subjectsSelected", String.valueOf(selectedSubjects));
+                Log.i("classessSelected", String.valueOf(selectedClasses));
 
                 Gson gson = new Gson();
-                String json = gson.toJson(selectedSubjects);
+                String json = gson.toJson(selectedClasses);
 
                 SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
                         Context.MODE_PRIVATE);
                 final SharedPreferences.Editor profileStudent = personal_profile.edit();
 
-                profileStudent.putString("subjects", String.valueOf(json));
+                profileStudent.putString("class",String.valueOf(json));
                 profileStudent.apply();
 
                 if (!isFromView) {

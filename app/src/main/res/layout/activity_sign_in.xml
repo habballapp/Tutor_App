@@ -74,7 +74,7 @@
             android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
             android:drawablePadding="10dp"
             android:padding="10dp"
-            android:text="mirza_abdulrafay@ymail.com"
+            android:text="institute@gmail.com"
             android:paddingLeft="30dp"
             android:hint="@string/email"
             android:theme="@style/EditText" />
@@ -92,7 +92,7 @@
             android:padding="10dp"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:text="12345"
+            android:text="123456"
             android:paddingLeft="30dp"
             android:hint="@string/password"
             android:theme="@style/EditText"/>

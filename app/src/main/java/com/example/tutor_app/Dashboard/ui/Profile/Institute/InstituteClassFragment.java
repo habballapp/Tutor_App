@@ -1,5 +1,7 @@
 package com.example.tutor_app.Dashboard.ui.Profile.Institute;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -83,8 +85,14 @@ public class InstituteClassFragment extends Fragment {
         subjects.add("Geography");
         subjects.add("History");
 
+
+        SharedPreferences institute_profile = getContext().getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+        final SharedPreferences.Editor profileInstitute = institute_profile.edit();
+
         final MyAdapter2 Adapter_Classes = new MyAdapter2(getContext(), android.R.layout.simple_spinner_dropdown_item,listClasses);
         spinner_class.setAdapter(Adapter_Classes);
+
 
         ArrayList<StateVO> listSubjects = new ArrayList<>();
 
@@ -125,6 +133,22 @@ public class InstituteClassFragment extends Fragment {
         btn_class_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(!(String.valueOf(ctype.getText()) == null) || !(String.valueOf(stype.getText()) == null))
+                {
+                    profileInstitute.putString("otherclass",String.valueOf(ctype.getText()));
+                    profileInstitute.putString("othersubjects",String.valueOf(stype.getText()));
+
+                }
+                else
+                {
+                    profileInstitute.putString("otherclass"," ");
+                    profileInstitute.putString("othersubjects"," ");
+                }
+
+
+                profileInstitute.apply();
+
 
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment());
