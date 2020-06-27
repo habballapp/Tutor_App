@@ -68,6 +68,8 @@ public class InstituteAddressFragment extends Fragment {
 
         userid = sharedPreferences1.getString("userid", "");
 
+        Log.i("userid", userid);
+
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
 
@@ -268,6 +270,7 @@ public class InstituteAddressFragment extends Fragment {
         map.put("country", edt_country.getText().toString());
         map.put("gender", spinner_gender);
         map.put("timing", spinner_timings);
+        map.put("address", String.valueOf(edt_address.getText()));
 
         /* ** Convert the string to json from adapter While putting in shared preference as well ** */
 //        List<String> selectedtimings = gson.fromJson(spinner_timings, type);

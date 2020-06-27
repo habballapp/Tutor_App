@@ -1,42 +1,146 @@
 package com.example.tutor_app.Dashboard.ui.Profile.Teacher;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tutor_app.Dashboard.ui.Qualification.Qualification;
 import com.example.tutor_app.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class ProfileTeacher extends Fragment {
 
-    private RelativeLayout btn_profile_next;
+    private RelativeLayout btn_profile_next, btn_profile_upload;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_fullname,edt_fname,edt_mtongue,edt_occupation,edt_cnic,edt_present_address,
                        edt_permanent_address,edt_dob,edt_nationality,edt_religion,edt_phone1,edt_phone2,
                       edt_email,edt_conveyance_txt,edt_age;
+    private String selectedFileType, imageName;
+    private ArrayList<String> imageBitmapBase64 = new ArrayList<>();
+    private TextView FileName;
+    private static final int REQUEST_CAMERA = 2;
+    private static final int SELECT_FILE = 1;
 
     private Spinner teacher_profession,spinner_conveyance;
  //   private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
  //    private static final String[] paths1 = {"Do you have conveyance?", "Yes", "No"};
     private List<String> paths,paths1;
     private String Filter_selected = "";
+
+
+    private String getRealPathFromURI(Uri contentURI) {
+
+        String thePath = "no-path-found";
+        String[] filePathColumn = {MediaStore.Images.Media.DISPLAY_NAME};
+        Cursor cursor = getContext().getContentResolver().query(contentURI, filePathColumn, null, null, null);
+        if (cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            thePath = cursor.getString(columnIndex);
+        }
+        cursor.close();
+        return thePath;
+    }
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immagex = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immagex.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+        byte[] b = baos.toByteArray();
+
+        String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
+
+        Log.e("LOOK", imageEncoded);
+        return imageEncoded;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case SELECT_FILE: {
+                if (resultCode == RESULT_OK && data != null) {
+                    final Uri imageUri = data.getData();
+                    System.out.println("data" + data.getData());
+
+                    Bundle extras = data.getExtras();
+                    Bitmap bmp = (Bitmap) extras.get("data");
+                    System.out.println("bmp " + bmp);
+
+                    InputStream imageStream = null;
+                    try {
+                        imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("imageStream  " + imageStream);
+
+                    Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                    System.out.println("yourSelectedImage  " + yourSelectedImage);
+
+                    imageBitmapBase64.add(encodeTobase64(yourSelectedImage));
+                    imageName = getRealPathFromURI(imageUri);
+                    FileName.setText(imageName);
+                    // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                }
+                break;
+
+            }
+            case REQUEST_CAMERA: {
+                if (resultCode == RESULT_OK && data != null) {
+                    Bundle extras = data.getExtras();
+                    // Get the returned image from extra
+                    Bitmap bmp = (Bitmap) extras.get("data");
+                    imageBitmapBase64.add(encodeTobase64(bmp));
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyyhhmmss");
+                    String datetime = dateformat.format(c.getTime());
+                    System.out.println(datetime);
+
+                    imageName = datetime + ".jpg";
+                    FileName.setText(imageName);
+                    // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+
+        }
+    }
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,6 +170,7 @@ public class ProfileTeacher extends Fragment {
         edt_conveyance_txt = root.findViewById(R.id.edt_conveyance_txt);
         edt_nationality = root.findViewById(R.id.edt_nationality);
         edt_religion = root.findViewById(R.id.edt_religion);
+        btn_profile_upload = root.findViewById(R.id.btn_profile_upload);
        
 
 
@@ -224,8 +329,50 @@ public class ProfileTeacher extends Fragment {
             }
         });
 
+        btn_profile_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                uploadImageDialogue();
+
+            }
+        });
+
 
 
         return root;
     }
+
+    private void uploadImageDialogue() {
+
+//                if (DocumentNames != null) {
+//
+//                    alertDialog.dismiss();
+//                    progressDialog.setTitle("Uploading ... ");
+//                    progressDialog.setMessage("Please wait...");
+//                    progressDialog.setCancelable(false);
+//                    progressDialog.setProgress(i);
+//                    progressDialog.show();
+//
+//                    CDT = new CountDownTimer(8000, 1000) {
+//                        public void onTick(long millisUntilFinished) {
+//                            progressDialog.setMessage("Please wait...");
+//                            i--;
+//                        }
+//
+//                        public void onFinish() {
+////                            i = 8;
+////                            DocumentNames.add(imageName);
+////                            mAdapter = new ProofOfPaymentsFormAdapter(getContext(), DocumentNames, selectedImageFileTypes, imageBitmapBase64);
+////                            recyclerView.setAdapter(mAdapter);
+////                            progressDialog.dismiss();
+////                            //Your Code ...
+//                        }
+//                    }.start();
+//                }
+    }
+
+
 }
+
+
