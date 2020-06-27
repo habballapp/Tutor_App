@@ -1,6 +1,7 @@
 package com.example.tutor_app.Dashboard.ui.Profile.Teacher;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -111,7 +112,6 @@ public class ProfileTeacher extends Fragment {
 
                     imageBitmapBase64.add(encodeTobase64(yourSelectedImage));
                     imageName = getRealPathFromURI(imageUri);
-                    FileName.setText(imageName);
                     // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
@@ -334,7 +334,7 @@ public class ProfileTeacher extends Fragment {
             @Override
             public void onClick(View v) {
 
-                uploadImageDialogue();
+                openImageChooserDialog();
 
             }
         });
@@ -344,34 +344,30 @@ public class ProfileTeacher extends Fragment {
         return root;
     }
 
-    private void uploadImageDialogue() {
+    private void openImageChooserDialog() {
+        final CharSequence[] items = {"Take Photo", "Gallery", "Cancel"};
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext());
+        builder.setTitle("Add Photo");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
 
-//                if (DocumentNames != null) {
-//
-//                    alertDialog.dismiss();
-//                    progressDialog.setTitle("Uploading ... ");
-//                    progressDialog.setMessage("Please wait...");
-//                    progressDialog.setCancelable(false);
-//                    progressDialog.setProgress(i);
-//                    progressDialog.show();
-//
-//                    CDT = new CountDownTimer(8000, 1000) {
-//                        public void onTick(long millisUntilFinished) {
-//                            progressDialog.setMessage("Please wait...");
-//                            i--;
-//                        }
-//
-//                        public void onFinish() {
-////                            i = 8;
-////                            DocumentNames.add(imageName);
-////                            mAdapter = new ProofOfPaymentsFormAdapter(getContext(), DocumentNames, selectedImageFileTypes, imageBitmapBase64);
-////                            recyclerView.setAdapter(mAdapter);
-////                            progressDialog.dismiss();
-////                            //Your Code ...
-//                        }
-//                    }.start();
-//                }
+                if (items[item].equals("Take Photo")) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, REQUEST_CAMERA);
+                } else if (items[item].equals("Gallery")) {
+                    Intent intent = new Intent(
+                            Intent.ACTION_PICK,
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, SELECT_FILE);
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
+
 
 
 }
