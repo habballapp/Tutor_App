@@ -1,6 +1,10 @@
 package com.example.tutor_app.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
+import com.example.tutor_app.Model_Classes.JobExperince_List;
 import com.example.tutor_app.R;
 
 import java.util.ArrayList;
@@ -23,34 +28,44 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
 
 
     private Context context;
-//    String email;
-    private List<String> classes;
-    private List<String> subjects;
-    List<String> spinner1,spinner2;
+    private List<JobExperince_List> list;
+    private RecyclerView rl_recycler;
+    private RecyclerView.Adapter mAdapter;
 
-
-
-    public SelectClassAdapter(final Context context, List<String> classItem) {
+    public SelectClassAdapter(Context context, List<JobExperince_List> list) {
         this.context = context;
-        this.classes = classItem;
-        spinner1 = new ArrayList<>();
-        spinner1.add("Select Class");
-        for(int i = 1; i <= 12; i++)
-            spinner1.add("Class " + i);
-        spinner1.add("O-Level");
-        spinner1.add("A-Level");
+        this.list = list;
 
-        
-        spinner2 = new ArrayList<>();
-        spinner2.add("Select Subject");
-        spinner2.add("Mathematics");
-        spinner2.add("English");
-        spinner2.add("Urdu");
-        spinner2.add("Islamiyat");
-        spinner2.add("P. St.");
-        spinner2.add("Geography");
-        spinner2.add("History");
     }
+
+//    String email;
+//    private List<String> classes;
+//    private List<String> subjects;
+//    List<String> spinner1,spinner2;
+
+
+
+//    public SelectClassAdapter(final Context context, List<String> classItem) {
+//        this.context = context;
+//        this.classes = classItem;
+//        spinner1 = new ArrayList<>();
+//        spinner1.add("Select Class");
+//        for(int i = 1; i <= 12; i++)
+//            spinner1.add("Class " + i);
+//        spinner1.add("O-Level");
+//        spinner1.add("A-Level");
+//
+//
+//        spinner2 = new ArrayList<>();
+//        spinner2.add("Select Subject");
+//        spinner2.add("Mathematics");
+//        spinner2.add("English");
+//        spinner2.add("Urdu");
+//        spinner2.add("Islamiyat");
+//        spinner2.add("P. St.");
+//        spinner2.add("Geography");
+//        spinner2.add("History");
+//    }
 
     @NonNull
     @Override
@@ -61,122 +76,99 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull SelectClassAdapter.ViewHolder holder, int position) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, spinner1) {
+
+         holder.edt_etitlement.setText(list.get(position).getJobtitle());
+         holder.edt_organization.setText(list.get(position).getOrgname());
+         holder.edt_from.setText(list.get(position).getFromto());
+         holder.edt_till.setText(list.get(position).getTill());
+
+        final SharedPreferences job_experience = context.getSharedPreferences("SendData_Experience",
+                Context.MODE_PRIVATE);
+        final SharedPreferences.Editor profileTeacher_experience = job_experience.edit();
+
+
+        holder.edt_organization.addTextChangedListener(new TextWatcher() {
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(context.getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-
-                return view;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(context.getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-                return view;
-            }
-        };
-        holder.spinner_class.setAdapter(adapter);
-
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, spinner2) {
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(context.getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-
-                return view;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(context.getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-                return view;
-            }
-        };
-
-        ArrayList<StateVO> listVOs = new ArrayList<>();
-
-        for (int i = 0; i < spinner2.size(); i++) {
-            StateVO stateVO = new StateVO();
-            stateVO.setTitle(spinner2.get(i));
-            stateVO.setSelected(false);
-            listVOs.add(stateVO);
-        }
-
-
-        MyAdapter myAdapter = new MyAdapter(this.context, 0,
-                listVOs);
-         holder.spinner_subject.setAdapter(myAdapter);
-
-        holder.spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                profileTeacher_experience.putString("OrganizationName",(String.valueOf(s)));
+
+
 
             }
         });
 
-        holder.spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        holder.edt_etitlement.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        holder.spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void afterTextChanged(Editable s) {
+
+                profileTeacher_experience.putString("JobEntitlement",(String.valueOf(s)));
+                profileTeacher_experience.apply();
+
+
 
             }
         });
 
-        holder.spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        holder.edt_from.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                profileTeacher_experience.putString("FromTo",(String.valueOf(s)));
+                profileTeacher_experience.apply();
 
             }
         });
 
+        holder.edt_till.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                profileTeacher_experience.putString("Till",String.valueOf(String.valueOf(s)));
+                profileTeacher_experience.apply();
+
+            }
+        });
 
 
 
@@ -184,22 +176,30 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
     }
 
     @Override
+
     public int getItemCount() {
-        return classes.size();
+
+        Log.e("List","List size is "+list.size());
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        public EditText edt_email;
-        public Spinner spinner_class,spinner_subject;
+        public EditText edt_etitlement,edt_organization,edt_from,edt_till;
+       // public Spinner spinner_class,spinner_subject;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            edt_email = itemView.findViewById(R.id.edt_email);
-            spinner_class = itemView.findViewById(R.id.spinner_class);
-            spinner_subject = itemView.findViewById(R.id.spinner_subject);
+
+          //  spinner_class = itemView.findViewById(R.id.spinner_class);
+
+            edt_etitlement = itemView.findViewById(R.id.edt_etitlement);
+            edt_organization =itemView.findViewById(R.id.edt_organization);
+            edt_from = itemView.findViewById(R.id.edt_from);
+            edt_till = itemView.findViewById(R.id.edt_till);
+
 
 
         }

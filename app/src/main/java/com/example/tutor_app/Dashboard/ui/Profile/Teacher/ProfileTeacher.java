@@ -49,7 +49,7 @@ public class ProfileTeacher extends Fragment {
                        edt_permanent_address,edt_dob,edt_nationality,edt_religion,edt_phone1,edt_phone2,
                       edt_email,edt_conveyance_txt,edt_age;
     private String selectedFileType, imageName;
-    private ArrayList<String> imageBitmapBase64 = new ArrayList<>();
+    private String imageBitmapBase64 = "";
     private TextView FileName;
     private static final int REQUEST_CAMERA = 2;
     private static final int SELECT_FILE = 1;
@@ -110,7 +110,8 @@ public class ProfileTeacher extends Fragment {
                     Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
                     System.out.println("yourSelectedImage  " + yourSelectedImage);
 
-                    imageBitmapBase64.add(encodeTobase64(yourSelectedImage));
+                    imageBitmapBase64 = encodeTobase64(yourSelectedImage);
+                    Log.e("imageBase64", imageBitmapBase64);
                     imageName = getRealPathFromURI(imageUri);
                     // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
                 } else {
@@ -124,7 +125,9 @@ public class ProfileTeacher extends Fragment {
                     Bundle extras = data.getExtras();
                     // Get the returned image from extra
                     Bitmap bmp = (Bitmap) extras.get("data");
-                    imageBitmapBase64.add(encodeTobase64(bmp));
+                    imageBitmapBase64 = encodeTobase64(bmp);
+                    Log.e("imageBase64", imageBitmapBase64);
+
                     Calendar c = Calendar.getInstance();
                     SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyyhhmmss");
                     String datetime = dateformat.format(c.getTime());
@@ -158,7 +161,7 @@ public class ProfileTeacher extends Fragment {
         edt_fullname = root.findViewById(R.id.edt_fullname);
         edt_fname = root.findViewById(R.id.edt_fname);
         edt_mtongue = root.findViewById(R.id.edt_mtongue);
-        edt_occupation = root.findViewById(R.id.edt_occupation);
+//        edt_occupation = root.findViewById(R.id.edt_occupation);
         edt_cnic = root.findViewById(R.id.edt_cnic);
         edt_present_address = root.findViewById(R.id.edt_present_address);
         edt_permanent_address = root.findViewById(R.id.edt_permanent_address);
@@ -322,7 +325,8 @@ public class ProfileTeacher extends Fragment {
                 profileTeacher.putString("phoneno1",String.valueOf(edt_phone1.getText()));
                 profileTeacher.putString("phoneno2",String.valueOf(edt_phone2.getText()));
                 profileTeacher.putString("email",String.valueOf(edt_email.getText()));
-                profileTeacher.putString("email",String.valueOf(edt_occupation.getText()));
+                profileTeacher.putString("tutorimageBase64",String.valueOf("data:image/png;base64," + imageBitmapBase64));
+              //profileTeacher.putString("email",String.valueOf(edt_occupation.getText()));
 
               //  profileTeacher.putString("teacherbyprofession",String.valueOf(spinner_));
                 // profileTeacher.putString("dateofsubmission",String.valueOf(edt_da.getText()));

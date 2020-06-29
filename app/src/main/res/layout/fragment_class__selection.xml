@@ -8,6 +8,14 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/scrollview1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/ln_logo"
@@ -54,7 +62,6 @@
 
         <RelativeLayout
             android:id="@+id/ln_login"
-            android:layout_above="@id/btn_profile_next"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="40dp"
@@ -141,29 +148,26 @@
                 android:hint="@string/school"
                 android:theme="@style/EditText" />
 
+            <Button
 
+                android:id="@+id/btn_profile_next"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/edt_school"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/btn_round"
+                android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:paddingStart="30dp"
+                android:paddingLeft="30dp"
+                android:text="NEXT"
+                android:theme="@style/ButtonTextRound" />
 
 
         </RelativeLayout>
 
-    <Button
 
-        android:id="@+id/btn_profile_next"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_round"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:text="NEXT"
-        android:theme="@style/ButtonTextRound"
-        android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
-        android:paddingStart="30dp"
-        android:paddingLeft="30dp"
-        >
 
 <!--        <TextView-->
 <!--            android:id="@+id/btn_signin_txt"-->
@@ -183,12 +187,8 @@
 <!--            android:padding="5dp"-->
 <!--            android:src="@drawable/ic_arrow_forward_black_24dp" />-->
 
-    </Button>
+        </RelativeLayout>
 
-
-
-
-
-
+    </ScrollView>
 
 </RelativeLayout>

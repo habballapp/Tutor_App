@@ -181,6 +181,7 @@
                 android:orientation="vertical"
                 android:weightSum="2"
                 android:visibility="gone"
+
                 >
 
                 <EditText
@@ -218,51 +219,51 @@
 
             </LinearLayout>
 
+            <RelativeLayout
+                android:id="@+id/btn_class_next"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/add_more"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_round"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:paddingStart="30dp"
+                android:paddingLeft="30dp">
 
+                <TextView
+                    android:id="@+id/btn_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="5dp"
+                    android:text="NEXT"
+                    android:theme="@style/ButtonTextRound" />
 
+                <ImageView
+                    android:id="@+id/btn_next_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_arrow_forward_black_24dp" />
 
+            </RelativeLayout>
 
         </RelativeLayout>
+
+
 
     </ScrollView>
 
 
-    <RelativeLayout
-        android:id="@+id/btn_class_next"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_round"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:paddingStart="30dp"
-        android:paddingLeft="30dp">
 
-        <TextView
-            android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:padding="5dp"
-            android:text="NEXT"
-            android:theme="@style/ButtonTextRound" />
-
-        <ImageView
-            android:id="@+id/btn_next_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:padding="5dp"
-            android:src="@drawable/ic_arrow_forward_black_24dp" />
-
-    </RelativeLayout>
 
 
 </RelativeLayout>

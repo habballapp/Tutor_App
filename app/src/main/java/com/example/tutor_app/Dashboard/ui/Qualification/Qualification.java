@@ -59,11 +59,11 @@ public class Qualification extends Fragment {
         mRelativeToSlide4 = (RelativeLayout) root.findViewById(R.id.relativevToSlide4);
 
         btn_qualification_next = root.findViewById(R.id.btn_qualification_next);
-        qualification = root.findViewById(R.id.name);
-        subject = root.findViewById(R.id.edt_relation);
-        edt_institute = root.findViewById(R.id.edt_occupation);
-        edt_passing_year = root.findViewById(R.id.edt_present_address);
-        edt_grade = root.findViewById(R.id.edt_phone);
+        qualification = root.findViewById(R.id.qualification);
+        subject = root.findViewById(R.id.subject);
+        edt_institute = root.findViewById(R.id.edt_institute);
+        edt_passing_year = root.findViewById(R.id.edt_passing_year);
+        edt_grade = root.findViewById(R.id.edt_grade);
         //
         qualification1 = root.findViewById(R.id.qualification1);
         subject1 = root.findViewById(R.id.subject1);
@@ -177,29 +177,82 @@ public class Qualification extends Fragment {
         profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year.getText()));
         profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade.getText()));
         //
-        profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification1.getText()));
-        profileTeacher_Qualification.putString("SubjectSpecialization",String.valueOf(subject1.getText()));
-        profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute1.getText()));
-        profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year1.getText()));
-        profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade1.getText()));
-        //
-        profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification2.getText()));
-        profileTeacher_Qualification.putString("SubjectSpecialization",String.valueOf(subject2.getText()));
-        profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute2.getText()));
-        profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year2.getText()));
-        profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade2.getText()));
-        //
-        profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification3.getText()));
-        profileTeacher_Qualification.putString("SubjectSpecialization",String.valueOf(subject3.getText()));
-        profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute3.getText()));
-        profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year3.getText()));
-        profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade3.getText()));
-        //
-        profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification4.getText()));
-        profileTeacher_Qualification.putString("SubjectSpecialization",String.valueOf(subject4.getText()));
-        profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute4.getText()));
-        profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year4.getText()));
-        profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade4.getText()));
+
+        if (!(String.valueOf(qualification1.getText()) == null) || !(String.valueOf(subject1.getText()) == null) ||
+                !(String.valueOf(edt_institute1.getText()) == null) || !(String.valueOf(edt_passing_year1.getText()) == null)
+                || !(String.valueOf(edt_grade1.getText()) == null) || !(String.valueOf(qualification2.getText()) == null) || !(String.valueOf(subject2.getText()) == null) ||
+                !(String.valueOf(edt_institute2.getText()) == null) || !(String.valueOf(edt_passing_year2.getText()) == null)
+                || !(String.valueOf(edt_grade2.getText()) == null) || !(String.valueOf(qualification3.getText()) == null) || !(String.valueOf(subject3.getText()) == null) ||
+                !(String.valueOf(edt_institute3.getText()) == null) || !(String.valueOf(edt_passing_year1.getText()) == null)
+                || !(String.valueOf(edt_grade3.getText()) == null) || !(String.valueOf(qualification4.getText()) == null) || !(String.valueOf(subject4.getText()) == null) ||
+                !(String.valueOf(edt_institute4.getText()) == null) || !(String.valueOf(edt_passing_year4.getText()) == null)
+                || !(String.valueOf(edt_grade4.getText()) == null)
+        )
+        {
+            profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification1.getText()));
+            profileTeacher_Qualification.putString("SubjectSpecialization",String.valueOf(subject1.getText()));
+            profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute1.getText()));
+            profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year1.getText()));
+            profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade1.getText()));
+
+            //
+            profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification2.getText()));
+            profileTeacher_Qualification.putString("SubjectSpecialization",String.valueOf(subject2.getText()));
+            profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute2.getText()));
+            profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year2.getText()));
+            profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade2.getText()));
+
+            //
+            profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification3.getText()));
+            profileTeacher_Qualification.putString("SubjectSpecialization",String.valueOf(subject3.getText()));
+            profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute3.getText()));
+            profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year3.getText()));
+            profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade3.getText()));
+
+            //
+            profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification4.getText()));
+            profileTeacher_Qualification.putString("SubjectSpecialization",String.valueOf(subject4.getText()));
+            profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute4.getText()));
+            profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year4.getText()));
+            profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade4.getText()));
+
+        }
+        else {
+
+            profileTeacher_Qualification.putString("Qualification"," ");
+            profileTeacher_Qualification.putString("SubjectSpecialization"," ");
+            profileTeacher_Qualification.putString("InstituteUniversity"," ");
+            profileTeacher_Qualification.putString("YearOfPassing"," ");
+            profileTeacher_Qualification.putString("gradedivision"," ");
+
+            //
+            profileTeacher_Qualification.putString("Qualification"," ");
+            profileTeacher_Qualification.putString("SubjectSpecialization"," ");
+            profileTeacher_Qualification.putString("InstituteUniversity"," ");
+            profileTeacher_Qualification.putString("YearOfPassing"," ");
+            profileTeacher_Qualification.putString("gradedivision"," ");
+
+            //
+            profileTeacher_Qualification.putString("Qualification"," ");
+            profileTeacher_Qualification.putString("SubjectSpecialization"," ");
+            profileTeacher_Qualification.putString("InstituteUniversity"," ");
+            profileTeacher_Qualification.putString("YearOfPassing"," ");
+            profileTeacher_Qualification.putString("gradedivision"," ");
+
+            //
+            profileTeacher_Qualification.putString("Qualification"," ");
+            profileTeacher_Qualification.putString("SubjectSpecialization"," ");
+            profileTeacher_Qualification.putString("InstituteUniversity"," ");
+            profileTeacher_Qualification.putString("YearOfPassing"," ");
+            profileTeacher_Qualification.putString("gradedivision"," ");
+
+
+
+        }
+
+
+
+
 
         profileTeacher_Qualification.apply();
 

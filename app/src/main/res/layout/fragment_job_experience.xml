@@ -57,157 +57,75 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ln_experience"
+            <RelativeLayout
+                android:id="@+id/rl_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ln_text"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                android:orientation="vertical"
-                android:weightSum="18">
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="27dp"
+                android:layout_marginTop="60dp"
+                android:layout_below="@id/ln_logo"
+                android:layout_marginBottom="10dp">
 
 
 
-                <EditText
-                    android:id="@+id/edt_qualification"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_fragment_payments"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/entitlement"
-                    android:theme="@style/EditText" />
+                    android:layout_height="match_parent"
+                    android:isScrollContainer="false"
+                    android:layout_marginBottom="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:nestedScrollingEnabled="false" />
 
-
-                <EditText
-                    android:id="@+id/edt_fname"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/subjects"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_mname"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/institute"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_occupation"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/pyear"
-                    android:theme="@style/EditText" />
+            </RelativeLayout>
 
 
 
 
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ln_login1"
+            <RelativeLayout
+                android:id="@+id/btn_experience_add"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ln_text"
-                android:layout_marginStart="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/rl_recycler"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                android:orientation="vertical"
-                android:weightSum="18">
+                android:layout_marginRight="60dp"
+                android:background="@drawable/btn_round"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:paddingStart="30dp"
+                android:paddingLeft="30dp">
 
+                <TextView
+                    android:id="@+id/btn_signin_next_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="5dp"
+                    android:text="ADD"
+                    android:theme="@style/ButtonTextRound" />
 
+                <ImageView
+                    android:id="@+id/btn_signin_image_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_arrow_forward_black_24dp" />
 
-                <EditText
-                    android:id="@+id/edt_etitlement"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/entitlement"
-                    android:theme="@style/EditText" />
-
-
-                <EditText
-                    android:id="@+id/edt_organization"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/organization"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_from"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/from"
-                    android:theme="@style/EditText" />
-
-                <EditText
-                    android:id="@+id/edt_till"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/till"
-                    android:theme="@style/EditText" />
-
-
-            </LinearLayout>
+            </RelativeLayout>
 
 
             <RelativeLayout
                 android:id="@+id/btn_experience_next"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_below="@+id/ln_login1"
+                android:layout_below="@+id/btn_experience_add"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="60dp"

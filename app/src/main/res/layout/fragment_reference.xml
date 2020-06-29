@@ -97,7 +97,7 @@
                     android:theme="@style/EditText" />
 
                 <EditText
-                    android:id="@+id/edt_occupation"
+                    android:id="@+id/edt_occupation_ref"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -126,7 +126,7 @@
                     android:theme="@style/EditText" />
 
                 <EditText
-                    android:id="@+id/edt_phone"
+                    android:id="@+id/edt_telephone"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
@@ -154,6 +154,7 @@
                 android:layout_below="@+id/ln_reference"
                 android:layout_marginTop="20dp"
                 android:visibility="gone"
+
                 >
 
                 <LinearLayout
@@ -221,7 +222,7 @@
                         android:theme="@style/EditText" />
 
                     <EditText
-                        android:id="@+id/edt_phone1"
+                        android:id="@+id/edt_telephone1"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"

@@ -251,6 +251,7 @@ public class InstituteAddressFragment extends Fragment {
         map.put("contactperson", cperson);
         map.put("email", email);
 
+
         List<String> selectedClasses = gson.fromJson(classes, type);
         JSONArray jsonArray1 = new JSONArray(selectedClasses);
         map.put("class", jsonArray1);
