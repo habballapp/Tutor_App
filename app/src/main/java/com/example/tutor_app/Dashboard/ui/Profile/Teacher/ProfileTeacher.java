@@ -53,8 +53,9 @@ public class ProfileTeacher extends Fragment {
     private TextView FileName;
     private static final int REQUEST_CAMERA = 2;
     private static final int SELECT_FILE = 1;
+    private List<String> gender;
 
-    private Spinner teacher_profession,spinner_conveyance;
+    private Spinner teacher_profession,spinner_conveyance,spinner1;
  //   private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
  //    private static final String[] paths1 = {"Do you have conveyance?", "Yes", "No"};
     private List<String> paths,paths1;
@@ -161,7 +162,7 @@ public class ProfileTeacher extends Fragment {
         edt_fullname = root.findViewById(R.id.edt_fullname);
         edt_fname = root.findViewById(R.id.edt_fname);
         edt_mtongue = root.findViewById(R.id.edt_mtongue);
-//        edt_occupation = root.findViewById(R.id.edt_occupation);
+       edt_occupation = root.findViewById(R.id.edt_occupation);
         edt_cnic = root.findViewById(R.id.edt_cnic);
         edt_present_address = root.findViewById(R.id.edt_present_address);
         edt_permanent_address = root.findViewById(R.id.edt_permanent_address);
@@ -174,7 +175,52 @@ public class ProfileTeacher extends Fragment {
         edt_nationality = root.findViewById(R.id.edt_nationality);
         edt_religion = root.findViewById(R.id.edt_religion);
         btn_profile_upload = root.findViewById(R.id.btn_profile_upload);
-       
+        spinner1 = root.findViewById(R.id.spinner_gender);
+
+
+        gender = new ArrayList<>();
+        gender.add("Select Preffered Gender");
+        gender.add("Male");
+        gender.add("Female");
+        gender.add("Any");
+
+        final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+
+                return view;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+                return view;
+            }
+        };
+        spinner1.setAdapter(spinner1_adapter);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                profileTeacher.putString("gender",String.valueOf(spinner1));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -281,11 +327,9 @@ public class ProfileTeacher extends Fragment {
 
                 if (Filter_selected.equals("Yes")) {
 
+                        edt_conveyance_txt.setVisibility(View.VISIBLE);
                         profileTeacher.putString("personalconveyance",String.valueOf(edt_conveyance_txt.getText()));
 
-
-
-                        profileTeacher.putString("personalconveyance"," ");
 
 
 

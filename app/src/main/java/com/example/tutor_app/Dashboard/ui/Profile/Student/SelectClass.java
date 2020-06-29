@@ -38,7 +38,7 @@ public class SelectClass extends Fragment {
     private Button btn_profile_next;
     private FragmentTransaction fragmentTransaction;
     List<String> classes = new ArrayList<>();
-   List<String> subjects = new ArrayList<>();
+    List<String> subjects = new ArrayList<>();
 
    // List<String> spinner1,subjects;
     

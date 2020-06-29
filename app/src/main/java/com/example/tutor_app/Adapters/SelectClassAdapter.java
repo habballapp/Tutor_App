@@ -82,7 +82,7 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
          holder.edt_from.setText(list.get(position).getFromto());
          holder.edt_till.setText(list.get(position).getTill());
 
-        final SharedPreferences job_experience = context.getSharedPreferences("SendData_Experience",
+        final SharedPreferences job_experience = context.getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileTeacher_experience = job_experience.edit();
 
