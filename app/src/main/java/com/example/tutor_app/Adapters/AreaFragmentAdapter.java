@@ -91,6 +91,7 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
         final SharedPreferences.Editor profileArea_of_interest = area_of_interest.edit();
 
         profileArea_of_interest.putString("prefsubject",(String.valueOf(holder.edt_pref_subject.getText())));
+        Log.i("prefsubject",(String.valueOf(holder.edt_pref_subject.getText())));
         profileArea_of_interest.apply();
 
         final ArrayAdapter<String> spinner_area_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, area) {

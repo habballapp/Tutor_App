@@ -81,44 +81,6 @@ public class AreaFragment extends Fragment {
         area.add(" Malir Town");
 
 
-//        final ArrayAdapter<String> spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
-//            @Override
-//            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-//                // TODO Auto-generated method stub
-//                View view = super.getView(position, convertView, parent);
-//                TextView text = (TextView) view.findViewById(android.R.id.text1);
-//                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-//                text.setTextSize((float) 13.6);
-//                text.setPadding(30, 0, 30, 0);
-//
-//                return view;
-//            }
-//
-//            @Override
-//            public View getView(int position, View convertView, ViewGroup parent) {
-//                // TODO Auto-generated method stub
-//                View view = super.getView(position, convertView, parent);
-//                TextView text = (TextView) view.findViewById(android.R.id.text1);
-//                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-//                text.setTextSize((float) 13.6);
-//                text.setPadding(30, 0, 30, 0);
-//                return view;
-//            }
-//        };
-//        spinner_area.setAdapter(spinner_area_adapter);
-//        spinner_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//                areaFragment.putString("PreferredArea",String.valueOf(spinner_area));
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
 
         list.add(new AreaFragment_List(" "," "," "));
 
