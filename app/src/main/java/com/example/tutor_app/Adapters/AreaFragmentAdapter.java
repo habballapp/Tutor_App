@@ -83,7 +83,16 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AreaFragmentAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final AreaFragmentAdapter.ViewHolder holder, int position) {
+
+
+        final SharedPreferences area_of_interest = context.getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+        final SharedPreferences.Editor profileArea_of_interest = area_of_interest.edit();
+
+        profileArea_of_interest.putString("prefsubject",(String.valueOf(holder.edt_pref_subject.getText())));
+        profileArea_of_interest.apply();
+
         final ArrayAdapter<String> spinner_area_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, area) {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -97,10 +106,6 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
 
                 return view;
             }
-
-            final SharedPreferences area_of_interest = context.getSharedPreferences("SendData",
-                    Context.MODE_PRIVATE);
-            final SharedPreferences.Editor profileArea_of_interest = area_of_interest.edit();
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -118,7 +123,9 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-               // areaFragment.putString("PreferredArea",String.valueOf(spinner_area));
+             profileArea_of_interest.putString("prefarea",(String.valueOf(area.get(position))));
+             profileArea_of_interest.apply();
+             Log.i("AreaSelected", area.get(position) + " - " + position);
 
             }
 
@@ -137,7 +144,7 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
             listClasses.add( holder.stateVO );
         }
 
-        final MyAdapter2 myAdapter1 = new MyAdapter2(context, android.R.layout.simple_spinner_dropdown_item,listClasses);
+        final MyAdapter3 myAdapter1 = new MyAdapter3(context, android.R.layout.simple_spinner_dropdown_item,listClasses);
         holder.spinner_class.setAdapter(myAdapter1);
 
 

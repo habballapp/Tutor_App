@@ -67,11 +67,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="40dp"
                 android:orientation="vertical"
+
                 android:weightSum="18">
 
                 <RelativeLayout
                     android:id="@+id/edt_class"
                     android:layout_width="match_parent"
+
                     android:layout_height="55dp"
                     android:layout_weight="1"
                     android:background="@drawable/editbox"
@@ -83,10 +85,9 @@
                         android:id="@+id/spinner_class"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:dropDownWidth="match_parent"
                         android:background="@null"
-                        android:popupBackground="@drawable/popupbackground"
-                        />
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/popupbackground" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -139,7 +140,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_below="@+id/ln_login"
-                android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"

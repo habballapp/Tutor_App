@@ -32,6 +32,7 @@
     <string name="nationality">Nationality</string>
     <string name="religion">Religion</string>
     <string name="phone1">Phone#1</string>
+    <string name="dos">Date Of Submission</string>
     <string name="phone2">Phone#2</string>
     <string name="phone3">Phone#3</string>
     <string name="mail">Email</string>

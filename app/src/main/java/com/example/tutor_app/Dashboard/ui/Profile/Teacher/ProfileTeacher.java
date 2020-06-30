@@ -1,5 +1,6 @@
 package com.example.tutor_app.Dashboard.ui.Profile.Teacher;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,16 +41,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ProfileTeacher extends Fragment {
+public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private RelativeLayout btn_profile_next, btn_profile_upload;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_fullname,edt_fname,edt_mtongue,edt_occupation,edt_cnic,edt_present_address,
-                       edt_permanent_address,edt_dob,edt_nationality,edt_religion,edt_phone1,edt_phone2,
-                      edt_email,edt_conveyance_txt,edt_age;
+                       edt_permanent_address,edt_nationality,edt_religion,edt_phone1,edt_phone2,
+            edt_email, edt_conveyance_txt, edt_age;
     private String selectedFileType, imageName;
     private String imageBitmapBase64 = "";
     private TextView FileName;
@@ -60,6 +64,12 @@ public class ProfileTeacher extends Fragment {
  //    private static final String[] paths1 = {"Do you have conveyance?", "Yes", "No"};
     private List<String> paths,paths1;
     private String Filter_selected = "";
+    private int year1, year2, month1, month2, date1, date2;
+    private String fromDate, toDate;
+    private ImageButton first_date_btn, second_date_btn;
+    private TextView first_date, second_date;
+    private String dateType = "";
+//    private TextView edt_dob, edt_date_of_submission;
 
 
     private String getRealPathFromURI(Uri contentURI) {
@@ -135,7 +145,7 @@ public class ProfileTeacher extends Fragment {
                     System.out.println(datetime);
 
                     imageName = datetime + ".jpg";
-                    FileName.setText(imageName);
+//                    FileName.setText(imageName);
                     // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
@@ -166,7 +176,7 @@ public class ProfileTeacher extends Fragment {
         edt_cnic = root.findViewById(R.id.edt_cnic);
         edt_present_address = root.findViewById(R.id.edt_present_address);
         edt_permanent_address = root.findViewById(R.id.edt_permanent_address);
-        edt_dob = root.findViewById(R.id.edt_dob);
+//        edt_dob = root.findViewById(R.id.edt_dob);
         edt_age  = root.findViewById(R.id.edt_age);
         edt_email = root.findViewById(R.id.edt_email);
         edt_phone1 = root.findViewById(R.id.edt_phone1);
@@ -176,7 +186,25 @@ public class ProfileTeacher extends Fragment {
         edt_religion = root.findViewById(R.id.edt_religion);
         btn_profile_upload = root.findViewById(R.id.btn_profile_upload);
         spinner1 = root.findViewById(R.id.spinner_gender);
+//        edt_date_of_submission = root.findViewById(R.id.edt_date_of_submission);
+        first_date = root.findViewById(R.id.edt_dob);
+        first_date_btn = root.findViewById(R.id.first_date_btn);
+        second_date = root.findViewById(R.id.edt_date_of_submission);
+        second_date_btn = root.findViewById(R.id.second_date_btn);
 
+        first_date_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCalenderPopup("first date");
+            }
+        });
+
+        second_date_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCalenderPopup("second date");
+            }
+        });
 
         gender = new ArrayList<>();
         gender.add("Select Preffered Gender");
@@ -213,7 +241,7 @@ public class ProfileTeacher extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                profileTeacher.putString("gender",String.valueOf(spinner1));
+                profileTeacher.putString("gender", String.valueOf(gender.get(position)));
             }
 
             @Override
@@ -221,11 +249,6 @@ public class ProfileTeacher extends Fragment {
 
             }
         });
-
-
-
-
-
 
         paths = new ArrayList<>();
         paths.add("Are you a Teacher by Profession?");
@@ -273,7 +296,7 @@ public class ProfileTeacher extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                profileTeacher.putString("teacherbyprofession",String.valueOf(teacher_profession));
+                profileTeacher.putString("teacherbyprofession", String.valueOf(paths.get(position)));
 
             }
 
@@ -314,6 +337,7 @@ public class ProfileTeacher extends Fragment {
         spinner_conveyance.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
 
                 if(position == 0){
 
@@ -359,7 +383,7 @@ public class ProfileTeacher extends Fragment {
                 profileTeacher.putString("fullname",String.valueOf(edt_fullname.getText()));
                 profileTeacher.putString("fathusname",String.valueOf(edt_fname.getText()));
                 profileTeacher.putString("mothnametounge",String.valueOf(edt_mtongue.getText()));
-                profileTeacher.putString("dob",String.valueOf(edt_dob.getText()));
+//                profileTeacher.putString("dob",String.valueOf(edt_dob.getText()));
                 profileTeacher.putString("age",String.valueOf(edt_age.getText()));
                 profileTeacher.putString("nationality",String.valueOf(edt_nationality.getText()));
                 profileTeacher.putString("religion",String.valueOf(edt_religion.getText()));
@@ -370,6 +394,7 @@ public class ProfileTeacher extends Fragment {
                 profileTeacher.putString("phoneno2",String.valueOf(edt_phone2.getText()));
                 profileTeacher.putString("email",String.valueOf(edt_email.getText()));
                 profileTeacher.putString("tutorimageBase64",String.valueOf("data:image/png;base64," + imageBitmapBase64));
+//                profileTeacher.putString("dateofsubmission", String.valueOf(edt_date_of_submission.getText()));
               //profileTeacher.putString("email",String.valueOf(edt_occupation.getText()));
 
               //  profileTeacher.putString("teacherbyprofession",String.valueOf(spinner_));
@@ -421,6 +446,51 @@ public class ProfileTeacher extends Fragment {
     }
 
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        if (dateType.equals("first date")) {
+            year1 = year;
+            month1 = month;
+            date1 = dayOfMonth;
+        } else if (dateType.equals("second date")) {
+            year2 = year;
+            month2 = month;
+            date2 = dayOfMonth;
+        }
+        updateDisplay(dateType);
+    }
+
+    private void updateDisplay(String date_type) {
+        if (date_type.equals("first date")) {
+            fromDate = year1 + "-" + String.format("%02d", (month1 + 1)) + "-" + String.format("%02d", date1);
+            Log.i("fromDate", fromDate);
+
+            first_date.setText(new StringBuilder()
+                    .append(date1).append("-").append(month1 + 1).append("-").append(year1));
+        } else if (date_type.equals("second date")) {
+            toDate = year2 + "-" + String.format("%02d", (month2 + 1)) + "-" + String.format("%02d", date2);
+            second_date.setText(new StringBuilder()
+                    .append(date2).append("-").append(month2 + 1).append("-").append(year2));
+        }
+
+
+        final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+        final SharedPreferences.Editor profileTeacher = personal_profile.edit();
+        profileTeacher.putString("dob", String.valueOf(fromDate));
+        profileTeacher.putString("dateofsubmission", String.valueOf(toDate));
+        profileTeacher.apply();
+    }
+
+    private void openCalenderPopup(String date_type) {
+        dateType = date_type;
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+
+        DatePickerDialog dialog = new DatePickerDialog(getContext(), R.style.DialogTheme, this,
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
+    }
 
 }
 
