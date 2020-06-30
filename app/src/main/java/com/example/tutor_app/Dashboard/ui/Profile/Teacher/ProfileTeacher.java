@@ -191,6 +191,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         first_date_btn = root.findViewById(R.id.first_date_btn);
         second_date = root.findViewById(R.id.edt_date_of_submission);
         second_date_btn = root.findViewById(R.id.second_date_btn);
+        edt_occupation = root.findViewById(R.id.edt_occupation);
 
         first_date_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -352,8 +353,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 if (Filter_selected.equals("Yes")) {
 
                         edt_conveyance_txt.setVisibility(View.VISIBLE);
-                        profileTeacher.putString("personalconveyance",String.valueOf(edt_conveyance_txt.getText()));
-                        Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
+                        //profileTeacher.putString("personalconveyance",String.valueOf(edt_conveyance_txt.getText()));
+                       // Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
 
 
 
@@ -380,7 +381,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             @Override
             public void onClick(View v) {
 
-
+                profileTeacher.putString("personalconveyance",String.valueOf(edt_conveyance_txt.getText()));
+                Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
                 profileTeacher.putString("fullname",String.valueOf(edt_fullname.getText()));
                 profileTeacher.putString("fathusname",String.valueOf(edt_fname.getText()));
                 profileTeacher.putString("mothnametounge",String.valueOf(edt_mtongue.getText()));
@@ -395,6 +397,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 profileTeacher.putString("phoneno2",String.valueOf(edt_phone2.getText()));
                 profileTeacher.putString("email",String.valueOf(edt_email.getText()));
                 profileTeacher.putString("tutorimageBase64",String.valueOf("data:image/png;base64," + imageBitmapBase64));
+                profileTeacher.putString("OrganizationName",String.valueOf(edt_occupation.getText()));
 //                profileTeacher.putString("dateofsubmission", String.valueOf(edt_date_of_submission.getText()));
               //profileTeacher.putString("email",String.valueOf(edt_occupation.getText()));
 
