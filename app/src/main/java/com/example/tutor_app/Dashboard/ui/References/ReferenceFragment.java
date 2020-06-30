@@ -49,7 +49,7 @@ public class ReferenceFragment extends Fragment {
     //profile
     String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic, edt_present_address,
             edt_permanent_address, edt_dob, edt_nationality, edt_religion, edt_phone1, edt_phone2,
-            edt_email, edt_age, imageBitmapBase64,gender,conveyance;
+            edt_email, edt_age, imageBitmapBase64,gender,conveyance,OrganizationName;
     String spinner_conveyance_txt, spinner_profession, date_of_submission;
     //Qualification
     String qualification, edt_institute, edt_passing_year, edt_grade,SubjectSpecialization,SubjectSpecialization1,
@@ -122,6 +122,9 @@ public class ReferenceFragment extends Fragment {
         spinner_area = sharedPreferences.getString("prefarea","");
         gender = sharedPreferences.getString("gender","");
         SubjectSpecialization = sharedPreferences.getString("SubjectSpecialization","");
+        OrganizationName = sharedPreferences.getString("OrganizationName","");
+
+
 
         // Qualification
         final SharedPreferences qualification_data = getContext().getSharedPreferences("SendData",
@@ -313,6 +316,7 @@ public class ReferenceFragment extends Fragment {
         map.put("edt_grade", gradeArray);
         map.put("edt_passing_year", passingArray);
         map.put("prefsubject",edt_pref_subject);
+        map.put("OrganizationName",OrganizationName);
 
 
 
