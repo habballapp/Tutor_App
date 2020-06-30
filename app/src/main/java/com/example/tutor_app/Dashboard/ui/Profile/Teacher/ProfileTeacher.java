@@ -353,6 +353,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
                         edt_conveyance_txt.setVisibility(View.VISIBLE);
                         profileTeacher.putString("personalconveyance",String.valueOf(edt_conveyance_txt.getText()));
+                        Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
 
 
 
