@@ -162,6 +162,8 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
         final ArrayList<StateVO> listClasses = new ArrayList<>();
 
         for (int i = 0; i < classes.size(); i++) {
+
+            
             holder.stateVO = new StateVO();
             holder.stateVO .setTitle(classes.get(i));
             holder.stateVO .setSelected(false);
