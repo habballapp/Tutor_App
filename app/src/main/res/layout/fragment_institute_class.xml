@@ -134,55 +134,30 @@
 
             </LinearLayout>
 
-
-
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/add_more"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_below="@id/ln_login"
-                android:orientation="vertical"
-                android:weightSum="2"
+                android:layout_below="@+id/ln_login"
+                android:layout_marginStart="27dp"
+                android:layout_marginEnd="27dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="10dp"
                 android:visibility="gone"
                 >
 
-                <EditText
-                    android:id="@+id/ctype"
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_fragment"
                     android:layout_width="match_parent"
-                    android:layout_below="@id/edt_subject"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:inputType="text"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_school_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/ctype"
-                    android:theme="@style/EditText" />
+                    android:layout_height="match_parent"
+                    android:isScrollContainer="false"
+                    android:layout_marginBottom="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:nestedScrollingEnabled="false" />
 
-                <EditText
-                    android:id="@+id/stype"
-                    android:layout_width="match_parent"
-                    android:layout_below="@id/edt_subject"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:inputType="text"
-                    android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_school_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:hint="@string/stype"
-                    android:theme="@style/EditText" />
-
-
-            </LinearLayout>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/btn_class_add"

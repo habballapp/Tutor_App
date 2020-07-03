@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,16 +16,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.tutor_app.Adapters.MyAdapter;
-import com.example.tutor_app.Adapters.MyAdapter2;
+import com.example.tutor_app.Adapters.AreaFragmentAdapter;
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.Qualification.ExpandOrCollapse;
+import com.example.tutor_app.Model_Classes.AreaFragment_List;
+import com.example.tutor_app.Model_Classes.Institute_Information_List;
 import com.example.tutor_app.R;
 
 import java.util.ArrayList;
@@ -38,12 +40,15 @@ public class InstituteClassFragment extends Fragment {
     List<String> classes = new ArrayList<>();
     List<String> subjects = new ArrayList<>();
     private StateVO stateVO;
-    private RelativeLayout btn_class_add,btn_class_next;
+    private RecyclerView rl_recycler;
+    private RelativeLayout btn_class_add,btn_class_next,add_more;
     private EditText ctype,stype;
-    private LinearLayout add_more;
     private boolean isVisible = false;
+    RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
     private ExpandOrCollapse mAnimationManager;
     private FragmentTransaction fragmentTransaction;
+    private List<Institute_Information_List> list = new ArrayList<>();
 
 
 
@@ -58,8 +63,10 @@ public class InstituteClassFragment extends Fragment {
         ctype = root.findViewById(R.id.ctype);
         stype = root.findViewById(R.id.stype);
         btn_class_add = root.findViewById(R.id.btn_class_add);
+        rl_recycler = root.findViewById(R.id.rv_fragment);
         add_more = root.findViewById(R.id.add_more);
         btn_class_next = root.findViewById(R.id.btn_class_next);
+
 
         classes.add("Select Class");
 
@@ -77,15 +84,6 @@ public class InstituteClassFragment extends Fragment {
         classes.add("ALevel year 1");
         classes.add("ALevel year 2");
 
-
-//        ArrayList<StateVO> listClasses = new ArrayList<>();
-//
-//        for (int i = 0; i < classes.size(); i++) {
-//            stateVO = new StateVO();
-//            stateVO.setTitle(classes.get(i));
-//            stateVO.setSelected(false);
-//            listClasses.add(stateVO);
-//        }
 
 
         subjects.add("Select All");
@@ -173,63 +171,66 @@ public class InstituteClassFragment extends Fragment {
          MyAdapter_Subjects Adapter_Subjects = new  MyAdapter_Subjects(getContext(), android.R.layout.simple_spinner_dropdown_item,listSubjects);
         spinner_subject.setAdapter(Adapter_Subjects);
 
-        btn_class_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                add_more.setVisibility(View.VISIBLE);
-            }
-
-        });
 
         btn_class_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (!isVisible) {
-                    mAnimationManager.expand(add_more, 0);
-                    isVisible = true;
-                } else if (isVisible){
-                    mAnimationManager.expand(add_more, 0);
-                    isVisible = false;
-                }
+                  add_more.setVisibility(View.VISIBLE);
+                    list.add(new Institute_Information_List("", ""));
+                    adapter.notifyDataSetChanged();
             }
+
         });
+
+//        btn_class_add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                        if (!isVisible) {
+//                    mAnimationManager.expand(add_more, 0);
+//                    isVisible = true;
+//                } else if (isVisible){
+//                mAnimationManager.expand(add_more, 0);
+//                    isVisible = false;
+//                     getResources().getDrawable(R.drawable.ic_remove_black_24dp);
+//            }
+//
+//
+//            }
+//        });
+
+        list.add(new Institute_Information_List(" "," "));
+
+
+        layoutManager = new LinearLayoutManager(getContext());
+        rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        adapter = new InstituteInformationAdapter(getContext(), list);
+        rl_recycler.setAdapter(adapter);
+
 
         btn_class_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(!(String.valueOf(ctype.getText()) == null) || !(String.valueOf(stype.getText()) == null))
-                {
-                    profileInstitute.putString("otherclass",String.valueOf(ctype.getText()));
-                    profileInstitute.putString("othersubjects",String.valueOf(stype.getText()));
-
-                }
-                else
-                {
-                    profileInstitute.putString("otherclass"," ");
-                    profileInstitute.putString("othersubjects"," ");
-                }
-
-
-                profileInstitute.apply();
-
-
+//                if(!(String.valueOf(ctype.getText()) == null) || !(String.valueOf(stype.getText()) == null))
+//                {
+//                    profileInstitute.putString("otherclass",String.valueOf(ctype.getText()));
+//                    profileInstitute.putString("othersubjects",String.valueOf(stype.getText()));
+//
+//                }
+//                else
+//                {
+//                    profileInstitute.putString("otherclass"," ");
+//                    profileInstitute.putString("othersubjects"," ");
+//                }
+//               profileInstitute.apply();
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment());
                 fragmentTransaction.commit();
 
             }
         });
-
-
-
-
-
-
-
         return root;
     }
 }
