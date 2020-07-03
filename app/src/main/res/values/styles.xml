@@ -25,6 +25,11 @@
         <item name="android:textColor">#d6d6d6</item>
     </style>
 
+    <style name="EditText2">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#A0A0A0</item>
+    </style>
+
     <style name="Text">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#ffffff</item>

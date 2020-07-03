@@ -7,13 +7,17 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.tutor_app.Adapters.MyAdapter;
 import com.example.tutor_app.Adapters.MyAdapter2;
@@ -58,7 +62,6 @@ public class InstituteClassFragment extends Fragment {
         btn_class_next = root.findViewById(R.id.btn_class_next);
 
         classes.add("Select Class");
-        classes.add("Select All");
 
         for(int i = 1; i <= 8; i++)
         {
@@ -68,23 +71,23 @@ public class InstituteClassFragment extends Fragment {
         classes.add("Matric 10");
         classes.add("Inter year 1");
         classes.add("Inter year 2");
-        classes.add("O-Level year 1");
-        classes.add("O-Level year 2");
-        classes.add("O-Level year 3");
-        classes.add("A-Level year 1");
-        classes.add("A-Level year 2");
+        classes.add("OLevel year 1");
+        classes.add("OLevel year 2");
+        classes.add("OLevel year 3");
+        classes.add("ALevel year 1");
+        classes.add("ALevel year 2");
 
 
-        ArrayList<StateVO> listClasses = new ArrayList<>();
+//        ArrayList<StateVO> listClasses = new ArrayList<>();
+//
+//        for (int i = 0; i < classes.size(); i++) {
+//            stateVO = new StateVO();
+//            stateVO.setTitle(classes.get(i));
+//            stateVO.setSelected(false);
+//            listClasses.add(stateVO);
+//        }
 
-        for (int i = 0; i < classes.size(); i++) {
-            stateVO = new StateVO();
-            stateVO.setTitle(classes.get(i));
-            stateVO.setSelected(false);
-            listClasses.add(stateVO);
-        }
 
-        subjects.add("Select Subject");
         subjects.add("Select All");
         subjects.add("Maths");
         subjects.add("English");
@@ -104,8 +107,58 @@ public class InstituteClassFragment extends Fragment {
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileInstitute = institute_profile.edit();
 
-        final MyAdapter2 Adapter_Classes = new MyAdapter2(getContext(), android.R.layout.simple_spinner_dropdown_item,listClasses);
-        spinner_class.setAdapter(Adapter_Classes);
+//        final MyAdapter2 Adapter_Classes = new MyAdapter2(getContext(), android.R.layout.simple_spinner_dropdown_item,listClasses);
+//        spinner_class.setAdapter(Adapter_Classes);
+
+        ArrayAdapter<String> adapter_class = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, classes) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+
+                return view;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+                return view;
+            }
+        };
+
+        spinner_class.setAdapter(adapter_class);
+
+        SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+        final SharedPreferences.Editor profileStudent = personal_profile.edit();
+
+        spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0) {
+
+                    profileStudent.putString("class", String.valueOf(classes.get(position)));
+                    profileStudent.apply();
+                    Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
 
         ArrayList<StateVO> listSubjects = new ArrayList<>();

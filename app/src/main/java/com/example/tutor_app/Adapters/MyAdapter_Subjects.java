@@ -63,6 +63,62 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
         }
 
         holder.mTextView.setText(listState.get(position).getTitle());
+//         To check weather checked event fire from getview() or user input
+//        isFromView = true;
+//        holder.mCheckBox.setChecked(listState.get(position).isSelected());
+//        isFromView = false;
+//
+//        if ((position == 0)) {
+//            holder.mCheckBox.setVisibility(View.INVISIBLE);
+//        } else {
+//            holder.mCheckBox.setVisibility(View.VISIBLE);
+//        }
+//        holder.mCheckBox.setTag(position);
+//        holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                Log.i("selectAll", String.valueOf(position));
+//                if(position == 1) {
+//                    if(isChecked) {
+//                        for (int i = 0; i < listState.size(); i++) {
+//                            listState.get(i).setSelected(true);
+//                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
+//                        }
+//                    } else {
+//                        for (int i = 0; i < listState.size(); i++) {
+//                            listState.get(i).setSelected(false);
+//                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
+//                        }
+//                    }
+//                } else {
+//                    if(isChecked) {
+//                        if (!selectedSubjects.contains(listState.get(position).getTitle()))
+//                            selectedSubjects.add(listState.get(position).getTitle());
+//                    } else {
+//                        if (selectedSubjects.contains(listState.get(position).getTitle()))
+//                            selectedSubjects.remove(listState.get(position).getTitle());
+//                    }
+//                }
+//                int getPosition = (Integer) buttonView.getTag();
+//                Log.i("subjectsSelected", String.valueOf(selectedSubjects));
+//
+//                Gson gson = new Gson();
+//                String json = gson.toJson(selectedSubjects);
+//
+//                SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+//                        Context.MODE_PRIVATE);
+//                final SharedPreferences.Editor profileStudent = personal_profile.edit();
+//
+//                profileStudent.putString("subjects", String.valueOf(json));
+//                profileStudent.apply();
+//
+//                if (!isFromView) {
+//                    listState.get(position).setSelected(isChecked);
+//                }
+//            }
+//
+//        });
 
         // To check weather checked event fire from getview() or user input
         isFromView = true;
@@ -79,29 +135,8 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.i("selectAll", String.valueOf(position));
-                if(position == 1) {
-                    if(isChecked) {
-                        for (int i = 0; i < listState.size(); i++) {
-                            listState.get(i).setSelected(true);
-                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
-                        }
-                    } else {
-                        for (int i = 0; i < listState.size(); i++) {
-                            listState.get(i).setSelected(false);
-                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
-                        }
-                    }
-                } else {
-                    if(isChecked) {
-                        if (!selectedSubjects.contains(listState.get(position).getTitle()))
-                            selectedSubjects.add(listState.get(position).getTitle());
-                    } else {
-                        if (selectedSubjects.contains(listState.get(position).getTitle()))
-                            selectedSubjects.remove(listState.get(position).getTitle());
-                    }
-                }
                 int getPosition = (Integer) buttonView.getTag();
+
                 Log.i("subjectsSelected", String.valueOf(selectedSubjects));
 
                 Gson gson = new Gson();
@@ -118,8 +153,9 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
                     listState.get(position).setSelected(isChecked);
                 }
             }
-
         });
+
+
         return convertView;
     }
     private class ViewHolder {

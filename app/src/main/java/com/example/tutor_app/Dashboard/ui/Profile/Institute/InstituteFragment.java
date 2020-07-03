@@ -34,7 +34,8 @@ public class InstituteFragment extends Fragment {
     private RelativeLayout btn_class_next;
     private List<String> itype;
     private FragmentTransaction fragmentTransaction;
-    private EditText edt_institutename,edt_phone1,edt_phone2,edt_phone3,edt_email,contact_person;
+    private EditText edt_institutename,edt_phone1,edt_phone2,edt_phone3,edt_email,contact_person,edt_other;
+    private String Filter_selected = "";
 
 
 
@@ -45,7 +46,7 @@ public class InstituteFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_institute, container, false);
 
         itype = new ArrayList<>();
-        itype.add("Name of Institute");
+        itype.add("Type of Institute");
         itype.add("School");
         itype.add("College");
         itype.add("University");
@@ -61,6 +62,7 @@ public class InstituteFragment extends Fragment {
         edt_phone3 = root.findViewById(R.id.edt_phone3);
         edt_email = root.findViewById(R.id.edt_email);
         contact_person = root.findViewById(R.id.contact_person);
+        edt_other = root.findViewById(R.id.edt_other);
 
 
         SharedPreferences institute_profile = getContext().getSharedPreferences("SendData",
@@ -99,6 +101,17 @@ public class InstituteFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+
+                Filter_selected = itype.get(position);
+
+                if (Filter_selected.equals("Other")) {
+
+                    edt_other.setVisibility(View.VISIBLE);
+                } else  {
+
+                    edt_other.setVisibility(View.GONE);
+                }
+
                 profileInstitute.putString("typeofInstitute", String.valueOf(itype.get(position)));
                 profileInstitute.apply();
                 Log.i("Value:", String.valueOf(String.valueOf(itype.get(position))));
@@ -115,6 +128,12 @@ public class InstituteFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                if (!(String.valueOf(edt_other.getText()) == null)){
+                    profileInstitute.putString("IfInstituteOther",String.valueOf(edt_other.getText()));
+                }
+                else{
+                    profileInstitute.putString("IfInstituteOther"," ");
+                }
 
                 profileInstitute.putString("nameofInstitute",String.valueOf(edt_institutename.getText()));
                 profileInstitute.putString("contactperson",String.valueOf(contact_person.getText()));

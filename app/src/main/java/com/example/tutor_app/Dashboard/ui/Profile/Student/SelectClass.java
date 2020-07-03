@@ -2,7 +2,11 @@ package com.example.tutor_app.Dashboard.ui.Profile.Student;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +37,7 @@ public class SelectClass extends Fragment {
 
 
     public EditText edt_school;
+    public TextView txt;
     public Spinner spinner_class,spinner_subject;
     private StateVO stateVO;
     RecyclerView.Adapter adapter;
@@ -41,9 +47,10 @@ public class SelectClass extends Fragment {
     List<String> subjects = new ArrayList<>();
 
    // List<String> spinner1,subjects;
-    
 
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,11 +61,20 @@ public class SelectClass extends Fragment {
         edt_school = root.findViewById(R.id.edt_school);
         spinner_class = root.findViewById(R.id.spinner_class);
         spinner_subject = root.findViewById(R.id.spinner_subject);
+        txt = root.findViewById(R.id.txt);
 //        rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
        // classes.add("Class " + count);
 
+        String msg="   "+"To add another child to your account you must complete and submit your application first and select add child option to add another child";
 
+        ImageSpan mImageSpan = new ImageSpan(getContext(), R.drawable.ic_info_black_24dp);
+        SpannableString text = new SpannableString(msg);
+        text.setSpan(mImageSpan, 0, 1, 0);
+        txt.setElegantTextHeight(true);
+        txt.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        txt.setSingleLine(false);
+        txt.setText(text);
 
 
 
@@ -70,30 +86,32 @@ public class SelectClass extends Fragment {
         classes.add("Matric 10");
         classes.add("Inter year 1");
         classes.add("Inter year 2");
-        classes.add("O-Level year 1");
-        classes.add("O-Level year 2");
-        classes.add("O-Level year 3");
-        classes.add("A-Level year 1");
-        classes.add("A-Level year 2");
+        classes.add("OLevel year 1");
+        classes.add("OLevel year 2");
+        classes.add("OLevel year 3");
+        classes.add("ALevel year 1");
+        classes.add("ALevel year 2");
 
         subjects.add("Select Subject");
-        subjects.add("Select All");
         subjects.add("Maths");
         subjects.add("English");
         subjects.add("Urdu");
-        subjects.add("Islamiyat");
-        subjects.add("Pak.Studies");
+        subjects.add("Islamiat");
+        subjects.add("Pak. Studies");
         subjects.add("Geography");
         subjects.add("History");
         subjects.add("Chemistry");
+        subjects.add("Science");
+        subjects.add("Computer");
         subjects.add("Sindhi");
+        subjects.add("Biology");
         subjects.add("Physics");
-        subjects.add("Add. Maths");
+        subjects.add("Add Maths");
         subjects.add("Others");
 
 
-        
-        
+
+
 
 //        adapter = new SelectClassAdapter(getContext(), classes);
 //        rl_recycler.setAdapter(adapter);

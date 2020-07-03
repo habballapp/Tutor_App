@@ -37,7 +37,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private RelativeLayout btn_search;
     private FragmentTransaction fragmentTransaction;
-    private TextView footer_item_1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +75,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 //        });
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Edit Profile")
-        );
         navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
                 .addChildModel(new ChildModel("\tProfile1"))
                 .addChildModel(new ChildModel("\tProfile1"))
@@ -86,19 +84,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
-//        navigationExpandableListView.addHeaderModel(
-//                new HeaderModel("Payment")
-////                                  .addChildModel(new ChildModel("\tPayments Summary"))
-//                        .addChildModel(new ChildModel("\tConsolidate Payments"))
-//                        .addChildModel(new ChildModel("\tMake Payment"))
-//                        .addChildModel(new ChildModel("\tPayment Ledger"))
-//                        .addChildModel(new ChildModel("\tProof of Payments"))
-//
-//        );
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Profile"));
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Support"));
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
-//                .addHeaderModel(new HeaderModel("\n\n\n\nTerms And Conditions"))
+
         navigationExpandableListView.build()
                 .addOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                     @Override
@@ -114,31 +100,24 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
-//                            Toast.makeText(Dashboard_Drawer.this, "selected"+id, Toast.LENGTH_SHORT).show();
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.nav_host_fragment, new ProfileTeacher());
-////                          fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
+
                         }
                         else if (id == 2) {
 
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new PlaceOrderFragment());
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.conainer, new Retailer_Place_Order()).addToBackStack("tag");
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-
-                        } else if (id == 3) {
                             Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
+
+                        } else if (id == 3) {
+//                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
+//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+//                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher());
+//                            fragmentTransaction.commit();
+//                            drawer.closeDrawer(GravityCompat.START);
 
                         }
                         else if (id == 4) {
@@ -151,27 +130,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                            drawer.closeDrawer(GravityCompat.START);
 
                         }
-//                        else if (id == 4) {
-//                            Log.i("Profile", "Profile Activity");
-////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-////                            fragmentTransaction.replace(R.id.main_container_ret, new Profile_Tabs()).addToBackStack("tag");
-////                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        } else if (id == 5) {
-////                            Log.i("Support", "Support Activity");
-////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-////                            fragmentTransaction.replace(R.id.main_container_ret, new SupportFragment()).addToBackStack("tag");
-////                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-////                        } else if (NavList.contains("Logout") && NavList.indexOf("Logout") == id) {
-//
-////                            Intent dashboard = new Intent(RetailorDashboard.this, RetailerLogin.class);
-////                            startActivity(dashboard);
-//                            Intent intent = new Intent(Dashboard_Drawer.this, SignIn.class);
-//                            startActivity(intent);
-//                            finish();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        }
 
                         return false;
                     }

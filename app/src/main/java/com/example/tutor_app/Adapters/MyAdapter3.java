@@ -68,6 +68,63 @@ public class MyAdapter3 extends ArrayAdapter<StateVO> {
         holder.mTextView.setText(listState.get(position).getTitle());
 
         // To check weather checked event fire from getview() or user input
+//        isFromView = true;
+//        holder.mCheckBox.setChecked(listState.get(position).isSelected());
+//        isFromView = false;
+//
+//        if ((position == 0)) {
+//            holder.mCheckBox.setVisibility(View.INVISIBLE);
+//        } else {
+//            holder.mCheckBox.setVisibility(View.VISIBLE);
+//        }
+//        holder.mCheckBox.setTag(position);
+//        holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                Log.i("selectAll", String.valueOf(position));
+//                if(position == 1) {
+//                    if(isChecked) {
+//                        for (int i = 1; i < listState.size(); i++) {
+//                            listState.get(i).setSelected(true);
+//                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
+//                        }
+//                    } else {
+//                        for (int i = 1; i < listState.size(); i++) {
+//                            listState.get(i).setSelected(false);
+//                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
+//                        }
+//                    }
+//                } else {
+//                    if(isChecked) {
+//                        if (!selectedClasses.contains(listState.get(position).getTitle()))
+//                            selectedClasses.add(listState.get(position).getTitle());
+//                    } else {
+//                        if (selectedClasses.contains(listState.get(position).getTitle()))
+//                            selectedClasses.remove(listState.get(position).getTitle());
+//                    }
+//                }
+//                int getPosition = (Integer) buttonView.getTag();
+//                Log.i("classessSelected", String.valueOf(selectedClasses));
+//
+//                Gson gson = new Gson();
+//                String json = gson.toJson(selectedClasses);
+//
+//                final SharedPreferences area_of_interest = getContext().getSharedPreferences("SendData",
+//                        Context.MODE_PRIVATE);
+//                final SharedPreferences.Editor profileArea_of_interest = area_of_interest.edit();
+//
+//                profileArea_of_interest.putString("classtoteach",String.valueOf(json));
+//                profileArea_of_interest.apply();
+//
+//                if (!isFromView) {
+//                    listState.get(position).setSelected(isChecked);
+//                }
+//            }
+//
+//        });
+
+        // To check weather checked event fire from getview() or user input
         isFromView = true;
         holder.mCheckBox.setChecked(listState.get(position).isSelected());
         isFromView = false;
@@ -82,28 +139,6 @@ public class MyAdapter3 extends ArrayAdapter<StateVO> {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.i("selectAll", String.valueOf(position));
-                if(position == 1) {
-                    if(isChecked) {
-                        for (int i = 1; i < listState.size(); i++) {
-                            listState.get(i).setSelected(true);
-                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
-                        }
-                    } else {
-                        for (int i = 1; i < listState.size(); i++) {
-                            listState.get(i).setSelected(false);
-                            Log.i("selectAll", String.valueOf(listState.get(i).getTitle()));
-                        }
-                    }
-                } else {
-                    if(isChecked) {
-                        if (!selectedClasses.contains(listState.get(position).getTitle()))
-                            selectedClasses.add(listState.get(position).getTitle());
-                    } else {
-                        if (selectedClasses.contains(listState.get(position).getTitle()))
-                            selectedClasses.remove(listState.get(position).getTitle());
-                    }
-                }
                 int getPosition = (Integer) buttonView.getTag();
                 Log.i("classessSelected", String.valueOf(selectedClasses));
 
@@ -121,7 +156,6 @@ public class MyAdapter3 extends ArrayAdapter<StateVO> {
                     listState.get(position).setSelected(isChecked);
                 }
             }
-
         });
         return convertView;
     }

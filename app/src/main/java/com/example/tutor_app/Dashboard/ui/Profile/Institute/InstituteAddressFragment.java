@@ -50,10 +50,10 @@ public class InstituteAddressFragment extends Fragment {
     private Spinner spinner1,spinner2;
     private RelativeLayout btn_profile_next;
     private List<String> gender,timings;
-    private EditText edt_address, edt_bno, edt_street, edt_block, edt_area, edt_city, edt_country, et_amount1, et_amount2;
+    private EditText edt_address, edt_street, edt_block, edt_area, edt_city, edt_country, et_amount1, et_amount2;
     String URL_INSTITUTE = "http://pci.edusol.co/InstitutePortal/instituteregistrationsubmit.php";
     String institutename, phone1, phone2, phone3, email, cperson, typeofInstitute, ctype, stype, classes, subjects,
-            spinner_gender, spinner_timings,amount1,amount2;
+            spinner_gender, spinner_timings,amount1,amount2,otherinstitute;
     String userid;
 
     @Override
@@ -77,7 +77,6 @@ public class InstituteAddressFragment extends Fragment {
         spinner1 = (Spinner) root.findViewById(R.id.spinner_gender);
         spinner2 = (Spinner) root.findViewById(R.id.spinner_timings);
         edt_address = root.findViewById(R.id.edt_address);
-        edt_bno = root.findViewById(R.id.edt_bno);
         edt_street = root.findViewById(R.id.edt_street);
         edt_block = root.findViewById(R.id.edt_block);
         edt_area = root.findViewById(R.id.edt_area);
@@ -98,6 +97,7 @@ public class InstituteAddressFragment extends Fragment {
         classes = sharedPreferences.getString("class", "");
         subjects = sharedPreferences.getString("subjects", "");
         typeofInstitute = sharedPreferences.getString("typeofInstitute", "");
+        otherinstitute = sharedPreferences.getString("IfInstituteOther","");
 
 
 
@@ -209,8 +209,8 @@ public class InstituteAddressFragment extends Fragment {
             public void onClick(View v) {
 
 
-                String houseno = edt_address.getText().toString().trim();
-                String buildingno = edt_bno.getText().toString().trim();
+
+
                 String streetno = edt_street.getText().toString().trim();
                 String blockno = edt_block.getText().toString().trim();
                 String city = edt_city.getText().toString().trim();
@@ -263,7 +263,6 @@ public class InstituteAddressFragment extends Fragment {
         map.put("salaryto", et_amount2.getText().toString());
         map.put("otherclass",ctype );
         map.put("othersubjects",ctype );
-        map.put("buildingname", edt_bno.getText().toString());
         map.put("streetnum", edt_street.getText().toString());
         map.put("blocknum", edt_block.getText().toString());
         map.put("area", edt_area.getText().toString());
@@ -272,6 +271,7 @@ public class InstituteAddressFragment extends Fragment {
         map.put("gender", spinner_gender);
         map.put("timing", spinner_timings);
         map.put("address", String.valueOf(edt_address.getText()));
+        map.put("IfInstituteOther",otherinstitute);
 
         /* ** Convert the string to json from adapter While putting in shared preference as well ** */
 //        List<String> selectedtimings = gson.fromJson(spinner_timings, type);

@@ -50,7 +50,7 @@ public class ReferenceFragment extends Fragment {
     String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic, edt_present_address,
             edt_permanent_address, edt_dob, edt_nationality, edt_religion, edt_phone1, edt_phone2,
             edt_email, edt_age, imageBitmapBase64,gender,conveyance,OrganizationName;
-    String spinner_conveyance_txt, spinner_profession, date_of_submission;
+    String spinner_conveyance_txt, spinner_profession, date_of_submission,catogery;
     //Qualification
     String qualification, edt_institute, edt_passing_year, edt_grade,SubjectSpecialization,SubjectSpecialization1,
             SubjectSpecialization2,SubjectSpecialization3,SubjectSpecialization4;
@@ -108,6 +108,7 @@ public class ReferenceFragment extends Fragment {
         edt_email = sharedPreferences.getString("email", "");
         date_of_submission = sharedPreferences.getString("dateofsubmission", "");
         conveyance = sharedPreferences.getString("personalconveyance", "");
+        catogery = sharedPreferences.getString("IfInstituteOther", "");
 
       //  edt_occupation = sharedPreferences.getString("email", "");
         spinner_conveyance_txt = sharedPreferences.getString("personalconveyance", "");
@@ -321,8 +322,8 @@ public class ReferenceFragment extends Fragment {
 
 
 
-        map.put("Regno", "1");
-        map.put("secretcode", "2");
+//        map.put("Regno", "1");
+//        map.put("secretcode", "2");
         map.put("age",edt_fname);
         map.put("age",edt_age);
         map.put("fullname",edt_fullname);
@@ -342,6 +343,7 @@ public class ReferenceFragment extends Fragment {
         map.put("phoneno2",edt_phone2);
         map.put("phoneno3","");
         map.put("fbid","");
+        map.put("IfInstituteOther",catogery);
 
 
 
@@ -454,6 +456,7 @@ public class ReferenceFragment extends Fragment {
 //                    return map;
 //                }
         };
+        
         Volley.newRequestQueue(getContext()).add(sr);
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(sr);

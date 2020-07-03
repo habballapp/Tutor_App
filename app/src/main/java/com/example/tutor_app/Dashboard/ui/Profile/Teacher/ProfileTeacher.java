@@ -49,7 +49,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
     private RelativeLayout btn_profile_next, btn_profile_upload;
     private FragmentTransaction fragmentTransaction;
-    private EditText edt_fullname,edt_fname,edt_mtongue,edt_occupation,edt_cnic,edt_present_address,
+    private EditText edt_fullname,edt_fname,edt_mtongue,edt_cnic,edt_present_address,
                        edt_permanent_address,edt_nationality,edt_religion,edt_phone1,edt_phone2,
             edt_email, edt_conveyance_txt, edt_age;
     private String selectedFileType, imageName;
@@ -57,9 +57,9 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private TextView FileName;
     private static final int REQUEST_CAMERA = 2;
     private static final int SELECT_FILE = 1;
-    private List<String> gender;
+    private List<String> gender,catogery;
 
-    private Spinner teacher_profession,spinner_conveyance,spinner1;
+    private Spinner teacher_profession,spinner_conveyance,spinner1,spinner_catogery;
  //   private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
  //    private static final String[] paths1 = {"Do you have conveyance?", "Yes", "No"};
     private List<String> paths,paths1;
@@ -172,10 +172,11 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         edt_fullname = root.findViewById(R.id.edt_fullname);
         edt_fname = root.findViewById(R.id.edt_fname);
         edt_mtongue = root.findViewById(R.id.edt_mtongue);
-       edt_occupation = root.findViewById(R.id.edt_occupation);
+
         edt_cnic = root.findViewById(R.id.edt_cnic);
         edt_present_address = root.findViewById(R.id.edt_present_address);
         edt_permanent_address = root.findViewById(R.id.edt_permanent_address);
+       spinner_catogery = root.findViewById(R.id.spinner_category);
 //        edt_dob = root.findViewById(R.id.edt_dob);
         edt_age  = root.findViewById(R.id.edt_age);
         edt_email = root.findViewById(R.id.edt_email);
@@ -191,7 +192,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         first_date_btn = root.findViewById(R.id.first_date_btn);
         second_date = root.findViewById(R.id.edt_date_of_submission);
         second_date_btn = root.findViewById(R.id.second_date_btn);
-        edt_occupation = root.findViewById(R.id.edt_occupation);
+
 
         first_date_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,7 +212,13 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         gender.add("Select Preffered Gender");
         gender.add("Male");
         gender.add("Female");
-        gender.add("Any");
+
+        catogery = new ArrayList<>();
+        catogery.add("Select Desired Catogery");
+        catogery.add("Home Tution");
+        catogery.add("Tution Job");
+        catogery.add("Both");
+
 
         final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
             @Override
@@ -251,6 +258,44 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             }
         });
 
+        final ArrayAdapter<String> spinner_adapter2 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, catogery) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+
+                return view;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+                return view;
+            }
+        };
+        spinner_catogery.setAdapter(spinner_adapter2);
+        spinner_catogery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                profileTeacher.putString("IfInstituteOther", String.valueOf(catogery.get(position)));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         paths = new ArrayList<>();
         paths.add("Are you a Teacher by Profession?");
         paths.add("Yes");
@@ -264,6 +309,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
         teacher_profession = root.findViewById(R.id.teacher_profession);
         spinner_conveyance = root.findViewById(R.id.spinner_conveyance);
+
+
 
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
@@ -397,7 +444,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 profileTeacher.putString("phoneno2",String.valueOf(edt_phone2.getText()));
                 profileTeacher.putString("email",String.valueOf(edt_email.getText()));
                 profileTeacher.putString("tutorimageBase64",String.valueOf("data:image/png;base64," + imageBitmapBase64));
-                profileTeacher.putString("OrganizationName",String.valueOf(edt_occupation.getText()));
+//                profileTeacher.putString("OrganizationName",String.valueOf(edt_occupation.getText()));
 //                profileTeacher.putString("dateofsubmission", String.valueOf(edt_date_of_submission.getText()));
               //profileTeacher.putString("email",String.valueOf(edt_occupation.getText()));
 

@@ -192,22 +192,24 @@ public class AddressClass extends Fragment {
         area = new ArrayList<>();
         area.add("Select Area");
         area.add("Baldia Town");
-        area.add(" Bin Qasim Town");
+        area.add("Bin Qasim Town");
         area.add("Gadap Town");
         area.add("Gulberg Town");
         area.add("Gulshan Town");
-        area.add("Baldia Town");
+        area.add("Jamshed Town");
         area.add("Kiamari Town");
         area.add("Korangi Town");
         area.add("Landhi Town");
         area.add("Liaquatabad Town");
         area.add("New Karachi Town");
         area.add("North Nazimabad Town");
+        area.add("Nazimabad Town");
         area.add("Orangi Town");
-        area.add(" Shah Faisal Town");
-        area.add(" SITE Town");
+        area.add("Shah Faisal Town");
+        area.add("SITE Town");
+        area.add("Saddar Town");
         area.add("Lyari Town");
-        area.add(" Malir Town");
+        area.add("Malir Town");
 
         final ArrayAdapter<String> spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
             @Override

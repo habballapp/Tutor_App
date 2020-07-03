@@ -9,6 +9,7 @@
 
     <string name="fullname">Full Name</string>
     <string name="iname">Name Of Institute</string>
+    <string name="oname">If others please specify</string>
     <string name="conveyance_type">Bike/Car/Bus</string>
     <string name="name">Name</string>
     <string name="fathername">Father/Husband Name</string>
@@ -17,7 +18,7 @@
     <string name="cnic">C.N.I.C Number</string>
     <string name="paddress">Present Address</string>
     <string name="hno">House Number</string>
-    <string name="bno">Building Number</string>
+    <string name="bno">Building Name</string>
     <string name="sno">Street Number</string>
     <string name="blockno">Block Number</string>
     <string name="ano">Area Number</string>
@@ -82,6 +83,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="home_second">Home Second</string>
     <string name="school">School/College</string>
+    <string name="info">To add another child to your account you must complete and submit your application first and select add child option to add another child</string>
     <string name="ctype">Enter Class</string>
     <string name="stype">Enter Subject</string>
 </resources>
