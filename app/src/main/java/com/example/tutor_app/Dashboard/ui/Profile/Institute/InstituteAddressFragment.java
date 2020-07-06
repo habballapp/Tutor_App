@@ -47,13 +47,13 @@ import java.util.Map;
  */
 public class InstituteAddressFragment extends Fragment {
 
-    private Spinner spinner1,spinner2;
+    private Spinner spinner1,spinner2,spinner_edt_area;
     private RelativeLayout btn_profile_next;
-    private List<String> gender,timings;
-    private EditText edt_address, edt_street, edt_block, edt_area, edt_city, edt_country, et_amount1, et_amount2;
+    private List<String> gender,timings,area;
+    private EditText edt_address, edt_street, edt_block, edt_city, edt_country, et_amount1, et_amount2;
     String URL_INSTITUTE = "http://pci.edusol.co/InstitutePortal/instituteregistrationsubmit.php";
     String institutename, phone1, phone2, phone3, email, cperson, typeofInstitute, ctype, stype, classes, subjects,
-            spinner_gender, spinner_timings,amount1,amount2,otherinstitute;
+            spinner_gender, spinner_timings,amount1,amount2,otherinstitute,spinner_area;
     String userid;
 
     @Override
@@ -79,7 +79,7 @@ public class InstituteAddressFragment extends Fragment {
         edt_address = root.findViewById(R.id.edt_address);
         edt_street = root.findViewById(R.id.edt_street);
         edt_block = root.findViewById(R.id.edt_block);
-        edt_area = root.findViewById(R.id.edt_area);
+        spinner_edt_area = root.findViewById(R.id.spinner_edt_area);
         edt_city = root.findViewById(R.id.edt_city);
         edt_country = root.findViewById(R.id. edt_country);
         et_amount1 = root.findViewById(R.id.et_amount1);
@@ -204,6 +204,69 @@ public class InstituteAddressFragment extends Fragment {
         });
 
 
+        area = new ArrayList<>();
+        area.add("Select Area");
+        area.add("Baldia Town");
+        area.add("Bin Qasim Town");
+        area.add("Gadap Town");
+        area.add("Gulberg Town");
+        area.add("Gulshan Town");
+        area.add("Jamshed Town");
+        area.add("Kiamari Town");
+        area.add("Korangi Town");
+        area.add("Landhi Town");
+        area.add("Liaquatabad Town");
+        area.add("New Karachi Town");
+        area.add("North Nazimabad Town");
+        area.add("Nazimabad Town");
+        area.add("Orangi Town");
+        area.add("Shah Faisal Town");
+        area.add("SITE Town");
+        area.add("Saddar Town");
+        area.add("Lyari Town");
+        area.add("Malir Town");
+
+        final ArrayAdapter<String> spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+
+                return view;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+                return view;
+            }
+        };
+        spinner_edt_area.setAdapter(spinner_area_adapter);
+        spinner_edt_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                spinner_area = area.get(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
         btn_profile_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,7 +277,7 @@ public class InstituteAddressFragment extends Fragment {
                 String streetno = edt_street.getText().toString().trim();
                 String blockno = edt_block.getText().toString().trim();
                 String city = edt_city.getText().toString().trim();
-                String area = edt_area.getText().toString().trim();
+             //   String area = edt_area.getText().toString().trim();
                 String country = edt_country.getText().toString().trim();
                 String amount1 = et_amount1.getText().toString().trim();
                 String amount2 = et_amount2.getText().toString().trim();
@@ -252,9 +315,9 @@ public class InstituteAddressFragment extends Fragment {
         map.put("email", email);
 
 
-        List<String> selectedClasses = gson.fromJson(classes, type);
-        JSONArray jsonArray1 = new JSONArray(selectedClasses);
-        map.put("class", jsonArray1);
+//        List<String> selectedClasses = gson.fromJson(classes, type);
+//        JSONArray jsonArray1 = new JSONArray(selectedClasses);
+        map.put("class", classes);
         map.put("subjects", jsonArray);
         map.put("contactno1", phone1);
         map.put("contactno2", phone2);
@@ -265,7 +328,7 @@ public class InstituteAddressFragment extends Fragment {
         map.put("othersubjects",ctype );
         map.put("streetnum", edt_street.getText().toString());
         map.put("blocknum", edt_block.getText().toString());
-        map.put("area", edt_area.getText().toString());
+        map.put("area", spinner_area);
         map.put("city", edt_city.getText().toString());
         map.put("country", edt_country.getText().toString());
         map.put("gender", spinner_gender);

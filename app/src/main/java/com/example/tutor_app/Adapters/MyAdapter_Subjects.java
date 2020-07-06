@@ -129,7 +129,9 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
             holder.mCheckBox.setVisibility(View.INVISIBLE);
         } else {
             holder.mCheckBox.setVisibility(View.VISIBLE);
+
         }
+
         holder.mCheckBox.setTag(position);
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -137,9 +139,9 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int getPosition = (Integer) buttonView.getTag();
 
-                Log.i("subjectsSelected", String.valueOf(selectedSubjects));
-
-                Gson gson = new Gson();
+                if(isChecked){
+                    selectedSubjects.add(listState.get(position).getTitle());
+                    Gson gson = new Gson();
                 String json = gson.toJson(selectedSubjects);
 
                 SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
@@ -149,9 +151,19 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
                 profileStudent.putString("subjects", String.valueOf(json));
                 profileStudent.apply();
 
+
+                }else{
+                    selectedSubjects.remove(listState.get(position).getTitle());
+                }
+                Log.i("subjectsSelected", String.valueOf(selectedSubjects));
+
+
+
                 if (!isFromView) {
                     listState.get(position).setSelected(isChecked);
+
                 }
+
             }
         });
 

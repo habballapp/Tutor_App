@@ -128,10 +128,12 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
 
                 ed_spinnerTimings.putString("desiredtiming", String.valueOf(json));
                 ed_spinnerTimings.apply();
+                Log.i("desiredtiming", String.valueOf(json));
             }
 
 
         });
+
         return convertView;
     }
 

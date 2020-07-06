@@ -86,7 +86,7 @@ public class InstituteClassFragment extends Fragment {
 
 
 
-        subjects.add("Select All");
+        subjects.add("Select Subjects");
         subjects.add("Maths");
         subjects.add("English");
         subjects.add("Urdu");
@@ -199,8 +199,6 @@ public class InstituteClassFragment extends Fragment {
 //
 //            }
 //        });
-
-        list.add(new Institute_Information_List(" "," "));
 
 
         layoutManager = new LinearLayoutManager(getContext());

@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tutor_app.Adapters.MyAdapter2;
+import com.example.tutor_app.Adapters.MyAdapter_Subjects;
 import com.example.tutor_app.R;
 
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class SelectClass extends Fragment {
         txt.setText(text);
 
 
-
+        classes.add("Select Desired Class");
         for(int i = 1; i <= 8; i++)
         {
             classes.add("Class " + i);
@@ -92,7 +93,7 @@ public class SelectClass extends Fragment {
         classes.add("ALevel year 1");
         classes.add("ALevel year 2");
 
-        subjects.add("Select Subject");
+        subjects.add("Select Subjects");
         subjects.add("Maths");
         subjects.add("English");
         subjects.add("Urdu");
@@ -203,7 +204,7 @@ public class SelectClass extends Fragment {
         }
 
 
-        final MyAdapter2 myAdapter1 = new MyAdapter2(getContext(), android.R.layout.simple_spinner_dropdown_item, listSubjects);
+        final MyAdapter_Subjects myAdapter1 = new MyAdapter_Subjects(getContext(), android.R.layout.simple_spinner_dropdown_item, listSubjects);
         spinner_subject.setAdapter(myAdapter1);
 
         spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -221,7 +222,6 @@ public class SelectClass extends Fragment {
 //                }
 
                 Log.i("Subject", String.valueOf(String.valueOf(subjects.get(position))));
-
 
             }
 
