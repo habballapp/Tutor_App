@@ -1,20 +1,8 @@
 package com.example.tutor_app.Dashboard.ui.Profile.Student;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,32 +10,23 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tutor_app.R;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
+import org.json.JSONException;
 
-import static android.app.Activity.RESULT_OK;
+import java.util.ArrayList;
 
 
 public class ProfileStudent extends Fragment {
     private RelativeLayout btn_class_next;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_email,edt_fullname,edt_phone1,edt_phone2,edt_phone3,edt_fname;
-    private static final int REQUEST_CAMERA = 2;
-    private static final int SELECT_FILE = 1;
-    private ArrayList<String> ImageFileTypes = new ArrayList<>();
-    private ArrayList<String> DocumentNames = new ArrayList<>();
-    private ArrayList<String> selectedImageFileTypes = new ArrayList<>();
-    private ArrayList<String> imageBitmapBase64 = new ArrayList<>();
-    private String selectedFileType, imageName;
-    private TextView FileName;
+
+    String userid;
 
 
 
@@ -64,6 +43,21 @@ public class ProfileStudent extends Fragment {
         edt_phone1 = root.findViewById(R.id.edt_phone1);
         edt_phone2 = root.findViewById(R.id.edt_phone2);
         edt_phone3 = root.findViewById(R.id.edt_phone3);
+
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("UserId", "");
+        Log.i("UserId", userid);
+
+
+        if (!userid.equals("")) {
+            try {
+                getProfileData();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
 
 
 
@@ -94,5 +88,22 @@ public class ProfileStudent extends Fragment {
         return root;
     }
 
+    private void getProfileData() throws JSONException {
 
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("UserId", "");
+        Log.i("UserId", userid);
+
+        SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
+                Context.MODE_PRIVATE);
+
+
+
+        edt_fname.setText(sharedPreferences2.getString("FatherName",""));
+        edt_phone1.setText(sharedPreferences2.getString("ContactNo1",""));
+        edt_phone2.setText(sharedPreferences2.getString("ContactNo2",""));
+        edt_phone3.setText(sharedPreferences2.getString("ContactNo3",""));
+        edt_email.setText(sharedPreferences2.getString("StudentEmail",""));
+    }
 }

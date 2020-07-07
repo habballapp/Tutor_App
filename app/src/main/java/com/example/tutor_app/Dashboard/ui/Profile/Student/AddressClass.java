@@ -55,6 +55,7 @@ public class AddressClass extends Fragment {
 
     private Spinner spinner1, spinner2,spinner3;
     private RelativeLayout btn_profile_next;
+    private ArrayAdapter<String> spinner1_adapter,spinner_area_adapter;
     private List<String> gender, timings,area;
     private EditText edt_house_number, edt_bno, edt_street, edt_block, edt_area, edt_city, edt_country;
     private String Filter_selected = "";
@@ -98,8 +99,8 @@ public class AddressClass extends Fragment {
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
-
         userid = sharedPreferences1.getString("userid", "");
+
 
 
         gender = new ArrayList<>();
@@ -123,7 +124,7 @@ public class AddressClass extends Fragment {
         timings.add( "12am");
 
 
-        final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
+       spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 // TODO Auto-generated method stub
@@ -211,7 +212,7 @@ public class AddressClass extends Fragment {
         area.add("Lyari Town");
         area.add("Malir Town");
 
-        final ArrayAdapter<String> spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
+         spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 // TODO Auto-generated method stub
@@ -274,9 +275,45 @@ public class AddressClass extends Fragment {
         });
 
 
+
+        if (!userid.equals("")) {
+            try {
+                getProfileData();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
         return root;
     }
 
+    private void getProfileData() throws JSONException {
+
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("UserId", "");
+        Log.i("UserId", userid);
+
+        SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
+                Context.MODE_PRIVATE);
+
+        int selectionPosition= spinner_area_adapter.getPosition(sharedPreferences2.getString("Area",""));
+        spinner3.setSelection(selectionPosition);
+
+        edt_house_number.setText(sharedPreferences2.getString("HouseNumber",""));
+        edt_bno.setText(sharedPreferences2.getString("BuildingName",""));
+        edt_street.setText(sharedPreferences2.getString("StreetNumber",""));
+        edt_block.setText(sharedPreferences2.getString("BlockNumber",""));
+        edt_city.setText(sharedPreferences2.getString("City",""));
+        edt_country.setText(sharedPreferences2.getString("Country",""));
+
+        int selectionPosition1 = spinner1_adapter.getPosition(sharedPreferences2.getString("Gender",""));
+        spinner1.setSelection(selectionPosition1);
+
+
+
+
+    }
 
     private void Address() throws JSONException {
         JSONObject map = new JSONObject();
@@ -336,7 +373,7 @@ public class AddressClass extends Fragment {
 
                 Log.i("AddProfile", String.valueOf(response));
 //                    if(response != null && !response.isEmpty()){
-
+//
 //                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
 //                        try {
 //                            JSONObject obj = new JSONObject(response);
@@ -345,7 +382,7 @@ public class AddressClass extends Fragment {
 //                        } catch (JSONException e) {
 //                            e.printStackTrace();
 //                        }
-
+//
 //                    }
 //                    else
 //                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();

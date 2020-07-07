@@ -110,10 +110,6 @@ public class SelectClass extends Fragment {
         subjects.add("Add Maths");
         subjects.add("Others");
 
-
-
-
-
 //        adapter = new SelectClassAdapter(getContext(), classes);
 //        rl_recycler.setAdapter(adapter);
 
@@ -210,8 +206,6 @@ public class SelectClass extends Fragment {
         spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
 //                if (listSubjects.get(position).equals("Select All")) {
 //                    for (int i = 0; i < subjects.size(); i++) {
 //                        stateVO = new StateVO();
@@ -220,7 +214,6 @@ public class SelectClass extends Fragment {
 //                    }
 //                    myAdapter1.notifyDataSetChanged();
 //                }
-
                 Log.i("Subject", String.valueOf(String.valueOf(subjects.get(position))));
 
             }

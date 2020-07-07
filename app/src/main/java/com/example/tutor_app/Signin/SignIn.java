@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Teacher;
@@ -41,7 +42,7 @@ public class SignIn extends AppCompatActivity {
     private TextView txt_password, txt_create;
     private EditText edt_email, edt_password;
     private String URL_LOGIN = "http://pci.edusol.co/Login/login_data.php";
-
+    private String userid = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,10 +114,11 @@ public class SignIn extends AppCompatActivity {
                         profileStudent.putString("userid",obj.getString("userid"));
                         profileStudent.putString("userrole",obj.getString("userrole"));
                         profileStudent.apply();
+                        userid = obj.getString("userid");
 
 
                         if (obj.getString("userrole").equals("Student")){
-
+                            getProfileData();
                             Toast.makeText(SignIn.this, "Student", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Student.class);
                             startActivity(intent);
@@ -177,6 +179,82 @@ public class SignIn extends AppCompatActivity {
         Volley.newRequestQueue(this).add(sr);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(sr);
+    }
+
+    private void getProfileData() throws JSONException {
+
+        String Url = "http://pci.edusol.co/StudentPortal/Addstudenttutorformsubmit.php";
+        JSONObject map = new JSONObject();
+        map.put("userid", userid);
+
+        Log.i("mapAddress", String.valueOf(map));
+
+        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String FatherName = response.getString("FatherName");
+                    String ContactNo1 = response.getString("ContactNo1");
+                    String ContactNo2 = response.getString("ContactNo2");
+                    String ContactNo3 = response.getString("ContactNo3");
+                    String StudentEmail = response.getString("StudentEmail");
+                    String HouseNumber = response.getString("HouseNumber");
+                    String BuildingName = response.getString("BuildingName");
+                    String StreetNumber = response.getString("StreetNumber");
+                    String BlockNumber = response.getString("BlockNumber");
+                    String Area = response.getString("Area");
+                    String City = response.getString("City");
+                    String Country = response.getString("Country");
+                    String Gender = response.getString("Gender");
+
+                    SharedPreferences personal_profile = getSharedPreferences("AddProfilePreviousData",
+                            Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                    profileStudent.putString("FatherName",FatherName);
+                    profileStudent.putString("ContactNo1",ContactNo1);
+                    profileStudent.putString("ContactNo2",ContactNo2);
+                    profileStudent.putString("ContactNo3",ContactNo3);
+                    profileStudent.putString("StudentEmail",StudentEmail);
+                    profileStudent.putString("HouseNumber",HouseNumber);
+                    profileStudent.putString("BuildingName",BuildingName);
+                    profileStudent.putString("StreetNumber",StreetNumber);
+                    profileStudent.putString("BlockNumber",BlockNumber);
+                    profileStudent.putString("Area",Area);
+                    profileStudent.putString("City",City);
+                    profileStudent.putString("Country",Country);
+                    profileStudent.putString("Gender",Gender);
+                    profileStudent.apply();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.i("AddProfile", String.valueOf(response));
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
+        };
+        Volley.newRequestQueue(SignIn.this).add(sr);
+        RequestQueue requestQueue = Volley.newRequestQueue(SignIn.this);
+        requestQueue.add(sr);
+
+
+
+
+
+
     }
 }
 

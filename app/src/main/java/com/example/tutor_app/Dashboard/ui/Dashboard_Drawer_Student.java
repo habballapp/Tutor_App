@@ -1,4 +1,6 @@
 package com.example.tutor_app.Dashboard.ui;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,8 +20,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.example.tutor_app.Dashboard.ui.Profile.Student.AddChildProfile;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
@@ -36,6 +36,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
     private RelativeLayout btn_search;
     private FragmentTransaction fragmentTransaction;
     private TextView footer_item_1;
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,11 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, new HomeFragment());
         fragmentTransaction.commit();
+
+        SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("userid", "");
+        Log.i("Id",userid);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -103,6 +109,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                     public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                         navigationExpandableListView.setSelected(groupPosition);
 
+
                         if (id == 0) {
                             Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             Log.i("Dashboard", "Dashboard Activity");
@@ -121,6 +128,12 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                         }
                         else if (id == 2) {
 
+                            SharedPreferences personal_profile = getSharedPreferences("UserId",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                            profileStudent.putString("UserId","");
+                            profileStudent.apply();
+
                             Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
@@ -130,10 +143,17 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                         } else if (id == 3) {
 
+
+                            SharedPreferences personal_profile = getSharedPreferences("UserId",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                            profileStudent.putString("UserId",userid);
+                            profileStudent.apply();
+
                             Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new AddChildProfile());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
