@@ -325,11 +325,6 @@ public class InstituteAddressFragment extends Fragment {
         et_amount1.setText(sharedPreferences2.getString("SalaryFrom",""));
         et_amount2.setText(sharedPreferences2.getString("SalaryTo",""));
 
-
-
-
-
-
     }
 
     private void InstituteAddress() throws JSONException {

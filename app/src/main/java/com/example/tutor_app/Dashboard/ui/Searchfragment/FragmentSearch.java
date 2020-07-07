@@ -13,23 +13,25 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.tutor_app.Adapters.MyAdapter_Child;
+import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.View.ViewFragment;
 import com.example.tutor_app.R;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class FragmentSearch extends Fragment {
-
-    private Spinner spinner_container_fees,spinner_container_fees1;
-    private List<String> consolidate_felter;
-    private ArrayAdapter<String> arrayAdapterFeltter;
+    
     private RelativeLayout rl_next;
+    private List<String> area,childs;
     private FragmentTransaction fragmentTransaction;
-    private Spinner spinner_location,spinner_subject;
-    private static final String[] locations = {"Select your Location","Location1", "Location2", "Location3"};
-    private static final String[] subjects = {"Select your Subject","Subject1", "Subject2", "Subject3"};
+    private Spinner spinner_location,add_child;
+    String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,9 +40,38 @@ public class FragmentSearch extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
+        area = new ArrayList<>();
+        area.add("Select Area");
+        area.add("Baldia Town");
+        area.add("Bin Qasim Town");
+        area.add("Gadap Town");
+        area.add("Gulberg Town");
+        area.add("Gulshan Town");
+        area.add("Jamshed Town");
+        area.add("Kiamari Town");
+        area.add("Korangi Town");
+        area.add("Landhi Town");
+        area.add("Liaquatabad Town");
+        area.add("New Karachi Town");
+        area.add("North Nazimabad Town");
+        area.add("Nazimabad Town");
+        area.add("Orangi Town");
+        area.add("Shah Faisal Town");
+        area.add("SITE Town");
+        area.add("Saddar Town");
+        area.add("Lyari Town");
+        area.add("Malir Town");
+
+        childs = new ArrayList<>();
+        childs.add("Select Child");
+        childs.add("child1");
+        childs.add("child1");
+        childs.add("child1");
+
+
 
         spinner_location = (Spinner) root.findViewById(R.id.spinner_location);
-        spinner_subject = (Spinner) root.findViewById(R.id.spinner_subject);
+        add_child = (Spinner) root.findViewById(R.id.add_child);
 
         rl_next = root.findViewById(R.id.rl_next);
 
@@ -54,7 +85,7 @@ public class FragmentSearch extends Fragment {
         });
 
 
-        ArrayAdapter<String> adapter_location = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item,locations) {
+        ArrayAdapter<String> adapter_location = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item,area) {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 // TODO Auto-generated method stub
@@ -92,43 +123,59 @@ public class FragmentSearch extends Fragment {
             }
         });
 
-        ArrayAdapter<String> adapter_subject = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item,subjects) {
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
+        ArrayList<StateVO> listVOs = new ArrayList<>();
 
-                return view;
-            }
+        for (int i = 0; i < childs.size(); i++) {
+            StateVO stateVO = new StateVO();
+            stateVO.setTitle(childs.get(i));
+            stateVO.setSelected(false);
+            listVOs.add(stateVO);
+        }
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-                return view;
-            }
-        };
 
-        spinner_subject.setAdapter(adapter_subject);
-        spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        MyAdapter_Child myAdapter = new MyAdapter_Child(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs);
+        add_child.setAdapter(myAdapter);
 
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+
+//        ArrayAdapter<String> adapter_subject = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item,childs) {
+//            @Override
+//            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+//                // TODO Auto-generated method stub
+//                View view = super.getView(position, convertView, parent);
+//                TextView text = (TextView) view.findViewById(android.R.id.text1);
+//                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+//                text.setTextSize((float) 13.6);
+//                text.setPadding(30, 0, 30, 0);
+//
+//                return view;
+//            }
+//
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+//                // TODO Auto-generated method stub
+//                View view = super.getView(position, convertView, parent);
+//                TextView text = (TextView) view.findViewById(android.R.id.text1);
+//                text.setTextColor(getResources().getColor(R.color.text_color_selection));
+//                text.setTextSize((float) 13.6);
+//                text.setPadding(30, 0, 30, 0);
+//                return view;
+//            }
+//        };
+//
+//        add_child.setAdapter(adapter_subject);
+//        add_child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
 
         return root;

@@ -7,9 +7,8 @@
 
     tools:context=".Dashboard.ui.Searchfragment.FragmentSearch">
 
-
     <RelativeLayout
-        android:id="@+id/rl_location"
+        android:id="@+id/rl_child"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -19,9 +18,64 @@
 
 
         <TextView
+            android:id="@+id/txt_subject"
+            android:layout_width="match_parent"
+            android:text="ADD CHILD"
+            android:theme="@style/TextStyle"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <RelativeLayout
+            android:id="@+id/spinner_container_subject"
+            android:layout_width="match_parent"
+            android:layout_below="@id/txt_subject"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="2"
+            android:background="@drawable/editbox"
+            android:drawableLeft="@drawable/ic_work_black_24dp"
+            android:theme="@style/EditText"
+            >
+
+            <Spinner
+                android:id="@+id/add_child"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dropDownWidth="match_parent"
+                android:background="@null"
+                android:popupBackground="@drawable/popupbackground"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/add_child"
+                android:layout_alignEnd="@+id/add_child"
+                android:layout_alignRight="@+id/add_child"
+                android:layout_alignBottom="@+id/add_child"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:theme="@style/Spinner" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_child"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp"
+        >
+
+
+        <TextView
             android:id="@+id/txt_location"
             android:layout_width="match_parent"
-            android:text="LOCATION"
+            android:text="AREA"
             android:theme="@style/TextStyle"
             android:gravity="center"
             android:layout_height="wrap_content">
@@ -62,173 +116,6 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/rl_subjects"
-        android:layout_below="@+id/rl_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
-        >
-
-
-        <TextView
-            android:id="@+id/txt_subject"
-            android:layout_width="match_parent"
-            android:text="SUBJECTS"
-            android:theme="@style/TextStyle"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-
-        </TextView>
-
-        <RelativeLayout
-            android:id="@+id/spinner_container_subject"
-            android:layout_width="match_parent"
-            android:layout_below="@id/txt_subject"
-            android:layout_height="55dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="2"
-            android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_work_black_24dp"
-            android:theme="@style/EditText"
-            >
-
-            <Spinner
-                android:id="@+id/spinner_subject"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:dropDownWidth="match_parent"
-                android:background="@null"
-                android:popupBackground="@drawable/popupbackground"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignTop="@id/spinner_subject"
-                android:layout_alignEnd="@+id/spinner_subject"
-                android:layout_alignRight="@+id/spinner_subject"
-                android:layout_alignBottom="@+id/spinner_subject"
-                android:src="@drawable/ic_arrow_drop_down_black_24dp"
-                android:theme="@style/Spinner" />
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_fees"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_subjects"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-
-        >
-
-        <TextView
-            android:id="@+id/txt_fees"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextStyle"
-            android:gravity="center"
-            android:text="FEES" />
-
-        <LinearLayout
-            android:id="@+id/amount_filter_rl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_fees"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
-            android:orientation="horizontal"
-            >
-
-            <LinearLayout
-                android:id="@+id/amount_filter1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/line_bottom"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="10dp"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:text="PKR "
-                    android:textColor="#676A6C" />
-
-                <EditText
-                    android:id="@+id/et_amount1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:layout_weight="0.5"
-                    android:background="@android:color/transparent"
-                    android:inputType="number"
-                    android:textColor="#676A6C"
-                    android:textColorHint="#676A6C"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1.75"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
-
-                <RelativeLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:background="#676A6C" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/amount_filter2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/line_bottom"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="10dp"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:text="PKR "
-                    android:textColor="#676A6C" />
-
-                <EditText
-                    android:id="@+id/et_amount2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:background="@android:color/transparent"
-                    android:inputType="number"
-                    android:textColor="#676A6C"
-                    android:textColorHint="#676A6C"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
 
     <RelativeLayout
         android:id="@+id/rl_next"
@@ -239,7 +126,7 @@
         android:padding="5dp"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
-        android:layout_below="@+id/rl_fees"
+        android:layout_below="@+id/rl_location"
         android:background="@drawable/btn_round"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal"
