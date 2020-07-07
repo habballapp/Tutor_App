@@ -131,6 +131,7 @@ public class SignIn extends AppCompatActivity {
 
                         }
                         else if(obj.getString("userrole").equals("Institute")){
+                            getInstituteData();
 
                             Toast.makeText(SignIn.this, "Institute", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Institute.class);
@@ -179,6 +180,91 @@ public class SignIn extends AppCompatActivity {
         Volley.newRequestQueue(this).add(sr);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(sr);
+    }
+
+    private void getInstituteData() throws JSONException {
+
+        String Url = "http://pci.edusol.co/InstitutePortal/Addinstituteregistrationformsubmit.php";
+        JSONObject map = new JSONObject();
+        map.put("userid", userid);
+
+        Log.i("mapAddress", String.valueOf(map));
+
+        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("data", String.valueOf(response));
+                try {
+                    String InstituteName = response.getString("InstituteName");
+                    String TypeOfInstitute = response.getString("TypeOfInstitute");
+                    String Email = response.getString("Email");
+                    String ContactPerson = response.getString("ContactPerson");
+                    String ContactNo1 = response.getString("ContactNo1");
+                    String ContactNo2 = response.getString("ContactNo2");
+                    String ContactNo3 = response.getString("ContactNo3");
+                    String Address = response.getString("Address");
+                    String StreetNum = response.getString("StreetNum");
+                    String BlockNum = response.getString("BlockNum");
+                    String Area = response.getString("Area");
+                    String City = response.getString("City");
+                    String Country = response.getString("Country");
+                    String SalaryFrom = response.getString("SalaryFrom");
+                    String SalaryTo = response.getString("SalaryTo");
+
+                    SharedPreferences personal_profile = getSharedPreferences("AddProfilePreviousData",
+                            Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                    profileStudent.putString("InstituteName",InstituteName);
+                    profileStudent.putString("ContactNo1",ContactNo1);
+                    profileStudent.putString("ContactNo2",ContactNo2);
+                    profileStudent.putString("ContactNo3",ContactNo3);
+                    profileStudent.putString("TypeOfInstitute",TypeOfInstitute);
+                    profileStudent.putString("Email",Email);
+                    profileStudent.putString("ContactPerson",ContactPerson);
+                    profileStudent.putString("Address",Address);
+                    profileStudent.putString("BlockNum",BlockNum);
+                    profileStudent.putString("StreetNum",StreetNum);
+                    profileStudent.putString("SalaryFrom",BlockNum);
+                    profileStudent.putString("SalaryTo",StreetNum);
+                    profileStudent.putString("Area",Area);
+                    profileStudent.putString("City",City);
+                    profileStudent.putString("Country",Country);
+                    profileStudent.putString("SalaryFrom",SalaryFrom);
+                    profileStudent.putString("SalaryTo",SalaryTo);
+
+                    profileStudent.apply();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.i("AddProfile", String.valueOf(response));
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
+        };
+        Volley.newRequestQueue(SignIn.this).add(sr);
+        RequestQueue requestQueue = Volley.newRequestQueue(SignIn.this);
+        requestQueue.add(sr);
+
+
+
+
+
+
     }
 
     private void getProfileData() throws JSONException {

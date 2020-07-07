@@ -22,6 +22,8 @@ import android.widget.TextView;
 import com.example.tutor_app.Dashboard.ui.Qualification.Qualification;
 import com.example.tutor_app.R;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class InstituteFragment extends Fragment {
     private FragmentTransaction fragmentTransaction;
     private EditText edt_institutename,edt_phone1,edt_phone2,edt_phone3,edt_email,contact_person,edt_other;
     private String Filter_selected = "";
+    String userid;
+    ArrayAdapter<String> adapter1;
 
 
 
@@ -45,12 +49,17 @@ public class InstituteFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_institute, container, false);
 
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("UserId", "");
+        Log.i("UserId", userid);
+
         itype = new ArrayList<>();
         itype.add("Type of Institute");
         itype.add("School");
         itype.add("College");
         itype.add("University");
-        itype.add("Coaching Center");
+        itype.add("CoachingCenter");
         itype.add("Other");
 
         btn_class_next =root.findViewById(R.id.btn_class_next);
@@ -70,7 +79,7 @@ public class InstituteFragment extends Fragment {
         final SharedPreferences.Editor profileInstitute = institute_profile.edit();
 
         spinner_type = root.findViewById(R.id.spinner_type);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, itype) {
+         adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, itype) {
 
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 // TODO Auto-generated method stub
@@ -124,6 +133,12 @@ public class InstituteFragment extends Fragment {
             }
         });
 
+
+        if (!userid.equals("")) {
+            getProfileData();
+
+        }
+
         btn_class_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,5 +167,29 @@ public class InstituteFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void getProfileData() {
+
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("UserId", "");
+        Log.i("UserId", userid);
+
+        SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
+                Context.MODE_PRIVATE);
+
+        int selectionPosition= adapter1.getPosition(sharedPreferences2.getString("TypeOfInstitute",""));
+        spinner_type.setSelection(selectionPosition);
+        edt_institutename.setText(sharedPreferences2.getString("InstituteName",""));
+        edt_phone1.setText(sharedPreferences2.getString("ContactNo1",""));
+        edt_phone2.setText(sharedPreferences2.getString("ContactNo2",""));
+        edt_phone3.setText(sharedPreferences2.getString("ContactNo3",""));
+        edt_email.setText(sharedPreferences2.getString("Email",""));
+        contact_person.setText(sharedPreferences2.getString("ContactPerson",""));
+
+        Log.i("Email", String.valueOf(edt_email.getText()));
+        Log.i("ContactPerson", String.valueOf(contact_person.getText()));
+        Log.i("Phone1", String.valueOf(edt_phone1.getText()));
     }
 }

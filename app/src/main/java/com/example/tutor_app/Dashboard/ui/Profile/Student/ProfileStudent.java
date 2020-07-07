@@ -25,7 +25,6 @@ public class ProfileStudent extends Fragment {
     private RelativeLayout btn_class_next;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_email,edt_fullname,edt_phone1,edt_phone2,edt_phone3,edt_fname;
-
     String userid;
 
 

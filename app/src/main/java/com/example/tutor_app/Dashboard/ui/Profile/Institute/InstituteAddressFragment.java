@@ -48,6 +48,7 @@ import java.util.Map;
 public class InstituteAddressFragment extends Fragment {
 
     private Spinner spinner1,spinner2,spinner_edt_area;
+    private  ArrayAdapter<String> spinner_area_adapter;
     private RelativeLayout btn_profile_next;
     private List<String> gender,timings,area;
     private EditText edt_address, edt_street, edt_block, edt_city, edt_country, et_amount1, et_amount2;
@@ -226,7 +227,7 @@ public class InstituteAddressFragment extends Fragment {
         area.add("Lyari Town");
         area.add("Malir Town");
 
-        final ArrayAdapter<String> spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
+        spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 // TODO Auto-generated method stub
@@ -291,9 +292,44 @@ public class InstituteAddressFragment extends Fragment {
             }
         });
 
+        if (!userid.equals("")) {
+            try {
+                getProfileData();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
+        }
 
         return root;
+    }
+
+    private void getProfileData() throws JSONException {
+
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("UserId", "");
+        Log.i("UserId", userid);
+
+        SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
+                Context.MODE_PRIVATE);
+
+        int selectionPosition= spinner_area_adapter.getPosition(sharedPreferences2.getString("Area",""));
+        spinner_edt_area.setSelection(selectionPosition);
+
+        edt_address.setText(sharedPreferences2.getString("Address",""));
+        edt_street.setText(sharedPreferences2.getString("StreetNum",""));
+        edt_block.setText(sharedPreferences2.getString("BlockNum",""));
+        edt_city.setText(sharedPreferences2.getString("City",""));
+        edt_country.setText(sharedPreferences2.getString("Country",""));
+        et_amount1.setText(sharedPreferences2.getString("SalaryFrom",""));
+        et_amount2.setText(sharedPreferences2.getString("SalaryTo",""));
+
+
+
+
+
+
     }
 
     private void InstituteAddress() throws JSONException {
