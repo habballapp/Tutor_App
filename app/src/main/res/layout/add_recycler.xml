@@ -3,49 +3,79 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <LinearLayout
-        android:id="@+id/add_more"
-        android:layout_marginTop="20dp"
+        android:id="@+id/ln_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
         android:orientation="vertical"
-        android:weightSum="2"
 
-        >
+        android:weightSum="18">
 
-        <EditText
-            android:id="@+id/ctype"
+        <RelativeLayout
+            android:id="@+id/edt_class"
             android:layout_width="match_parent"
-            android:layout_below="@id/edt_subject"
+
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="@drawable/editbox"
+            android:drawableLeft="@drawable/ic_work_black_24dp"
+            android:theme="@style/EditText"
+            >
+
+            <Spinner
+                android:id="@+id/spinner_class"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:dropDownWidth="match_parent"
+                android:popupBackground="@drawable/popupbackground" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/spinner_class"
+                android:layout_alignEnd="@+id/spinner_class"
+                android:layout_alignRight="@+id/spinner_class"
+                android:layout_alignBottom="@+id/spinner_class"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:theme="@style/Spinner" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/edt_subject"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="20dp"
+            android:layout_below="@+id/edt_class"
             android:layout_weight="1"
-            android:inputType="text"
             android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_school_black_24dp"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:paddingLeft="30dp"
-            android:hint="@string/ctype"
-            android:theme="@style/EditText" />
+            android:theme="@style/EditText">
 
-        <EditText
-            android:id="@+id/stype"
-            android:layout_width="match_parent"
-            android:layout_below="@id/edt_subject"
-            android:layout_height="55dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:inputType="text"
-            android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_school_black_24dp"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:paddingLeft="30dp"
-            android:hint="@string/stype"
-            android:theme="@style/EditText" />
+            <Spinner
+                android:id="@+id/spinner_subject"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dropDownWidth="match_parent"
+                android:background="@null"
+                android:popupBackground="@drawable/popupbackground"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/spinner_subject"
+                android:layout_alignEnd="@+id/spinner_subject"
+                android:layout_alignRight="@+id/spinner_subject"
+                android:layout_alignBottom="@+id/spinner_subject"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:theme="@style/Spinner" />
+        </RelativeLayout>
+
 
 
     </LinearLayout>

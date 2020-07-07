@@ -19,6 +19,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.tutor_app.Dashboard.ui.Profile.Student.AddChildProfile;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
@@ -72,17 +73,15 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 //        });
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Edit Profile")
-                .addChildModel(new ChildModel("\tProfile1"))
-                .addChildModel(new ChildModel("\tProfile2"))
-        );
         navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
                 .addChildModel(new ChildModel("\tProfile1"))
                 .addChildModel(new ChildModel("\tProfile2"))
         );
+
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
         );
-
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Add Child")
+        );
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
 //        navigationExpandableListView.addHeaderModel(
@@ -122,20 +121,19 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                         }
                         else if (id == 2) {
 
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new PlaceOrderFragment());
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.conainer, new Retailer_Place_Order()).addToBackStack("tag");
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-
-                        } else if (id == 3) {
                             Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
+
+                        } else if (id == 3) {
+
+                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new AddChildProfile());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 

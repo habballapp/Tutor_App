@@ -53,7 +53,7 @@ public class InstituteAddressFragment extends Fragment {
     private EditText edt_address, edt_street, edt_block, edt_city, edt_country, et_amount1, et_amount2;
     String URL_INSTITUTE = "http://pci.edusol.co/InstitutePortal/instituteregistrationsubmit.php";
     String institutename, phone1, phone2, phone3, email, cperson, typeofInstitute, ctype, stype, classes, subjects,
-            spinner_gender, spinner_timings,amount1,amount2,otherinstitute,spinner_area;
+            spinner_gender, spinner_timings,otherinstitute,spinner_area;
     String userid;
 
     @Override
@@ -92,8 +92,8 @@ public class InstituteAddressFragment extends Fragment {
         phone3 = sharedPreferences.getString("contactno3", "");
         email = sharedPreferences.getString("email", "");
         cperson = sharedPreferences.getString("contactperson", "");
-        ctype = sharedPreferences.getString("otherclass", "");
-        stype = sharedPreferences.getString("othersubjects", "");
+//        ctype = sharedPreferences.getString("otherclass", "");
+//        stype = sharedPreferences.getString("othersubjects", "");
         classes = sharedPreferences.getString("class", "");
         subjects = sharedPreferences.getString("subjects", "");
         typeofInstitute = sharedPreferences.getString("typeofInstitute", "");
@@ -324,8 +324,8 @@ public class InstituteAddressFragment extends Fragment {
         map.put("contactno3", phone3);
         map.put("salaryfrom", et_amount1.getText().toString());
         map.put("salaryto", et_amount2.getText().toString());
-        map.put("otherclass",ctype );
-        map.put("othersubjects",ctype );
+//        map.put("otherclass",ctype );
+//        map.put("othersubjects",ctype );
         map.put("streetnum", edt_street.getText().toString());
         map.put("blocknum", edt_block.getText().toString());
         map.put("area", spinner_area);

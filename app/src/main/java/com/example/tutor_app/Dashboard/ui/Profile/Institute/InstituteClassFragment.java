@@ -2,13 +2,18 @@ package com.example.tutor_app.Dashboard.ui.Profile.Institute;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.InputType;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,10 +42,11 @@ import java.util.List;
 public class InstituteClassFragment extends Fragment {
 
     private Spinner spinner_class,spinner_subject;
+    public TextView txt;
     List<String> classes = new ArrayList<>();
     List<String> subjects = new ArrayList<>();
     private StateVO stateVO;
-    private RecyclerView rl_recycler;
+//    private RecyclerView rl_recycler;
     private RelativeLayout btn_class_add,btn_class_next,add_more;
     private EditText ctype,stype;
     private boolean isVisible = false;
@@ -52,6 +58,7 @@ public class InstituteClassFragment extends Fragment {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,12 +67,23 @@ public class InstituteClassFragment extends Fragment {
 
         spinner_class = root.findViewById(R.id.spinner_class);
         spinner_subject = root.findViewById(R.id.spinner_subject);
-        ctype = root.findViewById(R.id.ctype);
-        stype = root.findViewById(R.id.stype);
-        btn_class_add = root.findViewById(R.id.btn_class_add);
-        rl_recycler = root.findViewById(R.id.rv_fragment);
-        add_more = root.findViewById(R.id.add_more);
+        txt = root.findViewById(R.id.txt);
+//        ctype = root.findViewById(R.id.ctype);
+//        stype = root.findViewById(R.id.stype);
+//        btn_class_add = root.findViewById(R.id.btn_class_add);
+//        rl_recycler = root.findViewById(R.id.rv_fragment);
+//          add_more = root.findViewById(R.id.add_more);
         btn_class_next = root.findViewById(R.id.btn_class_next);
+
+        String msg="   "+"To add another job to your account you must complete and submit your application first and select add job option to add another job";
+
+        ImageSpan mImageSpan = new ImageSpan(getContext(), R.drawable.ic_info_black_24dp);
+        SpannableString text = new SpannableString(msg);
+        text.setSpan(mImageSpan, 0, 1, 0);
+        txt.setElegantTextHeight(true);
+        txt.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        txt.setSingleLine(false);
+        txt.setText(text);
 
 
         classes.add("Select Class");
@@ -170,18 +188,18 @@ public class InstituteClassFragment extends Fragment {
 
          MyAdapter_Subjects Adapter_Subjects = new  MyAdapter_Subjects(getContext(), android.R.layout.simple_spinner_dropdown_item,listSubjects);
         spinner_subject.setAdapter(Adapter_Subjects);
-
-
-        btn_class_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                  add_more.setVisibility(View.VISIBLE);
-                    list.add(new Institute_Information_List("", ""));
-                    adapter.notifyDataSetChanged();
-            }
-
-        });
+//
+//
+//        btn_class_add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                  add_more.setVisibility(View.VISIBLE);
+//                    list.add(new Institute_Information_List("", ""));
+//                    adapter.notifyDataSetChanged();
+//            }
+//
+//        });
 
 //        btn_class_add.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -201,28 +219,17 @@ public class InstituteClassFragment extends Fragment {
 //        });
 
 
-        layoutManager = new LinearLayoutManager(getContext());
-        rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        adapter = new InstituteInformationAdapter(getContext(), list);
-        rl_recycler.setAdapter(adapter);
+//        layoutManager = new LinearLayoutManager(getContext());
+//        rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
+//        adapter = new InstituteInformationAdapter(getContext(), list);
+//        rl_recycler.setAdapter(adapter);
 
 
         btn_class_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-//                if(!(String.valueOf(ctype.getText()) == null) || !(String.valueOf(stype.getText()) == null))
-//                {
-//                    profileInstitute.putString("otherclass",String.valueOf(ctype.getText()));
-//                    profileInstitute.putString("othersubjects",String.valueOf(stype.getText()));
-//
-//                }
-//                else
-//                {
-//                    profileInstitute.putString("otherclass"," ");
-//                    profileInstitute.putString("othersubjects"," ");
-//                }
-//               profileInstitute.apply();
+
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment());
                 fragmentTransaction.commit();

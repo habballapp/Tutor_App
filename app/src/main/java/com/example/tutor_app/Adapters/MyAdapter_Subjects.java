@@ -155,6 +155,8 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
                 }else{
                     selectedSubjects.remove(listState.get(position).getTitle());
                 }
+
+
                 Log.i("subjectsSelected", String.valueOf(selectedSubjects));
 
 

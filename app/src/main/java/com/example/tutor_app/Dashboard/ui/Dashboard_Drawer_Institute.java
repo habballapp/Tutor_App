@@ -74,13 +74,14 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 //        });
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Edit Profile")
-        );
+
         navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
                 .addChildModel(new ChildModel("\tProfile1"))
                 .addChildModel(new ChildModel("\tProfile1"))
         );
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
+        );
+        navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Job")
         );
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
@@ -112,12 +113,12 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.nav_host_fragment, new ProfileStudent());
-//                          fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
+//                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
+//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                            fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteFragment());
+//                            fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
+//                            fragmentTransaction.commit();
+//                            drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 2) {
 
@@ -129,14 +130,22 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 //                            fragmentTransaction.replace(R.id.conainer, new Retailer_Place_Order()).addToBackStack("tag");
 //                            fragmentTransaction.commit();
 //                            drawer.closeDrawer(GravityCompat.START);
-
-                        } else if (id == 3) {
                             Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
+
+                        } else if (id == 3) {
+
+                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
+
 
                         }
                         else if (id == 4) {
