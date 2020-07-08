@@ -1,4 +1,5 @@
 package com.example.tutor_app.Dashboard.ui;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,14 +21,33 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Adapters.MyAdapter_Child;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
+import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
+import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 import com.google.android.material.navigation.NavigationView;
 import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
 import com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Dashboard_Drawer_Student extends AppCompatActivity {
 
@@ -37,6 +57,8 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
     private FragmentTransaction fragmentTransaction;
     private TextView footer_item_1;
     String userid;
+    String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
+    final private List<String> childs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +78,65 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         userid = sharedPreferences1.getString("userid", "");
         Log.i("Id",userid);
 
+        childs.add("Select Child");
+      //  userid = sharedPreferences1.getString("userid", "");
+        Log.i("Id",userid);
+        JSONObject map = new JSONObject();
+        try {
+            map.put("userid",userid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            map.put("userid",userid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                Log.i("Search", String.valueOf(response));
+                for(int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject obj = new JSONObject(response.getString(i));
+                        childs.add(obj.getString("StudentName"));
+                        // childsMap.put(obj.getString("StudentName"), obj.getString("Id"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.i("Child22", String.valueOf(childs));
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
+        };
+        Volley.newRequestQueue(getApplication()).add(sr);
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplication());
+        requestQueue.add(sr);
+
+
+
+
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -66,25 +147,23 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         toggle.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         drawer.setDrawerListener(toggle);
 
+//        child1 = new ArrayList<>();
+//        child1 = childs;
+
         navigationExpandableListView = findViewById(R.id.expandable_navigation);
-//        footer_item_1 = findViewById(R.id.footer_item_1);
-//        footer_item_1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                drawer.closeDrawer(GravityCompat.START);
-//
-//            }
-//        });
+
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
+
         navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
-
-                .addChildModel(new ChildModel("\tProfile1"))
-                .addChildModel(new ChildModel("\tProfile2"))
-
+               // .addChildModel(new ChildModel(childs.get(2)))
+            .addChildModel(new ChildModel("\tProfile2"))
         );
+
+
+        Log.i("Child11", String.valueOf(childs));
+
+
 
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
         );
@@ -238,6 +317,9 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 //        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 //        NavigationUI.setupWithNavController(navigationView, navController);
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
