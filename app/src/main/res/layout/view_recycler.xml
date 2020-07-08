@@ -6,6 +6,7 @@
     android:paddingTop="40dp">
 
     <RelativeLayout
+        android:id="@+id/parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
@@ -142,6 +143,17 @@
             android:layout_toRightOf="@+id/tv_fees"
             android:text="5000"
             android:theme="@style/NormalText" />
+
+        <Button
+            android:id="@+id/request_demo"
+            android:layout_below="@id/fees_value"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/Demo"
+            android:theme="@style/ButtonTextRound"
+            android:background="@drawable/btn_round"
+            android:layout_height="wrap_content"/>
+
 
     </RelativeLayout>
 

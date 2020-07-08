@@ -134,6 +134,7 @@ public class FragmentSearch extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                Log.i("Area", String.valueOf(area.get(position)));
             }
 
             @Override

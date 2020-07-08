@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.R;
@@ -26,7 +26,7 @@ public class MyAdapter_Child extends ArrayAdapter<StateVO> {
     private MyAdapter_Child myAdapter;
     private boolean isFromView = false;
     private int totalChecked = 0;
-    private List<String> selectedClasses= new ArrayList<>();
+    private List<String> selectedChilds = new ArrayList<>();
 
     public MyAdapter_Child(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
@@ -140,20 +140,31 @@ public class MyAdapter_Child extends ArrayAdapter<StateVO> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int getPosition = (Integer) buttonView.getTag();
-                Log.i("classessSelected", String.valueOf(selectedClasses));
+                if(isChecked){
+                    selectedChilds.add(listState.get(position).getTitle());
+                    Gson gson = new Gson();
+                    String json = gson.toJson(selectedChilds);
 
-                Gson gson = new Gson();
-                String json = gson.toJson(selectedClasses);
+                    SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+                            Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor profileStudent = personal_profile.edit();
 
-                final SharedPreferences area_of_interest = getContext().getSharedPreferences("SendData",
-                        Context.MODE_PRIVATE);
-                final SharedPreferences.Editor profileArea_of_interest = area_of_interest.edit();
+                    profileStudent.putString("subjects", String.valueOf(json));
+                    profileStudent.apply();
 
-                profileArea_of_interest.putString("classtoteach",String.valueOf(json));
-                profileArea_of_interest.apply();
+
+                }else{
+                    selectedChilds.remove(listState.get(position).getTitle());
+                }
+
+
+                Log.i("childsSelected", String.valueOf(selectedChilds));
+
+
 
                 if (!isFromView) {
                     listState.get(position).setSelected(isChecked);
+
                 }
             }
         });
