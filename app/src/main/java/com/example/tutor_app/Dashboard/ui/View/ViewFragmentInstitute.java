@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -19,15 +20,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Adapters.MyAdapter_Child;
 import com.example.tutor_app.Adapters.ViewAdapter;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
-import com.example.tutor_app.Model_Classes.AreaFragment_List;
+import com.example.tutor_app.Adapters.ViewAdapterInstitute;
 import com.example.tutor_app.Model_Classes.View_List;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -43,7 +41,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ViewFragment extends Fragment {
+public class ViewFragmentInstitute extends Fragment {
 
     private RecyclerView rl_recycler;
     RecyclerView.Adapter adapter;
@@ -58,8 +56,8 @@ public class ViewFragment extends Fragment {
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-       // List<View_List> view_list =;
-      //  adapter = new ViewAdapter("Shabbir ","teacher","0323223","phone","shabbir@gmail.com","person" ,"abc","eng","400","monthy",getContext());
+        // List<View_List> view_list =;
+        //  adapter = new ViewAdapter("Shabbir ","teacher","0323223","phone","shabbir@gmail.com","person" ,"abc","eng","400","monthy",getContext());
 
 
         try {
@@ -94,7 +92,7 @@ public class ViewFragment extends Fragment {
                 Log.i("View", String.valueOf(response));
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<View_List>>() {}.getType();
-                adapter = new ViewAdapter(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
+                adapter = new ViewAdapterInstitute(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
                 rl_recycler.setAdapter(adapter);
             }
 
@@ -121,5 +119,4 @@ public class ViewFragment extends Fragment {
 
 
 
-    }
-
+}

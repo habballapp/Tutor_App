@@ -1,6 +1,5 @@
 package com.example.tutor_app.Adapters;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -22,16 +20,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyAdapter_Child extends ArrayAdapter<StateVO> {
+public class MyAdapter_Institute extends ArrayAdapter<StateVO> {
     private Context mContext;
     private ArrayList<StateVO> listState;
-    private MyAdapter_Child myAdapter;
+    private MyAdapter_Institute myAdapter;
     private boolean isFromView = false;
     private int totalChecked = 0;
     private List<String> selectedChilds = new ArrayList<>();
     private Map<String, String> childsMap = new HashMap<>();
 
-    public MyAdapter_Child(Context context, int resource, List<StateVO> objects, Map<String, String> childsMap) {
+    public MyAdapter_Institute(Context context, int resource, List<StateVO> objects, Map<String, String> childsMap) {
         super(context, resource, objects);
         this.mContext = context;
         this.listState = (ArrayList<StateVO>) objects;
@@ -55,18 +53,18 @@ public class MyAdapter_Child extends ArrayAdapter<StateVO> {
 
 
 
-        final ViewHolder holder;
+        final MyAdapter_Institute.ViewHolder holder;
         if (convertView == null) {
             LayoutInflater layoutInflator = LayoutInflater.from(mContext);
             convertView = layoutInflator.inflate(R.layout.spinner_item, null);
-            holder = new ViewHolder();
+            holder = new MyAdapter_Institute.ViewHolder();
             holder.mTextView = (TextView) convertView
                     .findViewById(R.id.text);
             holder.mCheckBox = (CheckBox) convertView
                     .findViewById(R.id.checkbox);
             convertView.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (MyAdapter_Institute.ViewHolder) convertView.getTag();
         }
 
         holder.mTextView.setText(listState.get(position).getTitle());

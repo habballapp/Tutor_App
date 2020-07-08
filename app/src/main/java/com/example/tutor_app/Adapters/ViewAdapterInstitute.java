@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.Model_Classes.View_List;
 import com.example.tutor_app.R;
 
@@ -20,28 +19,28 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
+public class ViewAdapterInstitute extends RecyclerView.Adapter<ViewAdapterInstitute.ViewHolder> {
 
 
     private List<View_List> view_list;
     Context context;
 
-    public ViewAdapter(Context context,List<View_List> list) {
+    public ViewAdapterInstitute(Context context,List<View_List> list) {
         this.view_list = list;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewAdapterInstitute.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.view_recycler, null);
-        return new ViewAdapter.ViewHolder(inflate);
+        return new ViewAdapterInstitute.ViewHolder(inflate);
 
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewAdapterInstitute.ViewHolder holder, int position) {
 
 //        holder.name.setText(view_list.get(position).getName());
         holder.name_value.setText(view_list.get(position).getFullName());
@@ -70,7 +69,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public  TextView name,name_value,contact,contact_value,email,email_value,subjects,subjects_value,
+        public TextView name,name_value,contact,contact_value,email,email_value,subjects,subjects_value,
                 fees,fees_value;
         public CircleImageView profile_image;
 
@@ -91,3 +90,4 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
         }
     }
 }
+

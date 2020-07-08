@@ -131,6 +131,7 @@
             android:layout_below="@+id/tv_subjects"
             android:text="@string/rfees"
             android:theme="@style/NormalText"
+            android:visibility="gone"
 
             />
 
@@ -142,6 +143,7 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/tv_fees"
             android:text="5000"
+            android:visibility="gone"
             android:theme="@style/NormalText" />
 
         <Button

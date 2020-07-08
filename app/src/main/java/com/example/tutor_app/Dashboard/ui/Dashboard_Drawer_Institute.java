@@ -25,6 +25,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.tutor_app.Dashboard.ui.Profile.Institute.InstituteFragment;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
+import com.example.tutor_app.Dashboard.ui.Searchfragment.InstituteSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 import com.google.android.material.navigation.NavigationView;
@@ -171,7 +172,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             Log.i("Make Payment", "Make Payment Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteSearchFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 

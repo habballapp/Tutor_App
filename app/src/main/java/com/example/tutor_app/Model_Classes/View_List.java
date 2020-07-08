@@ -3,110 +3,57 @@ package com.example.tutor_app.Model_Classes;
 
 public class View_List {
 
-    private String name;
-    private String name_value;
-    private String contact;
-    private String contact_value;
-    private String email;
-    private String email_value;
-    private String subjects;
-    private String subjects_value;
-    private String fees;
-    private String fees_value;
+    private String FullName;
+    private String PreferredSubjects;
+    private String PhoneNo1;
+    private String Email;
+    private String TutorImage;
 
-    public View_List() {
+    public View_List(String fullName, String preferredSubjects, String phoneNo1, String email, String tutorImage) {
+        FullName = fullName;
+        PreferredSubjects = preferredSubjects;
+        PhoneNo1 = phoneNo1;
+        Email = email;
+        TutorImage = tutorImage;
     }
 
-    public View_List(String name, String name_value, String contact, String contact_value, String email, String email_value, String subjects, String subjects_value, String fees, String fees_value) {
-        this.name = name;
-        this.name_value = name_value;
-        this.contact = contact;
-        this.contact_value = contact_value;
-        this.email = email;
-        this.email_value = email_value;
-        this.subjects = subjects;
-        this.subjects_value = subjects_value;
-        this.fees = fees;
-        this.fees_value = fees_value;
+    public String getFullName() {
+        return FullName;
     }
 
-    public String getName() {
-        return name;
+    public void setFullName(String fullName) {
+        FullName = fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getPreferredSubjects() {
+        return PreferredSubjects;
     }
 
-    public String getName_value() {
-        return name_value;
+    public void setPreferredSubjects(String preferredSubjects) {
+        PreferredSubjects = preferredSubjects;
     }
 
-    public void setName_value(String name_value) {
-        this.name_value = name_value;
+    public String getPhoneNo1() {
+        return PhoneNo1;
     }
 
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public String getContact_value() {
-        return contact_value;
-    }
-
-    public void setContact_value(String contact_value) {
-        this.contact_value = contact_value;
+    public void setPhoneNo1(String phoneNo1) {
+        PhoneNo1 = phoneNo1;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        Email = email;
     }
 
-    public String getEmail_value() {
-        return email_value;
+    public String getTutorImage() {
+        return TutorImage;
     }
 
-    public void setEmail_value(String email_value) {
-        this.email_value = email_value;
-    }
-
-    public String getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(String subjects) {
-        this.subjects = subjects;
-    }
-
-    public String getSubjects_value() {
-        return subjects_value;
-    }
-
-    public void setSubjects_value(String subjects_value) {
-        this.subjects_value = subjects_value;
-    }
-
-    public String getFees() {
-        return fees;
-    }
-
-    public void setFees(String fees) {
-        this.fees = fees;
-    }
-
-    public String getFees_value() {
-        return fees_value;
-    }
-
-    public void setFees_value(String fees_value) {
-        this.fees_value = fees_value;
+    public void setTutorImage(String tutorImage) {
+        TutorImage = tutorImage;
     }
 }

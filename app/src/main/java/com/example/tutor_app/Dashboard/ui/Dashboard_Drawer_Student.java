@@ -80,8 +80,10 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
+
                 .addChildModel(new ChildModel("\tProfile1"))
                 .addChildModel(new ChildModel("\tProfile2"))
+
         );
 
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")

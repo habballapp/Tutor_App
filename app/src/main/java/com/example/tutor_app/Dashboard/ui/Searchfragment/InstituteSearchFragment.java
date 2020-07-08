@@ -1,14 +1,12 @@
 package com.example.tutor_app.Dashboard.ui.Searchfragment;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,16 +22,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter_Child;
+import com.example.tutor_app.Adapters.MyAdapter_Institute;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.View.ViewFragment;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
-import com.example.tutor_app.Signin.SignIn;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,13 +39,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+public class InstituteSearchFragment extends Fragment {
 
-public class FragmentSearch extends Fragment {
-    
     private RelativeLayout rl_next;
     private List<String> area,childs;
     private FragmentTransaction fragmentTransaction;
-    private Spinner spinner_location,add_child;
+    private Spinner spinner_location,add_institute;
     private Map<String, String> childsMap = new HashMap<>();
     String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
     String userid;
@@ -61,7 +55,7 @@ public class FragmentSearch extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View root = inflater.inflate(R.layout.fragment_search, container, false);
+        View root = inflater.inflate(R.layout.activity_institute_search_fragment, container, false);
 
         area = new ArrayList<>();
         area.add("Select Area");
@@ -92,7 +86,7 @@ public class FragmentSearch extends Fragment {
 
 
         spinner_location = (Spinner) root.findViewById(R.id.spinner_location);
-        add_child = (Spinner) root.findViewById(R.id.add_child);
+        add_institute = (Spinner) root.findViewById(R.id.add_institute);
 
         rl_next = root.findViewById(R.id.rl_next);
 
@@ -154,43 +148,7 @@ public class FragmentSearch extends Fragment {
             e.printStackTrace();
         }
 
-//        ArrayAdapter<String> adapter_subject = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item,childs) {
-//            @Override
-//            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-//                // TODO Auto-generated method stub
-//                View view = super.getView(position, convertView, parent);
-//                TextView text = (TextView) view.findViewById(android.R.id.text1);
-//                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-//                text.setTextSize((float) 13.6);
-//                text.setPadding(30, 0, 30, 0);
-//
-//                return view;
-//            }
-//
-//            @Override
-//            public View getView(int position, View convertView, ViewGroup parent) {
-//                // TODO Auto-generated method stub
-//                View view = super.getView(position, convertView, parent);
-//                TextView text = (TextView) view.findViewById(android.R.id.text1);
-//                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-//                text.setTextSize((float) 13.6);
-//                text.setPadding(30, 0, 30, 0);
-//                return view;
-//            }
-//        };
-//
-//        add_child.setAdapter(adapter_subject);
-//        add_child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+
         return root;
 
     }
@@ -231,8 +189,8 @@ public class FragmentSearch extends Fragment {
                     listVOs.add(stateVO);
                 }
 
-                MyAdapter_Child myAdapter = new MyAdapter_Child(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs, childsMap);
-                add_child.setAdapter(myAdapter);
+               MyAdapter_Institute myAdapter = new MyAdapter_Institute(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs, childsMap);
+                add_institute.setAdapter(myAdapter);
 
             }
 

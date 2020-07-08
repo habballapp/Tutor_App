@@ -16,6 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+        <activity android:name=".Dashboard.ui.Searchfragment.InstituteSearchFragment"></activity>
         <activity
             android:name=".ForgetPassword.Forget_Password"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
