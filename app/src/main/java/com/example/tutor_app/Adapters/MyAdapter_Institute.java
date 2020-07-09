@@ -154,7 +154,7 @@ public class MyAdapter_Institute extends ArrayAdapter<StateVO> {
                             Context.MODE_PRIVATE);
                     final SharedPreferences.Editor profileStudent = personal_profile.edit();
 
-                    profileStudent.putString("searchchildren", String.valueOf(json));
+                    profileStudent.putString("InstituteName", String.valueOf(json));
                     profileStudent.apply();
 
 

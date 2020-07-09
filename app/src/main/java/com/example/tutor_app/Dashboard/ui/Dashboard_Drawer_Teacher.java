@@ -1,5 +1,7 @@
 package com.example.tutor_app.Dashboard.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -24,6 +26,7 @@ import com.example.tutor_app.Dashboard.ui.Profile.Institute.InstituteFragment;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Profile.Teacher.ProfileTeacher;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
+import com.example.tutor_app.Dashboard.ui.Searchfragment.TeacherSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 import com.google.android.material.navigation.NavigationView;
@@ -37,6 +40,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private RelativeLayout btn_search;
     private FragmentTransaction fragmentTransaction;
+    String userid;
 
 
     @Override
@@ -51,6 +55,11 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, new HomeFragment());
         fragmentTransaction.commit();
+
+        SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("userid", "");
+        Log.i("ID",userid);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -76,8 +85,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
-                .addChildModel(new ChildModel("\tProfile1"))
-                .addChildModel(new ChildModel("\tProfile1"))
+
         );
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
         );
@@ -112,22 +120,19 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
                         } else if (id == 3) {
-//                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-//                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher());
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
+
+
+                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            Log.i("Make Payment", "Make Payment Activity");
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new TeacherSearchFragment());
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
 
                         }
                         else if (id == 4) {
-                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
-                            Log.i("Make Payment", "Make Payment Activity");
-                           fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                          // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch());
-                           fragmentTransaction.commit();
-                           drawer.closeDrawer(GravityCompat.START);
+
 
                         }
 

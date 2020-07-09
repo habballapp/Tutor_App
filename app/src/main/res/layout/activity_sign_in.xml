@@ -74,7 +74,7 @@
             android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
             android:drawablePadding="10dp"
             android:padding="10dp"
-            android:text="mirza_abdulrafay@ymail.com"
+            android:text="noman@gmail.com"
             android:paddingLeft="30dp"
             android:hint="@string/email"
             android:theme="@style/EditText" />

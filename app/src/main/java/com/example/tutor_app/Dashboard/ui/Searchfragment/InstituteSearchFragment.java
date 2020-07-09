@@ -1,6 +1,5 @@
 package com.example.tutor_app.Dashboard.ui.Searchfragment;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -23,10 +22,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Adapters.MyAdapter_Child;
 import com.example.tutor_app.Adapters.MyAdapter_Institute;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
-import com.example.tutor_app.Dashboard.ui.View.ViewFragment;
+import com.example.tutor_app.Dashboard.ui.View.ViewFragmentInstitute;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 
@@ -46,7 +44,7 @@ public class InstituteSearchFragment extends Fragment {
     private FragmentTransaction fragmentTransaction;
     private Spinner spinner_location,add_institute;
     private Map<String, String> childsMap = new HashMap<>();
-    String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
+    String Url = "http://pci.edusol.co/InstitutePortal/searchtutorApi.php";
     String userid;
 
 
@@ -94,7 +92,7 @@ public class InstituteSearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new ViewFragment());
+                fragmentTransaction.replace(R.id.nav_host_fragment, new ViewFragmentInstitute());
                 fragmentTransaction.commit();
             }
         });
@@ -173,8 +171,8 @@ public class InstituteSearchFragment extends Fragment {
                 for(int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = new JSONObject(response.getString(i));
-                        childs.add(obj.getString("StudentName"));
-                        childsMap.put(obj.getString("StudentName"), obj.getString("Id"));
+                        childs.add(obj.getString("InstituteName"));
+                        childsMap.put(obj.getString("InstituteName"), obj.getString("Id"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

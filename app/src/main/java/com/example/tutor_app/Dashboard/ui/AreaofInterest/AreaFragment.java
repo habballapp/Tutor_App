@@ -74,6 +74,7 @@ public class AreaFragment extends Fragment {
         area.add("Liaquatabad Town");
         area.add("New Karachi Town");
         area.add("North Nazimabad Town");
+        area.add("Nazimabad Town");
         area.add("Orangi Town");
         area.add(" Shah Faisal Town");
         area.add(" SITE Town");

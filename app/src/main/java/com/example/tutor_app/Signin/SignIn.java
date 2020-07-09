@@ -27,13 +27,19 @@ import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Teacher;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Institute;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
 import com.example.tutor_app.ForgetPassword.Forget_Password;
+import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 import com.example.tutor_app.UserType.User_Type;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SignIn extends AppCompatActivity {
@@ -42,7 +48,10 @@ public class SignIn extends AppCompatActivity {
     private TextView txt_password, txt_create;
     private EditText edt_email, edt_password;
     private String URL_LOGIN = "http://pci.edusol.co/Login/login_data.php";
+    String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
     private String userid = "";
+    private List<String> childs = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,9 +128,9 @@ public class SignIn extends AppCompatActivity {
 
                         if (obj.getString("userrole").equals("Student")){
                             getProfileData();
+                            getChildren();
                             Toast.makeText(SignIn.this, "Student", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Student.class);
-                            startActivity(intent);
+
                         }
                         else if(obj.getString("userrole").equals("Teacher")){
 
@@ -180,6 +189,73 @@ public class SignIn extends AppCompatActivity {
         Volley.newRequestQueue(this).add(sr);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(sr);
+    }
+
+    private void getChildren() {
+
+        SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("userid", "");
+        Log.i("Id",userid);
+
+        //  userid = sharedPreferences1.getString("userid", "");
+        Log.i("Id",userid);
+        JSONObject map = new JSONObject();
+        try {
+            map.put("userid",userid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            map.put("userid",userid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                Log.i("Search", String.valueOf(response));
+                childs = new ArrayList<>();
+                for(int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject obj = new JSONObject(response.getString(i));
+                        childs.add("\t\t\t" + obj.getString("StudentName"));
+
+                        // childsMap.put(obj.getString("StudentName"), obj.getString("Id"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.i("Child22", String.valueOf(childs));
+                Gson gson = new Gson();
+                SharedPreferences personal_profile = getSharedPreferences("LoginData",
+                        Context.MODE_PRIVATE);
+                final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                profileStudent.putString("children",gson.toJson(childs));
+                profileStudent.apply();
+                Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Student.class);
+                startActivity(intent);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
+        };
+        Volley.newRequestQueue(getApplication()).add(sr);
     }
 
     private void getInstituteData() throws JSONException {

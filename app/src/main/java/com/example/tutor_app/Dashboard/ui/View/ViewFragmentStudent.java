@@ -21,12 +21,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Adapters.MyAdapter_Child;
 import com.example.tutor_app.Adapters.ViewAdapter;
-import com.example.tutor_app.Adapters.ViewAdapterInstitute;
+import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
+import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.Model_Classes.View_List;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -42,14 +45,14 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ViewFragmentInstitute extends Fragment {
+public class ViewFragmentStudent extends Fragment {
 
     private RecyclerView rl_recycler;
     RecyclerView.Adapter adapter;
+    String locationarea,searchchildren;
     private TextView txt_nodata;
-    String locationarea,searchinstitute;
     private List<View_List> list = new ArrayList<>();
-    String Url = "http://pci.edusol.co/InstitutePortal/searchtutorsubmit.php";
+    String Url = "http://pci.edusol.co/StudentPortal/searchtutorsubmit.php";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,8 +62,8 @@ public class ViewFragmentInstitute extends Fragment {
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
 
-        // List<View_List> view_list =;
-        //  adapter = new ViewAdapter("Shabbir ","teacher","0323223","phone","shabbir@gmail.com","person" ,"abc","eng","400","monthy",getContext());
+       // List<View_List> view_list =;
+      //  adapter = new ViewAdapter("Shabbir ","teacher","0323223","phone","shabbir@gmail.com","person" ,"abc","eng","400","monthy",getContext());
 
 
         try {
@@ -77,34 +80,36 @@ public class ViewFragmentInstitute extends Fragment {
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("SearchData",
                 Context.MODE_PRIVATE);
-        locationarea = sharedPreferences1.getString("locationarea", "");
-        searchinstitute = sharedPreferences1.getString("InstituteName", "");
+        locationarea = sharedPreferences1.getString("area", "");
+       // searchchildren = sharedPreferences1.getString("searchchildren", "");
 
 
 
-        JSONArray arr = new JSONArray(searchinstitute);
+        JSONArray arr = new JSONArray(searchchildren);
         Log.i("Area",locationarea);
-        Log.i("Child",searchinstitute);
-        map.put("searchinstitute", arr);
+        Log.i("Child",searchchildren);
+        map.put("searchchildren", arr);
         map.put("locationarea", locationarea);
         Log.i("url_map", String.valueOf(map));
 
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                if(response.length()>=0){
+                Log.i("View", String.valueOf(response));
+                if(response.length() <= 0){
 
                     txt_nodata.setVisibility(View.VISIBLE);
                     Toast.makeText(getContext(),"No Teachers Available",Toast.LENGTH_LONG).show();
+
                 }
                 else{
-
-                    Log.i("View", String.valueOf(response));
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<View_List>>() {}.getType();
-                    adapter = new ViewAdapterInstitute(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
+                    adapter = new ViewAdapter(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
                     rl_recycler.setAdapter(adapter);
+
                 }
+
             }
 
         }, new Response.ErrorListener() {
@@ -130,4 +135,5 @@ public class ViewFragmentInstitute extends Fragment {
 
 
 
-}
+    }
+

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context=".Dashboard.ui.View.ViewFragment">
+    tools:context=".Dashboard.ui.View.ViewFragmentStudent">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -26,6 +26,15 @@
 
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_nodata"
+        android:layout_width="wrap_content"
+        android:text="@string/NoData"
+        android:layout_centerInParent="true"
+        android:theme="@style/TextStyle"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
 
     <RelativeLayout
         android:id="@+id/rl_recycler"

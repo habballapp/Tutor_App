@@ -2,10 +2,8 @@ package com.example.tutor_app.Dashboard.ui.Searchfragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -24,15 +22,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter_Child;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
-import com.example.tutor_app.Dashboard.ui.View.ViewFragment;
+import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
-import com.example.tutor_app.Signin.SignIn;
 
 
 import org.json.JSONArray;
@@ -100,7 +95,7 @@ public class FragmentSearch extends Fragment {
             @Override
             public void onClick(View v) {
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new ViewFragment());
+                fragmentTransaction.replace(R.id.nav_host_fragment, new ViewFragmentStudent());
                 fragmentTransaction.commit();
             }
         });

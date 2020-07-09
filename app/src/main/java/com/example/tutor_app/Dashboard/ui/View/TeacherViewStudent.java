@@ -20,13 +20,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Adapters.ViewAdapter;
-import com.example.tutor_app.Adapters.ViewAdapterInstitute;
-import com.example.tutor_app.Model_Classes.View_List;
+import com.example.tutor_app.Adapters.TeacherViewStudentAdapter;
+import com.example.tutor_app.Model_Classes.ViewStudent_List;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -42,69 +43,81 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ViewFragmentInstitute extends Fragment {
+public class TeacherViewStudent extends Fragment {
+
 
     private RecyclerView rl_recycler;
     RecyclerView.Adapter adapter;
+    private List<ViewStudent_List> list = new ArrayList<>();
+    String Url = "http://pci.edusol.co/TeacherPortal/searchstudent_institutesubmit.php";
+    String area,userid;
     private TextView txt_nodata;
-    String locationarea,searchinstitute;
-    private List<View_List> list = new ArrayList<>();
-    String Url = "http://pci.edusol.co/InstitutePortal/searchtutorsubmit.php";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_view, container, false);
+
+
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
 
-        // List<View_List> view_list =;
-        //  adapter = new ViewAdapter("Shabbir ","teacher","0323223","phone","shabbir@gmail.com","person" ,"abc","eng","400","monthy",getContext());
-
 
         try {
-            ViewTeacher();
+            ViewStudent();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         return root;
     }
 
-    private void ViewTeacher() throws JSONException {
+    private void ViewStudent() throws JSONException {
 
         JSONObject map = new JSONObject();
 
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("SearchData",
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
-        locationarea = sharedPreferences1.getString("locationarea", "");
-        searchinstitute = sharedPreferences1.getString("InstituteName", "");
+        userid = sharedPreferences1.getString("userid", "");
 
+        SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("SearchData",
+                Context.MODE_PRIVATE);
+        area = sharedPreferences2.getString("area", "");
 
+        Log.i("Area2",area);
+        Log.i("Id",userid);
 
-        JSONArray arr = new JSONArray(searchinstitute);
-        Log.i("Area",locationarea);
-        Log.i("Child",searchinstitute);
-        map.put("searchinstitute", arr);
-        map.put("locationarea", locationarea);
+        map.put("teacherid",userid);
+        map.put("area",area);
+
         Log.i("url_map", String.valueOf(map));
 
-        MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
+        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
-                if(response.length()>=0){
+            public void onResponse(JSONObject result) {
+                JSONArray response = null;
+                try {
+                    response = result.getJSONArray("studentData");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.i("View", String.valueOf(response));
+                if(response.length() <= 0){
 
                     txt_nodata.setVisibility(View.VISIBLE);
                     Toast.makeText(getContext(),"No Teachers Available",Toast.LENGTH_LONG).show();
+
                 }
                 else{
-
-                    Log.i("View", String.valueOf(response));
                     Gson gson = new Gson();
-                    Type type = new TypeToken<List<View_List>>() {}.getType();
-                    adapter = new ViewAdapterInstitute(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
+                    Type type = new TypeToken<List<ViewStudent_List>>() {}.getType();
+                    adapter = new TeacherViewStudentAdapter(getContext(), (List<ViewStudent_List>) gson.fromJson(response.toString(), type));
                     rl_recycler.setAdapter(adapter);
+
                 }
+
             }
 
         }, new Response.ErrorListener() {
@@ -126,8 +139,6 @@ public class ViewFragmentInstitute extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(sr);
 
+
     }
-
-
-
 }

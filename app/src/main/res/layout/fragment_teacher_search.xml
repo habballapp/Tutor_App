@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffff"
+    tools:context=".Dashboard.ui.Searchfragment.TeacherSearchFragment">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="80dp"
+        >
+
+
+        <TextView
+            android:id="@+id/txt_location"
+            android:layout_width="match_parent"
+            android:text="AREA"
+            android:theme="@style/TextStyle"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <RelativeLayout
+            android:id="@+id/spinner_container_location"
+            android:layout_width="match_parent"
+            android:layout_below="@id/txt_location"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="2"
+            android:background="@drawable/editbox"
+            android:drawableLeft="@drawable/ic_work_black_24dp"
+            android:theme="@style/EditText"
+            >
+
+            <Spinner
+                android:id="@+id/spinner_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dropDownWidth="match_parent"
+                android:background="@null"
+                android:popupBackground="@drawable/popupbackground"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/spinner_location"
+                android:layout_alignEnd="@+id/spinner_location"
+                android:layout_alignRight="@+id/spinner_location"
+                android:layout_alignBottom="@+id/spinner_location"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:theme="@style/Spinner" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_search_institute"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:paddingStart="30dp"
+        android:padding="5dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_below="@+id/rl_location"
+        android:background="@drawable/btn_round"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        >
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/ButtonTextRound"
+            android:text="SEARCH INSTITUTE"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_search_student"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:paddingStart="30dp"
+        android:padding="5dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_below="@+id/rl_search_institute"
+        android:background="@drawable/btn_round"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        >
+        <TextView
+            android:id="@+id/btn_next1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/ButtonTextRound"
+            android:text="SEARCH STUDENT"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
