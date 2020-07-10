@@ -1,6 +1,7 @@
 package com.example.tutor_app.Dashboard.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.TeacherSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
 import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
@@ -132,7 +134,8 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 
                         }
                         else if (id == 4) {
-
+                            Intent intent = new Intent(Dashboard_Drawer_Teacher.this, SignIn.class);
+                            startActivity(intent);
 
                         }
 

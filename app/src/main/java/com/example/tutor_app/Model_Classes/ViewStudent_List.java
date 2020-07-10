@@ -5,22 +5,46 @@ import androidx.annotation.NonNull;
 
 public class ViewStudent_List {
 
+    private String Id;
     private String Name;
+    private String Type;
     private String ClassName;
     private String Subjects;
+    private String Status;
+    private String JobId;
 
-    public ViewStudent_List(String Name, String className, String subjects) {
-        Name = Name;
+    public ViewStudent_List(String id, String name, String type, String className, String subjects, String status, String jobId) {
+        Id = id;
+        Name = name;
+        Type = type;
         ClassName = className;
-        this.Subjects = subjects;
+        Subjects = subjects;
+        Status = status;
+        JobId = jobId;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getName() {
         return Name;
     }
 
-    public void setName(String Name) {
-        Name = Name;
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 
     public String getClassName() {
@@ -36,6 +60,22 @@ public class ViewStudent_List {
     }
 
     public void setSubjects(String subjects) {
-        this.Subjects = subjects;
+        Subjects = subjects;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
+
+    public String getJobId() {
+        return JobId;
+    }
+
+    public void setJobId(String jobId) {
+        JobId = jobId;
     }
 }

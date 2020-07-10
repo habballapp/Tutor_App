@@ -1,22 +1,47 @@
 package com.example.tutor_app.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
+import com.example.tutor_app.Model_Classes.ViewStudent_List;
 import com.example.tutor_app.Model_Classes.View_List;
+import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -25,6 +50,9 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
 
     private List<View_List> view_list;
     Context context;
+    String locationarea,searchchildren;
+    String Url ="http://pci.edusol.co/StudentPortal/RequestDemo.php";
+    private FragmentTransaction fragmentTransaction;
 
     public ViewAdapter(Context context,List<View_List> list) {
         this.view_list = list;
@@ -41,7 +69,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewAdapter.ViewHolder holder, final int position) {
 
 //        holder.name.setText(view_list.get(position).getName());
         holder.name_value.setText(view_list.get(position).getFullName());
@@ -54,8 +82,81 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
         holder.profile_image.setImageBitmap(convertBase64ToBitmap(view_list.get(position).getTutorImage()));
 //        holder.fees.setText(view_list.get(position).getFees());
 //        holder.fees_value.setText(view_list.get(position).getFees_value());
+        if(view_list.get(position).getStatus().equals("null")) {
+            holder.request_demo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    try {
+                        RequestDemo(holder, view_list.get(position).getId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+//        } else if (view_list.get(position).getStatus().equals("Pending")) {
+//            holder.request_demo.setEnabled(false);
+//            holder.request_demo.setText("Demo Requested");
+//            holder.request_demo.setBackgroundColor(context.getResources().getColor(R.color.green_color));
+        } else if (view_list.get(position).getStatus().equals("Pending")) {
+            holder.request_demo.setEnabled(false);
+            holder.request_demo.setText("\tDemo Requested\t");
+            holder.request_demo.setBackground(context.getResources().getDrawable(R.drawable.btn_round_green));
+        }
+    }
+
+    private void RequestDemo(@NonNull final ViewAdapter.ViewHolder holder, String teacherId) throws JSONException {
+
+        JSONObject map = new JSONObject();
+        SharedPreferences sharedPreferences1 = context.getSharedPreferences("SearchData",
+                Context.MODE_PRIVATE);
+
+        searchchildren = sharedPreferences1.getString("searchchildren", "");
+        JSONArray arr = new JSONArray(searchchildren);
+        map.put("Students", arr);
+        map.put("TeacherId", teacherId);
+
+        Log.i("map", String.valueOf(map));
+
+        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject result) {
+               Log.i("Response", String.valueOf(result));
+                try {
+                    Toast.makeText(context,result.getString("message"),Toast.LENGTH_SHORT).show();
+                    holder.request_demo.setEnabled(false);
+                    holder.request_demo.setText("\tDemo Requested\t");
+                    holder.request_demo.setBackground(context.getResources().getDrawable(R.drawable.btn_round_green));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
+        };
+        Volley.newRequestQueue(context).add(sr);
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(sr);
+
 
     }
+
 
     private Bitmap convertBase64ToBitmap(String b64) {
         final String pureBase64Encoded = b64.substring(b64.indexOf(",")  + 1);
@@ -73,6 +174,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
         public  TextView name,name_value,contact,contact_value,email,email_value,subjects,subjects_value,
                 fees,fees_value;
         public CircleImageView profile_image;
+        public Button request_demo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -88,6 +190,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
             fees = (TextView)itemView.findViewById(R.id.tv_fees);
             fees_value = (TextView)itemView.findViewById(R.id.fees_value);
             profile_image = itemView.findViewById(R.id.profile_image);
+            request_demo = itemView.findViewById(R.id.request_demo);
         }
     }
 }

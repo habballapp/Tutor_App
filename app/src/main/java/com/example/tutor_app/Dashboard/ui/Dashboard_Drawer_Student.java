@@ -1,6 +1,7 @@
 package com.example.tutor_app.Dashboard.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -172,6 +174,12 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
+
+                        }
+                        else if (id == 5) {
+
+                            Intent intent = new Intent(Dashboard_Drawer_Student.this, SignIn.class);
+                            startActivity(intent);
 
                         }
 //                        else if (id == 4) {

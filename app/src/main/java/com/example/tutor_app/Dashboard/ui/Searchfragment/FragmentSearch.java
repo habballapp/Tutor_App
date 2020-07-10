@@ -236,7 +236,6 @@ public class FragmentSearch extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
                 error.printStackTrace();
             }
         }) {

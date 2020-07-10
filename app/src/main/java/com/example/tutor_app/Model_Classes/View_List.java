@@ -3,18 +3,30 @@ package com.example.tutor_app.Model_Classes;
 
 public class View_List {
 
+    private String Id;
     private String FullName;
     private String PreferredSubjects;
     private String PhoneNo1;
     private String Email;
     private String TutorImage;
+    private String Status;
 
-    public View_List(String fullName, String preferredSubjects, String phoneNo1, String email, String tutorImage) {
+    public View_List(String id, String fullName, String preferredSubjects, String phoneNo1, String email, String tutorImage, String status) {
+        Id = id;
         FullName = fullName;
         PreferredSubjects = preferredSubjects;
         PhoneNo1 = phoneNo1;
         Email = email;
         TutorImage = tutorImage;
+        Status = status;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getFullName() {
@@ -55,5 +67,13 @@ public class View_List {
 
     public void setTutorImage(String tutorImage) {
         TutorImage = tutorImage;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
     }
 }

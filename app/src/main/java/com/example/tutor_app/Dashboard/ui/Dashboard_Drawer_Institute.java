@@ -1,6 +1,7 @@
 package com.example.tutor_app.Dashboard.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,7 @@ import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.InstituteSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
 import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
@@ -94,6 +96,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         );
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
 //        navigationExpandableListView.addHeaderModel(
 //                new HeaderModel("Payment")
 ////                                  .addChildModel(new ChildModel("\tPayments Summary"))
@@ -177,12 +180,11 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
                         }
-//                        else if (id == 4) {
-//                            Log.i("Profile", "Profile Activity");
-////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-////                            fragmentTransaction.replace(R.id.main_container_ret, new Profile_Tabs()).addToBackStack("tag");
-////                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
+                        else if (id == 5) {
+
+                            Intent intent = new Intent(Dashboard_Drawer_Institute.this, SignIn.class);
+                            startActivity(intent);
+                        }
 //                        } else if (id == 5) {
 ////                            Log.i("Support", "Support Activity");
 ////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();

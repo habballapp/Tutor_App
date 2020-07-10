@@ -79,6 +79,7 @@ public class ViewFragmentInstitute extends Fragment {
                 Context.MODE_PRIVATE);
         locationarea = sharedPreferences1.getString("locationarea", "");
         searchinstitute = sharedPreferences1.getString("InstituteName", "");
+        Log.i("Name",searchinstitute);
 
 
 
@@ -92,14 +93,15 @@ public class ViewFragmentInstitute extends Fragment {
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                if(response.length()>=0){
+                Log.i("View", String.valueOf(response));
+                if(response.length()<=0){
 
                     txt_nodata.setVisibility(View.VISIBLE);
                     Toast.makeText(getContext(),"No Teachers Available",Toast.LENGTH_LONG).show();
                 }
                 else{
 
-                    Log.i("View", String.valueOf(response));
+
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<View_List>>() {}.getType();
                     adapter = new ViewAdapterInstitute(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));

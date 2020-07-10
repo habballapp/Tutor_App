@@ -103,10 +103,6 @@ public class SignIn extends AppCompatActivity {
     }
 
 
-
-
-
-
     private void Login() throws JSONException {
 
         StringRequest sr = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
