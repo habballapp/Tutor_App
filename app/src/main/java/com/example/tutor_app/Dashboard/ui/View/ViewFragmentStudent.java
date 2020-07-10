@@ -80,8 +80,8 @@ public class ViewFragmentStudent extends Fragment {
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("SearchData",
                 Context.MODE_PRIVATE);
-        locationarea = sharedPreferences1.getString("area", "");
-       // searchchildren = sharedPreferences1.getString("searchchildren", "");
+        locationarea = sharedPreferences1.getString("locationarea", "");
+        searchchildren = sharedPreferences1.getString("searchchildren", "");
 
 
 
@@ -115,7 +115,6 @@ public class ViewFragmentStudent extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
 
                 error.printStackTrace();
             }

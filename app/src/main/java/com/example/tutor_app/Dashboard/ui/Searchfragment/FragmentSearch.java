@@ -200,6 +200,7 @@ public class FragmentSearch extends Fragment {
         userid = sharedPreferences1.getString("userid", "");
         Log.i("Id",userid);
         map.put("userid",userid);
+        Log.i("ID", String.valueOf(map));
 
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
             @Override

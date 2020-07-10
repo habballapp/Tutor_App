@@ -64,6 +64,8 @@ public class TeacherViewStudent extends Fragment {
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
 
+        txt_nodata.setText("No Student Available");
+
 
         try {
             ViewStudent();
@@ -107,7 +109,7 @@ public class TeacherViewStudent extends Fragment {
                 if(response.length() <= 0){
 
                     txt_nodata.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(),"No Teachers Available",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"No Student Available",Toast.LENGTH_LONG).show();
 
                 }
                 else{
