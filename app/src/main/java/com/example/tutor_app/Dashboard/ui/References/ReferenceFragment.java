@@ -201,19 +201,6 @@ public class ReferenceFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String rname = name.getText().toString().trim();
-                String rname1 = name1.getText().toString().trim();
-                String rletaion = edt_relation.getText().toString().trim();
-                String relation1 = edt_relation1.getText().toString().trim();
-                String roccupation = edt_occupation_ref.getText().toString().trim();
-                String roccupation1 = edt_occupation1.getText().toString().trim();
-                String rphone = edt_telephone.getText().toString().trim();
-                String rphone1 = edt_telephone1.getText().toString().trim();
-
-//                if (!(rname1 == null) || !((relation1) == null) ||
-//                        !(relation1 == null) || !(roccupation1 == null)
-//                         !(edt_grade1 == null))
-
 
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG);
                 try {
@@ -368,12 +355,11 @@ public class ReferenceFragment extends Fragment {
         map.put("ref1Occupation", edt_occupation);
         map.put("ref1TelephoneNo", edt_telephone.getText());
         map.put("ref1Relation", edt_relation.getText());
-        map.put("ref2Name", "");
-        map.put("ref2Relation", "");
-        map.put("ref2Name", "");
-        map.put("ref2Occupation", "");
-        map.put("ref2TelephoneNo", "");
-        map.put("re2Relation", "");
+        map.put("ref2Name", name1.getText());
+        map.put("ref2Relation", edt_relation1.getText());
+        map.put("ref2Occupation", edt_occupation1.getText());
+        map.put("ref2TelephoneNo", edt_telephone.getText());
+       
 
 
         Log.i("mapAddress", String.valueOf(map));
@@ -395,20 +381,7 @@ public class ReferenceFragment extends Fragment {
                 }
 
 
-//                    if(response != null && !response.isEmpty()){
 
-//                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
-//                        try {
-//                            JSONObject obj = new JSONObject(response);
-//                            Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-
-//                    }
-//                    else
-//                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
 
             }
 
@@ -427,38 +400,7 @@ public class ReferenceFragment extends Fragment {
                 return map;
             }
 
-//                @Override
-//                public String getBodyContentType() {
-//                    return "json";
-//                }
-//
-//                @Override
-//                protected Map<String, String> getParams() throws AuthFailureError {
-//                    Map<String, String> map = new HashMap<>();
-//                    map.put("'name'", "'"+name+"'");
-//                    map.put("fathername", fathername);
-//                    map.put("email", email);
-//                    map.put("class", classes);
-//                    map.put("subjects", subjects);
-//                    map.put("contactno1", contactno1);
-//                    map.put("contactno2", contactno2);
-//                    map.put("contactno3", contactno3);
-//                    map.put("schoolcollege", schoolcollege);
-//                    map.put("housenum",edt_house_number.getText().toString());
-//                    map.put("buildingname",edt_bno.getText().toString());
-//                    map.put("streetnum",edt_street.getText().toString());
-//                    map.put("blocknum",edt_block.getText().toString());
-//                    map.put("area",edt_area.getText().toString());
-//                    map.put("city",edt_city.getText().toString());
-//                    map.put("country",edt_country.getText().toString());
-//                    map.put("gender",spinner_gender);
-//                    map.put("desiredtiming",spinner_timings);
-//                    map.put("userid",userid);
-//
-//                    Log.i("AddressClassDebug", String.valueOf(map));
-//
-//                    return map;
-//                }
+
         };
         
         Volley.newRequestQueue(getContext()).add(sr);
