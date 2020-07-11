@@ -4,6 +4,8 @@
     <string name="email1">Email</string>
     <string name="user">UserName</string>
     <string name="password">Password</string>
+    <string name="Npassword">New Password</string>
+    <string name="Cpassword">Confirm Password</string>
     <string name="address">Address</string>
     <string name="contact">Contact No</string>
 
