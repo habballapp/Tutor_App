@@ -113,12 +113,20 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                                     Context.MODE_PRIVATE);
                             userid = sharedPreferences1.getString("userid", "");
+                            Log.i("ID",userid);
 
-                            SharedPreferences personal_profile = getSharedPreferences("LoginData",
+                            SharedPreferences personal_profile = getSharedPreferences("ViewData",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileTeacher = personal_profile.edit();
-                            profileTeacher.putString("userid",userid);
-                            Log.i("ID",userid);
+                            profileTeacher.putString("UserId",userid);
+                            profileTeacher.apply();
+
+                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+userid, Toast.LENGTH_SHORT).show();
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher());
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
 
                         }
                         else if (id == 2) {

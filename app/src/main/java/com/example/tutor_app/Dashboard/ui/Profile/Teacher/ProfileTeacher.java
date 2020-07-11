@@ -58,6 +58,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private static final int REQUEST_CAMERA = 2;
     private static final int SELECT_FILE = 1;
     private List<String> gender,catogery;
+    String Url = " ";
+    String userid;
 
     private Spinner teacher_profession,spinner_conveyance,spinner1,spinner_catogery;
  //   private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
@@ -218,6 +220,13 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         catogery.add("Home Tution");
         catogery.add("Tution Job");
         catogery.add("Both");
+
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("UserId", "");
+
+        //Teacher Id:
+        Log.i("TeacherID",userid);
 
 
         final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
