@@ -26,9 +26,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Teacher;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Institute;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
+import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Teacher;
 import com.example.tutor_app.ForgetPassword.Forget_Password;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
@@ -39,7 +39,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -77,9 +76,23 @@ public class SignIn extends AppCompatActivity {
 
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
+        edt_email.setText(loginPreferences.getString("username", ""));
+        edt_password.setText(loginPreferences.getString("password", ""));
 
         btn_signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                if (txt_checkbox.isChecked()) {
+                    loginPrefsEditor.putBoolean("saveLogin", true);
+                    loginPrefsEditor.putString("username", username);
+                    loginPrefsEditor.putString("password", password);
+
+                    loginPrefsEditor.commit();
+                } else {
+                    loginPrefsEditor.clear();
+                    loginPrefsEditor.commit();
+                }
+
                 String mEmail = edt_email.getText().toString().trim();
                 String mPassword = edt_password.getText().toString().trim();
                 if (!mEmail.isEmpty() || !mPassword.isEmpty()) {
@@ -99,41 +112,7 @@ public class SignIn extends AppCompatActivity {
         });
 
 
-        txt_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                saveLogin = loginPreferences.getBoolean("saveLogin", false);
-                if (saveLogin == true) {
-                    edt_email.setText(loginPreferences.getString("username", ""));
-                    edt_password.setText(loginPreferences.getString("password", ""));
-                    txt_checkbox.setChecked(true);
-                    loginPrefsEditor.apply();
-                }
-                if (isChecked) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(edt_email.getWindowToken(), 0);
-
-                    username = edt_email.getText().toString();
-                    password = edt_password.getText().toString();
-
-                    Log.i("username", username);
-                    Log.i("password", password);
-
-                    if (txt_checkbox.isChecked()) {
-                        loginPrefsEditor.putBoolean("saveLogin", true);
-                        loginPrefsEditor.putString("username", username);
-                        loginPrefsEditor.putString("password", password);
-
-                        loginPrefsEditor.commit();
-                    } else {
-                        loginPrefsEditor.clear();
-                        loginPrefsEditor.commit();
-                    }
-                }
-
-            }
-        });
+       
 
         txt_password.setOnClickListener(new View.OnClickListener() {
             @Override
