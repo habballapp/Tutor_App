@@ -169,7 +169,7 @@ public class InstituteFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (!(String.valueOf(edt_other.getText()) == null)) {
+                if (!(String.valueOf(edt_other.getText()).equals(""))) {
                     profileInstitute.putString("IfInstituteOther", String.valueOf(edt_other.getText()));
                 } else {
                     profileInstitute.putString("IfInstituteOther", " ");
@@ -234,15 +234,42 @@ public class InstituteFragment extends Fragment {
                 contact_person.setEnabled(false);
                 contact_person.setTextColor(getResources().getColor(R.color.text_color_selection));
 
+                adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, itype) {
+
+                    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                        // TODO Auto-generated method stub
+                        View view = super.getView(position, convertView, parent);
+                        TextView text = (TextView) view.findViewById(android.R.id.text1);
+                        text.setTextColor(getResources().getColor(R.color.transparent_color));
+                        text.setTextSize((float) 13.6);
+                        text.setPadding(30, 0, 30, 0);
+
+                        return view;
+                    }
+
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        // TODO Auto-generated method stub
+                        View view = super.getView(position, convertView, parent);
+                        TextView text = (TextView) view.findViewById(android.R.id.text1);
+                        text.setTextColor(getResources().getColor(R.color.white_color));
+                        text.setTextSize((float) 13.6);
+                        text.setPadding(30, 0, 30, 0);
+                        return view;
+                    }
+                };
+
+                spinner_type.setAdapter(adapter1);
+
 
                 try {
-                    edt_institutename.setText(response.getString("StudentName"));
-                    spinner_type_textview.setText(response.getString("FatherName"));
+                    edt_institutename.setText(response.getString("InstituteName"));
+                    spinner_type_textview.setText(response.getString("TypeOfInstitute"));
                     edt_phone1.setText(response.getString("ContactNo1"));
                     edt_phone2.setText(response.getString("ContactNo2"));
                     edt_phone3.setText(response.getString("ContactNo3"));
-                    edt_email.setText(response.getString("StudentEmail"));
-                    contact_person.setText(response.getString("StudentEmail"));
+                    edt_email.setText(response.getString("Email"));
+                    contact_person.setText(response.getString("ContactPerson"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
