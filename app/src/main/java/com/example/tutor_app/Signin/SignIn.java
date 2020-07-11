@@ -142,9 +142,6 @@ public class SignIn extends AppCompatActivity {
                         else if(obj.getString("userrole").equals("Institute")){
                             getInstituteData();
                             getJob();
-                            Toast.makeText(SignIn.this, "Institute", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Institute.class);
-                            startActivity(intent);
 
                         }
 
@@ -209,24 +206,21 @@ public class SignIn extends AppCompatActivity {
                         JSONObject obj = new JSONObject(response.getString(i));
                         institute.add("\t\t\t" + obj.getString("Name"));
                         intituteMap.put(obj.getString("Name"), obj.getString("Id"));
-
-                        // childsMap.put(obj.getString("StudentName"), obj.getString("Id"));
-
-
-                        Gson gson = new Gson();
-                        SharedPreferences personal_profile = getSharedPreferences("LoginData",
-                                Context.MODE_PRIVATE);
-                        final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                        profileStudent.putString("institute",gson.toJson(institute));
-                        profileStudent.putString("instituteMap",gson.toJson(intituteMap));
-                        profileStudent.apply();
-                        Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Institute.class);
-                        startActivity(intent);
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
+
+                Gson gson = new Gson();
+                SharedPreferences personal_profile = getSharedPreferences("LoginData",
+                        Context.MODE_PRIVATE);
+                final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                profileStudent.putString("institute",gson.toJson(institute));
+                profileStudent.putString("instituteMap",gson.toJson(intituteMap));
+                profileStudent.apply();
+                Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Institute.class);
+                startActivity(intent);
+
                 Log.i("Institute22", String.valueOf(institute));
                 Log.i("Institute32", String.valueOf(intituteMap));
 
