@@ -6,6 +6,7 @@
     <color name="green_color">#96bb3d</color>
     <color name="blue_color">#0000ff</color>
     <color name="white_color">#ffffff</color>
+    <color name="transparent_color">#00ffffff</color>
     <color name="box_stroke">#C7C8CA</color>
     <color name="layout_color">#B22222</color>
     <color name="navy_blue"> #000080</color>

@@ -71,13 +71,14 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("userid", "");
         Gson gson = new Gson();
-        Type type = new TypeToken<List<String>>(){}.getType();
-        Type typeMap = new TypeToken<Map<String, String>>(){}.getType();
+        Type type = new TypeToken<List<String>>() {
+        }.getType();
+        Type typeMap = new TypeToken<Map<String, String>>() {
+        }.getType();
         institute = gson.fromJson(sharedPreferences1.getString("institute", ""), type);
         intituteMap = gson.fromJson(sharedPreferences1.getString("instituteMap", ""), typeMap);
-        Log.i("Id",userid);
+        Log.i("Id", userid);
         Log.i("Id", String.valueOf(intituteMap));
-
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -125,31 +126,29 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (id == 0) {
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
-                        }
-                        else if (id == 1) {
+                        } else if (id == 1) {
 
-                        }
-                        else if (id == 2) {
+                        } else if (id == 2) {
 
                             SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
-                            profileInstitute1.putString("UserId","");
+                            profileInstitute1.putString("UserId", "");
                             profileInstitute1.putString("ViewProfileData", "");
                             profileInstitute1.apply();
 
                             SharedPreferences personal_profile = getSharedPreferences("UserId",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                            profileStudent.putString("UserId","");
+                            profileStudent.putString("UserId", "");
                             profileStudent.apply();
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
@@ -160,17 +159,17 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
                             SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
-                            final SharedPreferences.Editor  profileInstitute1 = institute_profile1.edit();
-                            profileInstitute1.putString("UserId","");
+                            final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
+                            profileInstitute1.putString("UserId", "");
                             profileInstitute1.putString("ViewProfileData", "");
                             profileInstitute1.apply();
 
                             SharedPreferences personal_profile = getSharedPreferences("UserId",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                            profileStudent.putString("UserId",userid);
+                            profileStudent.putString("UserId", userid);
                             profileStudent.apply();
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
@@ -178,9 +177,8 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
 
-                        }
-                        else if (id == 4) {
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                        } else if (id == 4) {
+                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             Log.i("Make Payment", "Make Payment Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
@@ -188,52 +186,48 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
-                        }
-                        else if (id == 5) {
+                        } else if (id == 5) {
 
                             Intent intent = new Intent(Dashboard_Drawer_Institute.this, SignIn.class);
                             startActivity(intent);
                         }
 
 
-
                         return false;
                     }
                 }).
                 addOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                navigationExpandableListView.setSelected(groupPosition, childPosition);
-                if (groupPosition == 1) {
-                    String selectedInstitute = institute.get(childPosition).replaceAll("\t\t\t", "");
-                    String selectedInstituteId = intituteMap.get(selectedInstitute);
+                    @Override
+                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                        navigationExpandableListView.setSelected(groupPosition, childPosition);
+                        if (groupPosition == 1) {
+                            String selectedInstitute = institute.get(childPosition).replaceAll("\t\t\t", "");
+                            String selectedInstituteId = intituteMap.get(selectedInstitute);
 
-                    SharedPreferences personal_profile = getSharedPreferences("ViewProfile",
-                            Context.MODE_PRIVATE);
-                    final SharedPreferences.Editor profileInstitute = personal_profile.edit();
-                    profileInstitute.putString("UserId",selectedInstituteId);
-                    profileInstitute.apply();
+                            SharedPreferences personal_profile = getSharedPreferences("ViewProfile",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileInstitute = personal_profile.edit();
+                            profileInstitute.putString("UserId", selectedInstituteId);
+                            profileInstitute.apply();
 
-                    Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
-                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                    fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
-                    fragmentTransaction.commit();
-                    drawer.closeDrawer(GravityCompat.START);
+                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
 
-                    Toast.makeText(Dashboard_Drawer_Institute.this, selectedInstituteId, Toast.LENGTH_LONG).show();
-                    // drawer.closeDrawer(GravityCompat.START);
-                }
+                            Toast.makeText(Dashboard_Drawer_Institute.this, selectedInstituteId, Toast.LENGTH_LONG).show();
+                            // drawer.closeDrawer(GravityCompat.START);
+                        }
 
-                drawer.closeDrawer(GravityCompat.START);
-                return false;
-            }
-        });
+                        drawer.closeDrawer(GravityCompat.START);
+                        return false;
+                    }
+                });
 
 
         navigationExpandableListView.setSelected(0);
-
-
 
 
     }
@@ -251,7 +245,6 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 
 
 }

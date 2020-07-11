@@ -91,6 +91,17 @@
                     android:drawableLeft="@drawable/ic_work_black_24dp"
                     android:theme="@style/EditText"
                     >
+                    <TextView
+                        android:id="@+id/spinner_type_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_type_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
 
                     <Spinner
                         android:id="@+id/spinner_type"
@@ -102,6 +113,7 @@
                         />
 
                     <ImageView
+                        android:id="@+id/spinner_type_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_type"
