@@ -136,6 +136,7 @@ public class SignIn extends AppCompatActivity {
                         }
                         else if(obj.getString("userrole").equals("Teacher")){
 
+
                             Toast.makeText(SignIn.this, "Teacher", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Teacher.class);
                             startActivity(intent);
@@ -189,6 +190,7 @@ public class SignIn extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(sr);
     }
+
 
     private void getJob() throws JSONException {
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
