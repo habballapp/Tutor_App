@@ -70,11 +70,6 @@ public class InstituteFragment extends Fragment {
         viewProfile_userid = sharedPreferences2.getString("UserId", "");
         Log.i("UserId", userid);
 
-        if (!viewProfile_userid.equals("")) {
-            viewProfile();
-        } else if (!userid.equals("")) {
-            getProfileData();
-        }
 
         itype = new ArrayList<>();
         itype.add("Type of Institute");
@@ -156,6 +151,12 @@ public class InstituteFragment extends Fragment {
 
             }
         });
+
+        if (!viewProfile_userid.equals("")) {
+            viewProfile();
+        } else if (!userid.equals("")) {
+            getProfileData();
+        }
 
 //
 //        if (!viewProfile_userid.equals("")) {
@@ -252,7 +253,7 @@ public class InstituteFragment extends Fragment {
                         // TODO Auto-generated method stub
                         View view = super.getView(position, convertView, parent);
                         TextView text = (TextView) view.findViewById(android.R.id.text1);
-                        text.setTextColor(getResources().getColor(R.color.white_color));
+                        text.setTextColor(getResources().getColor(R.color.transparent_color));
                         text.setTextSize((float) 13.6);
                         text.setPadding(30, 0, 30, 0);
                         return view;
@@ -304,8 +305,8 @@ public class InstituteFragment extends Fragment {
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
                 Context.MODE_PRIVATE);
 
-        int selectionPosition = adapter1.getPosition(sharedPreferences2.getString("TypeOfInstitute", ""));
-        spinner_type.setSelection(selectionPosition);
+//        int selectionPosition = adapter1.getPosition(sharedPreferences2.getString("TypeOfInstitute", ""));
+//        spinner_type.setSelection(selectionPosition);
         edt_institutename.setText(sharedPreferences2.getString("InstituteName", ""));
         edt_phone1.setText(sharedPreferences2.getString("ContactNo1", ""));
         edt_phone2.setText(sharedPreferences2.getString("ContactNo2", ""));

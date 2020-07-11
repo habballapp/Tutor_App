@@ -26,9 +26,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/logo"
-                    >
-                </ImageView>
+                    android:background="@drawable/logo"></ImageView>
 
             </LinearLayout>
 
@@ -47,8 +45,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:textAllCaps="true"
                     android:text="Institution Information"
+                    android:textAllCaps="true"
                     android:theme="@style/TextStyle"
 
                     />
@@ -74,15 +72,14 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_home_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/address"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/address"
                     android:theme="@style/EditText" />
-
 
 
                 <EditText
@@ -91,13 +88,13 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/sno"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/sno"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -106,13 +103,13 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
 
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/blockno"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/blockno"
                     android:theme="@style/EditText" />
 
                 <RelativeLayout
@@ -123,22 +120,33 @@
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:theme="@style/EditText"
-                    >
+                    android:theme="@style/EditText">
 
 
                     />
+
+                    <TextView
+                        android:id="@+id/spinner_area_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_area_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
 
                     <Spinner
                         android:id="@+id/spinner_edt_area"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:dropDownWidth="match_parent"
                         android:background="@null"
-                        android:popupBackground="@drawable/popupbackground"
-                        />
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/popupbackground" />
 
                     <ImageView
+                        android:id="@+id/spinner_area_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_edt_area"
@@ -155,13 +163,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/city"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/city"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -169,16 +177,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/country"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/country"
                     android:theme="@style/EditText" />
-
-
 
 
                 <RelativeLayout
@@ -189,22 +195,33 @@
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:theme="@style/EditText"
-                    >
+                    android:theme="@style/EditText">
 
 
                     />
+
+                    <TextView
+                        android:id="@+id/spinner_gender_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_gender_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
 
                     <Spinner
                         android:id="@+id/spinner_gender"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:dropDownWidth="match_parent"
                         android:background="@null"
-                        android:popupBackground="@drawable/popupbackground"
-                        />
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/popupbackground" />
 
                     <ImageView
+                        android:id="@+id/spinner_gender_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_gender"
@@ -224,16 +241,28 @@
                     android:background="@drawable/editbox"
                     android:theme="@style/EditText">
 
+                    <TextView
+                        android:id="@+id/spinner_timings_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_timings_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
+
                     <Spinner
                         android:id="@+id/spinner_timings"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:dropDownWidth="match_parent"
                         android:background="@null"
-                        android:popupBackground="@drawable/popupbackground"
-                        />
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/popupbackground" />
 
                     <ImageView
+                        android:id="@+id/spinner_timings_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_timings"
@@ -253,11 +282,11 @@
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/conveyance_type"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/conveyance_type"
-                    android:visibility="gone"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <RelativeLayout
@@ -265,9 +294,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln_login"
-                android:layout_marginTop="40dp"
                 android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp"
 
                 >
 
@@ -275,9 +305,9 @@
                     android:id="@+id/txt_fees"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextStyle"
                     android:paddingLeft="110dp"
-                    android:text="SALARY" />
+                    android:text="SALARY"
+                    android:theme="@style/TextStyle" />
 
                 <LinearLayout
                     android:id="@+id/amount_filter_rl"
@@ -286,8 +316,7 @@
                     android:layout_below="@+id/txt_fees"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/amount_filter1"
@@ -313,10 +342,10 @@
                             android:id="@+id/et_amount1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="5dp"
                             android:layout_weight="0.5"
                             android:background="@android:color/transparent"
                             android:inputType="number"
+                            android:paddingLeft="5dp"
                             android:textColor="#676A6C"
                             android:textColorHint="#676A6C"
                             android:textSize="14sp" />
@@ -382,7 +411,6 @@
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_round"
@@ -401,14 +429,12 @@
                     android:theme="@style/ButtonTextRound" />
 
 
-
             </RelativeLayout>
 
 
         </RelativeLayout>
 
     </ScrollView>
-
 
 
 </FrameLayout>
