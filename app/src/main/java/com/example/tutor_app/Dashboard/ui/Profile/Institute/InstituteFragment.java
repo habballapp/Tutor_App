@@ -38,7 +38,7 @@ public class InstituteFragment extends Fragment {
     private FragmentTransaction fragmentTransaction;
     private EditText edt_institutename,edt_phone1,edt_phone2,edt_phone3,edt_email,contact_person,edt_other;
     private String Filter_selected = "";
-    String userid;
+    String userid,viewProfile_userid;
     ArrayAdapter<String> adapter1;
 
 
@@ -77,6 +77,13 @@ public class InstituteFragment extends Fragment {
         SharedPreferences institute_profile = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileInstitute = institute_profile.edit();
+
+
+        SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("ViewProfile",
+                Context.MODE_PRIVATE);
+        viewProfile_userid = sharedPreferences2.getString("UserId", "");
+        Log.i("UserId", userid);
+        Log.i("ProfileId", viewProfile_userid);
 
         spinner_type = root.findViewById(R.id.spinner_type);
          adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, itype) {
@@ -134,7 +141,9 @@ public class InstituteFragment extends Fragment {
         });
 
 
-        if (!userid.equals("")) {
+        if (! viewProfile_userid.equals("")) {
+            viewProfile();
+        }else if (!userid.equals("")) {
             getProfileData();
 
         }
@@ -167,6 +176,11 @@ public class InstituteFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void viewProfile() {
+
+
     }
 
     private void getProfileData() {
