@@ -49,9 +49,12 @@ public class SignIn extends AppCompatActivity {
     private EditText edt_email, edt_password;
     private String URL_LOGIN = "http://pci.edusol.co/Login/login_data.php";
     String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
+    String Url_Institute = "http://pci.edusol.co/InstitutePortal/searchjobsApi.php";
     private String userid = "";
     private List<String> childs = new ArrayList<>();
     private Map<String, String> childMap = new HashMap<>();
+    private List<String> institute = new ArrayList<>();
+    private Map<String, String> intituteMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +141,7 @@ public class SignIn extends AppCompatActivity {
                         }
                         else if(obj.getString("userrole").equals("Institute")){
                             getInstituteData();
-
+                            getJob();
                             Toast.makeText(SignIn.this, "Institute", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Institute.class);
                             startActivity(intent);
@@ -188,6 +191,68 @@ public class SignIn extends AppCompatActivity {
         requestQueue.add(sr);
     }
 
+    private void getJob() throws JSONException {
+        SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("userid", "");
+        Log.i("Id",userid);
+        JSONObject map = new JSONObject();
+        map.put("userid",userid);
+
+        MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url_Institute, map, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.i("Institute", String.valueOf(response));
+                institute = new ArrayList<>();
+                for(int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject obj = new JSONObject(response.getString(i));
+                        institute.add("\t\t\t" + obj.getString("Name"));
+                        intituteMap.put(obj.getString("Name"), obj.getString("Id"));
+
+                        // childsMap.put(obj.getString("StudentName"), obj.getString("Id"));
+
+
+                        Gson gson = new Gson();
+                        SharedPreferences personal_profile = getSharedPreferences("LoginData",
+                                Context.MODE_PRIVATE);
+                        final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                        profileStudent.putString("institute",gson.toJson(institute));
+                        profileStudent.putString("instituteMap",gson.toJson(intituteMap));
+                        profileStudent.apply();
+                        Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Institute.class);
+                        startActivity(intent);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.i("Institute22", String.valueOf(institute));
+                Log.i("Institute32", String.valueOf(intituteMap));
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
+        };
+        Volley.newRequestQueue(getApplication()).add(sr);
+
+
+
+    }
+
     private void getChildren() {
 
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
@@ -203,11 +268,7 @@ public class SignIn extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        try {
-            map.put("userid",userid);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
             @Override

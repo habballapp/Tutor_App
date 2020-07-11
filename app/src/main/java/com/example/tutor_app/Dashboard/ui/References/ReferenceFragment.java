@@ -359,7 +359,7 @@ public class ReferenceFragment extends Fragment {
         map.put("ref2Relation", edt_relation1.getText());
         map.put("ref2Occupation", edt_occupation1.getText());
         map.put("ref2TelephoneNo", edt_telephone.getText());
-       
+
 
 
         Log.i("mapAddress", String.valueOf(map));

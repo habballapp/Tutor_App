@@ -142,6 +142,17 @@
 
                     />
 
+                    <TextView
+                        android:id="@+id/spinner_area_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_area_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
                     <Spinner
                         android:id="@+id/spinner_area"
                         android:layout_width="match_parent"
@@ -152,6 +163,7 @@
                         />
 
                     <ImageView
+                        android:id="@+id/spinner_area_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_area"
@@ -230,6 +242,17 @@
 
                         />
 
+                    <TextView
+                        android:id="@+id/spinner_gender_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_gender_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
                     <Spinner
                         android:id="@+id/spinner_gender"
                         android:layout_width="match_parent"
@@ -240,6 +263,7 @@
                         />
 
                     <ImageView
+                        android:id="@+id/spinner_gender_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_gender"
@@ -255,10 +279,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:theme="@style/EditText">
 
+                    <TextView
+                        android:id="@+id/spinner_timings_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_timings_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
                     <Spinner
                         android:id="@+id/spinner_timings"
                         android:layout_width="match_parent"
@@ -269,6 +305,7 @@
                         />
 
                     <ImageView
+                        android:id="@+id/spinner_timings_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_timings"
@@ -306,7 +343,6 @@
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_round"

@@ -94,8 +94,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
             headerModel.addChildModel(new ChildModel(childs.get(i)));
         navigationExpandableListView.addHeaderModel(headerModel);
 
-
-
         Log.i("Child11", String.valueOf(childs));
 
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
@@ -104,19 +102,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         );
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
-//        navigationExpandableListView.addHeaderModel(
-//                new HeaderModel("Payment")
-////                                  .addChildModel(new ChildModel("\tPayments Summary"))
-//                        .addChildModel(new ChildModel("\tConsolidate Payments"))
-//                        .addChildModel(new ChildModel("\tMake Payment"))
-//                        .addChildModel(new ChildModel("\tPayment Ledger"))
-//                        .addChildModel(new ChildModel("\tProof of Payments"))
-//
-//        );
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Profile"));
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Support"));
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
-//                .addHeaderModel(new HeaderModel("\n\n\n\nTerms And Conditions"))
+
         navigationExpandableListView.build()
                 .addOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                     @Override
@@ -133,14 +119,16 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
-//                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.nav_host_fragment, new ProfileStudent());
-////                          fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
+
                         }
                         else if (id == 2) {
+
+                            SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileStudent1 = personal_profile1.edit();
+                            profileStudent1.putString("UserId","");
+                            profileStudent1.putString("ViewProfileData", "");
+                            profileStudent1.apply();
 
                             SharedPreferences personal_profile = getSharedPreferences("UserId",
                                     Context.MODE_PRIVATE);
@@ -156,7 +144,12 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
                         } else if (id == 3) {
-
+                            SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileStudent1 = personal_profile1.edit();
+                            profileStudent1.putString("UserId","");
+                            profileStudent1.putString("ViewProfileData", "");
+                            profileStudent1.apply();
 
                             SharedPreferences personal_profile = getSharedPreferences("UserId",
                                     Context.MODE_PRIVATE);
@@ -188,59 +181,40 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             startActivity(intent);
 
                         }
-//                        else if (id == 4) {
-//                            Log.i("Profile", "Profile Activity");
-////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-////                            fragmentTransaction.replace(R.id.main_container_ret, new Profile_Tabs()).addToBackStack("tag");
-////                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        } else if (id == 5) {
-////                            Log.i("Support", "Support Activity");
-////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-////                            fragmentTransaction.replace(R.id.main_container_ret, new SupportFragment()).addToBackStack("tag");
-////                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-////                        } else if (NavList.contains("Logout") && NavList.indexOf("Logout") == id) {
-//
-////                            Intent dashboard = new Intent(RetailorDashboard.this, RetailerLogin.class);
-////                            startActivity(dashboard);
-//                            Intent intent = new Intent(Dashboard_Drawer.this, SignIn.class);
-//                            startActivity(intent);
-//                            finish();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        }
+
 
                         return false;
                     }
+                })
+                .addOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                    @Override
+                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                        navigationExpandableListView.setSelected(groupPosition, childPosition);
+                        if (groupPosition == 1) {
+                            String selectedChild = childs.get(childPosition).replaceAll("\t\t\t", "");
+                            String selectedChildId = childMap.get(selectedChild);
+
+                            SharedPreferences personal_profile = getSharedPreferences("ViewProfile",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                            profileStudent.putString("UserId",selectedChildId);
+                            profileStudent.apply();
+
+                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
+
+                            Toast.makeText(Dashboard_Drawer_Student.this, selectedChildId, Toast.LENGTH_LONG).show();
+                           // drawer.closeDrawer(GravityCompat.START);
+                        }
+
+                        drawer.closeDrawer(GravityCompat.START);
+                        return false;
+                    }
                 });
-//                .addOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-//                    @Override
-//                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//                        navigationExpandableListView.setSelected(groupPosition, childPosition);
-//                        if (groupPosition == 3 && childPosition == 0) {
-//                            Log.i("Payments Summary", "Child");
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new Payment_Summary()).addToBackStack("tag");
-//                            ;
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        } else if (groupPosition == 3 && childPosition == 1) {
-//                            Log.i("Payment Request", "Child");
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new CreatePaymentRequestFragment()).addToBackStack(null);
-//                            ;
-//                            fragmentTransaction.commit();
-//                        } else if (groupPosition == 2 && childPosition == 0) {
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new PlaceOrderFragment()).addToBackStack("tag");
-//                            ;
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        }
-//                        drawer.closeDrawer(GravityCompat.START);
-//                        return false;
-//                    }
-//                });
 
         navigationExpandableListView.setSelected(0);
 

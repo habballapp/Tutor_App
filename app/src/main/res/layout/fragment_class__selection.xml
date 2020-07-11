@@ -81,7 +81,17 @@
                 android:drawableLeft="@drawable/ic_work_black_24dp"
                 android:theme="@style/EditText"
                 >
-
+                <TextView
+                    android:id="@+id/spinner_class_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_toLeftOf="@+id/spinner_class_imageview"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30dp"
+                    android:visibility="gone"
+                    android:background="@null"
+                    android:paddingStart="30dp" />
                 <Spinner
                     android:id="@+id/spinner_class"
                     android:layout_width="match_parent"
@@ -92,6 +102,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/spinner_class_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignTop="@id/spinner_class"
@@ -111,17 +122,28 @@
                 android:layout_weight="1"
                 android:background="@drawable/editbox"
                 android:theme="@style/EditText">
-
+                <TextView
+                    android:id="@+id/spinner_subject_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/spinner_subject_imageview"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30dp"
+                    android:visibility="gone"
+                    android:background="@null"
+                    android:paddingStart="30dp" />
                 <Spinner
                     android:id="@+id/spinner_subject"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="55dp"
                     android:dropDownWidth="match_parent"
                     android:background="@null"
                     android:popupBackground="@drawable/popupbackground"
                     />
 
                 <ImageView
+                    android:id="@+id/spinner_subject_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignTop="@id/spinner_subject"

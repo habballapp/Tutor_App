@@ -172,6 +172,7 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
 
         return convertView;
     }
+
     private class ViewHolder {
         private TextView mTextView;
         private CheckBox mCheckBox;

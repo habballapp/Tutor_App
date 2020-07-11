@@ -31,9 +31,17 @@ import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
 import com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
@@ -43,6 +51,8 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
     private FragmentTransaction fragmentTransaction;
     private TextView footer_item_1;
     String userid;
+    private List<String> institute = new ArrayList<>();
+    private Map<String, String> intituteMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +70,15 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("userid", "");
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<String>>(){}.getType();
+        Type typeMap = new TypeToken<Map<String, String>>(){}.getType();
+        institute = gson.fromJson(sharedPreferences1.getString("institute", ""), type);
+        intituteMap = gson.fromJson(sharedPreferences1.getString("instituteMap", ""), typeMap);
         Log.i("Id",userid);
+        Log.i("Id", String.valueOf(intituteMap));
+
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -86,10 +104,12 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
 
-        navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
-                .addChildModel(new ChildModel("\tProfile1"))
-                .addChildModel(new ChildModel("\tProfile1"))
-        );
+        HeaderModel headerModel = new HeaderModel("View Profile");
+        for (int i = 0; i < institute.size(); i++)
+            headerModel.addChildModel(new ChildModel(institute.get(i)));
+        navigationExpandableListView.addHeaderModel(headerModel);
+
+        Log.i("Institute11", String.valueOf(institute));
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
         );
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Job")
@@ -97,19 +117,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
-//        navigationExpandableListView.addHeaderModel(
-//                new HeaderModel("Payment")
-////                                  .addChildModel(new ChildModel("\tPayments Summary"))
-//                        .addChildModel(new ChildModel("\tConsolidate Payments"))
-//                        .addChildModel(new ChildModel("\tMake Payment"))
-//                        .addChildModel(new ChildModel("\tPayment Ledger"))
-//                        .addChildModel(new ChildModel("\tProof of Payments"))
-//
-//        );
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Profile"));
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Support"));
-//        navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
-//                .addHeaderModel(new HeaderModel("\n\n\n\nTerms And Conditions"))
+
         navigationExpandableListView.build()
                 .addOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                     @Override
@@ -125,23 +133,17 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
-//                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteFragment());
-//                            fragmentTransaction.replace(R.id.container, new My_Network_Fragment()).addToBackStack("tag");
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
+
                         }
                         else if (id == 2) {
 
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new PlaceOrderFragment());
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.conainer, new Retailer_Place_Order()).addToBackStack("tag");
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
+                            SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
+                            profileInstitute1.putString("UserId","");
+                            profileInstitute1.putString("ViewProfileData", "");
+                            profileInstitute1.apply();
+
                             SharedPreferences personal_profile = getSharedPreferences("UserId",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileStudent = personal_profile.edit();
@@ -155,6 +157,13 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
                         } else if (id == 3) {
+
+                            SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor  profileInstitute1 = institute_profile1.edit();
+                            profileInstitute1.putString("UserId","");
+                            profileInstitute1.putString("ViewProfileData", "");
+                            profileInstitute1.apply();
 
                             SharedPreferences personal_profile = getSharedPreferences("UserId",
                                     Context.MODE_PRIVATE);
@@ -185,67 +194,48 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             Intent intent = new Intent(Dashboard_Drawer_Institute.this, SignIn.class);
                             startActivity(intent);
                         }
-//                        } else if (id == 5) {
-////                            Log.i("Support", "Support Activity");
-////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-////                            fragmentTransaction.replace(R.id.main_container_ret, new SupportFragment()).addToBackStack("tag");
-////                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-////                        } else if (NavList.contains("Logout") && NavList.indexOf("Logout") == id) {
-//
-////                            Intent dashboard = new Intent(RetailorDashboard.this, RetailerLogin.class);
-////                            startActivity(dashboard);
-//                            Intent intent = new Intent(Dashboard_Drawer.this, SignIn.class);
-//                            startActivity(intent);
-//                            finish();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        }
+
+
 
                         return false;
                     }
-                });
-//                .addOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-//                    @Override
-//                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//                        navigationExpandableListView.setSelected(groupPosition, childPosition);
-//                        if (groupPosition == 3 && childPosition == 0) {
-//                            Log.i("Payments Summary", "Child");
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new Payment_Summary()).addToBackStack("tag");
-//                            ;
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        } else if (groupPosition == 3 && childPosition == 1) {
-//                            Log.i("Payment Request", "Child");
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new CreatePaymentRequestFragment()).addToBackStack(null);
-//                            ;
-//                            fragmentTransaction.commit();
-//                        } else if (groupPosition == 2 && childPosition == 0) {
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new PlaceOrderFragment()).addToBackStack("tag");
-//                            ;
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        }
-//                        drawer.closeDrawer(GravityCompat.START);
-//                        return false;
-//                    }
-//                });
+                }).
+                addOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                navigationExpandableListView.setSelected(groupPosition, childPosition);
+                if (groupPosition == 1) {
+                    String selectedInstitute = institute.get(childPosition).replaceAll("\t\t\t", "");
+                    String selectedInstituteId = intituteMap.get(selectedInstitute);
+
+                    SharedPreferences personal_profile = getSharedPreferences("ViewProfile",
+                            Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor profileInstitute = personal_profile.edit();
+                    profileInstitute.putString("UserId",selectedInstituteId);
+                    profileInstitute.apply();
+
+                    Toast.makeText(Dashboard_Drawer_Institute.this, "selected"+id, Toast.LENGTH_SHORT).show();
+                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                    fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
+                    fragmentTransaction.commit();
+                    drawer.closeDrawer(GravityCompat.START);
+
+                    Toast.makeText(Dashboard_Drawer_Institute.this, selectedInstituteId, Toast.LENGTH_LONG).show();
+                    // drawer.closeDrawer(GravityCompat.START);
+                }
+
+                drawer.closeDrawer(GravityCompat.START);
+                return false;
+            }
+        });
+
 
         navigationExpandableListView.setSelected(0);
 
 
 
-//
-//
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_profile, R.id.nav_search,R.id.nav_profile_student)
-//                .setDrawerLayout(drawer)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
+
     }
 
     @Override
