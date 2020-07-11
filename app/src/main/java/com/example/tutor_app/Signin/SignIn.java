@@ -65,6 +65,8 @@ public class SignIn extends AppCompatActivity {
         txt_create = findViewById(R.id.txt_create);
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
+        edt_email.setText("noman@gmail.com");
+        edt_password.setText("12345");
         btn_signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String mEmail = edt_email.getText().toString().trim();
