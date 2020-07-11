@@ -130,7 +130,11 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 
                         }
                         else if (id == 2) {
-
+                            SharedPreferences personal_profile = getSharedPreferences("ViewData",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileTeacher = personal_profile.edit();
+                            profileTeacher.putString("UserId","");
+                            profileTeacher.apply();
                             Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
 

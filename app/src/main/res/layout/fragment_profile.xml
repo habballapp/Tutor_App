@@ -26,9 +26,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/logo"
-                    >
-                </ImageView>
+                    android:background="@drawable/logo"></ImageView>
 
             </LinearLayout>
 
@@ -47,8 +45,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:textAllCaps="true"
                     android:text="Personal Information"
+                    android:textAllCaps="true"
                     android:theme="@style/TextStyle"
 
                     />
@@ -76,9 +74,9 @@
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/fullname"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/fullname"
                     android:theme="@style/EditText" />
 
 
@@ -89,10 +87,11 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/fathername"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/fathername"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -102,12 +101,12 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/mothername"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/mothername"
                     android:theme="@style/EditText" />
-
 
 
                 <EditText
@@ -116,12 +115,13 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/age"
+                    android:inputType="number"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/age"
                     android:theme="@style/EditText" />
 
                 <RelativeLayout
@@ -132,22 +132,33 @@
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:theme="@style/EditText"
-                    >
+                    android:theme="@style/EditText">
 
 
                     />
+
+                    <TextView
+                        android:id="@+id/spinner_gender_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_gender_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
 
                     <Spinner
                         android:id="@+id/spinner_gender"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:dropDownWidth="match_parent"
                         android:background="@null"
-                        android:popupBackground="@drawable/popupbackground"
-                        />
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/popupbackground" />
 
                     <ImageView
+                        android:id="@+id/spinner_gender_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_gender"
@@ -166,22 +177,33 @@
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:theme="@style/EditText"
-                    >
+                    android:theme="@style/EditText">
 
 
                     />
+
+                    <TextView
+                        android:id="@+id/spinner_category_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_category_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
 
                     <Spinner
                         android:id="@+id/spinner_category"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:dropDownWidth="match_parent"
                         android:background="@null"
-                        android:popupBackground="@drawable/popupbackground"
-                        />
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/popupbackground" />
 
                     <ImageView
+                        android:id="@+id/spinner_category_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_category"
@@ -193,20 +215,19 @@
                 </RelativeLayout>
 
 
-
-<!--                <EditText-->
-<!--                    android:id="@+id/edt_occupation"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="55dp"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_weight="2"-->
-<!--                    android:background="@drawable/editbox"-->
-<!--                    android:drawableLeft="@drawable/ic_work_black_24dp"-->
-<!--                    android:drawablePadding="10dp"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:paddingLeft="30dp"-->
-<!--                    android:hint="@string/occupation"-->
-<!--                    android:theme="@style/EditText" />-->
+                <!--                <EditText-->
+                <!--                    android:id="@+id/edt_occupation"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="55dp"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:background="@drawable/editbox"-->
+                <!--                    android:drawableLeft="@drawable/ic_work_black_24dp"-->
+                <!--                    android:drawablePadding="10dp"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    android:paddingLeft="30dp"-->
+                <!--                    android:hint="@string/occupation"-->
+                <!--                    android:theme="@style/EditText" />-->
 
                 <EditText
                     android:id="@+id/edt_cnic"
@@ -214,13 +235,13 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/cnic"
+                    android:inputType="number"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/cnic"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -229,13 +250,13 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/paddress"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/paddress"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -244,36 +265,36 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/permanent_address"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/permanent_address"
                     android:theme="@style/EditText" />
 
-<!--                <EditText-->
-<!--                    android:id="@+id/edt_dob"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="55dp"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_weight="2"-->
-<!--                    android:inputType="text"-->
-<!--                    android:background="@drawable/editbox"-->
-<!--                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"-->
-<!--                    android:drawablePadding="10dp"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:paddingLeft="30dp"-->
-<!--                    android:hint="@string/dob"-->
-<!--                    android:theme="@style/EditText" />-->
+                <!--                <EditText-->
+                <!--                    android:id="@+id/edt_dob"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="55dp"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:inputType="text"-->
+                <!--                    android:background="@drawable/editbox"-->
+                <!--                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"-->
+                <!--                    android:drawablePadding="10dp"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    android:paddingLeft="30dp"-->
+                <!--                    android:hint="@string/dob"-->
+                <!--                    android:theme="@style/EditText" />-->
 
                 <LinearLayout
                     android:id="@+id/date_filter"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:layout_weight="1.125"
                     android:layout_marginTop="20dp"
+                    android:layout_weight="1.125"
                     android:background="@drawable/editbox"
                     android:paddingLeft="30dp"
                     android:paddingTop="10dp"
@@ -285,17 +306,17 @@
                         android:id="@+id/edt_dob"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
                         android:layout_weight="0.25"
+                        android:gravity="center_vertical"
                         android:text="DD-MM-YYYY" />
 
                     <ImageButton
                         android:id="@+id/first_date_btn"
                         android:layout_width="match_parent"
-                        android:gravity="center_vertical"
                         android:layout_height="match_parent"
                         android:layout_weight="1.75"
                         android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
                         android:src="@drawable/ic_date_range_black_24dp" />
                 </LinearLayout>
 
@@ -306,13 +327,13 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/nationality"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/nationality"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -321,36 +342,36 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="text"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/religion"
+                    android:inputType="text"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/religion"
                     android:theme="@style/EditText" />
 
-<!--                <EditText-->
-<!--                    android:id="@+id/edt_date_of_submission"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="55dp"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_weight="2"-->
-<!--                    android:inputType="number"-->
-<!--                    android:background="@drawable/editbox"-->
-<!--                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"-->
-<!--                    android:drawablePadding="10dp"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:paddingLeft="30dp"-->
-<!--                    android:hint="@string/dos"-->
-<!--                    android:theme="@style/EditText" />-->
+                <!--                <EditText-->
+                <!--                    android:id="@+id/edt_date_of_submission"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="55dp"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:inputType="number"-->
+                <!--                    android:background="@drawable/editbox"-->
+                <!--                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"-->
+                <!--                    android:drawablePadding="10dp"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    android:paddingLeft="30dp"-->
+                <!--                    android:hint="@string/dos"-->
+                <!--                    android:theme="@style/EditText" />-->
 
                 <LinearLayout
                     android:id="@+id/date_filter1"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:layout_weight="1.125"
                     android:layout_marginTop="20dp"
+                    android:layout_weight="1.125"
                     android:background="@drawable/editbox"
                     android:paddingLeft="30dp"
                     android:paddingTop="10dp"
@@ -362,17 +383,17 @@
                         android:id="@+id/edt_date_of_submission"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
                         android:layout_weight="0.25"
+                        android:gravity="center_vertical"
                         android:text="DD-MM-YYYY" />
 
                     <ImageButton
                         android:id="@+id/second_date_btn"
                         android:layout_width="match_parent"
-                        android:gravity="center_vertical"
                         android:layout_height="match_parent"
                         android:layout_weight="1.75"
                         android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
                         android:src="@drawable/ic_date_range_black_24dp" />
                 </LinearLayout>
 
@@ -382,13 +403,13 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/phone1"
+                    android:inputType="number"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/phone1"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -397,15 +418,14 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/phone2"
+                    android:inputType="number"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/phone2"
                     android:theme="@style/EditText" />
-
 
 
                 <EditText
@@ -417,9 +437,9 @@
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_mail_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/mail"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/mail"
                     android:theme="@style/EditText" />
 
 
@@ -431,8 +451,19 @@
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:theme="@style/EditText"
-                    >
+                    android:theme="@style/EditText">
+
+                    <TextView
+                        android:id="@+id/teacher_profession_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/teacher_profession_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
 
                     <Spinner
                         android:id="@+id/teacher_profession"
@@ -443,6 +474,7 @@
                         android:popupBackground="@drawable/popupbackground" />
 
                     <ImageView
+                        android:id="@+id/teacher_profession_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/teacher_profession"
@@ -462,16 +494,28 @@
                     android:background="@drawable/editbox"
                     android:theme="@style/EditText">
 
+                    <TextView
+                        android:id="@+id/spinner_conveyance_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_toLeftOf="@+id/spinner_conveyance_imageview"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:paddingStart="30dp"
+                        android:paddingLeft="30dp"
+                        android:visibility="gone" />
+
                     <Spinner
                         android:id="@+id/spinner_conveyance"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:dropDownWidth="match_parent"
                         android:background="@null"
-                        android:popupBackground="@drawable/popupbackground"
-                        />
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/popupbackground" />
 
                     <ImageView
+                        android:id="@+id/spinner_conveyance_imageview"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_conveyance"
@@ -491,20 +535,30 @@
                     android:background="@drawable/editbox"
                     android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                     android:drawablePadding="10dp"
+                    android:hint="@string/conveyance_type"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/conveyance_type"
-                    android:visibility="gone"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    android:visibility="gone" />
 
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image_view_uploaded_image"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:layout_below="@+id/ln_login"
+                android:layout_marginTop="40dp"
+                />
 
             <RelativeLayout
                 android:id="@+id/btn_profile_upload"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_below="@+id/ln_login"
+                android:layout_below="@+id/image_view_uploaded_image"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="40dp"
@@ -515,6 +569,7 @@
                 android:padding="5dp"
                 android:paddingStart="30dp"
                 android:paddingLeft="30dp">
+
 
                 <TextView
                     android:id="@+id/btn_txt_upload"
