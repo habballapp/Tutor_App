@@ -35,7 +35,9 @@ import com.techatmosphere.expandablenavigation.model.HeaderModel;
 import com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Dashboard_Drawer_Student extends AppCompatActivity {
@@ -47,6 +49,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
     private TextView footer_item_1;
     String userid;
     private List<String> childs = new ArrayList<>();
+    private Map<String, String> childMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +69,11 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         userid = sharedPreferences1.getString("userid", "");
         Gson gson = new Gson();
         Type type = new TypeToken<List<String>>(){}.getType();
+        Type typeMap = new TypeToken<Map<String, String>>(){}.getType();
         childs = gson.fromJson(sharedPreferences1.getString("children", ""), type);
+        childMap = gson.fromJson(sharedPreferences1.getString("childrenMap", ""), typeMap);
         Log.i("Id",userid);
+        Log.i("Id", String.valueOf(childMap));
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

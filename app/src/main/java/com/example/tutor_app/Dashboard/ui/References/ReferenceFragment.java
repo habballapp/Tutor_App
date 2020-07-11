@@ -210,6 +210,10 @@ public class ReferenceFragment extends Fragment {
                 String rphone = edt_telephone.getText().toString().trim();
                 String rphone1 = edt_telephone1.getText().toString().trim();
 
+//                if (!(rname1 == null) || !((relation1) == null) ||
+//                        !(relation1 == null) || !(roccupation1 == null)
+//                         !(edt_grade1 == null))
+
 
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG);
                 try {

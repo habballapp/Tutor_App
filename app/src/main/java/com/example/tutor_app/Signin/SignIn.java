@@ -51,6 +51,7 @@ public class SignIn extends AppCompatActivity {
     String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
     private String userid = "";
     private List<String> childs = new ArrayList<>();
+    private Map<String, String> childMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,6 +219,7 @@ public class SignIn extends AppCompatActivity {
                     try {
                         JSONObject obj = new JSONObject(response.getString(i));
                         childs.add("\t\t\t" + obj.getString("StudentName"));
+                        childMap.put(obj.getString("StudentName"), obj.getString("Id"));
 
                         // childsMap.put(obj.getString("StudentName"), obj.getString("Id"));
 
@@ -231,6 +233,7 @@ public class SignIn extends AppCompatActivity {
                         Context.MODE_PRIVATE);
                 final SharedPreferences.Editor profileStudent = personal_profile.edit();
                 profileStudent.putString("children",gson.toJson(childs));
+                profileStudent.putString("childrenMap",gson.toJson(childMap));
                 profileStudent.apply();
                 Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Student.class);
                 startActivity(intent);

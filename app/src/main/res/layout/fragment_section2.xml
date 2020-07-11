@@ -91,7 +91,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/qualification"
+                        android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -105,7 +105,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/subjects"
+                        android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -119,7 +119,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/institute"
+                      android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -134,7 +134,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/pyear"
+                      android:hint="@string/pyear"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -149,7 +149,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/grade"
+                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
                         android:theme="@style/EditText" />
 
@@ -173,7 +173,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/qualification"
+                  android:hint="@string/qualification"
                     />
             </RelativeLayout>
 
@@ -208,7 +208,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/qualification"
+                      android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -222,7 +222,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/subjects"
+                      android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -236,7 +236,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/institute"
+                      android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -251,7 +251,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/pyear"
+                      android:hint="@string/pyear"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -266,7 +266,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/grade"
+                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
                         android:theme="@style/EditText" />
 
@@ -289,7 +289,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/add_qualification"
+                  android:hint="@string/add_qualification"
                     />
             </RelativeLayout>
 
@@ -324,7 +324,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/qualification"
+                      android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -338,7 +338,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/subjects"
+                      android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -352,7 +352,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/institute"
+                      android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -367,7 +367,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/pyear"
+                      android:hint="@string/pyear"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -382,7 +382,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/grade"
+                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
                         android:theme="@style/EditText" />
                 </LinearLayout>
@@ -404,7 +404,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/add_qualification"
+                  android:hint="@string/add_qualification"
                     />
             </RelativeLayout>
 
@@ -438,7 +438,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/qualification"
+                      android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -452,7 +452,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/subjects"
+                      android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -466,7 +466,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/institute"
+                      android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -481,7 +481,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/pyear"
+                      android:hint="@string/pyear"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -496,7 +496,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/grade"
+                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
                         android:theme="@style/EditText" />
 
@@ -519,7 +519,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/add_qualification"
+                  android:hint="@string/add_qualification"
                     />
             </RelativeLayout>
 
@@ -556,7 +556,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/qualification"
+                      android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -570,7 +570,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/subjects"
+                      android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -584,7 +584,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/institute"
+                      android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -599,7 +599,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/pyear"
+                      android:hint="@string/pyear"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -614,7 +614,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/grade"
+                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
                         android:theme="@style/EditText" />
 
@@ -638,7 +638,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/add_qualification"
+                  android:hint="@string/add_qualification"
                     />
             </RelativeLayout>
 
@@ -664,7 +664,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:padding="5dp"
-                    android:text="NEXT"
+                  android:text="NEXT"
                     android:theme="@style/ButtonTextRound" />
 
                 <ImageView
