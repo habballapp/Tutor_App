@@ -105,7 +105,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
 
-        HeaderModel headerModel = new HeaderModel("View Profile");
+        HeaderModel headerModel = new HeaderModel("View Job");
         for (int i = 0; i < institute.size(); i++)
             headerModel.addChildModel(new ChildModel(institute.get(i)));
         navigationExpandableListView.addHeaderModel(headerModel);
