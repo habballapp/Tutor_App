@@ -7,6 +7,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -47,6 +50,7 @@ public class SignIn extends AppCompatActivity {
     private RelativeLayout btn_signin;
     private TextView txt_password, txt_create;
     private EditText edt_email, edt_password;
+    private CheckBox txt_checkbox;
     private String URL_LOGIN = "http://pci.edusol.co/Login/login_data.php";
     String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
     String Url_Institute = "http://pci.edusol.co/InstitutePortal/searchjobsApi.php";
@@ -55,6 +59,10 @@ public class SignIn extends AppCompatActivity {
     private Map<String, String> childMap = new HashMap<>();
     private List<String> institute = new ArrayList<>();
     private Map<String, String> intituteMap = new HashMap<>();
+    private SharedPreferences loginPreferences;
+    private SharedPreferences.Editor loginPrefsEditor;
+    private Boolean saveLogin;
+    private String username,password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +71,13 @@ public class SignIn extends AppCompatActivity {
         btn_signin = findViewById(R.id.btn_signin_user);
         txt_password = findViewById(R.id.txt_password);
         txt_create = findViewById(R.id.txt_create);
+        txt_checkbox = findViewById(R.id.txt_checkbox);
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
+
+        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPrefsEditor = loginPreferences.edit();
+
         btn_signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String mEmail = edt_email.getText().toString().trim();
@@ -83,6 +96,43 @@ public class SignIn extends AppCompatActivity {
 
             }
 
+        });
+
+
+        txt_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                saveLogin = loginPreferences.getBoolean("saveLogin", false);
+                if (saveLogin == true) {
+                    edt_email.setText(loginPreferences.getString("username", ""));
+                    edt_password.setText(loginPreferences.getString("password", ""));
+                    txt_checkbox.setChecked(true);
+                    loginPrefsEditor.apply();
+                }
+                if (isChecked) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(edt_email.getWindowToken(), 0);
+
+                    username = edt_email.getText().toString();
+                    password = edt_password.getText().toString();
+
+                    Log.i("username", username);
+                    Log.i("password", password);
+
+                    if (txt_checkbox.isChecked()) {
+                        loginPrefsEditor.putBoolean("saveLogin", true);
+                        loginPrefsEditor.putString("username", username);
+                        loginPrefsEditor.putString("password", password);
+
+                        loginPrefsEditor.commit();
+                    } else {
+                        loginPrefsEditor.clear();
+                        loginPrefsEditor.commit();
+                    }
+                }
+
+            }
         });
 
         txt_password.setOnClickListener(new View.OnClickListener() {
