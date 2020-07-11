@@ -47,15 +47,17 @@ import java.util.Map;
  */
 public class InstituteAddressFragment extends Fragment {
 
-    private Spinner spinner1,spinner2,spinner_edt_area;
-    private  ArrayAdapter<String> spinner_area_adapter;
+    private Spinner spinner1, spinner2, spinner_edt_area;
+    private ArrayAdapter<String> spinner_area_adapter;
     private RelativeLayout btn_profile_next;
-    private List<String> gender,timings,area;
+    private List<String> gender, timings, area;
     private EditText edt_address, edt_street, edt_block, edt_city, edt_country, et_amount1, et_amount2;
     String URL_INSTITUTE = "http://pci.edusol.co/InstitutePortal/instituteregistrationsubmit.php";
     String institutename, phone1, phone2, phone3, email, cperson, typeofInstitute, ctype, stype, classes, subjects,
-            spinner_gender, spinner_timings,otherinstitute,spinner_area;
+            spinner_gender, spinner_timings, otherinstitute, spinner_area;
     String userid;
+    TextView spinner_area_textview, spinner_timings_textview, spinner_gender_textview;
+    JSONObject response = new JSONObject();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,10 +84,14 @@ public class InstituteAddressFragment extends Fragment {
         edt_block = root.findViewById(R.id.edt_block);
         spinner_edt_area = root.findViewById(R.id.spinner_edt_area);
         edt_city = root.findViewById(R.id.edt_city);
-        edt_country = root.findViewById(R.id. edt_country);
+        edt_country = root.findViewById(R.id.edt_country);
         et_amount1 = root.findViewById(R.id.et_amount1);
         et_amount2 = root.findViewById(R.id.et_amount2);
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
+        spinner_area_textview = root.findViewById(R.id.spinner_area_textview);
+        spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
+        spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
+
 
         institutename = sharedPreferences.getString("nameofInstitute", "");
         phone1 = sharedPreferences.getString("contactno1", "");
@@ -98,207 +104,220 @@ public class InstituteAddressFragment extends Fragment {
         classes = sharedPreferences.getString("class", "");
         subjects = sharedPreferences.getString("subjects", "");
         typeofInstitute = sharedPreferences.getString("typeofInstitute", "");
-        otherinstitute = sharedPreferences.getString("IfInstituteOther","");
+        otherinstitute = sharedPreferences.getString("IfInstituteOther", "");
 
 
+        Gson gson = new Gson();
+        Type type = new TypeToken<JSONObject>() {
+        }.getType();
 
-
-
-        gender = new ArrayList<>();
-        gender.add("Select Preffered Gender");
-        gender.add("Male");
-        gender.add("Female");
-        gender.add("Any");
-
-
-        final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-
-                return view;
+        SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
+                Context.MODE_PRIVATE);
+        String str_response = personal_profile1.getString("ViewProfileData", "");
+        if (!str_response.equals("")) {
+            response = gson.fromJson(str_response, type);
+            try {
+                viewProfile();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-                return view;
-            }
-        };
-        spinner1.setAdapter(spinner1_adapter);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                spinner_gender = gender.get(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        timings = new ArrayList<>();
-        timings.add("Select Preffered Timings");
-
-        for (int i = 8; i <=11 ; i++) {
-            timings.add(i + ":00 am");
-            timings.add(i + ":30 am");
         }
-        timings.add( "12:00 pm");
-        timings.add( "12:30 pm");
-        for (int i = 1; i <=11 ; i++) {
-
-            timings.add(i + ":00 pm");
-            timings.add(i + ":30 pm");
-        }
-        timings.add( "12:00 am");
 
 
-        final ArrayAdapter<String> spinner2_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, timings) {
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
+        if (str_response.equals("")) {
+            gender = new ArrayList<>();
+            gender.add("Select Preffered Gender");
+            gender.add("Male");
+            gender.add("Female");
+            gender.add("Any");
 
-                return view;
+
+            final ArrayAdapter<String> spinner1_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gender) {
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    // TODO Auto-generated method stub
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(android.R.id.text1);
+                    text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                    text.setTextSize((float) 13.6);
+                    text.setPadding(30, 0, 30, 0);
+
+                    return view;
+                }
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    // TODO Auto-generated method stub
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(android.R.id.text1);
+                    text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                    text.setTextSize((float) 13.6);
+                    text.setPadding(30, 0, 30, 0);
+                    return view;
+                }
+            };
+            spinner1.setAdapter(spinner1_adapter);
+            spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    spinner_gender = gender.get(position);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            timings = new ArrayList<>();
+            timings.add("Select Preffered Timings");
+
+            for (int i = 8; i <= 11; i++) {
+                timings.add(i + ":00 am");
+                timings.add(i + ":30 am");
             }
+            timings.add("12:00 pm");
+            timings.add("12:30 pm");
+            for (int i = 1; i <= 11; i++) {
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-                return view;
+                timings.add(i + ":00 pm");
+                timings.add(i + ":30 pm");
             }
-        };
-        spinner2.setAdapter(spinner2_adapter);
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                spinner_timings = timings.get(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+            timings.add("12:00 am");
 
 
-        area = new ArrayList<>();
-        area.add("Select Area");
-        area.add("Baldia Town");
-        area.add("Bin Qasim Town");
-        area.add("Gadap Town");
-        area.add("Gulberg Town");
-        area.add("Gulshan Town");
-        area.add("Jamshed Town");
-        area.add("Kiamari Town");
-        area.add("Korangi Town");
-        area.add("Landhi Town");
-        area.add("Liaquatabad Town");
-        area.add("New Karachi Town");
-        area.add("North Nazimabad Town");
-        area.add("Nazimabad Town");
-        area.add("Orangi Town");
-        area.add("Shah Faisal Town");
-        area.add("SITE Town");
-        area.add("Saddar Town");
-        area.add("Lyari Town");
-        area.add("Malir Town");
+            final ArrayAdapter<String> spinner2_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, timings) {
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    // TODO Auto-generated method stub
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(android.R.id.text1);
+                    text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                    text.setTextSize((float) 13.6);
+                    text.setPadding(30, 0, 30, 0);
 
-        spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
+                    return view;
+                }
 
-                return view;
-            }
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    // TODO Auto-generated method stub
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(android.R.id.text1);
+                    text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                    text.setTextSize((float) 13.6);
+                    text.setPadding(30, 0, 30, 0);
+                    return view;
+                }
+            };
+            spinner2.setAdapter(spinner2_adapter);
+            spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-                return view;
-            }
-        };
-        spinner_edt_area.setAdapter(spinner_area_adapter);
-        spinner_edt_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    spinner_timings = timings.get(position);
+                }
 
-                spinner_area = area.get(position);
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+                }
+            });
 
 
+            area = new ArrayList<>();
+            area.add("Select Area");
+            area.add("Baldia Town");
+            area.add("Bin Qasim Town");
+            area.add("Gadap Town");
+            area.add("Gulberg Town");
+            area.add("Gulshan Town");
+            area.add("Jamshed Town");
+            area.add("Kiamari Town");
+            area.add("Korangi Town");
+            area.add("Landhi Town");
+            area.add("Liaquatabad Town");
+            area.add("New Karachi Town");
+            area.add("North Nazimabad Town");
+            area.add("Nazimabad Town");
+            area.add("Orangi Town");
+            area.add("Shah Faisal Town");
+            area.add("SITE Town");
+            area.add("Saddar Town");
+            area.add("Lyari Town");
+            area.add("Malir Town");
 
-        btn_profile_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            spinner_area_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, area) {
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    // TODO Auto-generated method stub
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(android.R.id.text1);
+                    text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                    text.setTextSize((float) 13.6);
+                    text.setPadding(30, 0, 30, 0);
+
+                    return view;
+                }
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    // TODO Auto-generated method stub
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(android.R.id.text1);
+                    text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                    text.setTextSize((float) 13.6);
+                    text.setPadding(30, 0, 30, 0);
+                    return view;
+                }
+            };
+            spinner_edt_area.setAdapter(spinner_area_adapter);
+            spinner_edt_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    spinner_area = area.get(position);
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
 
+            btn_profile_next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                String streetno = edt_street.getText().toString().trim();
-                String blockno = edt_block.getText().toString().trim();
-                String city = edt_city.getText().toString().trim();
-             //   String area = edt_area.getText().toString().trim();
-                String country = edt_country.getText().toString().trim();
-                String amount1 = et_amount1.getText().toString().trim();
-                String amount2 = et_amount2.getText().toString().trim();
+                    String streetno = edt_street.getText().toString().trim();
+                    String blockno = edt_block.getText().toString().trim();
+                    String city = edt_city.getText().toString().trim();
+                    //   String area = edt_area.getText().toString().trim();
+                    String country = edt_country.getText().toString().trim();
+                    String amount1 = et_amount1.getText().toString().trim();
+                    String amount2 = et_amount2.getText().toString().trim();
 
+                    try {
+                        InstituteAddress();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+            if (!userid.equals("")) {
                 try {
-                    InstituteAddress();
+                    getProfileData();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
             }
-        });
-
-        if (!userid.equals("")) {
-            try {
-                getProfileData();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
         }
 
         return root;
@@ -314,16 +333,16 @@ public class InstituteAddressFragment extends Fragment {
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
                 Context.MODE_PRIVATE);
 
-        int selectionPosition= spinner_area_adapter.getPosition(sharedPreferences2.getString("Area",""));
+        int selectionPosition = spinner_area_adapter.getPosition(sharedPreferences2.getString("Area", ""));
         spinner_edt_area.setSelection(selectionPosition);
 
-        edt_address.setText(sharedPreferences2.getString("Address",""));
-        edt_street.setText(sharedPreferences2.getString("StreetNum",""));
-        edt_block.setText(sharedPreferences2.getString("BlockNum",""));
-        edt_city.setText(sharedPreferences2.getString("City",""));
-        edt_country.setText(sharedPreferences2.getString("Country",""));
-        et_amount1.setText(sharedPreferences2.getString("SalaryFrom",""));
-        et_amount2.setText(sharedPreferences2.getString("SalaryTo",""));
+        edt_address.setText(sharedPreferences2.getString("Address", ""));
+        edt_street.setText(sharedPreferences2.getString("StreetNum", ""));
+        edt_block.setText(sharedPreferences2.getString("BlockNum", ""));
+        edt_city.setText(sharedPreferences2.getString("City", ""));
+        edt_country.setText(sharedPreferences2.getString("Country", ""));
+        et_amount1.setText(sharedPreferences2.getString("SalaryFrom", ""));
+        et_amount2.setText(sharedPreferences2.getString("SalaryTo", ""));
 
     }
 
@@ -340,8 +359,8 @@ public class InstituteAddressFragment extends Fragment {
 
         JSONArray jsonArray = new JSONArray(selectedSubjects);
 
-        map.put("nameofInstitute",institutename);
-        map.put("typeofInstitute",typeofInstitute);
+        map.put("nameofInstitute", institutename);
+        map.put("typeofInstitute", typeofInstitute);
         map.put("contactperson", cperson);
         map.put("email", email);
 
@@ -365,7 +384,7 @@ public class InstituteAddressFragment extends Fragment {
         map.put("gender", spinner_gender);
         map.put("timing", spinner_timings);
         map.put("address", String.valueOf(edt_address.getText()));
-        map.put("IfInstituteOther",otherinstitute);
+        map.put("IfInstituteOther", otherinstitute);
 
         /* ** Convert the string to json from adapter While putting in shared preference as well ** */
 //        List<String> selectedtimings = gson.fromJson(spinner_timings, type);
@@ -464,5 +483,65 @@ public class InstituteAddressFragment extends Fragment {
         requestQueue.add(sr);
     }
 
+
+    private void viewProfile() throws JSONException {
+        btn_profile_next.setVisibility(View.GONE);
+
+        edt_address.setEnabled(false);
+        edt_street.setEnabled(false);
+        edt_block.setEnabled(false);
+        //       edt_area = root.findViewById(R.id.edt_area);
+        edt_city.setEnabled(false);
+        edt_country.setEnabled(false);
+
+        et_amount1.setEnabled(false);
+        et_amount2.setEnabled(false);
+
+
+//        spinner1 = (Spinner) root.findViewById(R.id.spinner_gender);
+//        spinner2 = (Spinner) root.findViewById(R.id.spinner_timings);
+//        spinner3 = (Spinner) root.findViewById(R.id.spinner_area);
+        edt_address.setText(response.getString("Address"));
+        edt_address.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        edt_street.setText(response.getString("StreetNum"));
+        edt_street.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        edt_block.setText(response.getString("BlockNum"));
+        edt_block.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        edt_city.setText(response.getString("City"));
+        edt_city.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        edt_country.setText(response.getString("Country"));
+        edt_country.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        et_amount1.setText(response.getString("SalaryFrom"));
+        et_amount1.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        et_amount2.setText(response.getString("SalaryTo"));
+        et_amount2.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        spinner1.setClickable(false);
+        spinner1.setEnabled(false);
+//        spinner1.setVisibility(View.GONE);
+        spinner_gender_textview.setVisibility(View.VISIBLE);
+        spinner_gender_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
+        spinner_gender_textview.setText(response.getString("Gender"));
+
+        spinner2.setClickable(false);
+        spinner2.setEnabled(false);
+//        spinner2.setVisibility(View.GONE);
+        spinner_timings_textview.setVisibility(View.VISIBLE);
+        spinner_timings_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
+        spinner_timings_textview.setText(response.getString("Timings"));
+
+        spinner_edt_area.setClickable(false);
+        spinner_edt_area.setEnabled(false);
+//        spinner3.setVisibility(View.GONE);
+        spinner_area_textview.setVisibility(View.VISIBLE);
+        spinner_area_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
+        spinner_area_textview.setText(response.getString("Area"));
+    }
 }
 

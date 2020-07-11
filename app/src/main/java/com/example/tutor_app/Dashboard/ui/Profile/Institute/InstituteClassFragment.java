@@ -32,7 +32,13 @@ import com.example.tutor_app.Dashboard.ui.Qualification.ExpandOrCollapse;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.Model_Classes.Institute_Information_List;
 import com.example.tutor_app.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,21 +47,22 @@ import java.util.List;
  */
 public class InstituteClassFragment extends Fragment {
 
-    private Spinner spinner_class,spinner_subject;
+    private Spinner spinner_class, spinner_subject;
     public TextView txt;
     List<String> classes = new ArrayList<>();
     List<String> subjects = new ArrayList<>();
     private StateVO stateVO;
-//    private RecyclerView rl_recycler;
-    private RelativeLayout btn_class_add,btn_class_next,add_more;
-    private EditText ctype,stype;
+    //    private RecyclerView rl_recycler;
+    private RelativeLayout btn_class_add, btn_class_next, add_more;
+    private EditText ctype, stype;
     private boolean isVisible = false;
     RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ExpandOrCollapse mAnimationManager;
     private FragmentTransaction fragmentTransaction;
     private List<Institute_Information_List> list = new ArrayList<>();
-
+    private JSONObject response = new JSONObject();
+    private TextView spinner_class_textview, spinner_subject_textview;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -63,10 +70,12 @@ public class InstituteClassFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root =inflater.inflate(R.layout.fragment_institute_class, container, false);
+        View root = inflater.inflate(R.layout.fragment_institute_class, container, false);
 
         spinner_class = root.findViewById(R.id.spinner_class);
         spinner_subject = root.findViewById(R.id.spinner_subject);
+        spinner_class_textview = root.findViewById(R.id.spinner_class_textview);
+        spinner_subject_textview = root.findViewById(R.id.spinner_subject_textview);
         txt = root.findViewById(R.id.txt);
 //        ctype = root.findViewById(R.id.ctype);
 //        stype = root.findViewById(R.id.stype);
@@ -75,7 +84,7 @@ public class InstituteClassFragment extends Fragment {
 //          add_more = root.findViewById(R.id.add_more);
         btn_class_next = root.findViewById(R.id.btn_class_next);
 
-        String msg="   "+"To add another job to your account you must complete and submit your application first and select add job option to add another job";
+        String msg = "   " + "To add another job to your account you must complete and submit your application first and select add job option to add another job";
 
         ImageSpan mImageSpan = new ImageSpan(getContext(), R.drawable.ic_info_black_24dp);
         SpannableString text = new SpannableString(msg);
@@ -88,8 +97,7 @@ public class InstituteClassFragment extends Fragment {
 
         classes.add("Select Class");
 
-        for(int i = 1; i <= 8; i++)
-        {
+        for (int i = 1; i <= 8; i++) {
             classes.add("Class " + i);
         }
         classes.add("Matric 9");
@@ -101,7 +109,6 @@ public class InstituteClassFragment extends Fragment {
         classes.add("OLevel year 3");
         classes.add("ALevel year 1");
         classes.add("ALevel year 2");
-
 
 
         subjects.add("Select Subjects");
@@ -119,75 +126,91 @@ public class InstituteClassFragment extends Fragment {
         subjects.add("Others");
 
 
+        Gson gson = new Gson();
+        Type type = new TypeToken<JSONObject>() {
+        }.getType();
+
+        SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
+                Context.MODE_PRIVATE);
+        String str_response = personal_profile1.getString("ViewProfileData", "");
+        if (!str_response.equals("")) {
+            response = gson.fromJson(str_response, type);
+            try {
+                viewProfile();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
         SharedPreferences institute_profile = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileInstitute = institute_profile.edit();
 
 //        final MyAdapter2 Adapter_Classes = new MyAdapter2(getContext(), android.R.layout.simple_spinner_dropdown_item,listClasses);
 //        spinner_class.setAdapter(Adapter_Classes);
+        if (str_response.equals("")) {
 
-        ArrayAdapter<String> adapter_class = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, classes) {
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
+            ArrayAdapter<String> adapter_class = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, classes) {
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    // TODO Auto-generated method stub
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(android.R.id.text1);
+                    text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                    text.setTextSize((float) 13.6);
+                    text.setPadding(30, 0, 30, 0);
 
-                return view;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                // TODO Auto-generated method stub
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(getResources().getColor(R.color.text_color_selection));
-                text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
-                return view;
-            }
-        };
-
-        spinner_class.setAdapter(adapter_class);
-
-        SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
-                Context.MODE_PRIVATE);
-        final SharedPreferences.Editor profileStudent = personal_profile.edit();
-
-        spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-
-                    profileStudent.putString("class", String.valueOf(classes.get(position)));
-                    profileStudent.apply();
-                    Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
+                    return view;
                 }
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    // TODO Auto-generated method stub
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(android.R.id.text1);
+                    text.setTextColor(getResources().getColor(R.color.text_color_selection));
+                    text.setTextSize((float) 13.6);
+                    text.setPadding(30, 0, 30, 0);
+                    return view;
+                }
+            };
+
+            spinner_class.setAdapter(adapter_class);
+
+            SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+                    Context.MODE_PRIVATE);
+            final SharedPreferences.Editor profileStudent = personal_profile.edit();
+
+            spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (position > 0) {
+
+                        profileStudent.putString("class", String.valueOf(classes.get(position)));
+                        profileStudent.apply();
+                        Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
+            ArrayList<StateVO> listSubjects = new ArrayList<>();
+
+            for (int i = 0; i < subjects.size(); i++) {
+                stateVO = new StateVO();
+                stateVO.setTitle(subjects.get(i));
+                stateVO.setSelected(false);
+                listSubjects.add(stateVO);
             }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-
-
-        ArrayList<StateVO> listSubjects = new ArrayList<>();
-
-        for (int i = 0; i < subjects.size(); i++) {
-            stateVO = new StateVO();
-            stateVO.setTitle(subjects.get(i));
-            stateVO.setSelected(false);
-            listSubjects.add(stateVO);
+            MyAdapter_Subjects Adapter_Subjects = new MyAdapter_Subjects(getContext(), android.R.layout.simple_spinner_dropdown_item, listSubjects);
+            spinner_subject.setAdapter(Adapter_Subjects);
         }
-
-         MyAdapter_Subjects Adapter_Subjects = new  MyAdapter_Subjects(getContext(), android.R.layout.simple_spinner_dropdown_item,listSubjects);
-        spinner_subject.setAdapter(Adapter_Subjects);
 //
 //
 //        btn_class_add.setOnClickListener(new View.OnClickListener() {
@@ -237,5 +260,26 @@ public class InstituteClassFragment extends Fragment {
             }
         });
         return root;
+    }
+
+
+    private void viewProfile() throws JSONException {
+        spinner_class.setClickable(false);
+        spinner_class.setEnabled(false);
+//        spinner_class.setVisibility(View.GONE);
+
+        spinner_subject.setClickable(false);
+        spinner_subject.setEnabled(false);
+//        spinner_subject.setVisibility(View.GONE);
+
+        spinner_class_textview.setVisibility(View.VISIBLE);
+        spinner_class_textview.setText(response.getString("InstituteClass"));
+        spinner_class_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        spinner_subject_textview.setVisibility(View.VISIBLE);
+        spinner_subject_textview.setText(response.getString("Subjects"));
+        spinner_subject_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        txt.setVisibility(View.GONE);
     }
 }

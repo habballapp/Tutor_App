@@ -1,20 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:paddingTop="40dp">
 
     <RelativeLayout
         android:id="@+id/parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="5dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
         android:background="@drawable/edit_text_squared"
-        >
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="20dp">
 
 
         <LinearLayout
@@ -25,13 +24,14 @@
             android:layout_marginBottom="20dp"
             android:gravity="center">
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image"
                 android:layout_width="wrap_content"
                 android:layout_height="96dp"
                 android:src="@drawable/profilepic"
                 app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp"/>
+                app:civ_border_width="2dp" />
 
         </LinearLayout>
 
@@ -143,19 +143,19 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/tv_fees"
             android:text="5000"
-            android:visibility="gone"
-            android:theme="@style/NormalText" />
+            android:theme="@style/NormalText"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/request_demo"
-            android:layout_below="@id/fees_value"
             android:layout_width="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fees_value"
             android:layout_centerHorizontal="true"
-            android:text="@string/Demo"
-            android:theme="@style/ButtonTextRound"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btn_round"
-            android:layout_height="wrap_content"/>
+            android:text="@string/Demo"
+            android:theme="@style/ButtonTextRound" />
 
 
     </RelativeLayout>
