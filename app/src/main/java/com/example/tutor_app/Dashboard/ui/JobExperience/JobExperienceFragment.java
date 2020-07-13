@@ -1,6 +1,9 @@
 package com.example.tutor_app.Dashboard.ui.JobExperience;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +15,29 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.SelectClassAdapter;
+import com.example.tutor_app.Adapters.SelectClassAdapterView;
 import com.example.tutor_app.Dashboard.ui.AreaofInterest.AreaFragment;
 import com.example.tutor_app.Model_Classes.JobExperince_List;
 import com.example.tutor_app.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +49,8 @@ public class JobExperienceFragment extends Fragment {
     private FragmentTransaction fragmentTransaction;
     private EditText edt_etitlement,edt_organization,edt_from,edt_till;
     RecyclerView.Adapter adapter;
+    String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
+    JSONObject response;
     private RecyclerView.LayoutManager layoutManager;
     private List<JobExperince_List> List = new ArrayList<>();
     @Override
@@ -41,11 +62,24 @@ public class JobExperienceFragment extends Fragment {
 
         btn_experience_next = root.findViewById(R.id.btn_experience_next);
         btn_experience_add = root.findViewById(R.id.btn_experience_add);
-//        edt_etitlement = root.findViewById(R.id.edt_etitlement);
-//        edt_organization = root.findViewById(R.id.edt_organization);
-//        edt_from = root.findViewById(R.id.edt_from);
-//        edt_till = root.findViewById(R.id.edt_till);
-//
+
+
+        SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
+                Context.MODE_PRIVATE);
+        String str_response = personal_profile1.getString("ViewProfileData", "");
+
+        Log.i("Job Experience", str_response);
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<JSONObject>() {
+        }.getType();
+
+        if (! str_response.equals("")) {
+                response = gson.fromJson(str_response, type);
+                Log.i("JobExperience", String.valueOf(response));
+
+            viewProfile();
+        }
 
 
         layoutManager = new LinearLayoutManager(getContext());
@@ -79,4 +113,61 @@ public class JobExperienceFragment extends Fragment {
 
         return root;
     }
-}
+
+    private void viewProfile() {
+
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
+                Context.MODE_PRIVATE);
+        String userid = sharedPreferences1.getString("UserId", "");
+        JSONObject map = new JSONObject();
+        try {
+            map.put("TutorId", userid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("JobExperience", String.valueOf(response));
+
+                try {
+                    JSONArray job_experience = response.getJSONArray("Experience");
+                    layoutManager = new LinearLayoutManager(getContext());
+
+                    rl_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                    adapter = new SelectClassAdapterView(getContext(), job_experience);
+                    rl_recycler.setAdapter(adapter);
+
+                    btn_experience_add.setVisibility(View.GONE);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
+        };
+        Volley.newRequestQueue(getContext()).add(sr);
+    }
+
+
+
+    }
+

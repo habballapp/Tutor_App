@@ -354,8 +354,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             paths1.add("No");
 
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-//                android.R.layout.simple_spinner_item, paths);
+
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, paths) {
                 @Override
                 public View getDropDownView(int position, View convertView, ViewGroup parent) {
@@ -395,9 +394,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 }
             });
 
-//        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),
-//                android.R.layout.simple_spinner_item, paths1);
-//        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
             ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, paths1) {
                 @Override
                 public View getDropDownView(int position, View convertView, ViewGroup parent) {
@@ -459,41 +456,6 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 }
             });
 
-
-            btn_profile_next.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    profileTeacher.putString("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
-                    Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
-                    profileTeacher.putString("fullname", String.valueOf(edt_fullname.getText()));
-                    profileTeacher.putString("fathusname", String.valueOf(edt_fname.getText()));
-                    profileTeacher.putString("mothnametounge", String.valueOf(edt_mtongue.getText()));
-//                profileTeacher.putString("dob",String.valueOf(edt_dob.getText()));
-                    profileTeacher.putString("age", String.valueOf(edt_age.getText()));
-                    profileTeacher.putString("nationality", String.valueOf(edt_nationality.getText()));
-                    profileTeacher.putString("religion", String.valueOf(edt_religion.getText()));
-                    profileTeacher.putString("cnicno", String.valueOf(edt_cnic.getText()));
-                    profileTeacher.putString("presentadd", String.valueOf(edt_present_address.getText()));
-                    profileTeacher.putString("permanentadd", String.valueOf(edt_permanent_address.getText()));
-                    profileTeacher.putString("phoneno1", String.valueOf(edt_phone1.getText()));
-                    profileTeacher.putString("phoneno2", String.valueOf(edt_phone2.getText()));
-                    profileTeacher.putString("email", String.valueOf(edt_email.getText()));
-                    profileTeacher.putString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
-//                profileTeacher.putString("OrganizationName",String.valueOf(edt_occupation.getText()));
-//                profileTeacher.putString("dateofsubmission", String.valueOf(edt_date_of_submission.getText()));
-                    //profileTeacher.putString("email",String.valueOf(edt_occupation.getText()));
-
-                    //  profileTeacher.putString("teacherbyprofession",String.valueOf(spinner_));
-                    // profileTeacher.putString("dateofsubmission",String.valueOf(edt_da.getText()));
-                    profileTeacher.apply();
-
-                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification());
-                    fragmentTransaction.commit();
-                }
-            });
-
             btn_profile_upload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -503,6 +465,32 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 }
             });
         }
+        btn_profile_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                profileTeacher.putString("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
+                Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
+                profileTeacher.putString("fullname", String.valueOf(edt_fullname.getText()));
+                profileTeacher.putString("fathusname", String.valueOf(edt_fname.getText()));
+                profileTeacher.putString("mothnametounge", String.valueOf(edt_mtongue.getText()));
+                profileTeacher.putString("age", String.valueOf(edt_age.getText()));
+                profileTeacher.putString("nationality", String.valueOf(edt_nationality.getText()));
+                profileTeacher.putString("religion", String.valueOf(edt_religion.getText()));
+                profileTeacher.putString("cnicno", String.valueOf(edt_cnic.getText()));
+                profileTeacher.putString("presentadd", String.valueOf(edt_present_address.getText()));
+                profileTeacher.putString("permanentadd", String.valueOf(edt_permanent_address.getText()));
+                profileTeacher.putString("phoneno1", String.valueOf(edt_phone1.getText()));
+                profileTeacher.putString("phoneno2", String.valueOf(edt_phone2.getText()));
+                profileTeacher.putString("email", String.valueOf(edt_email.getText()));
+                profileTeacher.putString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
+                profileTeacher.apply();
+
+                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification());
+                fragmentTransaction.commit();
+            }
+        });
 
 
         return root;
@@ -592,13 +580,12 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             public void onResponse(JSONObject response) {
                 Log.i("ViewProfile", String.valueOf(response));
                 Gson gson = new Gson();
-//                Type type = new TypeToken<JSONObject>(){}.getType();
 
                 SharedPreferences personal_profile = getContext().getSharedPreferences("ViewProfile",
                         Context.MODE_PRIVATE);
-                SharedPreferences.Editor profileStudent = personal_profile.edit();
-                profileStudent.putString("ViewProfileData", gson.toJson(response));
-                profileStudent.apply();
+                SharedPreferences.Editor profileTeacher = personal_profile.edit();
+                profileTeacher.putString("ViewProfileData", gson.toJson(response));
+                profileTeacher.apply();
 
                 edt_fullname.setEnabled(false);
                 edt_fullname.setTextColor(getResources().getColor(R.color.text_color_selection));

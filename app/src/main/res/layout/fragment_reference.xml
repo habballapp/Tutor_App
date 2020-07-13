@@ -93,7 +93,7 @@
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:text="@string/relation"
+                    android:hint="@string/relation"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -107,7 +107,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:text="@string/occupation"
+                    android:hint="@string/occupation"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -122,7 +122,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:text="@string/address"
+                    android:hint="@string/address"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -137,7 +137,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:text="@string/telephone"
+                    android:hint="@string/telephone"
                     android:theme="@style/EditText"
                     tools:ignore="TextFields" />
 
@@ -175,7 +175,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/name"
+                        android:hint="@string/name"
                         android:theme="@style/EditText" />
 
 
@@ -189,7 +189,7 @@
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/relation"
+                        android:hint="@string/relation"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -203,7 +203,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/occupation"
+                        android:hint="@string/occupation"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -218,7 +218,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/address"
+                        android:hint="@string/address"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -233,7 +233,7 @@
                         android:drawablePadding="10dp"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:text="@string/telephone"
+                        android:hint="@string/telephone"
                         android:theme="@style/EditText" />
 
 

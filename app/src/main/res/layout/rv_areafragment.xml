@@ -27,6 +27,18 @@
             android:background="@drawable/editbox"
             android:theme="@style/EditText">
 
+            <TextView
+                android:id="@+id/spinner_class_textview"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_toLeftOf="@+id/spinner_gender_imageview"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:paddingStart="30dp"
+                android:paddingLeft="30dp"
+                android:visibility="gone" />
+
             <Spinner
                 android:id="@+id/spinner_class"
                 android:layout_width="match_parent"
@@ -71,6 +83,18 @@
             android:drawableLeft="@drawable/ic_work_black_24dp"
             android:theme="@style/EditText"
             >
+            <TextView
+                android:id="@+id/spinner_area_textview"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_toLeftOf="@+id/spinner_gender_imageview"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:paddingStart="30dp"
+                android:paddingLeft="30dp"
+                android:visibility="gone" />
+
             <Spinner
                 android:id="@+id/spinner_area"
                 android:layout_width="match_parent"

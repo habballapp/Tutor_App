@@ -166,7 +166,7 @@ public class InstituteSearchFragment extends Fragment {
             @Override
             public void onResponse(JSONArray response) {
                 childs = new ArrayList<>();
-                childs.add("Select Child");
+                childs.add("Select Institute");
                 Log.i("Search", String.valueOf(response));
                 for(int i = 0; i < response.length(); i++) {
                     try {

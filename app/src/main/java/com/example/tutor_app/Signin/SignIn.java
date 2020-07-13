@@ -1,5 +1,6 @@
 package com.example.tutor_app.Signin;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,9 +49,10 @@ import java.util.Map;
 public class SignIn extends AppCompatActivity {
 
     private RelativeLayout btn_signin;
-    private TextView txt_password, txt_create;
+    private TextView txt_password, txt_create,btn_signin_txt;
     private EditText edt_email, edt_password;
     private CheckBox txt_checkbox;
+    ProgressBar progressBar;
     private String URL_LOGIN = "http://pci.edusol.co/Login/login_data.php";
     String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
     String Url_Institute = "http://pci.edusol.co/InstitutePortal/searchjobsApi.php";
@@ -73,21 +76,29 @@ public class SignIn extends AppCompatActivity {
         txt_checkbox = findViewById(R.id.txt_checkbox);
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
+        btn_signin_txt = findViewById(R.id.btn_signin_txt);
+
 
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
         edt_email.setText(loginPreferences.getString("username", ""));
         edt_password.setText(loginPreferences.getString("password", ""));
+        progressBar = findViewById(R.id.progress_bar);
+
+
+
 
         btn_signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 if (txt_checkbox.isChecked()) {
+                    username = edt_email.getText().toString();
+                    password = edt_password.getText().toString();
+
                     loginPrefsEditor.putBoolean("saveLogin", true);
                     loginPrefsEditor.putString("username", username);
                     loginPrefsEditor.putString("password", password);
-
-                    loginPrefsEditor.commit();
+                    loginPrefsEditor.apply();
                 } else {
                     loginPrefsEditor.clear();
                     loginPrefsEditor.commit();
@@ -95,6 +106,8 @@ public class SignIn extends AppCompatActivity {
 
                 String mEmail = edt_email.getText().toString().trim();
                 String mPassword = edt_password.getText().toString().trim();
+
+                Log.i("User",mEmail);
                 if (!mEmail.isEmpty() || !mPassword.isEmpty()) {
                     try {
                         Login();
@@ -112,7 +125,7 @@ public class SignIn extends AppCompatActivity {
         });
 
 
-       
+
 
         txt_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,12 +151,20 @@ public class SignIn extends AppCompatActivity {
 
     private void Login() throws JSONException {
 
+
+        progressBar.setVisibility(View.VISIBLE);
+        btn_signin_txt.setText("");
+
         StringRequest sr = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
+            @SuppressLint("SetTextI18n")
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(String result) {
                 Log.i("loginData", String.valueOf(result));
+
+                progressBar.setVisibility(View.GONE);
                 try {
+                    progressBar.setVisibility(View.GONE);
                     JSONObject obj = new JSONObject(result);
                     if (!obj.getString("userid").equals("null")) {
                         SharedPreferences personal_profile = getSharedPreferences("LoginData",
@@ -153,6 +174,7 @@ public class SignIn extends AppCompatActivity {
                         profileStudent.putString("userrole",obj.getString("userrole"));
                         profileStudent.apply();
                         userid = obj.getString("userid");
+                        btn_signin_txt.setText("SIGNIN");
 
 
                         if (obj.getString("userrole").equals("Student")){
@@ -177,9 +199,14 @@ public class SignIn extends AppCompatActivity {
 
                     } else {
                         Toast.makeText(SignIn.this, "Username or password is incorrect.", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                        btn_signin_txt.setText("SIGNIN");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressBar.setVisibility(View.GONE);
+
+
                 }
 
 
@@ -189,7 +216,8 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
+                progressBar.setVisibility(View.GONE);
+                btn_signin_txt.setText("");
                 error.printStackTrace();
             }
         }) {

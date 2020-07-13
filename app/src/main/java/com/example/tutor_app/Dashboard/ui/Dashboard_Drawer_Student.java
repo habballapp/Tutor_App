@@ -96,7 +96,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
         Log.i("Child11", String.valueOf(childs));
 
-        navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Add Profile")
         );
         navigationExpandableListView.addHeaderModel(new HeaderModel("Add Child")
         );

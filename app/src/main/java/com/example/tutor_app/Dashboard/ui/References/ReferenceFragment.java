@@ -42,12 +42,13 @@ public class ReferenceFragment extends Fragment {
     private RelativeLayout btn_reference_user, mrelativevToSlide, mRelativeZaplon;
     private boolean isVisible = false;
     private ExpandOrCollapse mAnimationManager;
+    JSONObject response;
     String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit.php";
-    private EditText name, edt_relation, edt_occupation_ref, edt_address, edt_telephone, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
-
+    private EditText name, edt_relation, edt_occupation_ref, edt_present_address, edt_telephone, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
+    String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
 
     //profile
-    String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic, edt_present_address,
+    String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic, edt_paddress,
             edt_permanent_address, edt_dob, edt_nationality, edt_religion, edt_phone1, edt_phone2,
             edt_email, edt_age, imageBitmapBase64,gender,conveyance,OrganizationName;
     String spinner_conveyance_txt, spinner_profession, date_of_submission,catogery;
@@ -59,6 +60,11 @@ public class ReferenceFragment extends Fragment {
     String qualification2, subject2, edt_institute2, edt_passing_year2, edt_grade2;
     String qualification3, subject3, edt_institute3, edt_passing_year3, edt_grade3;
     String qualification4, subject4, edt_institute4, edt_passing_year4, edt_grade4;
+
+
+
+
+
 
     //JobExperienceFragemnt
     String edt_etitlement, edt_organization, edt_from, edt_till;
@@ -88,6 +94,8 @@ public class ReferenceFragment extends Fragment {
         edt_occupation1 = root.findViewById(R.id.edt_occupation1);
         edt_telephone = root.findViewById(R.id.edt_telephone);
         edt_telephone1 = root.findViewById(R.id.edt_telephone1);
+        edt_present_address = root.findViewById(R.id.edt_present_address);
+        edt_present_address1 = root.findViewById(R.id.edt_present_address1);
 
 
         //Profile
@@ -100,7 +108,7 @@ public class ReferenceFragment extends Fragment {
         edt_nationality = sharedPreferences.getString("nationality", "");
         edt_religion = sharedPreferences.getString("religion", "");
         edt_cnic = sharedPreferences.getString("cnicno", "");
-        edt_present_address = sharedPreferences.getString("presentadd", "");
+        edt_paddress = sharedPreferences.getString("presentadd", "");
         edt_permanent_address = sharedPreferences.getString("permanentadd", "");
         edt_phone1 = sharedPreferences.getString("phoneno1", "");
         edt_phone2 = sharedPreferences.getString("phoneno2", "");
@@ -180,6 +188,22 @@ public class ReferenceFragment extends Fragment {
         mrelativevToSlide = root.findViewById(R.id.relativevToSlide);
         mRelativeZaplon = root.findViewById(R.id.relativeZaplon);
 
+        SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
+                Context.MODE_PRIVATE);
+        String str_response = personal_profile1.getString("ViewProfileData", "");
+        Log.i("Job Experience", str_response);
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<JSONObject>() {
+        }.getType();
+
+        if (! str_response.equals("")) {
+            response = gson.fromJson(str_response, type);
+            Log.i("JobExperience", String.valueOf(response));
+
+            viewProfile();
+        }
+
         mRelativeZaplon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,6 +238,77 @@ public class ReferenceFragment extends Fragment {
 
         return root;
     }
+
+    private void viewProfile() {
+
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
+                Context.MODE_PRIVATE);
+        String userid = sharedPreferences1.getString("UserId", "");
+        JSONObject map = new JSONObject();
+        try {
+            map.put("TutorId", userid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("ViewProfile", String.valueOf(response));
+                try {
+                    JSONArray references = response.getJSONArray("References");
+                    Log.i("References", String.valueOf(references));
+                    btn_reference_user.setVisibility(View.GONE);
+
+                    if (references.length() > 0) {
+
+                        name.setText(references.getJSONObject(0).getString("Name"));
+                        edt_relation.setText(references.getJSONObject(0).getString("Relation"));
+                        edt_occupation_ref.setText(references.getJSONObject(0).getString("Occupation"));
+                        edt_present_address.setText(references.getJSONObject(0).getString("Address"));
+                        edt_telephone.setText(references.getJSONObject(0).getString("TelephoneNo"));
+
+
+                        if (references.length() > 1) {
+
+                            mrelativevToSlide.setVisibility(View.VISIBLE);
+                            name1.setText(references.getJSONObject(0).getString("Name"));
+                            edt_relation1.setText(references.getJSONObject(0).getString("Relation"));
+                            edt_occupation1.setText(references.getJSONObject(0).getString("Occupation"));
+                            edt_present_address1.setText(references.getJSONObject(0).getString("Address"));
+                            edt_telephone1.setText(references.getJSONObject(0).getString("TelephoneNo"));
+
+
+
+                        }
+                    }
+
+                        } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "json");
+                return map;
+            }
+        };
+        Volley.newRequestQueue(getContext()).add(sr);
+
+
+    }
+
+
 
     private void uploadData() throws JSONException {
 
