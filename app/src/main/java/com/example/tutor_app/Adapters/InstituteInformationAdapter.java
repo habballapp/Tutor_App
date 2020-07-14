@@ -1,26 +1,19 @@
-package com.example.tutor_app.Dashboard.ui.Profile.Institute;
+package com.example.tutor_app.Adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tutor_app.Adapters.AreaFragmentAdapter;
-import com.example.tutor_app.Adapters.MyAdapter_Subjects;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
-import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.Model_Classes.Institute_Information_List;
 import com.example.tutor_app.R;
 

@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -126,7 +126,6 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (id == 0) {
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
@@ -148,7 +147,6 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             final SharedPreferences.Editor profileStudent = personal_profile.edit();
                             profileStudent.putString("UserId", "");
                             profileStudent.apply();
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
@@ -169,7 +167,6 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             final SharedPreferences.Editor profileStudent = personal_profile.edit();
                             profileStudent.putString("UserId", userid);
                             profileStudent.apply();
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
@@ -178,7 +175,6 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
 
                         } else if (id == 4) {
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             Log.i("Make Payment", "Make Payment Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
@@ -210,14 +206,12 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             profileInstitute.putString("UserId", selectedInstituteId);
                             profileInstitute.apply();
 
-                            Toast.makeText(Dashboard_Drawer_Institute.this, "selected" + id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
-                            Toast.makeText(Dashboard_Drawer_Institute.this, selectedInstituteId, Toast.LENGTH_LONG).show();
                             // drawer.closeDrawer(GravityCompat.START);
                         }
 

@@ -39,6 +39,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Dashboard.ui.Qualification.Qualification;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 
@@ -75,6 +76,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private List<String> gender, catogery;
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     String userid;
+    private Loader loader;
 
     private Spinner teacher_profession, spinner_conveyance, spinner1, spinner_catogery;
     //   private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
@@ -88,6 +90,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private String dateType = "";
     private TextView spinner_category_textview, spinner_conveyance_textview, spinner_gender_textview, teacher_profession_textview;
     private ImageView image_view_uploaded_image;
+
 
 
     private String getRealPathFromURI(Uri contentURI) {
@@ -196,6 +199,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         edt_fullname = root.findViewById(R.id.edt_fullname);
         edt_fname = root.findViewById(R.id.edt_fname);
         edt_mtongue = root.findViewById(R.id.edt_mtongue);
+        loader = new Loader(getContext());
 
         edt_cnic = root.findViewById(R.id.edt_cnic);
         edt_present_address = root.findViewById(R.id.edt_present_address);
@@ -569,6 +573,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
     private void viewProfile() {
         JSONObject map = new JSONObject();
+        loader.showLoader();
+
         try {
             map.put("TutorId", userid);
         } catch (JSONException e) {
@@ -579,6 +585,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("ViewProfile", String.valueOf(response));
+                loader.hideLoader();
                 Gson gson = new Gson();
 
                 SharedPreferences personal_profile = getContext().getSharedPreferences("ViewProfile",

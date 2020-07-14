@@ -9,9 +9,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,17 +19,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.example.tutor_app.Dashboard.ui.Profile.Institute.InstituteFragment;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Profile.Teacher.ProfileTeacher;
-import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.TeacherSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
-import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
 import com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView;
 
@@ -102,7 +94,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (id == 0) {
-                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
@@ -121,7 +112,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             profileTeacher.putString("UserId",userid);
                             profileTeacher.apply();
 
-                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+userid, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher());
@@ -135,7 +125,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             final SharedPreferences.Editor profileTeacher = personal_profile.edit();
                             profileTeacher.putString("UserId","");
                             profileTeacher.apply();
-                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
 
@@ -146,7 +135,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                         } else if (id == 3) {
 
 
-                            Toast.makeText(Dashboard_Drawer_Teacher.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             Log.i("Make Payment", "Make Payment Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");

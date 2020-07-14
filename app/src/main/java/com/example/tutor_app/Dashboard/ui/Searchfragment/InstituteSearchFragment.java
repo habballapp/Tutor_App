@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter_Institute;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.View.ViewFragmentInstitute;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 
@@ -46,6 +47,7 @@ public class InstituteSearchFragment extends Fragment {
     private Map<String, String> childsMap = new HashMap<>();
     String Url = "http://pci.edusol.co/InstitutePortal/searchtutorApi.php";
     String userid;
+    private Loader loader;
 
 
     @Override
@@ -85,6 +87,7 @@ public class InstituteSearchFragment extends Fragment {
 
         spinner_location = (Spinner) root.findViewById(R.id.spinner_location);
         add_institute = (Spinner) root.findViewById(R.id.add_institute);
+        loader = new Loader(getContext());
 
         rl_next = root.findViewById(R.id.rl_next);
 
@@ -155,6 +158,7 @@ public class InstituteSearchFragment extends Fragment {
 
 
         JSONObject map = new JSONObject();
+        loader.showLoader();
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
@@ -165,6 +169,7 @@ public class InstituteSearchFragment extends Fragment {
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                loader.hideLoader();
                 childs = new ArrayList<>();
                 childs.add("Select Institute");
                 Log.i("Search", String.valueOf(response));

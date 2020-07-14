@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.TeacherViewStudentAdapter;
 import com.example.tutor_app.Adapters.ViewAdapter;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.ViewStudent_List;
 import com.example.tutor_app.Model_Classes.View_List;
 import com.example.tutor_app.MyJsonArrayRequest;
@@ -48,6 +49,7 @@ public class TeacherViewInstitute extends Fragment {
     private List<ViewStudent_List> list = new ArrayList<>();
     String Url = "http://pci.edusol.co/TeacherPortal/searchstudent_institutesubmit.php";
     String area,userid;
+    private Loader loader;
     private TextView txt_nodata;
 
     @Override
@@ -60,6 +62,7 @@ public class TeacherViewInstitute extends Fragment {
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
         txt_nodata.setText("No Institute Available");
+        loader = new Loader(getContext());
 
 
         try {
@@ -73,6 +76,7 @@ public class TeacherViewInstitute extends Fragment {
 
     private void ViewStudent() throws JSONException {
 
+        loader.showLoader();
         JSONObject map = new JSONObject();
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
@@ -93,6 +97,7 @@ public class TeacherViewInstitute extends Fragment {
             @Override
             public void onResponse(JSONObject result) {
                 JSONArray response = null;
+                loader.hideLoader();
                 try {
                     response = result.getJSONArray("instituteData");
                 } catch (JSONException e) {

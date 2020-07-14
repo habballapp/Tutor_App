@@ -111,7 +111,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
 
                         if (id == 0) {
-                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
@@ -136,7 +135,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             profileStudent.putString("UserId","");
                             profileStudent.apply();
 
-                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
@@ -157,7 +155,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             profileStudent.putString("UserId",userid);
                             profileStudent.apply();
 
-                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
@@ -166,7 +163,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                         }
                         else if (id == 4) {
-                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             Log.i("Make Payment", "Make Payment Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
@@ -200,14 +196,12 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             profileStudent.putString("UserId",selectedChildId);
                             profileStudent.apply();
 
-                            Toast.makeText(Dashboard_Drawer_Student.this, "selected"+id, Toast.LENGTH_SHORT).show();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
-                            Toast.makeText(Dashboard_Drawer_Student.this, selectedChildId, Toast.LENGTH_LONG).show();
                            // drawer.closeDrawer(GravityCompat.START);
                         }
 

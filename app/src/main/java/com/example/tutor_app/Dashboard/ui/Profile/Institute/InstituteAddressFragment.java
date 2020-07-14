@@ -28,6 +28,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -58,6 +59,7 @@ public class InstituteAddressFragment extends Fragment {
     String userid;
     TextView spinner_area_textview, spinner_timings_textview, spinner_gender_textview;
     JSONObject response = new JSONObject();
+    private Loader loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +72,7 @@ public class InstituteAddressFragment extends Fragment {
                 Context.MODE_PRIVATE);
 
         userid = sharedPreferences1.getString("userid", "");
+        loader = new Loader(getContext());
 
         Log.i("userid", userid);
 
@@ -349,6 +352,7 @@ public class InstituteAddressFragment extends Fragment {
     private void InstituteAddress() throws JSONException {
 
         JSONObject map = new JSONObject();
+        loader.showLoader();
 
         /* ** Convert the string to json from adapter While putting in shared preference as well ** */
         Gson gson = new Gson();
@@ -402,6 +406,7 @@ public class InstituteAddressFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("AddProfile", String.valueOf(response));
+                loader.hideLoader();
                 try {
                     if (!response.getString("instituteformId").equals("null"))
                         Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();

@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Dashboard.ui.Qualification.Qualification;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 
@@ -52,6 +53,7 @@ public class InstituteFragment extends Fragment {
     ArrayAdapter<String> adapter1;
     private TextView spinner_type_textview;
     String Url = "http://pci.edusol.co/InstitutePortal/view_profile_api.php";
+    private Loader loader;
 
 
     @Override
@@ -69,6 +71,7 @@ public class InstituteFragment extends Fragment {
                 Context.MODE_PRIVATE);
         viewProfile_userid = sharedPreferences2.getString("UserId", "");
         Log.i("UserId", userid);
+        loader = new Loader(getContext());
 
 
         itype = new ArrayList<>();
@@ -196,6 +199,8 @@ public class InstituteFragment extends Fragment {
     }
 
     private void viewProfile() {
+
+        loader.showLoader();
         JSONObject map = new JSONObject();
         try {
             map.put("InstituteId", viewProfile_userid);
@@ -208,6 +213,7 @@ public class InstituteFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("ViewProfile", String.valueOf(response));
+                loader.hideLoader();
                 Gson gson = new Gson();
 //                Type type = new TypeToken<JSONObject>(){}.getType();
 

@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.AreaFragmentAdapter;
 import com.example.tutor_app.Adapters.AreaFragmentAdapterView;
 import com.example.tutor_app.Dashboard.ui.References.ReferenceFragment;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -55,6 +56,7 @@ public class AreaFragment extends Fragment {
     private List<AreaFragment_List> list = new ArrayList<>();
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     JSONObject response;
+    private Loader loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +68,7 @@ public class AreaFragment extends Fragment {
         final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData_AreaFragment",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor areaFragment = area_fragmnt_data.edit();
+        loader = new Loader(getContext());
 
 //        spinner_area = root.findViewById(R.id.spinner_area);
 //        edt_classes_track = root.findViewById(R.id.edt_classes_track);
@@ -158,6 +161,7 @@ public class AreaFragment extends Fragment {
 
     private void viewProfile() {
 
+        loader.showLoader();
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -172,6 +176,7 @@ public class AreaFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
               //  Log.i("Area of Interest", String.valueOf(response));
+                loader.hideLoader();
 
 
 

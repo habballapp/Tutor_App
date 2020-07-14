@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.tutor_app"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -43,5 +43,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.nirwannursabda:expandable-navigation:0.1.2'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 
 }

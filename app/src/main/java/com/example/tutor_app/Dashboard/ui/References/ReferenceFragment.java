@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Dashboard.ui.Qualification.ExpandOrCollapse;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -43,6 +44,7 @@ public class ReferenceFragment extends Fragment {
     private boolean isVisible = false;
     private ExpandOrCollapse mAnimationManager;
     JSONObject response;
+    private Loader loader;
     String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit.php";
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     private EditText name, edt_relation, edt_occupation_ref, edt_telephone, edt_present_address, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
@@ -96,6 +98,7 @@ public class ReferenceFragment extends Fragment {
         edt_telephone1 = root.findViewById(R.id.edt_telephone1);
         edt_present_address = root.findViewById(R.id.edt_present_address);
         edt_present_address1 = root.findViewById(R.id.edt_present_address1);
+        loader = new Loader(getContext());
 
 
         //Profile
@@ -244,6 +247,7 @@ public class ReferenceFragment extends Fragment {
 
     private void viewProfile() {
 
+        loader.showLoader();
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -258,6 +262,7 @@ public class ReferenceFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("ViewProfile", String.valueOf(response));
+                loader.hideLoader();
                 try {
                     JSONArray references = response.getJSONArray("References");
                     Log.i("References", String.valueOf(references));
@@ -315,7 +320,7 @@ public class ReferenceFragment extends Fragment {
 
     private void uploadData() throws JSONException {
 
-
+        loader.showLoader();
         JSONObject map = new JSONObject();
         Gson gson = new Gson();
         Type type = new TypeToken<List<String>>() {
@@ -476,6 +481,7 @@ public class ReferenceFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("AddProfile", String.valueOf(response));
+                loader.hideLoader();
                 try {
                     if (! response.getString("userid").equals("null"))
                         Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();

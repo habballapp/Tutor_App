@@ -19,7 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Signin.SignIn;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -35,6 +37,7 @@ public class ProfileStudent extends Fragment {
     private EditText edt_email,edt_fullname,edt_phone1,edt_phone2,edt_phone3,edt_fname;
     String userid, viewProfile_userid;
     String Url = "http://pci.edusol.co/StudentPortal/view_profile_api.php";
+    private Loader loader;
 
 
 
@@ -51,6 +54,7 @@ public class ProfileStudent extends Fragment {
         edt_phone1 = root.findViewById(R.id.edt_phone1);
         edt_phone2 = root.findViewById(R.id.edt_phone2);
         edt_phone3 = root.findViewById(R.id.edt_phone3);
+        loader = new Loader(getContext());
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
@@ -102,6 +106,8 @@ public class ProfileStudent extends Fragment {
     }
 
     private void viewProfile() {
+
+        loader.showLoader();
         JSONObject map = new JSONObject();
         try {
             map.put("StudentId", viewProfile_userid);
@@ -114,6 +120,7 @@ public class ProfileStudent extends Fragment {
             public void onResponse(JSONObject response) {
                 Log.i("ViewProfile", String.valueOf(response));
                 Gson gson = new Gson();
+                loader.hideLoader();
 //                Type type = new TypeToken<JSONObject>(){}.getType();
 
                 SharedPreferences personal_profile = getContext().getSharedPreferences("ViewProfile",

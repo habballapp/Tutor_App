@@ -13,6 +13,7 @@
     <color name="pink_color">#FF69B4</color>
     <color name="brown_color">#A0522D</color>
     <color name="text_color_selection">#6D6E72</color>
+    <color name="dialog_back">#88000000</color>
 
 
 </resources>

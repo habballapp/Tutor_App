@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.ViewAdapter;
 import com.example.tutor_app.Adapters.ViewAdapterInstitute;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.View_List;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
@@ -49,6 +50,7 @@ public class ViewFragmentInstitute extends Fragment {
     private TextView txt_nodata;
     String locationarea,searchinstitute;
     private List<View_List> list = new ArrayList<>();
+    private Loader loader;
     String Url = "http://pci.edusol.co/InstitutePortal/searchtutorsubmit.php";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +60,7 @@ public class ViewFragmentInstitute extends Fragment {
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
+        loader = new Loader(getContext());
 
         // List<View_List> view_list =;
         //  adapter = new ViewAdapter("Shabbir ","teacher","0323223","phone","shabbir@gmail.com","person" ,"abc","eng","400","monthy",getContext());
@@ -74,6 +77,7 @@ public class ViewFragmentInstitute extends Fragment {
     private void ViewTeacher() throws JSONException {
 
         JSONObject map = new JSONObject();
+        loader.showLoader();
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("SearchData",
                 Context.MODE_PRIVATE);
@@ -94,6 +98,7 @@ public class ViewFragmentInstitute extends Fragment {
             @Override
             public void onResponse(JSONArray response) {
                 Log.i("View", String.valueOf(response));
+                loader.hideLoader();
                 if(response.length()<=0){
 
                     txt_nodata.setVisibility(View.VISIBLE);

@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.SelectClassAdapter;
 import com.example.tutor_app.Adapters.SelectClassAdapterView;
 import com.example.tutor_app.Dashboard.ui.AreaofInterest.AreaFragment;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.JobExperince_List;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -52,6 +53,7 @@ public class JobExperienceFragment extends Fragment {
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     JSONObject response;
     private RecyclerView.LayoutManager layoutManager;
+    private Loader loader;
     private List<JobExperince_List> List = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +64,8 @@ public class JobExperienceFragment extends Fragment {
 
         btn_experience_next = root.findViewById(R.id.btn_experience_next);
         btn_experience_add = root.findViewById(R.id.btn_experience_add);
+        loader = new Loader(getContext());
+
 
 
         SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
@@ -116,6 +120,7 @@ public class JobExperienceFragment extends Fragment {
 
     private void viewProfile() {
 
+        loader.showLoader();
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -130,6 +135,7 @@ public class JobExperienceFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("JobExperience", String.valueOf(response));
+                loader.hideLoader();
 
                 try {
                     JSONArray job_experience = response.getJSONArray("Experience");

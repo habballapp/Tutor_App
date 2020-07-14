@@ -26,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter_Child;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 
@@ -49,6 +50,8 @@ public class FragmentSearch extends Fragment {
     private Map<String, String> childsMap = new HashMap<>();
     String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
     String userid;
+    private Loader loader;
+
 
 
     @Override
@@ -57,6 +60,7 @@ public class FragmentSearch extends Fragment {
         // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_search, container, false);
+        loader = new Loader(getContext());
 
         area = new ArrayList<>();
         area.add("Select Area");
@@ -193,6 +197,7 @@ public class FragmentSearch extends Fragment {
     private void ViewChild() throws JSONException {
 
 
+        loader.showLoader();
         JSONObject map = new JSONObject();
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
@@ -205,9 +210,11 @@ public class FragmentSearch extends Fragment {
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                loader.hideLoader();
                 childs = new ArrayList<>();
                 childs.add("Select Child");
                 Log.i("Search", String.valueOf(response));
+
                 for(int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = new JSONObject(response.getString(i));

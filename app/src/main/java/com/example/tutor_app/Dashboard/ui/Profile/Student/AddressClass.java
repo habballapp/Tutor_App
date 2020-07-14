@@ -31,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.example.tutor_app.SignUp.Signup_Student;
 import com.example.tutor_app.Signin.SignIn;
@@ -64,6 +65,7 @@ public class AddressClass extends Fragment {
     String userid;
     TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview;
     JSONObject response = new JSONObject();
+    private Loader loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,6 +87,7 @@ public class AddressClass extends Fragment {
         spinner_area_textview = root.findViewById(R.id.spinner_area_textview);
         spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
         spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
+        loader = new Loader(getContext());
 
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
@@ -311,6 +314,7 @@ public class AddressClass extends Fragment {
 
     private void getProfileData() throws JSONException {
 
+
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("UserId", "");
@@ -338,6 +342,9 @@ public class AddressClass extends Fragment {
     }
 
     private void Address() throws JSONException {
+
+
+        loader.showLoader();
         JSONObject map = new JSONObject();
         map.put("name", name);
         map.put("fathername", fathername);
@@ -384,6 +391,7 @@ public class AddressClass extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    loader.hideLoader();
                     if (!response.getString("studenttutorformId").equals("null"))
                         Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
                     else

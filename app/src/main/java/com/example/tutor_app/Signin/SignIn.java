@@ -32,6 +32,7 @@ import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Institute;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Teacher;
 import com.example.tutor_app.ForgetPassword.Forget_Password;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 import com.example.tutor_app.UserType.User_Type;
@@ -65,11 +66,13 @@ public class SignIn extends AppCompatActivity {
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
     private String username,password;
+    private Loader loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        loader = new Loader(SignIn.this);
         btn_signin = findViewById(R.id.btn_signin_user);
         txt_password = findViewById(R.id.txt_password);
         txt_create = findViewById(R.id.txt_create);
@@ -151,8 +154,8 @@ public class SignIn extends AppCompatActivity {
 
     private void Login() throws JSONException {
 
-
-        progressBar.setVisibility(View.VISIBLE);
+        loader.showLoader();
+//        progressBar.setVisibility(View.VISIBLE);
         btn_signin_txt.setText("");
 
         StringRequest sr = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
@@ -160,11 +163,12 @@ public class SignIn extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(String result) {
+                loader.hideLoader();
                 Log.i("loginData", String.valueOf(result));
 
-                progressBar.setVisibility(View.GONE);
+//                progressBar.setVisibility(View.GONE);
                 try {
-                    progressBar.setVisibility(View.GONE);
+//                    progressBar.setVisibility(View.GONE);
                     JSONObject obj = new JSONObject(result);
                     if (!obj.getString("userid").equals("null")) {
                         SharedPreferences personal_profile = getSharedPreferences("LoginData",
@@ -216,7 +220,8 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                progressBar.setVisibility(View.GONE);
+                loader.hideLoader();
+//                progressBar.setVisibility(View.GONE);
                 btn_signin_txt.setText("");
                 error.printStackTrace();
             }

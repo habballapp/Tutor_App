@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Dashboard.ui.JobExperience.JobExperienceFragment;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -50,7 +51,7 @@ public class Qualification extends Fragment {
     private EditText qualification3 ,subject3 ,edt_institute3, edt_passing_year3 ,edt_grade3;
     private EditText qualification4 ,subject4 ,edt_institute4, edt_passing_year4 ,edt_grade4;
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
-
+    private Loader loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +59,7 @@ public class Qualification extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_section2, container, false);
 
+        loader = new Loader(getContext());
         mAnimationManager = new ExpandOrCollapse();
 
         SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
@@ -83,6 +85,7 @@ public class Qualification extends Fragment {
         mRelativeZaplon2 = root.findViewById(R.id.relativeZaplon2);
         mRelativeZaplon3 = root.findViewById(R.id.relativeZaplon3);
         mRelativeZaplon4 = root.findViewById(R.id.relativeZaplon4);
+
 
 
         mRelativeToSlide = root.findViewById(R.id.relativevToSlide);
@@ -305,9 +308,14 @@ public class Qualification extends Fragment {
     }
 
     private void viewProfile() {
+
+        loader.showLoader();
+
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
+
+
         JSONObject map = new JSONObject();
         try {
             map.put("TutorId", userid);
@@ -319,6 +327,7 @@ public class Qualification extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("ViewProfile", String.valueOf(response));
+                loader.hideLoader();
 
                 try {
                     JSONArray qualification_teacher = response.getJSONArray("Qualification_1");

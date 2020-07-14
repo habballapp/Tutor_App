@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.tutor_app.Dashboard.ui.View.TeacherViewInstitute;
 import com.example.tutor_app.Dashboard.ui.View.TeacherViewStudent;
 import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
+import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class TeacherSearchFragment extends Fragment {
     private List<String> area;
     private RelativeLayout rl_search_institute,rl_search_student;
     private FragmentTransaction fragmentTransaction;
+
 
 
     @Override
@@ -67,6 +69,7 @@ public class TeacherSearchFragment extends Fragment {
         SharedPreferences personal_profile = getContext().getSharedPreferences("SearchData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileStudent = personal_profile.edit();
+
 
         spinner_location = root.findViewById(R.id.spinner_location);
         rl_search_institute = root.findViewById(R.id.rl_search_institute);

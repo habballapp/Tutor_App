@@ -94,4 +94,15 @@
     <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker" tools:targetApi="lollipop">
         <item name="android:headerBackground">#fff</item> <!-- header background color -->
     </style>
+
+    <style name="NoActionBar" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="theme_loader" parent="NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+
+    </style>
+
 </resources>
