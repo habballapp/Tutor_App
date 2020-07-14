@@ -44,13 +44,13 @@ public class ReferenceFragment extends Fragment {
     private ExpandOrCollapse mAnimationManager;
     JSONObject response;
     String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit.php";
-    private EditText name, edt_relation, edt_occupation_ref, edt_present_address, edt_telephone, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
+    private EditText name, edt_relation, edt_occupation_ref, edt_telephone, edt_present_address, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
 
     //profile
-    String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic, edt_paddress,
+    String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic,
             edt_permanent_address, edt_dob, edt_nationality, edt_religion, edt_phone1, edt_phone2,
-            edt_email, edt_age, imageBitmapBase64,gender,conveyance,OrganizationName;
+            edt_email, edt_age, imageBitmapBase64, gender, conveyance, OrganizationName, present_address;
     String spinner_conveyance_txt, spinner_profession, date_of_submission,catogery;
     //Qualification
     String qualification, edt_institute, edt_passing_year, edt_grade,SubjectSpecialization,SubjectSpecialization1,
@@ -108,7 +108,7 @@ public class ReferenceFragment extends Fragment {
         edt_nationality = sharedPreferences.getString("nationality", "");
         edt_religion = sharedPreferences.getString("religion", "");
         edt_cnic = sharedPreferences.getString("cnicno", "");
-        edt_paddress = sharedPreferences.getString("presentadd", "");
+        present_address = sharedPreferences.getString("presentadd", "");
         edt_permanent_address = sharedPreferences.getString("permanentadd", "");
         edt_phone1 = sharedPreferences.getString("phoneno1", "");
         edt_phone2 = sharedPreferences.getString("phoneno2", "");
@@ -126,7 +126,7 @@ public class ReferenceFragment extends Fragment {
         edt_organization = sharedPreferences.getString("orgname", "");
         edt_from  = sharedPreferences.getString("fromto","");
         edt_till = sharedPreferences.getString("till","");
-        edt_classes_track = sharedPreferences.getString("classtoteach", "");
+        //  edt_classes_track = sharedPreferences.getString("classtoteach", "");
         edt_pref_subject  = sharedPreferences.getString("prefsubject","");
         spinner_area = sharedPreferences.getString("prefarea","");
         gender = sharedPreferences.getString("gender","");
@@ -136,37 +136,40 @@ public class ReferenceFragment extends Fragment {
 
 
         // Qualification
-        final SharedPreferences qualification_data = getContext().getSharedPreferences("SendData",
-                Context.MODE_PRIVATE);
-        qualification = qualification_data.getString("Qualification", "");
-        SubjectSpecialization = qualification_data.getString("SubjectSpecialization", "");
-        edt_institute = qualification_data.getString("InstituteUniversity", "");
-        edt_passing_year = qualification_data.getString("YearOfPassing", "");
-        edt_grade = qualification_data.getString("gradedivision", "");
+        //  final SharedPreferences qualification_data = getContext().getSharedPreferences("SendData",
+        //        Context.MODE_PRIVATE);
+
+        qualification = sharedPreferences.getString("Qualification", "");
+        SubjectSpecialization = sharedPreferences.getString("SubjectSpec", "");
+        edt_institute = sharedPreferences.getString("InstituteUniversity", "");
+        edt_passing_year = sharedPreferences.getString("YearOfPassing", "");
+        edt_grade = sharedPreferences.getString("gradedivision", "");
         //
-        qualification1 = qualification_data.getString("Qualification", "");
-        SubjectSpecialization1 = qualification_data.getString("SubjectSpecialization1", "");
-        edt_institute1 = qualification_data.getString("InstituteUniversity", "");
-        edt_passing_year1 = qualification_data.getString("YearOfPassing", "");
-        edt_grade1 = qualification_data.getString("gradedivision", "");
+        qualification1 = sharedPreferences.getString("Qualification1", "");
+        SubjectSpecialization1 = sharedPreferences.getString("SubjectSpec1", "");
+        edt_institute1 = sharedPreferences.getString("InstituteUniversity1", "");
+        edt_passing_year1 = sharedPreferences.getString("YearOfPassing1", "");
+        edt_grade1 = sharedPreferences.getString("gradedivision1", "");
+
+
         //
-        qualification2 = qualification_data.getString("Qualification", "");
-        SubjectSpecialization2 = qualification_data.getString("SubjectSpecialization2", "");
-        edt_institute2 = qualification_data.getString("InstituteUniversity", "");
-        edt_passing_year2 = qualification_data.getString("YearOfPassing", "");
-        edt_grade2 = qualification_data.getString("gradedivision", "");
+        qualification2 = sharedPreferences.getString("Qualification2", "");
+        SubjectSpecialization2 = sharedPreferences.getString("SubjectSpec2", "");
+        edt_institute2 = sharedPreferences.getString("InstituteUniversity2", "");
+        edt_passing_year2 = sharedPreferences.getString("YearOfPassing2", "");
+        edt_grade2 = sharedPreferences.getString("gradedivision2", "");
         //
-        qualification3 = qualification_data.getString("Qualification", "");
-        SubjectSpecialization3 = qualification_data.getString("SubjectSpecialization3", "");
-        edt_institute3 = qualification_data.getString("InstituteUniversity", "");
-        edt_passing_year3 = qualification_data.getString("YearOfPassing", "");
-        edt_grade3 = qualification_data.getString("gradedivision", "");
+        qualification3 = sharedPreferences.getString("Qualification3", "");
+        SubjectSpecialization3 = sharedPreferences.getString("SubjectSpec3", "");
+        edt_institute3 = sharedPreferences.getString("InstituteUniversity3", "");
+        edt_passing_year3 = sharedPreferences.getString("YearOfPassing3", "");
+        edt_grade3 = sharedPreferences.getString("gradedivision3", "");
         //
-        qualification4 = qualification_data.getString("Qualification", "");
-        SubjectSpecialization4 = qualification_data.getString("SubjectSpecialization4", "");
-        edt_institute4 = qualification_data.getString("InstituteUniversity", "");
-        edt_passing_year4 = qualification_data.getString("YearOfPassing", "");
-        edt_grade4 = qualification_data.getString("gradedivision", "");
+        qualification4 = sharedPreferences.getString("Qualification4", "");
+        SubjectSpecialization4 = sharedPreferences.getString("SubjectSpec4", "");
+        edt_institute4 = sharedPreferences.getString("InstituteUniversity4", "");
+        edt_passing_year4 = sharedPreferences.getString("YearOfPassing4", "");
+        edt_grade4 = sharedPreferences.getString("gradedivision4", "");
 
         //JobExperience
         final SharedPreferences job_experience = getContext().getSharedPreferences("SendData",
@@ -325,9 +328,9 @@ public class ReferenceFragment extends Fragment {
         if (! edt_pref_subject.equals(""))
             subArray.put(edt_pref_subject);
 
-        List<String> classTeach = gson.fromJson(edt_classes_track, type);
-        JSONArray jsonArray1 = new JSONArray(classTeach);
-        map.put("classtoteach", jsonArray1);
+//        List<String> classTeach = gson.fromJson(edt_classes_track, type);
+//        JSONArray jsonArray1 = new JSONArray(classTeach);
+//        map.put("classtoteach", jsonArray1);
 
 //        List<String> prefArea = gson.fromJson(spinner_area, type);
 //        JSONArray jsonArray2 = new JSONArray(prefArea);
@@ -339,6 +342,11 @@ public class ReferenceFragment extends Fragment {
         map.put("prefarea",spinner_area);
 
         JSONArray qualificationArray = new JSONArray();
+        Log.i("debugQualification", qualification);
+        Log.i("debugQualification", qualification1);
+        Log.i("debugQualification", qualification2);
+        Log.i("debugQualification", qualification3);
+        Log.i("debugQualification", qualification4);
         if (! qualification.equals(""))
             qualificationArray.put(qualification);
         if (! qualification1.equals(""))
@@ -406,6 +414,10 @@ public class ReferenceFragment extends Fragment {
         map.put("OrganizationName",OrganizationName);
 
 
+        Log.i("Qualification", String.valueOf(qualificationArray));
+        Log.i("Subjects", String.valueOf(subspecArray));
+        Log.i("Grade", String.valueOf(gradeArray));
+        Log.i("Passingyear", String.valueOf(passingArray));
 
 
 //        map.put("Regno", "1");
@@ -423,17 +435,14 @@ public class ReferenceFragment extends Fragment {
         map.put("dateofsubmission","");
         map.put("nationality",edt_nationality);
         map.put("religion",edt_religion);
-        map.put("presentadd",edt_present_address);
+        map.put("presentadd", present_address);
         map.put("permanentadd",edt_permanent_address);
         map.put("phoneno1",edt_phone1);
         map.put("phoneno2",edt_phone2);
         map.put("phoneno3","");
         map.put("fbid","");
         map.put("IfInstituteOther",catogery);
-
-
-
-
+        map.put("classtoteach", edt_classes_track);
 
 
         map.put("JobEntitlement",edt_etitlement);
@@ -447,13 +456,15 @@ public class ReferenceFragment extends Fragment {
         map.put("phoneno3","");
         map.put("ref1Name", name.getText());
         map.put("ref1Relation", edt_relation.getText());
-        map.put("ref1Occupation", edt_occupation);
+        map.put("ref1Occupation", edt_occupation_ref.getText());
         map.put("ref1TelephoneNo", edt_telephone.getText());
+        map.put("ref1Address", edt_present_address.getText());
+        map.put("ref2Address", edt_present_address1.getText());
         map.put("ref1Relation", edt_relation.getText());
         map.put("ref2Name", name1.getText());
         map.put("ref2Relation", edt_relation1.getText());
         map.put("ref2Occupation", edt_occupation1.getText());
-        map.put("ref2TelephoneNo", edt_telephone.getText());
+        map.put("ref2TelephoneNo", edt_telephone1.getText());
 
 
 

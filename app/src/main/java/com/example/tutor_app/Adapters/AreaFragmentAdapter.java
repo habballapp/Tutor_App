@@ -159,19 +159,60 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
             }
         });
 
-        final ArrayList<StateVO> listClasses = new ArrayList<>();
+//        final ArrayList<StateVO> listClasses = new ArrayList<>();
+//        for (int i = 0; i < classes.size(); i++) {
+//
+//
+//            holder.stateVO = new StateVO();
+//            holder.stateVO .setTitle(classes.get(i));
+//            holder.stateVO .setSelected(false);
+//            listClasses.add( holder.stateVO );
+//        }
+//
+//        final MyAdapter3 myAdapter1 = new MyAdapter3(context, android.R.layout.simple_spinner_dropdown_item,listClasses);
+//        holder.spinner_class.setAdapter(myAdapter1);
 
-        for (int i = 0; i < classes.size(); i++) {
+        final ArrayAdapter<String> spinner_class_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, classes) {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(context.getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
 
+                return view;
+            }
 
-            holder.stateVO = new StateVO();
-            holder.stateVO .setTitle(classes.get(i));
-            holder.stateVO .setSelected(false);
-            listClasses.add( holder.stateVO );
-        }
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // TODO Auto-generated method stub
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(context.getResources().getColor(R.color.text_color_selection));
+                text.setTextSize((float) 13.6);
+                text.setPadding(30, 0, 30, 0);
+                return view;
+            }
+        };
+        holder.spinner_class.setAdapter(spinner_class_adapter);
+        holder.spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        final MyAdapter3 myAdapter1 = new MyAdapter3(context, android.R.layout.simple_spinner_dropdown_item,listClasses);
-        holder.spinner_class.setAdapter(myAdapter1);
+                profileArea_of_interest.putString("classtoteach",(String.valueOf(classes.get(position))));
+                profileArea_of_interest.apply();
+                Log.i("ClassSelected", classes.get(position) + " - " + position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 

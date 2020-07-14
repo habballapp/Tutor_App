@@ -171,7 +171,9 @@ public class AreaFragment extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("JobExperience", String.valueOf(response));
+              //  Log.i("Area of Interest", String.valueOf(response));
+
+
 
                 try {
                     JSONArray area = response.getJSONArray("AreaOfInterest");
