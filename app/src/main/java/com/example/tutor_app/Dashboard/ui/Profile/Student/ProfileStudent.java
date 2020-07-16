@@ -3,12 +3,14 @@ package com.example.tutor_app.Dashboard.ui.Profile.Student;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,13 +23,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
-import com.example.tutor_app.Signin.SignIn;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -38,6 +41,8 @@ public class ProfileStudent extends Fragment {
     String userid, viewProfile_userid;
     String Url = "http://pci.edusol.co/StudentPortal/view_profile_api.php";
     private Loader loader;
+    List<String> Fields = new ArrayList<String>();
+
 
 
 
@@ -45,7 +50,7 @@ public class ProfileStudent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_profile_student, container, false);
+        final View root = inflater.inflate(R.layout.fragment_profile_student, container, false);
 
         btn_class_next = root.findViewById(R.id.btn_class_next);
         edt_email = root.findViewById(R.id.edt_email);
@@ -55,6 +60,16 @@ public class ProfileStudent extends Fragment {
         edt_phone2 = root.findViewById(R.id.edt_phone2);
         edt_phone3 = root.findViewById(R.id.edt_phone3);
         loader = new Loader(getContext());
+
+       // final EditText[] allFields = { edt_email,edt_fullname,edt_phone1,edt_phone2,edt_phone3,edt_fname};
+        final List<EditText> allFields =new ArrayList<EditText>();
+        allFields.add(edt_email);
+        allFields.add( edt_fullname);
+        allFields.add(edt_phone1);
+        allFields.add( edt_phone2);
+        allFields.add(edt_phone3);
+        allFields.add(edt_fname);
+
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
@@ -66,7 +81,7 @@ public class ProfileStudent extends Fragment {
         viewProfile_userid = sharedPreferences2.getString("UserId", "");
         Log.i("UserId", userid);
 
-        if (! viewProfile_userid.equals("")) {
+        if (!viewProfile_userid.equals("")) {
             viewProfile();
         } else if (! userid.equals("")) {
             try {
@@ -76,30 +91,54 @@ public class ProfileStudent extends Fragment {
             }
         }
 
-
-
         btn_class_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
                         Context.MODE_PRIVATE);
-                SharedPreferences.Editor profileStudent = personal_profile.edit();
-                profileStudent.putString("name",String.valueOf(edt_fullname.getText()));
-                profileStudent.putString("fathername",String.valueOf(edt_fname.getText()));
-                profileStudent.putString("email",String.valueOf(edt_email.getText()));
-                profileStudent.putString("contactno1",String.valueOf(edt_phone1.getText()));
-                profileStudent.putString("contactno2",String.valueOf(edt_phone2.getText()));
-                profileStudent.putString("contactno3",String.valueOf(edt_phone3.getText()));
-                profileStudent.apply();
 
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new SelectClass());
-                fragmentTransaction.commit();
+                List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
+                for(int j = 0; j < allFields.size(); j++){
+                    if(TextUtils.isEmpty(allFields.get(j).getText())){
+                        // EditText was empty
+                     //   Fields.add(allFields.get(j).getText().toString());
+                        ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                        for(int i = 0; i < ErrorFields.size(); i++)
+                        {
+                            //Fields.add(ErrorFields.get(i).getText().toString());
+                            EditText currentField = ErrorFields.get(i);
+                            currentField.setError("this field required");
+                            ErrorFields.set(i,currentField);
+                            currentField.requestFocus();
+                        }
 
+                    }
+                }
 
+                Log.i("allFields", String.valueOf(allFields));
+                if(ErrorFields.isEmpty()){
+                    SharedPreferences.Editor profileStudent = personal_profile.edit();
+                    profileStudent.putString("name",String.valueOf(edt_fullname.getText()));
+                    profileStudent.putString("fathername",String.valueOf(edt_fname.getText()));
+                    profileStudent.putString("email",String.valueOf(edt_email.getText()));
+                    profileStudent.putString("contactno1",String.valueOf(edt_phone1.getText()));
+                    profileStudent.putString("contactno2",String.valueOf(edt_phone2.getText()));
+                    profileStudent.putString("contactno3",String.valueOf(edt_phone3.getText()));
+                    Log.i("Name", String.valueOf(edt_fullname));
+                    profileStudent.apply();
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new SelectClass());
+                    fragmentTransaction.commit();
+                    Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                }
 
             }
+
+
         });
 
         return root;

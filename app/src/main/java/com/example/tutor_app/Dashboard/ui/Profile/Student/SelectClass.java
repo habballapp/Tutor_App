@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -141,6 +143,8 @@ public class SelectClass extends Fragment {
         SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileStudent = personal_profile.edit();
+        final List<EditText> allFields =new ArrayList<EditText>();
+        final List<Spinner> spinnerFields =new ArrayList<>();
 
 //        adapter = new SelectClassAdapter(getContext(), classes);
 //        rl_recycler.setAdapter(adapter);
@@ -208,6 +212,7 @@ public class SelectClass extends Fragment {
 
                         profileStudent.putString("class", String.valueOf(classes.get(position)));
                         profileStudent.apply();
+                        spinnerFields.add(spinner_class);
                         Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
                     }
                 }
@@ -255,6 +260,11 @@ public class SelectClass extends Fragment {
         }
 
 
+        allFields.add(edt_school);
+
+
+
+
         btn_profile_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -262,9 +272,37 @@ public class SelectClass extends Fragment {
                 profileStudent.putString("schoolcollege",String.valueOf(edt_school.getText()));
                 profileStudent.apply();
 
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
-                fragmentTransaction.commit();
+                List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
+                for(int j = 0; j < allFields.size(); j++){
+                    if(TextUtils.isEmpty(allFields.get(j).getText())){
+                        // EditText was empty
+                        //   Fields.add(allFields.get(j).getText().toString());
+                        ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                        for(int i = 0; i < ErrorFields.size(); i++)
+                        {
+                            //Fields.add(ErrorFields.get(i).getText().toString());
+                            EditText currentField = ErrorFields.get(i);
+                            currentField.setError("this field required");
+                            ErrorFields.set(i,currentField);
+                            currentField.requestFocus();
+                        }
+
+                    }
+                }
+
+                if(ErrorFields.isEmpty()){
+
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
+                    fragmentTransaction.commit();
+                    Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                }
+
+
+
             }
         });
 

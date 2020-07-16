@@ -53,6 +53,7 @@ public class Qualification extends Fragment {
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     private Loader loader;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

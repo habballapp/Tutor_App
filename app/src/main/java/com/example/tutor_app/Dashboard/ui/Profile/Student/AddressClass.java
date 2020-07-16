@@ -109,6 +109,8 @@ public class AddressClass extends Fragment {
         userid = sharedPreferences1.getString("userid", "");
 
 
+
+
         Gson gson = new Gson();
         Type type = new TypeToken<JSONObject>() {
         }.getType();
@@ -124,7 +126,6 @@ public class AddressClass extends Fragment {
                 e.printStackTrace();
             }
         }
-
 
         if(str_response.equals("")) {
             gender = new ArrayList<>();
@@ -275,21 +276,29 @@ public class AddressClass extends Fragment {
                 }
             });
 
+            if (!userid.equals("")) {
+                try {
+                    getProfileData();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
 
             btn_profile_next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-
-                    String houseno = edt_house_number.getText().toString().trim();
-                    String buildingno = edt_bno.getText().toString().trim();
-                    String streetno = edt_street.getText().toString().trim();
-                    String blockno = edt_block.getText().toString().trim();
-                    String city = edt_city.getText().toString().trim();
-                    //   String area = edt_area.getText().toString().trim();
-                    String country = edt_country.getText().toString().trim();
-//              String spinner_timings = spinner2.getText().toString().trim();
-
+//                    String houseno = edt_house_number.getText().toString().trim();
+//                    String buildingno = edt_bno.getText().toString().trim();
+//                    String streetno = edt_street.getText().toString().trim();
+//                    String blockno = edt_block.getText().toString().trim();
+//                    String city = edt_city.getText().toString().trim();
+//                    String area = edt_area.getText().toString().trim();
+//                    String country = edt_country.getText().toString().trim();
+//                    String spinner_timings = spinner2.getText().toString().trim();
                     try {
                         Address();
                     } catch (JSONException e) {
@@ -299,14 +308,7 @@ public class AddressClass extends Fragment {
             });
 
 
-            if (! userid.equals("")) {
-                try {
-                    getProfileData();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
-            }
         }
 
         return root;
@@ -360,7 +362,9 @@ public class AddressClass extends Fragment {
 
         JSONArray jsonArray = new JSONArray(selectedSubjects);
 
+
         map.put("subjects", jsonArray);
+
 
         map.put("contactno1", contactno1);
         map.put("contactno2", contactno2);

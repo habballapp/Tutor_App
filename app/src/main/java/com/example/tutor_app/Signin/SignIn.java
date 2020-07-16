@@ -209,6 +209,8 @@ public class SignIn extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     progressBar.setVisibility(View.GONE);
+                    btn_signin_txt.setText("SIGNIN");
+
 
 
                 }

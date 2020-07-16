@@ -111,9 +111,9 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         navigationExpandableListView.addHeaderModel(headerModel);
 
         Log.i("Institute11", String.valueOf(institute));
-        navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Add Profile")
         );
-        navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Job")
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Add Job")
         );
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
