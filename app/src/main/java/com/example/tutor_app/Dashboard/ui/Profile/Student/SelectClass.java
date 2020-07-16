@@ -87,7 +87,7 @@ public class SelectClass extends Fragment {
 
         SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
                 Context.MODE_PRIVATE);
-        String str_response = personal_profile1.getString("ViewProfileData", "");
+        final String str_response = personal_profile1.getString("ViewProfileData", "");
         if (! str_response.equals("")) {
             response = gson.fromJson(str_response, type);
             try {
@@ -304,18 +304,24 @@ public class SelectClass extends Fragment {
                     }
                 }
 
+                if (str_response.equals("")) {
 
-                if(ErrorFields.isEmpty() && spinner_class.getSelectedItemPosition() != 0 && !selectedsubject.equals("")){
+                    if (ErrorFields.isEmpty() && spinner_class.getSelectedItemPosition() != 0 && !selectedsubject.equals("")) {
 
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
+                        fragmentTransaction.commit();
 
+                    } else {
+                        Toast.makeText(getContext(), "Please Enter All Fields", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
                     fragmentTransaction.commit();
-                    Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
-                }
-                else
-                    {
-                    Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), " All Fields", Toast.LENGTH_SHORT).show();
                 }
 
                 selectedsubject="";

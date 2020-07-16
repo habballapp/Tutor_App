@@ -340,7 +340,6 @@ public class AddressClass extends Fragment {
                         }
                     }
 
-
                     if(ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && spinner3.getSelectedItemPosition()!=0 && !timingSelected.equals(""))
                     {
 

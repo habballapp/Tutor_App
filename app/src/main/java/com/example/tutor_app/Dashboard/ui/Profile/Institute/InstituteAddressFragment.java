@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,10 +69,12 @@ public class InstituteAddressFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_institute_address, container, false);
 
 
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
-                Context.MODE_PRIVATE);
+//        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
+//                Context.MODE_PRIVATE);
 
-        userid = sharedPreferences1.getString("userid", "");
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+                Context.MODE_PRIVATE);
+        userid = sharedPreferences1.getString("UserId", "");
         loader = new Loader(getContext());
 
         Log.i("userid", userid);
@@ -290,27 +293,65 @@ public class InstituteAddressFragment extends Fragment {
                 }
             });
 
+            final List<EditText> allFields =new ArrayList<EditText>();
+
+            allFields.add(edt_address);
+            allFields.add(edt_street);
+            allFields.add(edt_block);
+            allFields.add(edt_city);
+            allFields.add(edt_country);
+            allFields.add(et_amount1);
+            allFields.add(et_amount2);
+
 
             btn_profile_next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
 
-                    String streetno = edt_street.getText().toString().trim();
-                    String blockno = edt_block.getText().toString().trim();
-                    String city = edt_city.getText().toString().trim();
-                    //   String area = edt_area.getText().toString().trim();
-                    String country = edt_country.getText().toString().trim();
-                    String amount1 = et_amount1.getText().toString().trim();
-                    String amount2 = et_amount2.getText().toString().trim();
+//                    String streetno = edt_street.getText().toString().trim();
+//                    String blockno = edt_block.getText().toString().trim();
+//                    String city = edt_city.getText().toString().trim();
+//                    //   String area = edt_area.getText().toString().trim();
+//                    String country = edt_country.getText().toString().trim();
+//                    String amount1 = et_amount1.getText().toString().trim();
+//                    String amount2 = et_amount2.getText().toString().trim();
 
-                    try {
-                        InstituteAddress();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
+                    for(int j = 0; j < allFields.size(); j++){
+                        if(TextUtils.isEmpty(allFields.get(j).getText())){
+                            // EditText was empty
+                            //   Fields.add(allFields.get(j).getText().toString());
+                            ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                            for(int i = 0; i < ErrorFields.size(); i++)
+                            {
+                                //Fields.add(ErrorFields.get(i).getText().toString());
+                                EditText currentField = ErrorFields.get(i);
+                                currentField.setError("this field required");
+                                ErrorFields.set(i,currentField);
+                                currentField.requestFocus();
+                            }
+
+                        }
                     }
 
-                }
+                    Log.i("allFields", String.valueOf(allFields));
+                        if(ErrorFields.isEmpty()){
+
+                            try {
+                                InstituteAddress();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        else{
+                            Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+
             });
 
             if (!userid.equals("")) {

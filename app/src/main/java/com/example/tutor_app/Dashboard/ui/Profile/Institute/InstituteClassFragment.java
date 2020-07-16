@@ -24,9 +24,11 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tutor_app.Adapters.AreaFragmentAdapter;
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
+import com.example.tutor_app.Dashboard.ui.Profile.Student.AddressClass;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.Qualification.ExpandOrCollapse;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
@@ -63,6 +65,7 @@ public class InstituteClassFragment extends Fragment {
     private List<Institute_Information_List> list = new ArrayList<>();
     private JSONObject response = new JSONObject();
     private TextView spinner_class_textview, spinner_subject_textview;
+    String selectedsubject = "";
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -70,7 +73,7 @@ public class InstituteClassFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_institute_class, container, false);
+        final View root = inflater.inflate(R.layout.fragment_institute_class, container, false);
 
         spinner_class = root.findViewById(R.id.spinner_class);
         spinner_subject = root.findViewById(R.id.spinner_subject);
@@ -132,7 +135,8 @@ public class InstituteClassFragment extends Fragment {
 
         SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
                 Context.MODE_PRIVATE);
-        String str_response = personal_profile1.getString("ViewProfileData", "");
+        final String str_response = personal_profile1.getString("ViewProfileData", "");
+
         if (!str_response.equals("")) {
             response = gson.fromJson(str_response, type);
             try {
@@ -252,10 +256,42 @@ public class InstituteClassFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("CheckField",
+                        Context.MODE_PRIVATE);
 
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment());
-                fragmentTransaction.commit();
+                selectedsubject = sharedPreferences1.getString("selectedsubjects", "");
+                Log.i("SelectedSubject",selectedsubject);
+
+                if (str_response.equals("")) {
+
+                    if(spinner_class.getSelectedItemPosition() !=0 && !selectedsubject.equals("")){
+
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment());
+                        fragmentTransaction.commit();
+
+                    }
+                    else
+                    {
+                        Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                else{
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment());
+                    fragmentTransaction.commit();
+
+                }
+
+                SharedPreferences check_field1 = getContext().getSharedPreferences("CheckField",
+                        Context.MODE_PRIVATE);
+                final SharedPreferences.Editor profileStudent1 = check_field1.edit();
+                profileStudent1.putString("selectedsubjects", "");
+                profileStudent1.apply();
+
+
+
 
             }
         });

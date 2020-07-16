@@ -160,7 +160,6 @@ public class InstituteFragment extends Fragment {
 
         final List<EditText> allFields =new ArrayList<EditText>();
 
-
         allFields.add( edt_institutename);
         allFields.add(edt_phone1);
         allFields.add(edt_phone2);
@@ -204,23 +203,33 @@ public class InstituteFragment extends Fragment {
                 }
 
                 Log.i("allFields", String.valueOf(allFields));
-                if(ErrorFields.isEmpty() && spinner_type.getSelectedItemPosition() != 0){
+                if (viewProfile_userid.equals("")) {
+                    if(ErrorFields.isEmpty() && spinner_type.getSelectedItemPosition() != 0){
 
-                    profileInstitute.putString("nameofInstitute", String.valueOf(edt_institutename.getText()));
-                    profileInstitute.putString("contactperson", String.valueOf(contact_person.getText()));
-                    profileInstitute.putString("contactno1", String.valueOf(edt_phone1.getText()));
-                    profileInstitute.putString("contactno2", String.valueOf(edt_phone2.getText()));
-                    profileInstitute.putString("contactno3", String.valueOf(edt_phone3.getText()));
-                    profileInstitute.putString("email", String.valueOf(edt_email.getText()));
-                    profileInstitute.apply();
+                        profileInstitute.putString("nameofInstitute", String.valueOf(edt_institutename.getText()));
+                        profileInstitute.putString("contactperson", String.valueOf(contact_person.getText()));
+                        profileInstitute.putString("contactno1", String.valueOf(edt_phone1.getText()));
+                        profileInstitute.putString("contactno2", String.valueOf(edt_phone2.getText()));
+                        profileInstitute.putString("contactno3", String.valueOf(edt_phone3.getText()));
+                        profileInstitute.putString("email", String.valueOf(edt_email.getText()));
+                        profileInstitute.apply();
 
-                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment());
-                    fragmentTransaction.commit();
-                    Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment());
+                        fragmentTransaction.commit();
+                        Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-                else{
-                    Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                else
+                    {
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment());
+                        fragmentTransaction.commit();
+                        Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                 }
 
 
