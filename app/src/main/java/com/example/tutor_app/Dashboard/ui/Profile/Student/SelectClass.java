@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -57,6 +58,7 @@ public class SelectClass extends Fragment {
     ArrayAdapter<String> adapter_class;
     MyAdapter_Subjects myAdapter1;
     private TextView spinner_class_textview, spinner_subject_textview;
+    String selectedsubject;
    // List<String> spinner1,subjects;
 
 
@@ -144,7 +146,7 @@ public class SelectClass extends Fragment {
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileStudent = personal_profile.edit();
         final List<EditText> allFields =new ArrayList<EditText>();
-        final List<Spinner> spinnerFields =new ArrayList<>();
+
 
 //        adapter = new SelectClassAdapter(getContext(), classes);
 //        rl_recycler.setAdapter(adapter);
@@ -212,7 +214,6 @@ public class SelectClass extends Fragment {
 
                         profileStudent.putString("class", String.valueOf(classes.get(position)));
                         profileStudent.apply();
-                        spinnerFields.add(spinner_class);
                         Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
                     }
                 }
@@ -236,26 +237,30 @@ public class SelectClass extends Fragment {
             myAdapter1 = new MyAdapter_Subjects(getContext(), android.R.layout.simple_spinner_dropdown_item, listSubjects);
             spinner_subject.setAdapter(myAdapter1);
 
-            spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (listSubjects.get(position).equals("Select All")) {
-//                    for (int i = 0; i < subjects.size(); i++) {
-//                        stateVO = new StateVO();
-//                        stateVO.setSelected(true);
-//                        listSubjects.add(stateVO);
-//                    }
-//                    myAdapter1.notifyDataSetChanged();
+
+
+
+
+//            spinner_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                @Override
+//                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////                if (listSubjects.get(position).equals("Select All")) {
+////                    for (int i = 0; i < subjects.size(); i++) {
+////                        stateVO = new StateVO();
+////                        stateVO.setSelected(true);
+////                        listSubjects.add(stateVO);
+////                    }
+////                    myAdapter1.notifyDataSetChanged();
+////                }
+//                    Log.i("Subject", String.valueOf(String.valueOf(subjects.get(position))));
+//
 //                }
-                    Log.i("Subject", String.valueOf(String.valueOf(subjects.get(position))));
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
+//
+//                @Override
+//                public void onNothingSelected(AdapterView<?> parent) {
+//
+//                }
+//            });
 
         }
 
@@ -271,6 +276,14 @@ public class SelectClass extends Fragment {
 
                 profileStudent.putString("schoolcollege",String.valueOf(edt_school.getText()));
                 profileStudent.apply();
+
+                SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("CheckField",
+                        Context.MODE_PRIVATE);
+
+                selectedsubject = sharedPreferences1.getString("selectedsubjects", "");
+                Log.i("SelectedSubject",selectedsubject);
+
+
 
                 List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
                 for(int j = 0; j < allFields.size(); j++){
@@ -290,14 +303,16 @@ public class SelectClass extends Fragment {
                     }
                 }
 
-                if(ErrorFields.isEmpty()){
+
+                if(ErrorFields.isEmpty() && spinner_class.getSelectedItemPosition() != 0){
 
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
                     fragmentTransaction.commit();
                     Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else
+                    {
                     Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
                 }
 
@@ -305,8 +320,6 @@ public class SelectClass extends Fragment {
 
             }
         });
-
-
 
         return root;
 }

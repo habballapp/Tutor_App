@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +89,7 @@ public class AddressClass extends Fragment {
         spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
         spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
         loader = new Loader(getContext());
+        final List<EditText> allFields =new ArrayList<EditText>();
 
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
@@ -104,9 +106,9 @@ public class AddressClass extends Fragment {
         schoolcollege = sharedPreferences.getString("schoolcollege", "");
         spinner_timings = sharedPreferences.getString("desiredtiming", "");
 
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
-        userid = sharedPreferences1.getString("userid", "");
+        userid = sharedPreferences1.getString("UserId", "");
 
 
 
@@ -286,6 +288,13 @@ public class AddressClass extends Fragment {
             }
 
 
+              allFields.add(edt_house_number);
+              allFields.add(edt_bno);
+              allFields.add(edt_street);
+              allFields.add(edt_block);
+              allFields.add(edt_city);
+              allFields.add(edt_country);
+
 
             btn_profile_next.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -299,11 +308,40 @@ public class AddressClass extends Fragment {
 //                    String area = edt_area.getText().toString().trim();
 //                    String country = edt_country.getText().toString().trim();
 //                    String spinner_timings = spinner2.getText().toString().trim();
-                    try {
-                        Address();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
+                    for(int j = 0; j < allFields.size(); j++){
+                        if(TextUtils.isEmpty(allFields.get(j).getText())){
+                            // EditText was empty
+                            //   Fields.add(allFields.get(j).getText().toString());
+                            ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                            for(int i = 0; i < ErrorFields.size(); i++)
+                            {
+                                //Fields.add(ErrorFields.get(i).getText().toString());
+                                EditText currentField = ErrorFields.get(i);
+                                currentField.setError("this field required");
+                                ErrorFields.set(i,currentField);
+                                currentField.requestFocus();
+                            }
+
+                        }
                     }
+
+
+                    if(ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && spinner3.getSelectedItemPosition()!=0)
+                    {
+
+                          try {
+                            Address();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    else
+                    {
+                        Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
 
@@ -321,6 +359,8 @@ public class AddressClass extends Fragment {
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("UserId", "");
         Log.i("UserId", userid);
+
+
 
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
                 Context.MODE_PRIVATE);

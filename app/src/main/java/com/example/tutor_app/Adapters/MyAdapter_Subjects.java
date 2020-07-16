@@ -25,6 +25,7 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
     private MyAdapter_Subjects myAdapter;
     private boolean isFromView = false;
     private List<String> selectedSubjects = new ArrayList<>();
+    private List<String> selectedSubjects1 = new ArrayList<>();
 
     public MyAdapter_Subjects(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
@@ -61,6 +62,8 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
         } else {
             holder = (MyAdapter_Subjects.ViewHolder) convertView.getTag();
         }
+
+
 
         holder.mTextView.setText(listState.get(position).getTitle());
 //         To check weather checked event fire from getview() or user input
@@ -126,7 +129,9 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
         isFromView = false;
 
         if ((position == 0)) {
+
             holder.mCheckBox.setVisibility(View.INVISIBLE);
+
         } else {
             holder.mCheckBox.setVisibility(View.VISIBLE);
 
@@ -140,21 +145,35 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
                 int getPosition = (Integer) buttonView.getTag();
 
                 if(isChecked){
+
                     selectedSubjects.add(listState.get(position).getTitle());
                     Gson gson = new Gson();
-                String json = gson.toJson(selectedSubjects);
+                    String json = gson.toJson(selectedSubjects);
 
-                SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
-                        Context.MODE_PRIVATE);
-                final SharedPreferences.Editor profileStudent = personal_profile.edit();
-
-                profileStudent.putString("subjects", String.valueOf(json));
-                profileStudent.apply();
+                    SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+                            Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                    Log.i("Subjects", String.valueOf(selectedSubjects));
+                    profileStudent.putString("subjects", String.valueOf(json));
+                    profileStudent.apply();
 
 
                 }else{
                     selectedSubjects.remove(listState.get(position).getTitle());
                 }
+
+
+                SharedPreferences check_field = getContext().getSharedPreferences("CheckField",
+                        Context.MODE_PRIVATE);
+                final SharedPreferences.Editor profileStudent1 = check_field.edit();
+                Gson gson1 = new Gson();
+                String json1 = gson1.toJson(listState.get(position).getTitle());
+
+                profileStudent1.putString("selectedsubjects", String.valueOf(json1));
+                profileStudent1.apply();
+
+
+
 
 
                 Log.i("subjectsSelected", String.valueOf(selectedSubjects));
