@@ -62,6 +62,7 @@ public class InstituteAddressFragment extends Fragment {
     JSONObject response = new JSONObject();
     private Loader loader;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -315,8 +316,7 @@ public class InstituteAddressFragment extends Fragment {
 //                    //   String area = edt_area.getText().toString().trim();
 //                    String country = edt_country.getText().toString().trim();
 //                    String amount1 = et_amount1.getText().toString().trim();
-//                    String amount2 = et_amount2.getText().toString().trim();
-
+//                    String amount2 = et_amount2.getText().toString().trim()
                     List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
                     for(int j = 0; j < allFields.size(); j++){
                         if(TextUtils.isEmpty(allFields.get(j).getText())){
@@ -336,7 +336,7 @@ public class InstituteAddressFragment extends Fragment {
                     }
 
                     Log.i("allFields", String.valueOf(allFields));
-                        if(ErrorFields.isEmpty()){
+                        if(ErrorFields.isEmpty() && spinner_edt_area.getSelectedItemPosition()!= 0 && spinner2.getSelectedItemPosition()!= 0 && spinner1.getSelectedItemPosition()!=0 ){
 
                             try {
                                 InstituteAddress();
@@ -353,6 +353,9 @@ public class InstituteAddressFragment extends Fragment {
 
 
             });
+
+
+
 
             if (!userid.equals("")) {
                 try {
@@ -480,6 +483,8 @@ public class InstituteAddressFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                loader.hideLoader();
+                Toast.makeText(getContext(),"Error",Toast.LENGTH_SHORT).show();
 
                 error.printStackTrace();
             }
