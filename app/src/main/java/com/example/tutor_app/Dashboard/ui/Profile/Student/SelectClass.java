@@ -58,7 +58,7 @@ public class SelectClass extends Fragment {
     ArrayAdapter<String> adapter_class;
     MyAdapter_Subjects myAdapter1;
     private TextView spinner_class_textview, spinner_subject_textview;
-    String selectedsubject;
+    String selectedsubject = "";
    // List<String> spinner1,subjects;
 
 
@@ -285,6 +285,7 @@ public class SelectClass extends Fragment {
 
 
 
+
                 List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
                 for(int j = 0; j < allFields.size(); j++){
                     if(TextUtils.isEmpty(allFields.get(j).getText())){
@@ -304,7 +305,8 @@ public class SelectClass extends Fragment {
                 }
 
 
-                if(ErrorFields.isEmpty() && spinner_class.getSelectedItemPosition() != 0){
+                if(ErrorFields.isEmpty() && spinner_class.getSelectedItemPosition() != 0 && !selectedsubject.equals("")){
+
 
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
@@ -315,6 +317,8 @@ public class SelectClass extends Fragment {
                     {
                     Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
                 }
+
+                selectedsubject="";
 
 
 

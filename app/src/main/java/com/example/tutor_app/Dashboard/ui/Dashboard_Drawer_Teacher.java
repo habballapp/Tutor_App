@@ -83,7 +83,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         );
         navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
         );
-
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
 

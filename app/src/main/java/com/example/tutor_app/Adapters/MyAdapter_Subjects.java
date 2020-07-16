@@ -25,7 +25,7 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
     private MyAdapter_Subjects myAdapter;
     private boolean isFromView = false;
     private List<String> selectedSubjects = new ArrayList<>();
-    private List<String> selectedSubjects1 = new ArrayList<>();
+
 
     public MyAdapter_Subjects(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
@@ -167,15 +167,10 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
                         Context.MODE_PRIVATE);
                 final SharedPreferences.Editor profileStudent1 = check_field.edit();
                 Gson gson1 = new Gson();
-                String json1 = gson1.toJson(listState.get(position).getTitle());
+                String json1 = gson1.toJson(selectedSubjects);
 
                 profileStudent1.putString("selectedsubjects", String.valueOf(json1));
                 profileStudent1.apply();
-
-
-
-
-
                 Log.i("subjectsSelected", String.valueOf(selectedSubjects));
 
 

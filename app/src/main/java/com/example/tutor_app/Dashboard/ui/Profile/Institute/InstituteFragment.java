@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.Profile.Student.SelectClass;
 import com.example.tutor_app.Dashboard.ui.Qualification.Qualification;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
@@ -155,19 +158,23 @@ public class InstituteFragment extends Fragment {
             }
         });
 
+        final List<EditText> allFields =new ArrayList<EditText>();
+
+
+        allFields.add( edt_institutename);
+        allFields.add(edt_phone1);
+        allFields.add(edt_phone2);
+        allFields.add( edt_phone3);
+        allFields.add(edt_phone3);
+        allFields.add(edt_email);
+        allFields.add(contact_person);
+
         if (!viewProfile_userid.equals("")) {
             viewProfile();
         } else if (!userid.equals("")) {
             getProfileData();
         }
 
-//
-//        if (!viewProfile_userid.equals("")) {
-//            viewProfile();
-//        } else if (!userid.equals("")) {
-//            getProfileData();
-//
-//        }
 
         btn_class_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,18 +185,43 @@ public class InstituteFragment extends Fragment {
                 } else {
                     profileInstitute.putString("IfInstituteOther", " ");
                 }
+                List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
+                for(int j = 0; j < allFields.size(); j++){
+                    if(TextUtils.isEmpty(allFields.get(j).getText())){
+                        // EditText was empty
+                        //   Fields.add(allFields.get(j).getText().toString());
+                        ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                        for(int i = 0; i < ErrorFields.size(); i++)
+                        {
+                            //Fields.add(ErrorFields.get(i).getText().toString());
+                            EditText currentField = ErrorFields.get(i);
+                            currentField.setError("this field required");
+                            ErrorFields.set(i,currentField);
+                            currentField.requestFocus();
+                        }
 
-                profileInstitute.putString("nameofInstitute", String.valueOf(edt_institutename.getText()));
-                profileInstitute.putString("contactperson", String.valueOf(contact_person.getText()));
-                profileInstitute.putString("contactno1", String.valueOf(edt_phone1.getText()));
-                profileInstitute.putString("contactno2", String.valueOf(edt_phone2.getText()));
-                profileInstitute.putString("contactno3", String.valueOf(edt_phone3.getText()));
-                profileInstitute.putString("email", String.valueOf(edt_email.getText()));
-                profileInstitute.apply();
+                    }
+                }
 
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment());
-                fragmentTransaction.commit();
+                Log.i("allFields", String.valueOf(allFields));
+                if(ErrorFields.isEmpty() && spinner_type.getSelectedItemPosition() != 0){
+
+                    profileInstitute.putString("nameofInstitute", String.valueOf(edt_institutename.getText()));
+                    profileInstitute.putString("contactperson", String.valueOf(contact_person.getText()));
+                    profileInstitute.putString("contactno1", String.valueOf(edt_phone1.getText()));
+                    profileInstitute.putString("contactno2", String.valueOf(edt_phone2.getText()));
+                    profileInstitute.putString("contactno3", String.valueOf(edt_phone3.getText()));
+                    profileInstitute.putString("email", String.valueOf(edt_email.getText()));
+                    profileInstitute.apply();
+
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment());
+                    fragmentTransaction.commit();
+                    Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                }
 
 
             }

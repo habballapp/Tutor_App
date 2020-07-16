@@ -41,7 +41,7 @@ public class ProfileStudent extends Fragment {
     String userid, viewProfile_userid;
     String Url = "http://pci.edusol.co/StudentPortal/view_profile_api.php";
     private Loader loader;
-    List<String> Fields = new ArrayList<String>();
+
 
 
 

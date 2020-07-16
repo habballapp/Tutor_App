@@ -129,6 +129,21 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
                 ed_spinnerTimings.putString("desiredtiming", String.valueOf(json));
                 ed_spinnerTimings.apply();
                 Log.i("desiredtiming", String.valueOf(json));
+
+                Gson gson1 = new Gson();
+                String json1 = gson1.toJson(spinner_timings);
+
+                SharedPreferences sh_spinner_timings1 = getContext().getSharedPreferences("CheckField",
+                        Context.MODE_PRIVATE);
+                final SharedPreferences.Editor ed_spinnerTimings1 = sh_spinner_timings1.edit();
+
+                ed_spinnerTimings1.putString("timingSelected", String.valueOf(json1));
+                ed_spinnerTimings1.apply();
+                Log.i("timingSelected", String.valueOf(json1));
+
+
+
+
             }
 
 

@@ -67,6 +67,7 @@ public class AddressClass extends Fragment {
     TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview;
     JSONObject response = new JSONObject();
     private Loader loader;
+    String timingSelected ="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,6 +91,7 @@ public class AddressClass extends Fragment {
         spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
         loader = new Loader(getContext());
         final List<EditText> allFields =new ArrayList<EditText>();
+
 
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
@@ -300,6 +302,18 @@ public class AddressClass extends Fragment {
                 @Override
                 public void onClick(View v) {
 
+                    SharedPreferences check_field = getContext().getSharedPreferences("CheckField",
+                            Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor profileStudent1 = check_field.edit();
+                    profileStudent1.putString("selectedsubjects", "");
+                    profileStudent1.apply();
+
+                    SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("CheckField",
+                            Context.MODE_PRIVATE);
+
+                   timingSelected = sharedPreferences1.getString("timingSelected", "");
+                   Log.i("TimingSelected",timingSelected);
+
 //                    String houseno = edt_house_number.getText().toString().trim();
 //                    String buildingno = edt_bno.getText().toString().trim();
 //                    String streetno = edt_street.getText().toString().trim();
@@ -307,7 +321,7 @@ public class AddressClass extends Fragment {
 //                    String city = edt_city.getText().toString().trim();
 //                    String area = edt_area.getText().toString().trim();
 //                    String country = edt_country.getText().toString().trim();
-//                    String spinner_timings = spinner2.getText().toString().trim();
+//                    String spinner_timings = spinner2.getText().toString().trim();TimingSelectedTimingSelected
                     List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
                     for(int j = 0; j < allFields.size(); j++){
                         if(TextUtils.isEmpty(allFields.get(j).getText())){
@@ -327,7 +341,7 @@ public class AddressClass extends Fragment {
                     }
 
 
-                    if(ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && spinner3.getSelectedItemPosition()!=0)
+                    if(ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && spinner3.getSelectedItemPosition()!=0 && !timingSelected.equals(""))
                     {
 
                           try {
@@ -342,8 +356,17 @@ public class AddressClass extends Fragment {
                         Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
                     }
 
+
                 }
             });
+
+            SharedPreferences check_field1 = getContext().getSharedPreferences("CheckField",
+                    Context.MODE_PRIVATE);
+            final SharedPreferences.Editor profileStudent1 = check_field1.edit();
+            profileStudent1.putString("timingSelected", "");
+            profileStudent1.apply();
+
+
 
 
 
