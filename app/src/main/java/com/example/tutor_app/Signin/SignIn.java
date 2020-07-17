@@ -224,7 +224,7 @@ public class SignIn extends AppCompatActivity {
 
                 loader.hideLoader();
 //                progressBar.setVisibility(View.GONE);
-                btn_signin_txt.setText("");
+                btn_signin_txt.setText("SIGNIN");
                 error.printStackTrace();
             }
         }) {

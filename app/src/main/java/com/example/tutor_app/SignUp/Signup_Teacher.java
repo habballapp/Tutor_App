@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -25,7 +26,9 @@ import com.example.tutor_app.Signin.SignIn;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Signup_Teacher extends AppCompatActivity {
@@ -46,16 +49,37 @@ public class Signup_Teacher extends AppCompatActivity {
         edt_fullname = findViewById(R.id.edt_fullname);
         edt_contact = findViewById(R.id.edt_contact);
 
+        final List<EditText> allFields =new ArrayList<EditText>();
+
+        allFields.add(edt_email);
+        allFields.add(edt_password);
+        allFields.add(edt_fullname);
+        allFields.add(edt_contact);
+
         btn_signup_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String mEmail = edt_email.getText().toString().trim();
-                String mPassword = edt_password.getText().toString().trim();
-                String mFullname = edt_fullname.getText().toString().trim();
-                String mContact = edt_contact.getText().toString().trim();
 
-                if (!mEmail.isEmpty() || !mPassword.isEmpty() || !mFullname.isEmpty() || !mContact.isEmpty()) {
+                List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
+                for(int j = 0; j < allFields.size(); j++) {
+                    if (TextUtils.isEmpty(allFields.get(j).getText())) {
+                        // EditText was empty
+                        //   Fields.add(allFields.get(j).getText().toString());
+                        ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                        for (int i = 0; i < ErrorFields.size(); i++) {
+                            //Fields.add(ErrorFields.get(i).getText().toString());
+                            EditText currentField = ErrorFields.get(i);
+                            currentField.setError("this field required");
+                            ErrorFields.set(i, currentField);
+                            currentField.requestFocus();
+                        }
+
+                    }
+                }
+                Log.i("Size", String.valueOf(ErrorFields.size()));
+
+                if (ErrorFields.isEmpty()) {
                     SignupUser();
                 }
                 else

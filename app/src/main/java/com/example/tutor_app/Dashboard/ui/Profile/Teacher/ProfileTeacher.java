@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -90,6 +91,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private String dateType = "";
     private TextView spinner_category_textview, spinner_conveyance_textview, spinner_gender_textview, teacher_profession_textview;
     private ImageView image_view_uploaded_image;
+    final List<EditText> allFields = new ArrayList<EditText>();
 
 
 
@@ -188,10 +190,11 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-
         final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileTeacher = personal_profile.edit();
+
+
 
 
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
@@ -219,6 +222,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
 //        edt_date_of_submission = root.findViewById(R.id.edt_date_of_submission);
         first_date = root.findViewById(R.id.edt_dob);
+
         first_date_btn = root.findViewById(R.id.first_date_btn);
         second_date = root.findViewById(R.id.edt_date_of_submission);
         second_date_btn = root.findViewById(R.id.second_date_btn);
@@ -257,7 +261,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         catogery.add("Tution Job");
         catogery.add("Both");
 
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
+         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("UserId", "");
         if (!userid.equals("")) {
@@ -463,41 +467,152 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             btn_profile_upload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(checkFields()) {
+                        openImageChooserDialog();
 
-                    openImageChooserDialog();
+                    }
 
                 }
             });
+
         }
+
+         List<EditText> allFields = new ArrayList<EditText>();
+
+        allFields.add(edt_fullname);
+        allFields.add(edt_fname);
+        allFields.add(edt_mtongue);
+        allFields.add(edt_cnic);
+        allFields.add(edt_present_address);
+        allFields.add(edt_email);
+        allFields.add(edt_permanent_address);
+        allFields.add(edt_nationality);
+        allFields.add(edt_religion);
+        allFields.add(edt_phone1);
+        allFields.add(edt_cnic);
+        allFields.add(edt_age);
+        allFields.add(edt_nationality);
+
+
+
         btn_profile_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                profileTeacher.putString("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
-                Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
-                profileTeacher.putString("fullname", String.valueOf(edt_fullname.getText()));
-                profileTeacher.putString("fathusname", String.valueOf(edt_fname.getText()));
-                profileTeacher.putString("mothnametounge", String.valueOf(edt_mtongue.getText()));
-                profileTeacher.putString("age", String.valueOf(edt_age.getText()));
-                profileTeacher.putString("nationality", String.valueOf(edt_nationality.getText()));
-                profileTeacher.putString("religion", String.valueOf(edt_religion.getText()));
-                profileTeacher.putString("cnicno", String.valueOf(edt_cnic.getText()));
-                profileTeacher.putString("presentadd", String.valueOf(edt_present_address.getText()));
-                profileTeacher.putString("permanentadd", String.valueOf(edt_permanent_address.getText()));
-                profileTeacher.putString("phoneno1", String.valueOf(edt_phone1.getText()));
-                profileTeacher.putString("phoneno2", String.valueOf(edt_phone2.getText()));
-                profileTeacher.putString("email", String.valueOf(edt_email.getText()));
-                profileTeacher.putString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
-                profileTeacher.apply();
 
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification());
-                fragmentTransaction.commit();
+                if(checkFields()) {
+                    if(!imageBitmapBase64.equals("")) {
+
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification());
+                        fragmentTransaction.commit();
+                    } else {
+                        Toast.makeText(getContext(),"Please Upload Image",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
+
+//
+
         });
 
 
         return root;
+    }
+
+    private boolean checkFields() {
+
+        final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+        final SharedPreferences.Editor profileTeacher = personal_profile.edit();
+        List<EditText> ErrorFields = new ArrayList<EditText>();//empty Edit text arraylist
+        for (int j = 0; j < allFields.size(); j++) {
+            if (TextUtils.isEmpty(allFields.get(j).getText())) {
+                // EditText was empty
+                //   Fields.add(allFields.get(j).getText().toString());
+                ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                break;
+            }
+        }
+        for (int i = 0; i < ErrorFields.size(); i++) {
+            //Fields.add(ErrorFields.get(i).getText().toString());
+            EditText currentField = ErrorFields.get(i);
+            currentField.setError("this field required");
+            ErrorFields.set(i, currentField);
+            currentField.requestFocus();
+            return false;
+        }
+        Log.i("first_date.getText()", String.valueOf(first_date.getText()));
+        if (ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && teacher_profession.getSelectedItemPosition() != 0
+                && spinner_catogery.getSelectedItemPosition() != 0 && spinner_conveyance.getSelectedItemPosition() != 0
+                && ! first_date.getText().toString().equals("DD-MM-YYYY") && ! second_date.getText().toString().equals("DD-MM-YYYY")
+
+        ) {
+
+
+            profileTeacher.putString("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
+            Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
+            profileTeacher.putString("fullname", String.valueOf(edt_fullname.getText()));
+            profileTeacher.putString("fathusname", String.valueOf(edt_fname.getText()));
+            profileTeacher.putString("mothnametounge", String.valueOf(edt_mtongue.getText()));
+            profileTeacher.putString("age", String.valueOf(edt_age.getText()));
+            profileTeacher.putString("nationality", String.valueOf(edt_nationality.getText()));
+            profileTeacher.putString("religion", String.valueOf(edt_religion.getText()));
+            profileTeacher.putString("cnicno", String.valueOf(edt_cnic.getText()));
+            profileTeacher.putString("presentadd", String.valueOf(edt_present_address.getText()));
+            profileTeacher.putString("permanentadd", String.valueOf(edt_permanent_address.getText()));
+            profileTeacher.putString("phoneno1", String.valueOf(edt_phone1.getText()));
+            profileTeacher.putString("phoneno2", String.valueOf(edt_phone2.getText()));
+            profileTeacher.putString("email", String.valueOf(edt_email.getText()));
+            profileTeacher.putString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
+            profileTeacher.apply();
+
+
+            Toast.makeText(getContext(), " All Fields", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            if (ErrorFields.size() <= 0) {
+                Toast.makeText(getContext(), "Please Enter All Fields", Toast.LENGTH_SHORT).show();
+                if (first_date.getText().toString().equals("DD-MM-YYYY")) {
+                    first_date.setError("this field required");
+                    first_date.setPadding(0, 10, 20, 0);
+                    first_date.requestFocus();
+                }
+                if (second_date.getText().toString().equals("DD-MM-YYYY")) {
+                    second_date.setError("this field required");
+                    second_date.setPadding(0, 10, 20, 0);
+                    second_date.requestFocus();
+                }
+                if (spinner1.getSelectedItemPosition() == 0) {
+                    ((TextView) spinner1.getSelectedView()).setError("Error message");
+                    spinner1.setPadding(0, 10, 20, 0);
+                    spinner1.requestFocus();
+                }
+                if (spinner_catogery.getSelectedItemPosition() == 0) {
+                    ((TextView) spinner_catogery.getSelectedView()).setError("Error message");
+                    spinner_catogery.setPadding(0, 10, 20, 0);
+                    spinner_catogery.requestFocus();
+                }
+                if (teacher_profession.getSelectedItemPosition() == 0) {
+                    teacher_profession.setPadding(0, 10, 20, 0);
+                    ((TextView) teacher_profession.getSelectedView()).setError("Error message");
+                    teacher_profession.requestFocus();
+                }
+                if (spinner_conveyance.getSelectedItemPosition() == 0) {
+                    spinner_conveyance.setPadding(0, 10, 20, 0);
+                    ((TextView) spinner_conveyance.getSelectedView()).setError("Error message");
+                    spinner_conveyance.requestFocus();
+                }
+
+            }
+            return false;
+//                             first_date.setError("this field required");
+//                             second_date.setError("this field required");
+//                             first_date.setPadding(0, 10, 20, 0);
+//                             second_date.setPadding(0, 10, 20, 0);
+
+        }
     }
 
     private void openImageChooserDialog() {
@@ -546,10 +661,12 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
             first_date.setText(new StringBuilder()
                     .append(date1).append("-").append(month1 + 1).append("-").append(year1));
+            first_date.setError(null);
         } else if (date_type.equals("second date")) {
             toDate = year2 + "-" + String.format("%02d", (month2 + 1)) + "-" + String.format("%02d", date2);
             second_date.setText(new StringBuilder()
                     .append(date2).append("-").append(month2 + 1).append("-").append(year2));
+            second_date.setError(null);
         }
 
 

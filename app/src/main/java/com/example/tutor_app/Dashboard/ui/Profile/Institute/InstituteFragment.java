@@ -159,11 +159,10 @@ public class InstituteFragment extends Fragment {
         });
 
         final List<EditText> allFields =new ArrayList<EditText>();
-
         allFields.add( edt_institutename);
         allFields.add(edt_phone1);
-        allFields.add(edt_phone2);
-        allFields.add( edt_phone3);
+//        allFields.add(edt_phone2);
+//        allFields.add( edt_phone3);
         allFields.add(edt_phone3);
         allFields.add(edt_email);
         allFields.add(contact_person);
@@ -175,6 +174,7 @@ public class InstituteFragment extends Fragment {
         }
 
 
+
         btn_class_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,6 +184,7 @@ public class InstituteFragment extends Fragment {
                 } else {
                     profileInstitute.putString("IfInstituteOther", " ");
                 }
+
                 List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
                 for(int j = 0; j < allFields.size(); j++){
                     if(TextUtils.isEmpty(allFields.get(j).getText())){
@@ -214,6 +215,7 @@ public class InstituteFragment extends Fragment {
                         profileInstitute.putString("email", String.valueOf(edt_email.getText()));
                         profileInstitute.apply();
 
+
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment());
                         fragmentTransaction.commit();
@@ -221,6 +223,8 @@ public class InstituteFragment extends Fragment {
                     }
                     else{
                         Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                        ((TextView)spinner_type.getSelectedView()).setError("Error message");
+                        spinner_type.setPadding(0, 10, 20, 0);
                     }
 
                 }

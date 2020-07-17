@@ -3,6 +3,7 @@ package com.example.tutor_app.Dashboard.ui.Qualification;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -96,6 +99,7 @@ public class Qualification extends Fragment {
         mRelativeToSlide4 = root.findViewById(R.id.relativevToSlide4);
 
         btn_qualification_next = root.findViewById(R.id.btn_qualification_next);
+
         qualification = root.findViewById(R.id.qualification);
         subject = root.findViewById(R.id.subject);
         edt_institute = root.findViewById(R.id.edt_institute);
@@ -126,32 +130,59 @@ public class Qualification extends Fragment {
         edt_passing_year4 = root.findViewById(R.id.edt_passing_year4);
         edt_grade4 = root.findViewById(R.id.edt_grade4);
 
+        final List<EditText> allFields =new ArrayList<EditText>();
 
-
+        allFields.add(qualification);
+        allFields.add(subject);
+        allFields.add(edt_institute);
+        allFields.add(edt_passing_year);
+        allFields.add(edt_grade);
 
 
         btn_qualification_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 final SharedPreferences qualification_data = getContext().getSharedPreferences("SendData",
                         Context.MODE_PRIVATE);
                 final SharedPreferences.Editor profileTeacher_Qualification = qualification_data.edit();
-                profileTeacher_Qualification.putString("Qualification",String.valueOf(qualification.getText()));
-                profileTeacher_Qualification.putString("SubjectSpec",String.valueOf(subject.getText()));
-                profileTeacher_Qualification.putString("InstituteUniversity",String.valueOf(edt_institute.getText()));
-                profileTeacher_Qualification.putString("YearOfPassing",String.valueOf(edt_passing_year.getText()));
-                profileTeacher_Qualification.putString("gradedivision",String.valueOf(edt_grade.getText()));
-                //
+                List<EditText> ErrorFields = new ArrayList<EditText>();//empty Edit text arraylist
+                for (int j = 0; j < allFields.size(); j++) {
+                    if (TextUtils.isEmpty(allFields.get(j).getText())) {
+                        // EditText was empty
+                        //   Fields.add(allFields.get(j).getText().toString());
+                        ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                        for (int i = 0; i < ErrorFields.size(); i++) {
+                            //Fields.add(ErrorFields.get(i).getText().toString());
+                            EditText currentField = ErrorFields.get(i);
+                            currentField.setError("this field required");
+                            ErrorFields.set(i, currentField);
+                            currentField.requestFocus();
+                        }
+
+                    }
+                }
+
+//                if (ErrorFields.isEmpty()) {
+
+                    profileTeacher_Qualification.putString("Qualification", String.valueOf(qualification.getText()));
+                    profileTeacher_Qualification.putString("SubjectSpec", String.valueOf(subject.getText()));
+                    profileTeacher_Qualification.putString("InstituteUniversity", String.valueOf(edt_institute.getText()));
+                    profileTeacher_Qualification.putString("YearOfPassing", String.valueOf(edt_passing_year.getText()));
+                    profileTeacher_Qualification.putString("gradedivision", String.valueOf(edt_grade.getText()));
+
+                    //
 
 //        if (!(String.valueOf(qualification1.getText()) == null) || !(String.valueOf(subject1.getText()) == null) ||
 //                !(String.valueOf(edt_institute1.getText()) == null) || !(String.valueOf(edt_passing_year1.getText()) == null)
 //                || !(String.valueOf(edt_grade1.getText()) == null)) {
 
-                profileTeacher_Qualification.putString("Qualification1", String.valueOf(qualification1.getText()));
-                profileTeacher_Qualification.putString("SubjectSpec1", String.valueOf(subject1.getText()));
-                profileTeacher_Qualification.putString("InstituteUniversity1", String.valueOf(edt_institute1.getText()));
-                profileTeacher_Qualification.putString("YearOfPassing1", String.valueOf(edt_passing_year1.getText()));
-                profileTeacher_Qualification.putString("gradedivision1", String.valueOf(edt_grade1.getText()));
+                    profileTeacher_Qualification.putString("Qualification1", String.valueOf(qualification1.getText()));
+                    profileTeacher_Qualification.putString("SubjectSpec1", String.valueOf(subject1.getText()));
+                    profileTeacher_Qualification.putString("InstituteUniversity1", String.valueOf(edt_institute1.getText()));
+                    profileTeacher_Qualification.putString("YearOfPassing1", String.valueOf(edt_passing_year1.getText()));
+                    profileTeacher_Qualification.putString("gradedivision1", String.valueOf(edt_grade1.getText()));
 //        }
 //        else{
 //
@@ -167,12 +198,12 @@ public class Qualification extends Fragment {
 //                    !(String.valueOf(edt_institute2.getText()) == null) || !(String.valueOf(edt_passing_year2.getText()) == null)
 //                    || !(String.valueOf(edt_grade2.getText()) == null) )
 //            {
-                //
-                profileTeacher_Qualification.putString("Qualification2", String.valueOf(qualification2.getText()));
-                profileTeacher_Qualification.putString("SubjectSpec2", String.valueOf(subject2.getText()));
-                profileTeacher_Qualification.putString("InstituteUniversity2", String.valueOf(edt_institute2.getText()));
-                profileTeacher_Qualification.putString("YearOfPassing2", String.valueOf(edt_passing_year2.getText()));
-                profileTeacher_Qualification.putString("gradedivision2", String.valueOf(edt_grade2.getText()));
+                    //
+                    profileTeacher_Qualification.putString("Qualification2", String.valueOf(qualification2.getText()));
+                    profileTeacher_Qualification.putString("SubjectSpec2", String.valueOf(subject2.getText()));
+                    profileTeacher_Qualification.putString("InstituteUniversity2", String.valueOf(edt_institute2.getText()));
+                    profileTeacher_Qualification.putString("YearOfPassing2", String.valueOf(edt_passing_year2.getText()));
+                    profileTeacher_Qualification.putString("gradedivision2", String.valueOf(edt_grade2.getText()));
 //            }
 //            else
 //            {
@@ -188,12 +219,12 @@ public class Qualification extends Fragment {
 //                !(String.valueOf(edt_institute3.getText()) == null) || !(String.valueOf(edt_passing_year3.getText()) == null)
 //                || !(String.valueOf(edt_grade3.getText()) == null) )
 //        {
-                //
-                profileTeacher_Qualification.putString("Qualification3", String.valueOf(qualification3.getText()));
-                profileTeacher_Qualification.putString("SubjectSpec3", String.valueOf(subject3.getText()));
-                profileTeacher_Qualification.putString("InstituteUniversity3", String.valueOf(edt_institute3.getText()));
-                profileTeacher_Qualification.putString("YearOfPassing3", String.valueOf(edt_passing_year3.getText()));
-                profileTeacher_Qualification.putString("gradedivision3", String.valueOf(edt_grade3.getText()));
+                    //
+                    profileTeacher_Qualification.putString("Qualification3", String.valueOf(qualification3.getText()));
+                    profileTeacher_Qualification.putString("SubjectSpec3", String.valueOf(subject3.getText()));
+                    profileTeacher_Qualification.putString("InstituteUniversity3", String.valueOf(edt_institute3.getText()));
+                    profileTeacher_Qualification.putString("YearOfPassing3", String.valueOf(edt_passing_year3.getText()));
+                    profileTeacher_Qualification.putString("gradedivision3", String.valueOf(edt_grade3.getText()));
 //        }
 //        else{
 //
@@ -210,11 +241,11 @@ public class Qualification extends Fragment {
 //                || !(String.valueOf(edt_grade4.getText()) == null)
 //        ) {
 
-                profileTeacher_Qualification.putString("Qualification4",String.valueOf(qualification4.getText()));
-                profileTeacher_Qualification.putString("SubjectSpec4",String.valueOf(subject4.getText()));
-                profileTeacher_Qualification.putString("InstituteUniversity4",String.valueOf(edt_institute4.getText()));
-                profileTeacher_Qualification.putString("YearOfPassing4",String.valueOf(edt_passing_year4.getText()));
-                profileTeacher_Qualification.putString("gradedivision4",String.valueOf(edt_grade4.getText()));
+                    profileTeacher_Qualification.putString("Qualification4", String.valueOf(qualification4.getText()));
+                    profileTeacher_Qualification.putString("SubjectSpec4", String.valueOf(subject4.getText()));
+                    profileTeacher_Qualification.putString("InstituteUniversity4", String.valueOf(edt_institute4.getText()));
+                    profileTeacher_Qualification.putString("YearOfPassing4", String.valueOf(edt_passing_year4.getText()));
+                    profileTeacher_Qualification.putString("gradedivision4", String.valueOf(edt_grade4.getText()));
 //
 //        }
 //        else {
@@ -228,12 +259,13 @@ public class Qualification extends Fragment {
 //        }
 
 
-                profileTeacher_Qualification.apply();
+                    profileTeacher_Qualification.apply();
 
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new JobExperienceFragment());
-                fragmentTransaction.commit();
-            }
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new JobExperienceFragment());
+                    fragmentTransaction.commit();
+                }
+//            }
         });
 
 
