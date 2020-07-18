@@ -253,7 +253,7 @@ public class ReferenceFragment extends Fragment {
                     currentField.setError("this field required");
                     ErrorFields.set(i, currentField);
                     currentField.requestFocus();
-                   
+
                 }
 
                 if (ErrorFields.isEmpty()) {
