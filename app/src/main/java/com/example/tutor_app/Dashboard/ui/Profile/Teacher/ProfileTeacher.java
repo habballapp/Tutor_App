@@ -190,6 +190,19 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        final SharedPreferences job_experience = getContext().getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+        final SharedPreferences.Editor profileTeacher_experience = job_experience.edit();
+        profileTeacher_experience.clear();
+        profileTeacher_experience.apply();
+
+        final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor profileArea_of_interest = area_fragmnt_data.edit();
+        profileArea_of_interest.clear();
+        profileArea_of_interest.apply();
+
         final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileTeacher = personal_profile.edit();
@@ -477,7 +490,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
         }
 
-         List<EditText> allFields = new ArrayList<EditText>();
+        List<EditText> allFields = new ArrayList<EditText>();
 
         allFields.add(edt_fullname);
         allFields.add(edt_fname);

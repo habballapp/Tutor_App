@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -52,11 +53,11 @@ public class AreaFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private FragmentTransaction fragmentTransaction;
     private List<String> area;
-    private EditText edt_classes_track,edt_pref_subject;
     private List<AreaFragment_List> list = new ArrayList<>();
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     JSONObject response;
     private Loader loader;
+    String edt_classes_track, edt_pref_subject, spinner_area;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -147,10 +148,32 @@ public class AreaFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData",
+                        Context.MODE_PRIVATE);
 
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new ReferenceFragment());
-                fragmentTransaction.commit();
+                edt_classes_track = area_fragmnt_data.getString("classtoteach", "");
+                edt_pref_subject = area_fragmnt_data.getString("prefsubject", "");
+                spinner_area = area_fragmnt_data.getString("prefarea", "");
+
+                if(!edt_classes_track.equals("") && !edt_pref_subject.equals("") && !spinner_area.equals(""))
+                {
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new ReferenceFragment());
+                    fragmentTransaction.commit();
+
+                }
+                else {
+
+                    if (edt_classes_track.equals("")) {
+                        Toast.makeText(getContext(), "Please Enter Class Field", Toast.LENGTH_SHORT).show();
+                    } else if (edt_pref_subject.equals("")) {
+                        Toast.makeText(getContext(), "Please Enter Subjects Field", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Please Enter Area Field", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
 
 
             }

@@ -164,7 +164,7 @@ public class Qualification extends Fragment {
                     }
                 }
 
-//                if (ErrorFields.isEmpty()) {
+                if (ErrorFields.isEmpty()) {
 
                     profileTeacher_Qualification.putString("Qualification", String.valueOf(qualification.getText()));
                     profileTeacher_Qualification.putString("SubjectSpec", String.valueOf(subject.getText()));
@@ -177,7 +177,6 @@ public class Qualification extends Fragment {
 //        if (!(String.valueOf(qualification1.getText()) == null) || !(String.valueOf(subject1.getText()) == null) ||
 //                !(String.valueOf(edt_institute1.getText()) == null) || !(String.valueOf(edt_passing_year1.getText()) == null)
 //                || !(String.valueOf(edt_grade1.getText()) == null)) {
-
                     profileTeacher_Qualification.putString("Qualification1", String.valueOf(qualification1.getText()));
                     profileTeacher_Qualification.putString("SubjectSpec1", String.valueOf(subject1.getText()));
                     profileTeacher_Qualification.putString("InstituteUniversity1", String.valueOf(edt_institute1.getText()));
@@ -265,7 +264,7 @@ public class Qualification extends Fragment {
                     fragmentTransaction.replace(R.id.nav_host_fragment, new JobExperienceFragment());
                     fragmentTransaction.commit();
                 }
-//            }
+            }
         });
 
 

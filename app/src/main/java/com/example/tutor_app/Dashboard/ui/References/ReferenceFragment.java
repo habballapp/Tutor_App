@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.JobExperience.JobExperienceFragment;
 import com.example.tutor_app.Dashboard.ui.Qualification.ExpandOrCollapse;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
@@ -33,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,14 +66,8 @@ public class ReferenceFragment extends Fragment {
     String qualification3, subject3, edt_institute3, edt_passing_year3, edt_grade3;
     String qualification4, subject4, edt_institute4, edt_passing_year4, edt_grade4;
 
-
-
-
-
-
     //JobExperienceFragemnt
     String edt_etitlement, edt_organization, edt_from, edt_till;
-
 
     //AreaFragment
     String edt_classes_track, edt_pref_subject, spinner_area;
@@ -181,6 +178,7 @@ public class ReferenceFragment extends Fragment {
         edt_organization = job_experience.getString("OrganizationName", "");
         edt_from = job_experience.getString("FromTo", "");
         edt_till = job_experience.getString("Till", "");
+
         // areaFragment
         final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
@@ -227,17 +225,48 @@ public class ReferenceFragment extends Fragment {
 
         btn_reference_user = root.findViewById(R.id.btn_refernce_next);
 
+        final List<EditText> allFields = new ArrayList<EditText>();
+
+        allFields.add(name);
+        allFields.add(edt_relation);
+        allFields.add(edt_occupation_ref);
+        allFields.add(edt_present_address);
+        allFields.add(edt_telephone);
+
+
         btn_reference_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG);
-                try {
-                    uploadData();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                List<EditText> ErrorFields = new ArrayList<EditText>();//empty Edit text arraylist
+                for (int j = 0; j < allFields.size(); j++) {
+                    if (TextUtils.isEmpty(allFields.get(j).getText())) {
+                        // EditText was empty
+                        //   Fields.add(allFields.get(j).getText().toString());
+                        ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+                        break;
+                    }
                 }
+                for (int i = 0; i < ErrorFields.size(); i++) {
+                    //Fields.add(ErrorFields.get(i).getText().toString());
+                    EditText currentField = ErrorFields.get(i);
+                    currentField.setError("this field required");
+                    ErrorFields.set(i, currentField);
+                    currentField.requestFocus();
+                   
+                }
+
+                if (ErrorFields.isEmpty()) {
+
+                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG);
+                    try {
+                        uploadData();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
 
             }
         });

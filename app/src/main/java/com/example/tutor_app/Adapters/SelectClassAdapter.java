@@ -103,8 +103,6 @@ public class SelectClassAdapter extends RecyclerView.Adapter<SelectClassAdapter.
 
                 profileTeacher_experience.putString("OrganizationName",(String.valueOf(s)));
 
-
-
             }
         });
 

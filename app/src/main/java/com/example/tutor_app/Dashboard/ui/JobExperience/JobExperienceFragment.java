@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -48,10 +48,10 @@ public class JobExperienceFragment extends Fragment {
     private RecyclerView rl_recycler;
     private RelativeLayout btn_experience_next, btn_experience_add;
     private FragmentTransaction fragmentTransaction;
-    private EditText edt_etitlement,edt_organization,edt_from,edt_till;
     RecyclerView.Adapter adapter;
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     JSONObject response;
+    String edt_etitlement, edt_organization, edt_from, edt_till;
     private RecyclerView.LayoutManager layoutManager;
     private Loader loader;
     private List<JobExperince_List> List = new ArrayList<>();
@@ -109,9 +109,31 @@ public class JobExperienceFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new AreaFragment());
-                fragmentTransaction.commit();
+                final SharedPreferences job_experience = getContext().getSharedPreferences("SendData",
+                        Context.MODE_PRIVATE);
+                edt_etitlement = job_experience.getString("JobEntitlement", "");
+                edt_organization = job_experience.getString("OrganizationName", "");
+                edt_from = job_experience.getString("FromTo", "");
+                edt_till = job_experience.getString("Till", "");
+
+
+                if (!edt_etitlement.equals("") && ! edt_organization.equals("") && ! edt_from.equals("") && ! edt_till.equals("")) {
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new AreaFragment());
+                    fragmentTransaction.commit();
+                } else {
+                    if (edt_etitlement.equals("")) {
+                        Toast.makeText(getContext(), "Please Enter Job Title", Toast.LENGTH_SHORT).show();
+                    } else if (edt_organization.equals("")) {
+                        Toast.makeText(getContext(), "Please Enter Name Of Organization", Toast.LENGTH_SHORT).show();
+                    } else if (edt_from.equals("")) {
+                        Toast.makeText(getContext(), "Please Enter From Field", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Please Enter Till Field", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
             }
         });
 

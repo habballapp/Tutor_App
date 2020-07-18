@@ -170,6 +170,19 @@ public class SignIn extends AppCompatActivity {
                 try {
 //                    progressBar.setVisibility(View.GONE);
                     JSONObject obj = new JSONObject(result);
+
+                    final SharedPreferences job_experience = getSharedPreferences("SendData",
+                            Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor profileTeacher_experience = job_experience.edit();
+                    profileTeacher_experience.clear();
+                    profileTeacher_experience.apply();
+
+                    final SharedPreferences area_fragmnt_data = getSharedPreferences("SendData",
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor profileArea_of_interest = area_fragmnt_data.edit();
+                    profileArea_of_interest.clear();
+                    profileArea_of_interest.apply();
+
                     if (!obj.getString("userid").equals("null")) {
                         SharedPreferences personal_profile = getSharedPreferences("LoginData",
                                 Context.MODE_PRIVATE);
