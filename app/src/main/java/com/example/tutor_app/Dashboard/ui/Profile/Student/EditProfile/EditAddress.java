@@ -1,14 +1,13 @@
-package com.example.tutor_app.Dashboard.ui.Profile.Student;
+package com.example.tutor_app.Dashboard.ui.Profile.Student.EditProfile;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,14 +27,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter;
-import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
+import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
-import com.example.tutor_app.SignUp.Signup_Student;
-import com.example.tutor_app.Signin.SignIn;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -49,10 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class AddressClass extends Fragment {
+public class EditAddress extends Fragment {
 
 
     private Spinner spinner1, spinner2,spinner3;
@@ -61,7 +54,7 @@ public class AddressClass extends Fragment {
     private List<String> gender, timings,area;
     private EditText edt_house_number, edt_bno, edt_street, edt_block, edt_area, edt_city, edt_country;
     private String Filter_selected = "";
-    String Url_Sprofile = "https://pci.edusol.co/StudentPortal/studenttutorformsubmit.php";
+    String Url_Sprofile = "http://pci.edusol.co/StudentPortal/EditProfilesubmit.php";
     String spinner_gender,spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege, spinnerTimings;
     String userid;
     TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview;
@@ -82,7 +75,7 @@ public class AddressClass extends Fragment {
         edt_bno = root.findViewById(R.id.edt_bno);
         edt_street = root.findViewById(R.id.edt_street);
         edt_block = root.findViewById(R.id.edt_block);
- //       edt_area = root.findViewById(R.id.edt_area);
+        //       edt_area = root.findViewById(R.id.edt_area);
         edt_city = root.findViewById(R.id.edt_city);
         edt_country = root.findViewById(R.id.edt_country);
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
@@ -131,7 +124,7 @@ public class AddressClass extends Fragment {
             }
         }
 
-        if(str_response.equals("")) {
+
             gender = new ArrayList<>();
             gender.add("Select Preffered Gender");
             gender.add("Male");
@@ -139,7 +132,7 @@ public class AddressClass extends Fragment {
             gender.add("Any");
 
             timings = new ArrayList<>();
-            timings.add("Select Preffered Timings");
+            timings.add(" ");
 
             for (int i = 8; i <= 11; i++) {
                 timings.add(i + "am");
@@ -178,6 +171,12 @@ public class AddressClass extends Fragment {
                 }
             };
             spinner1.setAdapter(spinner1_adapter);
+            int selectionPosition = 0;
+            try {
+            selectionPosition = spinner1_adapter.getPosition(response.getString("Gender"));
+            } catch (JSONException e) {
+            e.printStackTrace();
+            }
             spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -266,6 +265,13 @@ public class AddressClass extends Fragment {
                 }
             };
             spinner3.setAdapter(spinner_area_adapter);
+
+            int selectionPosition1 = 0;
+            try {
+                selectionPosition1 = spinner_area_adapter.getPosition(response.getString("Area"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -290,12 +296,12 @@ public class AddressClass extends Fragment {
             }
 
 
-              allFields.add(edt_house_number);
-              allFields.add(edt_bno);
-              allFields.add(edt_street);
-              allFields.add(edt_block);
-              allFields.add(edt_city);
-              allFields.add(edt_country);
+            allFields.add(edt_house_number);
+            allFields.add(edt_bno);
+            allFields.add(edt_street);
+            allFields.add(edt_block);
+            allFields.add(edt_city);
+            allFields.add(edt_country);
 
 
             btn_profile_next.setOnClickListener(new View.OnClickListener() {
@@ -311,8 +317,8 @@ public class AddressClass extends Fragment {
                     SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("CheckField",
                             Context.MODE_PRIVATE);
 
-                   timingSelected = sharedPreferences1.getString("timingSelected", "");
-                   Log.i("TimingSelected",timingSelected);
+                    timingSelected = sharedPreferences1.getString("timingSelected", "");
+                    Log.i("TimingSelected",timingSelected);
 
 //                    String houseno = edt_house_number.getText().toString().trim();
 //                    String buildingno = edt_bno.getText().toString().trim();
@@ -343,7 +349,7 @@ public class AddressClass extends Fragment {
                     if(ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && spinner3.getSelectedItemPosition()!=0 && !timingSelected.equals(""))
                     {
 
-                          try {
+                        try {
                             Address();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -364,12 +370,6 @@ public class AddressClass extends Fragment {
             final SharedPreferences.Editor profileStudent1 = check_field1.edit();
             profileStudent1.putString("timingSelected", "");
             profileStudent1.apply();
-
-
-
-
-
-        }
 
         return root;
     }
@@ -538,15 +538,15 @@ public class AddressClass extends Fragment {
 
 
     private void viewProfile() throws JSONException {
-        btn_profile_next.setVisibility(View.GONE);
+//        btn_profile_next.setVisibility(View.GONE);
 
-        edt_house_number.setEnabled(false);
-        edt_bno.setEnabled(false);
-        edt_street.setEnabled(false);
-        edt_block.setEnabled(false);
-        //       edt_area = root.findViewById(R.id.edt_area);
-        edt_city.setEnabled(false);
-        edt_country.setEnabled(false);
+//        edt_house_number.setEnabled(false);
+//        edt_bno.setEnabled(false);
+//        edt_street.setEnabled(false);
+//        edt_block.setEnabled(false);
+//        //       edt_area = root.findViewById(R.id.edt_area);
+//        edt_city.setEnabled(false);
+//        edt_country.setEnabled(false);
 
 //        spinner1 = (Spinner) root.findViewById(R.id.spinner_gender);
 //        spinner2 = (Spinner) root.findViewById(R.id.spinner_timings);
@@ -569,26 +569,26 @@ public class AddressClass extends Fragment {
         edt_country.setText(response.getString("Country"));
         edt_country.setTextColor(getResources().getColor(R.color.text_color_selection));
 
-        spinner1.setClickable(false);
-        spinner1.setEnabled(false);
+//        spinner1.setClickable(false);
+//        spinner1.setEnabled(false);
 //        spinner1.setVisibility(View.GONE);
-        spinner_gender_textview.setVisibility(View.VISIBLE);
-        spinner_gender_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
-        spinner_gender_textview.setText(response.getString("Gender"));
+//        spinner_gender_textview.setVisibility(View.VISIBLE);
+//        spinner_gender_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
+//        spinner_gender_textview.setText(response.getString("Gender"));
 
-        spinner2.setClickable(false);
-        spinner2.setEnabled(false);
+//        spinner2.setClickable(false);
+//        spinner2.setEnabled(false);
 //        spinner2.setVisibility(View.GONE);
         spinner_timings_textview.setVisibility(View.VISIBLE);
         spinner_timings_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
         spinner_timings_textview.setText(response.getString("DesiredTiming"));
 
-        spinner3.setClickable(false);
-        spinner3.setEnabled(false);
+//        spinner3.setClickable(false);
+//        spinner3.setEnabled(false);
 //        spinner3.setVisibility(View.GONE);
-        spinner_area_textview.setVisibility(View.VISIBLE);
-        spinner_area_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
-        spinner_area_textview.setText(response.getString("Area"));
+//        spinner_area_textview.setVisibility(View.VISIBLE);
+//        spinner_area_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
+//        spinner_area_textview.setText(response.getString("Area"));
     }
 }
 

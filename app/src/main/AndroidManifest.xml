@@ -17,6 +17,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+        <activity android:name=".Dashboard.ui.Profile.Student.EditProfile.EditAddress"></activity>
+        <activity android:name=".Dashboard.ui.Profile.Student.EditProfile.EditClass" />
+        <activity android:name=".Dashboard.ui.Profile.Student.EditProfile.EditProfile" />
         <activity
             android:name=".ForgetPassword.Forget_Password"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -61,7 +64,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ForgetPassword.Confirm_Password"
             android:configChanges="orientation"
@@ -78,7 +80,7 @@
                 <data
                     android:host="pci.edusol.co"
                     android:scheme="http" />
-                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- note that the leading "/" is required for pathPrefix -->
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -89,7 +91,7 @@
                 <data
                     android:host="pci.edusol.co"
                     android:scheme="https" />
-                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- note that the leading "/" is required for pathPrefix -->
             </intent-filter>
         </activity>
     </application>

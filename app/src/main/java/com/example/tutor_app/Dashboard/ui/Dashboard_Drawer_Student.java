@@ -22,6 +22,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.example.tutor_app.Dashboard.ui.Profile.Student.EditProfile.EditProfile;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
@@ -101,8 +103,12 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
             );
         }
         else{
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Edit Profile")
-            );
+//            navigationExpandableListView.addHeaderModel(new HeaderModel("Edit Profile")
+//            );
+            HeaderModel headerModel1 = new HeaderModel("Edit Profile");
+            for (int i = 0; i < childs.size(); i++)
+                headerModel1.addChildModel(new ChildModel(childs.get(i)));
+            navigationExpandableListView.addHeaderModel(headerModel1);
         }
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Add Child")
@@ -126,9 +132,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                         }
                         else if (id == 1) {
 
-                        }
-                        else if (id == 2) {
-
                             SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileStudent1 = personal_profile1.edit();
@@ -142,11 +145,16 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             profileStudent.putString("UserId","");
                             profileStudent.apply();
 
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
+//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+//                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
+//                            fragmentTransaction.commit();
+//                            drawer.closeDrawer(GravityCompat.START);
+
+                        }
+                        else if (id == 2) {
+
+//                            Toast.makeText(getApplicationContext(), "Edit Profile", Toast.LENGTH_LONG).show();
 
                         } else if (id == 3) {
                             SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
@@ -170,7 +178,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                         }
                         else if (id == 4) {
-                            Log.i("Make Payment", "Make Payment Activity");
+
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch());
@@ -210,6 +218,24 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
                            // drawer.closeDrawer(GravityCompat.START);
+                        }
+                        else if (groupPosition == 2) {
+                            String selectedChild = childs.get(childPosition).replaceAll("\t\t\t", "");
+                            String selectedChildId = childMap.get(selectedChild);
+
+                            SharedPreferences personal_profile = getSharedPreferences("ViewProfile",
+                                    Context.MODE_PRIVATE);
+                            final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                            profileStudent.putString("UserId",selectedChildId);
+                            profileStudent.apply();
+
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new EditProfile());
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
+
+                            // drawer.closeDrawer(GravityCompat.START);
                         }
 
                         drawer.closeDrawer(GravityCompat.START);

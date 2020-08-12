@@ -559,7 +559,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         Log.i("first_date.getText()", String.valueOf(first_date.getText()));
         if (ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && teacher_profession.getSelectedItemPosition() != 0
                 && spinner_catogery.getSelectedItemPosition() != 0 && spinner_conveyance.getSelectedItemPosition() != 0
-                && ! first_date.getText().toString().equals("DD-MM-YYYY") && ! second_date.getText().toString().equals("DD-MM-YYYY")
+                && ! first_date.getText().toString().equals("Date Of Birth") && ! second_date.getText().toString().equals("Date Of Submission")
 
         ) {
 

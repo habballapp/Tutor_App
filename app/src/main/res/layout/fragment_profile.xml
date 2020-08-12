@@ -310,7 +310,7 @@
                         android:focusableInTouchMode="true"
                         android:focusable="true"
                         android:gravity="center_vertical"
-                        android:text="DD-MM-YYYY" />
+                        android:text="Date Of Birth" />
 
                     <ImageButton
                         android:id="@+id/first_date_btn"
@@ -388,7 +388,7 @@
                         android:layout_weight="0.25"
                         android:gravity="center_vertical"
                         android:selectAllOnFocus="true"
-                        android:text="DD-MM-YYYY" />
+                        android:text="Date Of Submission" />
 
                     <ImageButton
                         android:id="@+id/second_date_btn"
