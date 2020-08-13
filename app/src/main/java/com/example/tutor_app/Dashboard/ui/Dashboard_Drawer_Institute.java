@@ -29,6 +29,7 @@ import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.InstituteSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Session;
 import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
@@ -53,6 +54,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
     String userid;
     private List<String> institute = new ArrayList<>();
     private Map<String, String> intituteMap = new HashMap<>();
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         setContentView(R.layout.activity_drawer_new);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        session = new Session(this);
 
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
@@ -191,6 +194,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                         } else if (id == 5) {
 
                             Intent intent = new Intent(Dashboard_Drawer_Institute.this, SignIn.class);
+                            session.remove();
                             startActivity(intent);
                         }
 

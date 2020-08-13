@@ -35,6 +35,7 @@ import com.example.tutor_app.ForgetPassword.Forget_Password;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Session;
 import com.example.tutor_app.UserType.User_Type;
 import com.google.gson.Gson;
 
@@ -50,7 +51,7 @@ import java.util.Map;
 public class SignIn extends AppCompatActivity {
 
     private RelativeLayout btn_signin;
-    private TextView txt_password, txt_create,btn_signin_txt;
+    private TextView txt_password, txt_create, btn_signin_txt;
     private EditText edt_email, edt_password;
     private CheckBox txt_checkbox;
     ProgressBar progressBar;
@@ -65,8 +66,10 @@ public class SignIn extends AppCompatActivity {
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
-    private String username,password;
+    private String username, password;
     private Loader loader;
+    private Integer studentID = 0;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,7 @@ public class SignIn extends AppCompatActivity {
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
         btn_signin_txt = findViewById(R.id.btn_signin_txt);
+        session = new Session(this);
 
 
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
@@ -89,10 +93,21 @@ public class SignIn extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
 
 
-
-
         btn_signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+               if (edt_email.getText().toString().equals("")) {
+                    edt_email.setError("Please insert email");
+
+                } else if (edt_password.getText().toString().equals("")) {
+                    edt_password.setError("Please insert password");
+                }
+                else {
+                    try {
+                        Login();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
 
                 if (txt_checkbox.isChecked()) {
                     username = edt_email.getText().toString();
@@ -102,32 +117,17 @@ public class SignIn extends AppCompatActivity {
                     loginPrefsEditor.putString("username", username);
                     loginPrefsEditor.putString("password", password);
                     loginPrefsEditor.apply();
-                } else {
-                    loginPrefsEditor.clear();
-                    loginPrefsEditor.commit();
-                }
-
-                String mEmail = edt_email.getText().toString().trim();
-                String mPassword = edt_password.getText().toString().trim();
-
-                Log.i("User",mEmail);
-                if (!mEmail.isEmpty() || !mPassword.isEmpty()) {
                     try {
                         Login();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                } else {
-                    edt_email.setError("Please insert email");
-                    edt_password.setError("Please insert password");
                 }
 
 
             }
 
         });
-
-
 
 
         txt_password.setOnClickListener(new View.OnClickListener() {
@@ -140,14 +140,14 @@ public class SignIn extends AppCompatActivity {
         });
 
 
-        txt_create.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick (View v){
+        txt_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        Intent intent = new Intent(SignIn.this, User_Type.class);
-        startActivity(intent);
-    }
-    });
+                Intent intent = new Intent(SignIn.this, User_Type.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -187,28 +187,27 @@ public class SignIn extends AppCompatActivity {
                         SharedPreferences personal_profile = getSharedPreferences("LoginData",
                                 Context.MODE_PRIVATE);
                         final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                        profileStudent.putString("userid",obj.getString("userid"));
-                        profileStudent.putString("userrole",obj.getString("userrole"));
+                        profileStudent.putString("userid", obj.getString("userid"));
+                        profileStudent.putString("userrole", obj.getString("userrole"));
                         profileStudent.apply();
                         userid = obj.getString("userid");
                         btn_signin_txt.setText("SIGNIN");
 
 
-                        if (obj.getString("userrole").equals("Student")){
+                        if (obj.getString("userrole").equals("Student")) {
                             getProfileData();
                             getChildren();
                             Toast.makeText(SignIn.this, "Student", Toast.LENGTH_LONG).show();
 
-                        }
-                        else if(obj.getString("userrole").equals("Teacher")){
+                        } else if (obj.getString("userrole").equals("Teacher")) {
 
-
+                            session.setusename(userid);
+                            session.setresponse(String.valueOf(result));
                             Toast.makeText(SignIn.this, "Teacher", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Teacher.class);
                             startActivity(intent);
 
-                        }
-                        else if(obj.getString("userrole").equals("Institute")){
+                        } else if (obj.getString("userrole").equals("Institute")) {
                             getInstituteData();
                             getJob();
 
@@ -223,7 +222,6 @@ public class SignIn extends AppCompatActivity {
                     e.printStackTrace();
                     progressBar.setVisibility(View.GONE);
                     btn_signin_txt.setText("SIGNIN");
-
 
 
                 }
@@ -271,16 +269,16 @@ public class SignIn extends AppCompatActivity {
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("userid", "");
-        Log.i("Id",userid);
+        Log.i("Id", userid);
         JSONObject map = new JSONObject();
-        map.put("userid",userid);
+        map.put("userid", userid);
 
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url_Institute, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.i("Institute", String.valueOf(response));
                 institute = new ArrayList<>();
-                for(int i = 0; i < response.length(); i++) {
+                for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = new JSONObject(response.getString(i));
                         institute.add("\t\t\t" + obj.getString("Name"));
@@ -294,9 +292,11 @@ public class SignIn extends AppCompatActivity {
                 SharedPreferences personal_profile = getSharedPreferences("LoginData",
                         Context.MODE_PRIVATE);
                 final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                profileStudent.putString("institute",gson.toJson(institute));
-                profileStudent.putString("instituteMap",gson.toJson(intituteMap));
+                profileStudent.putString("institute", gson.toJson(institute));
+                profileStudent.putString("instituteMap", gson.toJson(intituteMap));
                 profileStudent.apply();
+                session.setusename(userid);
+                session.setresponse(String.valueOf(response));
                 Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Institute.class);
                 startActivity(intent);
 
@@ -323,7 +323,6 @@ public class SignIn extends AppCompatActivity {
         Volley.newRequestQueue(getApplication()).add(sr);
 
 
-
     }
 
     private void getChildren() {
@@ -331,13 +330,13 @@ public class SignIn extends AppCompatActivity {
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("userid", "");
-        Log.i("Id",userid);
+        Log.i("Id", userid);
 
         //  userid = sharedPreferences1.getString("userid", "");
-        Log.i("Id",userid);
+        Log.i("Id", userid);
         JSONObject map = new JSONObject();
         try {
-            map.put("userid",userid);
+            map.put("userid", userid);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -347,9 +346,10 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
 
+
                 Log.i("Search", String.valueOf(response));
                 childs = new ArrayList<>();
-                for(int i = 0; i < response.length(); i++) {
+                for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = new JSONObject(response.getString(i));
                         childs.add("\t\t\t" + obj.getString("StudentName"));
@@ -366,9 +366,11 @@ public class SignIn extends AppCompatActivity {
                 SharedPreferences personal_profile = getSharedPreferences("LoginData",
                         Context.MODE_PRIVATE);
                 final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                profileStudent.putString("children",gson.toJson(childs));
-                profileStudent.putString("childrenMap",gson.toJson(childMap));
+                profileStudent.putString("children", gson.toJson(childs));
+                profileStudent.putString("childrenMap", gson.toJson(childMap));
                 profileStudent.apply();
+                session.setusename(userid);
+                session.setresponse(String.valueOf(response));
                 Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Student.class);
                 startActivity(intent);
             }
@@ -421,33 +423,34 @@ public class SignIn extends AppCompatActivity {
                     String SalaryFrom = response.getString("SalaryFrom");
                     String SalaryTo = response.getString("SalaryTo");
 
+
                     SharedPreferences personal_profile = getSharedPreferences("AddProfilePreviousData",
                             Context.MODE_PRIVATE);
                     final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                    profileStudent.putString("InstituteName",InstituteName);
-                    profileStudent.putString("ContactNo1",ContactNo1);
-                    profileStudent.putString("ContactNo2",ContactNo2);
-                    profileStudent.putString("ContactNo3",ContactNo3);
-                    profileStudent.putString("TypeOfInstitute",TypeOfInstitute);
-                    profileStudent.putString("Email",Email);
-                    profileStudent.putString("ContactPerson",ContactPerson);
-                    profileStudent.putString("Address",Address);
-                    profileStudent.putString("BlockNum",BlockNum);
-                    profileStudent.putString("StreetNum",StreetNum);
-                    profileStudent.putString("SalaryFrom",BlockNum);
-                    profileStudent.putString("SalaryTo",StreetNum);
-                    profileStudent.putString("Area",Area);
-                    profileStudent.putString("City",City);
-                    profileStudent.putString("Country",Country);
-                    profileStudent.putString("SalaryFrom",SalaryFrom);
-                    profileStudent.putString("SalaryTo",SalaryTo);
+                    profileStudent.putString("InstituteName", InstituteName);
+                    profileStudent.putString("ContactNo1", ContactNo1);
+                    profileStudent.putString("ContactNo2", ContactNo2);
+                    profileStudent.putString("ContactNo3", ContactNo3);
+                    profileStudent.putString("TypeOfInstitute", TypeOfInstitute);
+                    profileStudent.putString("Email", Email);
+                    profileStudent.putString("ContactPerson", ContactPerson);
+                    profileStudent.putString("Address", Address);
+                    profileStudent.putString("BlockNum", BlockNum);
+                    profileStudent.putString("StreetNum", StreetNum);
+                    profileStudent.putString("SalaryFrom", BlockNum);
+                    profileStudent.putString("SalaryTo", StreetNum);
+                    profileStudent.putString("Area", Area);
+                    profileStudent.putString("City", City);
+                    profileStudent.putString("Country", Country);
+                    profileStudent.putString("SalaryFrom", SalaryFrom);
+                    profileStudent.putString("SalaryTo", SalaryTo);
 
                     profileStudent.apply();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i("AddProfile", String.valueOf(response));
+                Log.i("AddProfile_student", String.valueOf(response));
             }
 
         }, new Response.ErrorListener() {
@@ -468,10 +471,6 @@ public class SignIn extends AppCompatActivity {
         Volley.newRequestQueue(SignIn.this).add(sr);
         RequestQueue requestQueue = Volley.newRequestQueue(SignIn.this);
         requestQueue.add(sr);
-
-
-
-
 
 
     }
@@ -506,19 +505,19 @@ public class SignIn extends AppCompatActivity {
                     SharedPreferences personal_profile = getSharedPreferences("AddProfilePreviousData",
                             Context.MODE_PRIVATE);
                     final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                    profileStudent.putString("FatherName",FatherName);
-                    profileStudent.putString("ContactNo1",ContactNo1);
-                    profileStudent.putString("ContactNo2",ContactNo2);
-                    profileStudent.putString("ContactNo3",ContactNo3);
-                    profileStudent.putString("StudentEmail",StudentEmail);
-                    profileStudent.putString("HouseNumber",HouseNumber);
-                    profileStudent.putString("BuildingName",BuildingName);
-                    profileStudent.putString("StreetNumber",StreetNumber);
-                    profileStudent.putString("BlockNumber",BlockNumber);
-                    profileStudent.putString("Area",Area);
-                    profileStudent.putString("City",City);
-                    profileStudent.putString("Country",Country);
-                    profileStudent.putString("Gender",Gender);
+                    profileStudent.putString("FatherName", FatherName);
+                    profileStudent.putString("ContactNo1", ContactNo1);
+                    profileStudent.putString("ContactNo2", ContactNo2);
+                    profileStudent.putString("ContactNo3", ContactNo3);
+                    profileStudent.putString("StudentEmail", StudentEmail);
+                    profileStudent.putString("HouseNumber", HouseNumber);
+                    profileStudent.putString("BuildingName", BuildingName);
+                    profileStudent.putString("StreetNumber", StreetNumber);
+                    profileStudent.putString("BlockNumber", BlockNumber);
+                    profileStudent.putString("Area", Area);
+                    profileStudent.putString("City", City);
+                    profileStudent.putString("Country", Country);
+                    profileStudent.putString("Gender", Gender);
                     profileStudent.apply();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -544,10 +543,6 @@ public class SignIn extends AppCompatActivity {
         Volley.newRequestQueue(SignIn.this).add(sr);
         RequestQueue requestQueue = Volley.newRequestQueue(SignIn.this);
         requestQueue.add(sr);
-
-
-
-
 
 
     }

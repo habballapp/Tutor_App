@@ -14,9 +14,11 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -517,7 +519,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     if(!imageBitmapBase64.equals("")) {
 
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification());
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
                         fragmentTransaction.commit();
                     } else {
                         Toast.makeText(getContext(),"Please Upload Image",Toast.LENGTH_SHORT).show();
@@ -841,7 +843,30 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         };
         Volley.newRequestQueue(getContext()).add(sr);
     }
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+//
+//                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                        fragmentTransaction.add(R.id.container, new Order_PlaceOrder()).addToBackStack("null");
+//                        fragmentTransaction.commit();
+//                        return true;
+
+                    }
+
+
+                return false;
+            }
+        });
+
+    }
 }
 
 

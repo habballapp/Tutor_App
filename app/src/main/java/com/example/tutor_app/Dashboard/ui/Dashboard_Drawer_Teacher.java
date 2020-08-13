@@ -23,6 +23,7 @@ import com.example.tutor_app.Dashboard.ui.Profile.Teacher.ProfileTeacher;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.TeacherSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Session;
 import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
@@ -35,6 +36,8 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
     private RelativeLayout btn_search;
     private FragmentTransaction fragmentTransaction;
     String userid;
+    private Session session;
+
 
 
     @Override
@@ -43,6 +46,8 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         setContentView(R.layout.activity_drawer_new);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        session = new Session(this);
+
 
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
@@ -144,6 +149,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                         }
                         else if (id == 4) {
                             Intent intent = new Intent(Dashboard_Drawer_Teacher.this, SignIn.class);
+                            session.remove();
                             startActivity(intent);
 
                         }
@@ -158,19 +164,19 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 //                        if (groupPosition == 3 && childPosition == 0) {
 //                            Log.i("Payments Summary", "Child");
 //                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new Payment_Summary()).addToBackStack("tag");
+//                            fragmentTransaction.replace(R.id.container_ret, new Payment_Summary()).addToBackStack("tag");
 //                            ;
 //                            fragmentTransaction.commit();
 //                            drawer.closeDrawer(GravityCompat.START);
 //                        } else if (groupPosition == 3 && childPosition == 1) {
 //                            Log.i("Payment Request", "Child");
 //                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new CreatePaymentRequestFragment()).addToBackStack(null);
+//                            fragmentTransaction.replace(R.id.container_ret, new CreatePaymentRequestFragment()).addToBackStack(null);
 //                            ;
 //                            fragmentTransaction.commit();
 //                        } else if (groupPosition == 2 && childPosition == 0) {
 //                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.main_container_ret, new PlaceOrderFragment()).addToBackStack("tag");
+//                            fragmentTransaction.replace(R.id.container_ret, new PlaceOrderFragment()).addToBackStack("tag");
 //                            ;
 //                            fragmentTransaction.commit();
 //                            drawer.closeDrawer(GravityCompat.START);

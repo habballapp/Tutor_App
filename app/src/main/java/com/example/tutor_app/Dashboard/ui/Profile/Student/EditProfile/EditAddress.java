@@ -56,7 +56,7 @@ public class EditAddress extends Fragment {
     private String Filter_selected = "";
     String Url_Sprofile = "http://pci.edusol.co/StudentPortal/EditProfilesubmit.php";
     String spinner_gender,spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege, spinnerTimings;
-    String userid;
+    String userid, Id;
     TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview;
     JSONObject response = new JSONObject();
     private Loader loader;
@@ -104,6 +104,10 @@ public class EditAddress extends Fragment {
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("UserId", "");
+
+        SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("ViewProfile",
+                Context.MODE_PRIVATE);
+        Id = sharedPreferences2.getString("UserId", "");
 
 
 
@@ -447,6 +451,7 @@ public class EditAddress extends Fragment {
         map.put("desiredtiming", jsonArray_timings);
 
         map.put("userid", userid);
+        map.put("Id", Id);
 
         Log.i("mapAddress", String.valueOf(map));
 
@@ -454,6 +459,7 @@ public class EditAddress extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject response) {
+                Log.i("edite_profile" , String.valueOf(response));
                 try {
                     loader.hideLoader();
                     if (!response.getString("studenttutorformId").equals("null"))

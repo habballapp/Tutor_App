@@ -8,9 +8,11 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter;
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.example.tutor_app.SignUp.Signup_Student;
@@ -454,6 +457,7 @@ public class AddressClass extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject response) {
+                Log.i("edite_profile" , String.valueOf(response));
                 try {
                     loader.hideLoader();
                     if (!response.getString("studenttutorformId").equals("null"))
@@ -589,6 +593,30 @@ public class AddressClass extends Fragment {
         spinner_area_textview.setVisibility(View.VISIBLE);
         spinner_area_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
         spinner_area_textview.setText(response.getString("Area"));
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+
+                   FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new SelectClass()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
+
+                }
+
+
+                return false;
+            }
+        });
+
     }
 }
 

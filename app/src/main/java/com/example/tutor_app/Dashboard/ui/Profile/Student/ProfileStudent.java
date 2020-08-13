@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -128,7 +130,7 @@ public class ProfileStudent extends Fragment {
                     Log.i("Name", String.valueOf(edt_fullname));
                     profileStudent.apply();
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, new SelectClass());
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new SelectClass()).addToBackStack("tag");
                     fragmentTransaction.commit();
                     Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                 }
@@ -180,7 +182,7 @@ public class ProfileStudent extends Fragment {
                 edt_phone3.setTextColor(getResources().getColor(R.color.text_color_selection));
                 edt_email.setEnabled(false);
                 edt_email.setTextColor(getResources().getColor(R.color.text_color_selection));
-
+//
                 try {
                     edt_fullname.setText(response.getString("StudentName"));
                     edt_fname.setText(response.getString("FatherName"));
@@ -228,5 +230,29 @@ public class ProfileStudent extends Fragment {
         edt_phone2.setText(sharedPreferences2.getString("ContactNo2",""));
         edt_phone3.setText(sharedPreferences2.getString("ContactNo3",""));
         edt_email.setText(sharedPreferences2.getString("StudentEmail",""));
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    Toast.makeText(getContext(), "backStack", Toast.LENGTH_SHORT).show();
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
+
+                }
+
+
+                return false;
+            }
+        });
+
     }
 }

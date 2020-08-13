@@ -9,6 +9,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -309,7 +310,7 @@ public class SelectClass extends Fragment {
                     if (ErrorFields.isEmpty() && spinner_class.getSelectedItemPosition() != 0 && !selectedsubject.equals("")) {
 
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass()).addToBackStack("tag");
                         fragmentTransaction.commit();
 
                     } else {
@@ -319,7 +320,7 @@ public class SelectClass extends Fragment {
                 else
                 {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass());
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new AddressClass()).addToBackStack("tag");
                     fragmentTransaction.commit();
                     Toast.makeText(getContext(), " All Fields", Toast.LENGTH_SHORT).show();
                 }
@@ -357,5 +358,29 @@ public class SelectClass extends Fragment {
 
         edt_school.setText(response.getString("SchoolCollege"));
         edt_school.setTextColor(getResources().getColor(R.color.text_color_selection));
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.container, new ProfileStudent()).addToBackStack("null");
+                        fragmentTransaction.commit();
+                        return true;
+
+                }
+
+
+                return false;
+            }
+        });
+
     }
 }

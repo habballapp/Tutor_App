@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffff"
+    android:id="@+id/container"
 
     tools:context=".Dashboard.ui.Searchfragment.FragmentSearch">
 
@@ -124,8 +125,8 @@
         android:layout_marginTop="60dp"
         android:paddingStart="30dp"
         android:padding="5dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_below="@+id/rl_location"
         android:background="@drawable/btn_round"
         android:layout_centerHorizontal="true"

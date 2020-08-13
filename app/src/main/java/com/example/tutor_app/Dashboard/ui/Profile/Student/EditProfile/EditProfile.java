@@ -70,15 +70,15 @@ public class EditProfile extends Fragment {
         allFields.add(edt_fname);
 
 
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("AddProfilePreviousData",
                 Context.MODE_PRIVATE);
-        userid = sharedPreferences1.getString("UserId", "");
-        Log.i("UserId", userid);
+       String id_student = sharedPreferences1.getString("Id", "");
+        Log.i("UserId_student", id_student);
 
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("ViewProfile",
                 Context.MODE_PRIVATE);
         viewProfile_userid = sharedPreferences2.getString("UserId", "");
-        Log.i("UserId", userid);
+        Log.i("UserId", viewProfile_userid);
 
         if (!viewProfile_userid.equals("")) {
             viewProfile();

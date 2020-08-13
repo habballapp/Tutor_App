@@ -1,13 +1,20 @@
 package com.example.tutor_app.Dashboard.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,6 +36,7 @@ import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Session;
 import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
@@ -52,6 +61,9 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
     String userid;
     private List<String> childs = new ArrayList<>();
     private Map<String, String> childMap = new HashMap<>();
+    private Session session;
+    DrawerLayout drawer;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +71,8 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         setContentView(R.layout.activity_drawer_new);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        session = new Session(this);
+        drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, new HomeFragment());
@@ -126,7 +138,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                         if (id == 0) {
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
+                            fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         }
@@ -172,7 +184,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
@@ -181,7 +193,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
@@ -189,6 +201,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                         else if (id == 5) {
 
                             Intent intent = new Intent(Dashboard_Drawer_Student.this, SignIn.class);
+                            session.remove();
                             startActivity(intent);
 
                         }
@@ -213,7 +226,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileStudent()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
@@ -231,7 +244,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new EditProfile());
+                            fragmentTransaction.add(R.id.nav_host_fragment, new EditProfile()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
@@ -276,6 +289,72 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//            super.onBackPressed();
+        if (drawer.isDrawerOpen(Gravity.LEFT)) {
+            drawer.closeDrawer(Gravity.LEFT);
+        } else {
+//            FragmentManager fm = getSupportFragmentManager();
+//            if (fm.getBackStackEntryCount() == 0) {
+            if (doubleBackToExitPressedOnce) {
+//                    super.onBackPressed();
+//                    finishAffinity();
+                logoutUser();
 
+                return;
+            }
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 1500);
+//            } else {
+////            super.onBackPressed();
+//                fm.popBackStack();
+//            }
+        }
+    }
+    private void logoutUser() {
+
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(Dashboard_Drawer_Student.this).create();
+        LayoutInflater inflater = LayoutInflater.from(Dashboard_Drawer_Student.this);
+        View view_popup = inflater.inflate(R.layout.discard_changes, null);
+        TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
+        tv_discard.setText("Logout");
+        TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
+        tv_discard_txt.setText("Are you sure, you want to logout?");
+        alertDialog.setView(view_popup);
+        alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
+        layoutParams.y = 200;
+        layoutParams.x = -70;// top margin
+        alertDialog.getWindow().setAttributes(layoutParams);
+        Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
+        btn_discard.setText("Logout");
+        btn_discard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                Intent login = new Intent(Dashboard_Drawer_Student.this, SignIn.class);
+                startActivity(login);
+                finish();
+            }
+        });
+
+        ImageButton img_email = (ImageButton) view_popup.findViewById(R.id.btn_close);
+        img_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+    }
 }
 

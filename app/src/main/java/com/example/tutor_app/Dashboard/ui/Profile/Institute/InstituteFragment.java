@@ -217,7 +217,7 @@ public class InstituteFragment extends Fragment {
 
 
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment());
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment()).addToBackStack("tag");
                         fragmentTransaction.commit();
                         Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                     }
@@ -231,7 +231,7 @@ public class InstituteFragment extends Fragment {
                 else
                     {
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment());
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment()).addToBackStack("tag");
                         fragmentTransaction.commit();
                         Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                 }

@@ -7,7 +7,12 @@
     android:background="#FFFFFF"
     tools:context=".Signin.SignIn">
 
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/ln_logo"
         android:layout_width="wrap_content"
@@ -74,7 +79,6 @@
             android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
             android:drawablePadding="10dp"
             android:padding="10dp"
-            android:text=""
             android:paddingLeft="30dp"
             android:hint="@string/email"
             android:theme="@style/EditText" />
@@ -92,7 +96,6 @@
             android:padding="10dp"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:text=""
             android:paddingLeft="30dp"
             android:hint="@string/password"
             android:theme="@style/EditText"/>
@@ -215,6 +218,7 @@
 
 
     </RelativeLayout>
-
+    </RelativeLayout>
+</ScrollView>
 
 </RelativeLayout>

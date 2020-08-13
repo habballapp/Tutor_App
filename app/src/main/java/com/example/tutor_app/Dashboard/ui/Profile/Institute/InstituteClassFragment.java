@@ -267,7 +267,7 @@ public class InstituteClassFragment extends Fragment {
                     if(spinner_class.getSelectedItemPosition() !=0 && !selectedsubject.equals("")){
 
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment());
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment()).addToBackStack("tag");
                         fragmentTransaction.commit();
 
                     }
@@ -279,7 +279,7 @@ public class InstituteClassFragment extends Fragment {
                 }
                 else{
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment());
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment()).addToBackStack("tag");
                     fragmentTransaction.commit();
 
                 }
