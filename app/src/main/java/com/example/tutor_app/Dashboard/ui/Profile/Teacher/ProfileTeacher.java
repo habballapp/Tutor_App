@@ -18,7 +18,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -514,16 +513,30 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         btn_profile_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
+                        Context.MODE_PRIVATE);
+                userid = sharedPreferences1.getString("UserId", "");
+                if (! userid.equals("")) {
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
+                    fragmentTransaction.commit();
+                } else {
+                    sharedPreferences1 = getContext().getSharedPreferences("LoginData",
+                            Context.MODE_PRIVATE);
+                    userid = sharedPreferences1.getString("userid", "");
+                    Log.i("ID", userid);
+                    //Teacher Id:
+                    Log.i("TeacherID", userid);
 
+                    if (checkFields()) {
+                        if (! imageBitmapBase64.equals("")) {
 
-                if(checkFields()) {
-                    if(!imageBitmapBase64.equals("")) {
-
-                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
-                        fragmentTransaction.commit();
-                    } else {
-                        Toast.makeText(getContext(),"Please Upload Image",Toast.LENGTH_SHORT).show();
+                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
+                            fragmentTransaction.commit();
+                        } else {
+                            Toast.makeText(getContext(), "Please Upload Image", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 

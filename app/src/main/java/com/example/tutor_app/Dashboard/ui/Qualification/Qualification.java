@@ -362,7 +362,7 @@ public class Qualification extends Fragment {
                 loader.hideLoader();
 
                 try {
-                    JSONArray qualification_teacher = response.getJSONArray("Qualification_1");
+                    JSONArray qualification_teacher = response.getJSONArray("Qualification");
 //                    for(int i = 0; i < qualification_teacher.length(); i++) {
 //
                     if (qualification_teacher.length() > 0) {

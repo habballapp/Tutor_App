@@ -109,7 +109,7 @@ public class AreaFragment extends Fragment {
 
         SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
                 Context.MODE_PRIVATE);
-        String str_response = personal_profile1.getString("ViewProfileData", "");
+        final String str_response = personal_profile1.getString("ViewProfileData", "");
 
         Log.i("Job Experience", str_response);
 
@@ -147,29 +147,35 @@ public class AreaFragment extends Fragment {
         btn_area_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData",
-                        Context.MODE_PRIVATE);
-
-                edt_classes_track = area_fragmnt_data.getString("classtoteach", "");
-                edt_pref_subject = area_fragmnt_data.getString("prefsubject", "");
-                spinner_area = area_fragmnt_data.getString("prefarea", "");
-
-                if(!edt_classes_track.equals("") && !edt_pref_subject.equals("") && !spinner_area.equals(""))
-                {
+                if (! str_response.equals("")) {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new ReferenceFragment());
                     fragmentTransaction.commit();
+                } else {
+                    final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData",
+                            Context.MODE_PRIVATE);
 
-                }
-                else {
+                    edt_classes_track = area_fragmnt_data.getString("classtoteach", "");
+                    edt_pref_subject = area_fragmnt_data.getString("prefsubject", "");
+                    spinner_area = area_fragmnt_data.getString("prefarea", "");
 
-                    if (edt_classes_track.equals("")) {
-                        Toast.makeText(getContext(), "Please Enter Class Field", Toast.LENGTH_SHORT).show();
-                    } else if (edt_pref_subject.equals("")) {
-                        Toast.makeText(getContext(), "Please Enter Subjects Field", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getContext(), "Please Enter Area Field", Toast.LENGTH_SHORT).show();
+                    if(!edt_classes_track.equals("") && !edt_pref_subject.equals("") && !spinner_area.equals(""))
+                    {
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new ReferenceFragment());
+                        fragmentTransaction.commit();
+
+                    }
+                    else {
+
+                        if (edt_classes_track.equals("")) {
+                            Toast.makeText(getContext(), "Please Enter Class Field", Toast.LENGTH_SHORT).show();
+                        } else if (edt_pref_subject.equals("")) {
+                            Toast.makeText(getContext(), "Please Enter Subjects Field", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Please Enter Area Field", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
                 }
