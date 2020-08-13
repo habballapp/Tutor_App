@@ -200,11 +200,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                         }
                         else if (id == 5) {
-
-                            Intent intent = new Intent(Dashboard_Drawer_Student.this, SignIn.class);
-                            session.remove();
-                            startActivity(intent);
-                            finish();
+                            logoutUser();
                         }
 
 
@@ -342,6 +338,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
             public void onClick(View v) {
                 alertDialog.dismiss();
                 Intent login = new Intent(Dashboard_Drawer_Student.this, SignIn.class);
+                session.remove();
                 startActivity(login);
                 finish();
             }

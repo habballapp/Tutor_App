@@ -104,12 +104,7 @@ public class SignIn extends AppCompatActivity {
                     edt_password.setError("Please insert password");
                 }
                 else {
-//                    try {
-//                        Login();
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-
+//
 
                    if (txt_checkbox.isChecked()) {
                        username = edt_email.getText().toString();

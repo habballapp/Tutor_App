@@ -15,6 +15,7 @@ import android.text.InputType;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,10 @@ import android.widget.Toast;
 import com.example.tutor_app.Adapters.AreaFragmentAdapter;
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.AddressClass;
+import com.example.tutor_app.Dashboard.ui.Profile.Student.SelectClass;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.Qualification.ExpandOrCollapse;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.Model_Classes.Institute_Information_List;
 import com.example.tutor_app.R;
@@ -317,5 +320,29 @@ public class InstituteClassFragment extends Fragment {
         spinner_subject_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
 
         txt.setVisibility(View.GONE);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new InstituteFragment()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
+
+                }
+
+
+                return false;
+            }
+        });
+
     }
 }
