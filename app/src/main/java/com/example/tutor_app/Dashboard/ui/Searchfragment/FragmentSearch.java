@@ -1,6 +1,8 @@
 package com.example.tutor_app.Dashboard.ui.Searchfragment;
 
+import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter_Child;
 import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
 import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
@@ -256,6 +261,29 @@ public class FragmentSearch extends Fragment {
         Volley.newRequestQueue(getContext()).add(sr);
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(sr);
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    //Toast.makeText(getContext(), "backStack", Toast.LENGTH_SHORT).show();
+                  //  FragmentManager fragmentManager = getActivity().getFragmentManager();
+                    fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
+
+                }
+                return false;
+            }
+        });
 
     }
 }

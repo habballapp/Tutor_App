@@ -27,6 +27,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -370,10 +371,10 @@ public class SelectClass extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
-                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.add(R.id.container, new ProfileStudent()).addToBackStack("null");
-                        fragmentTransaction.commit();
-                        return true;
+                    fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new ProfileStudent()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
 
                 }
 

@@ -42,6 +42,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Dashboard.ui.Qualification.Qualification;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -853,11 +854,11 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-//
-//                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                        fragmentTransaction.add(R.id.container, new Order_PlaceOrder()).addToBackStack("null");
-//                        fragmentTransaction.commit();
-//                        return true;
+
+                        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
 
                     }
 

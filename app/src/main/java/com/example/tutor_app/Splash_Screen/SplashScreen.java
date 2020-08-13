@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -31,6 +32,8 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         tutor_logo = findViewById(R.id.tutor_logo);
         session = new Session(this);
+
+        Log.i("12487654", "in splash");
 
         Animation myAnimation_icon = AnimationUtils.loadAnimation(this, R.anim.fadein);
         myAnimation_icon.setDuration(5000);

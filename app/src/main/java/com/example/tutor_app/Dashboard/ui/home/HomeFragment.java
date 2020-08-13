@@ -60,22 +60,22 @@ public class HomeFragment extends Fragment {
                 switch (userrole) {
                     case "Student":
 
-                        fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new FragmentSearch()).addToBackStack("null");
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new FragmentSearch());
                         fragmentTransaction.commit();
-
+                        ;
                         break;
                     case "Teacher":
 
-                        fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new TeacherSearchFragment()).addToBackStack("null");
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new TeacherSearchFragment());
                         fragmentTransaction.commit();
 
                         break;
                     case "Institute":
 
-                        fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteSearchFragment()).addToBackStack("null");
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteSearchFragment());
                         fragmentTransaction.commit();
                         break;
                 }

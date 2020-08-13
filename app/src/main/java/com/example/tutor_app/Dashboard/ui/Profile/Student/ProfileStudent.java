@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
@@ -130,7 +131,7 @@ public class ProfileStudent extends Fragment {
                     Log.i("Name", String.valueOf(edt_fullname));
                     profileStudent.apply();
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, new SelectClass()).addToBackStack("tag");
+                    fragmentTransaction.replace(R.id.nav_host_fragment, new SelectClass()).addToBackStack("null");
                     fragmentTransaction.commit();
                     Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                 }
@@ -241,15 +242,12 @@ public class ProfileStudent extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    Toast.makeText(getContext(), "backStack", Toast.LENGTH_SHORT).show();
-                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
                     fragmentTransaction.commit();
                     return true;
 
                 }
-
-
                 return false;
             }
         });

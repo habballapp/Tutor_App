@@ -605,7 +605,7 @@ public class AddressClass extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
-                   FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                   FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new SelectClass()).addToBackStack("null");
                     fragmentTransaction.commit();
                     return true;

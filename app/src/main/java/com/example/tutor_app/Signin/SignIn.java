@@ -85,6 +85,8 @@ public class SignIn extends AppCompatActivity {
         btn_signin_txt = findViewById(R.id.btn_signin_txt);
         session = new Session(this);
 
+        Log.i("12487654", "in login");
+
 
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
@@ -102,27 +104,29 @@ public class SignIn extends AppCompatActivity {
                     edt_password.setError("Please insert password");
                 }
                 else {
-                    try {
-                        Login();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        Login();
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+
+
+                   if (txt_checkbox.isChecked()) {
+                       username = edt_email.getText().toString();
+                       password = edt_password.getText().toString();
+
+                       loginPrefsEditor.putBoolean("saveLogin", true);
+                       loginPrefsEditor.putString("username", username);
+                       loginPrefsEditor.putString("password", password);
+                       loginPrefsEditor.apply();
+                   }
+                   try {
+                       Login();
+                   } catch (JSONException e) {
+                       e.printStackTrace();
+                   }
                 }
 
-                if (txt_checkbox.isChecked()) {
-                    username = edt_email.getText().toString();
-                    password = edt_password.getText().toString();
-
-                    loginPrefsEditor.putBoolean("saveLogin", true);
-                    loginPrefsEditor.putString("username", username);
-                    loginPrefsEditor.putString("password", password);
-                    loginPrefsEditor.apply();
-                    try {
-                        Login();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
 
 
             }
@@ -136,6 +140,7 @@ public class SignIn extends AppCompatActivity {
 
                 Intent intent = new Intent(SignIn.this, Forget_Password.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -146,6 +151,7 @@ public class SignIn extends AppCompatActivity {
 
                 Intent intent = new Intent(SignIn.this, User_Type.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -206,6 +212,7 @@ public class SignIn extends AppCompatActivity {
                             Toast.makeText(SignIn.this, "Teacher", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Teacher.class);
                             startActivity(intent);
+                            finish();
 
                         } else if (obj.getString("userrole").equals("Institute")) {
                             getInstituteData();
@@ -373,6 +380,7 @@ public class SignIn extends AppCompatActivity {
                 session.setresponse(String.valueOf(response));
                 Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Student.class);
                 startActivity(intent);
+                finish();
             }
 
         }, new Response.ErrorListener() {

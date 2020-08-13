@@ -77,6 +77,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, new HomeFragment());
         fragmentTransaction.commit();
+        Log.i("12487654", "in dashboard");
 
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
@@ -203,7 +204,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             Intent intent = new Intent(Dashboard_Drawer_Student.this, SignIn.class);
                             session.remove();
                             startActivity(intent);
-
+                            finish();
                         }
 
 

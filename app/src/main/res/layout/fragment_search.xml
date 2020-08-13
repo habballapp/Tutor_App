@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="#ffff"
     android:id="@+id/container"
-
     tools:context=".Dashboard.ui.Searchfragment.FragmentSearch">
 
     <RelativeLayout
