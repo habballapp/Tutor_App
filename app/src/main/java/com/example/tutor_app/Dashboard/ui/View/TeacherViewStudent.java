@@ -5,10 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.TeacherViewStudentAdapter;
+import com.example.tutor_app.Dashboard.ui.Searchfragment.TeacherSearchFragment;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.ViewStudent_List;
 import com.example.tutor_app.MyJsonArrayRequest;
@@ -145,6 +149,27 @@ public class TeacherViewStudent extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(sr);
 
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                 FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new TeacherSearchFragment()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
+
+                }
+                return false;
+            }
+        });
 
     }
 }

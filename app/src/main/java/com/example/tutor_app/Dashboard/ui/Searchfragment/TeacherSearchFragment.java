@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import com.example.tutor_app.Dashboard.ui.View.TeacherViewInstitute;
 import com.example.tutor_app.Dashboard.ui.View.TeacherViewStudent;
 import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 
@@ -121,7 +123,7 @@ public class TeacherSearchFragment extends Fragment {
             public void onClick(View v) {
 
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new TeacherViewInstitute());
+                fragmentTransaction.replace(R.id.nav_host_fragment, new TeacherViewInstitute()).addToBackStack("tag");
                 fragmentTransaction.commit();
                 
             }
@@ -132,7 +134,7 @@ public class TeacherSearchFragment extends Fragment {
             public void onClick(View v) {
 
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new TeacherViewStudent());
+                fragmentTransaction.replace(R.id.nav_host_fragment, new TeacherViewStudent()).addToBackStack("tag");
                 fragmentTransaction.commit();
 
             }
@@ -141,5 +143,26 @@ public class TeacherSearchFragment extends Fragment {
 
 
         return  root;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
+
+                }
+                return false;
+            }
+        });
+
     }
 }

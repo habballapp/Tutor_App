@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.AreaFragmentAdapter;
 import com.example.tutor_app.Adapters.AreaFragmentAdapterView;
+import com.example.tutor_app.Dashboard.ui.JobExperience.JobExperienceFragment;
 import com.example.tutor_app.Dashboard.ui.References.ReferenceFragment;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.R;
@@ -238,5 +241,26 @@ public class AreaFragment extends Fragment {
             }
         };
         Volley.newRequestQueue(getContext()).add(sr);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new JobExperienceFragment()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
+
+                }
+                return false;
+            }
+        });
+
     }
 }
