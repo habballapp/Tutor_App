@@ -59,7 +59,7 @@ public class JobExperienceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_job_experience, container, false);
+        final View root = inflater.inflate(R.layout.fragment_job_experience, container, false);
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
 
         btn_experience_next = root.findViewById(R.id.btn_experience_next);
@@ -70,7 +70,7 @@ public class JobExperienceFragment extends Fragment {
 
         SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
                 Context.MODE_PRIVATE);
-        String str_response = personal_profile1.getString("ViewProfileData", "");
+        final String str_response = personal_profile1.getString("ViewProfileData", "");
 
         Log.i("Job Experience", str_response);
 
@@ -108,32 +108,38 @@ public class JobExperienceFragment extends Fragment {
         btn_experience_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final SharedPreferences job_experience = getContext().getSharedPreferences("SendData",
-                        Context.MODE_PRIVATE);
-                edt_etitlement = job_experience.getString("JobEntitlement", "");
-                edt_organization = job_experience.getString("OrganizationName", "");
-                edt_from = job_experience.getString("FromTo", "");
-                edt_till = job_experience.getString("Till", "");
-
-
-                if (!edt_etitlement.equals("") && ! edt_organization.equals("") && ! edt_from.equals("") && ! edt_till.equals("")) {
+                if (! str_response.equals("")) {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new AreaFragment());
                     fragmentTransaction.commit();
                 } else {
-                    if (edt_etitlement.equals("")) {
-                        Toast.makeText(getContext(), "Please Enter Job Title", Toast.LENGTH_SHORT).show();
-                    } else if (edt_organization.equals("")) {
-                        Toast.makeText(getContext(), "Please Enter Name Of Organization", Toast.LENGTH_SHORT).show();
-                    } else if (edt_from.equals("")) {
-                        Toast.makeText(getContext(), "Please Enter From Field", Toast.LENGTH_SHORT).show();
+                    final SharedPreferences job_experience = getContext().getSharedPreferences("SendData",
+                            Context.MODE_PRIVATE);
+                    edt_etitlement = job_experience.getString("JobEntitlement", "");
+                    edt_organization = job_experience.getString("OrganizationName", "");
+                    edt_from = job_experience.getString("FromTo", "");
+                    edt_till = job_experience.getString("Till", "");
+
+
+                    if (!edt_etitlement.equals("") && ! edt_organization.equals("") && ! edt_from.equals("") && ! edt_till.equals("")) {
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new AreaFragment());
+                        fragmentTransaction.commit();
                     } else {
-                        Toast.makeText(getContext(), "Please Enter Till Field", Toast.LENGTH_SHORT).show();
+                        if (edt_etitlement.equals("")) {
+                            Toast.makeText(getContext(), "Please Enter Job Title", Toast.LENGTH_SHORT).show();
+                        } else if (edt_organization.equals("")) {
+                            Toast.makeText(getContext(), "Please Enter Name Of Organization", Toast.LENGTH_SHORT).show();
+                        } else if (edt_from.equals("")) {
+                            Toast.makeText(getContext(), "Please Enter From Field", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Please Enter Till Field", Toast.LENGTH_SHORT).show();
+                        }
+
+
                     }
-
-
                 }
+
             }
         });
 
