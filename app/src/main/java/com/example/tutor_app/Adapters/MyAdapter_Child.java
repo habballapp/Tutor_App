@@ -13,7 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 
-import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
+import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 

@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Profile.Student;
+package com.example.tutor_app.Dashboard.ui.Student.Profile;
 
 import android.util.Log;
 

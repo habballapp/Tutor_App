@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Qualification;
+package com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;

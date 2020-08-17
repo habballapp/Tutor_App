@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#fff"
     android:orientation="vertical"
-    tools:context=".Dashboard.ui.Qualification.Qualification">
+    tools:context=".Dashboard.ui.Teacher.TeacherForms.Qualification">
 
     <ScrollView
         android:layout_width="match_parent"

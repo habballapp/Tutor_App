@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Profile.Teacher;
+package com.example.tutor_app.Dashboard.ui.Teacher.Profile;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -18,7 +18,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -41,7 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Dashboard.ui.Qualification.Qualification;
+import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.Qualification;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;

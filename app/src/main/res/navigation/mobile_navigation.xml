@@ -15,20 +15,20 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.tutor_app.Dashboard.ui.Profile.Teacher.ProfileTeacher"
+        android:name="com.example.tutor_app.Dashboard.ui.Teacher.Profile.ProfileTeacher"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_profile_student"
-        android:name="com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent"
+        android:name="com.example.tutor_app.Dashboard.ui.Student.Profile.ProfileStudent"
         android:label="@string/menu_student"
         tools:layout="@layout/fragment_profile_student" />
 
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch"
+        android:name="com.example.tutor_app.Dashboard.ui.Student.SearchFragment.FragmentSearch"
         android:label="@string/menu_search"
         tools:layout="@layout/fragment_search" />
 

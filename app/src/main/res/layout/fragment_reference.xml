@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:id="@+id/container"
-    tools:context=".Dashboard.ui.References.ReferenceFragment">
+    tools:context=".Dashboard.ui.Teacher.TeacherForms.ReferenceFragment">
 
     <ScrollView
         android:layout_width="match_parent"

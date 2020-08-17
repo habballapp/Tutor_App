@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.References;
+package com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,10 +25,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Dashboard.ui.AreaofInterest.AreaFragment;
-import com.example.tutor_app.Dashboard.ui.JobExperience.JobExperienceFragment;
-import com.example.tutor_app.Dashboard.ui.Qualification.ExpandOrCollapse;
-import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
+import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.AreaFragment;
+import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.ExpandOrCollapse;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;

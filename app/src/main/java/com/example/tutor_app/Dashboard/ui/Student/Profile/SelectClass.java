@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Profile.Student;
+package com.example.tutor_app.Dashboard.ui.Student.Profile;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -27,7 +27,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
-import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -37,7 +36,6 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

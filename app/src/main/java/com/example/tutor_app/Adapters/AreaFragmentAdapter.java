@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
+import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.R;
 

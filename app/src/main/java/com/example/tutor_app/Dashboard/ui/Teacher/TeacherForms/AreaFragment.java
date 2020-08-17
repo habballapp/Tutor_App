@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.AreaofInterest;
+package com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,7 +14,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,9 +25,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.AreaFragmentAdapter;
 import com.example.tutor_app.Adapters.AreaFragmentAdapterView;
-import com.example.tutor_app.Dashboard.ui.JobExperience.JobExperienceFragment;
-import com.example.tutor_app.Dashboard.ui.References.ReferenceFragment;
-import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.R;

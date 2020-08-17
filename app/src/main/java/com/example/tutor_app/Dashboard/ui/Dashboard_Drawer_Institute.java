@@ -33,8 +33,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.tutor_app.Dashboard.ui.Profile.Institute.InstituteFragment;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.ProfileStudent;
-import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.InstituteSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;

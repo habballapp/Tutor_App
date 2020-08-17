@@ -13,9 +13,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Institute;
-import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Student;
-import com.example.tutor_app.Dashboard.ui.Dashboard_Drawer_Teacher;
-import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
+import com.example.tutor_app.Dashboard.ui.Student.Dashboard_Drawer_Student;
+import com.example.tutor_app.Dashboard.ui.Teacher.TeacherDashboard.Dashboard_Drawer_Teacher;
 import com.example.tutor_app.Session;
 import com.example.tutor_app.Welcome.Welcome;
 import com.example.tutor_app.R;

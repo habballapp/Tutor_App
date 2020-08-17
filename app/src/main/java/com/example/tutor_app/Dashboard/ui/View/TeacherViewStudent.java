@@ -25,14 +25,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.TeacherViewStudentAdapter;
-import com.example.tutor_app.Dashboard.ui.Searchfragment.TeacherSearchFragment;
-import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
+import com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment.TeacherSearchFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.ViewStudent_List;
-import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;

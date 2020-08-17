@@ -17,19 +17,19 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
-        <activity android:name=".Dashboard.ui.Profile.Student.EditProfile.EditAddress"></activity>
-        <activity android:name=".Dashboard.ui.Profile.Student.EditProfile.EditClass" />
-        <activity android:name=".Dashboard.ui.Profile.Student.EditProfile.EditProfile" />
+        <activity android:name=".Dashboard.ui.Student.ProfileEdite.EditAddress"/>
+        <activity android:name=".Dashboard.ui.Student.ProfileEdite.EditClass" />
+        <activity android:name=".Dashboard.ui.Student.ProfileEdite.EditProfile" />
         <activity
             android:name=".ForgetPassword.Forget_Password"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Dashboard.ui.Searchfragment.InstituteSearchFragment" />
         <activity
-            android:name=".Dashboard.ui.Dashboard_Drawer_Teacher"
+            android:name=".Dashboard.ui.Teacher.TeacherDashboard.Dashboard_Drawer_Teacher"
             android:label="@string/title_activity_dashboard__drawer"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Dashboard.ui.Dashboard_Drawer_Student"
+            android:name=".Dashboard.ui.Student.Dashboard_Drawer_Student"
             android:label="@string/title_activity_dashboard__drawer"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.InputType;
@@ -27,14 +26,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tutor_app.Adapters.AreaFragmentAdapter;
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.AddressClass;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.SelectClass;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
-import com.example.tutor_app.Dashboard.ui.Qualification.ExpandOrCollapse;
-import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
-import com.example.tutor_app.Model_Classes.AreaFragment_List;
+import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
+import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.ExpandOrCollapse;
 import com.example.tutor_app.Model_Classes.Institute_Information_List;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;

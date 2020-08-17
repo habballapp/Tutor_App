@@ -1,6 +1,5 @@
-package com.example.tutor_app.Dashboard.ui.Profile.Student.EditProfile;
+package com.example.tutor_app.Dashboard.ui.Student.ProfileEdite;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -23,7 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.SelectClass;
+import com.example.tutor_app.Dashboard.ui.Student.ProfileEdite.EditClass;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;

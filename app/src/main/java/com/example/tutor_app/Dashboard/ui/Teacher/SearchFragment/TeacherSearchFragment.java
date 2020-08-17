@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Searchfragment;
+package com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;

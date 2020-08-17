@@ -9,25 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
-import com.example.tutor_app.Dashboard.ui.Profile.Institute.InstituteFragment;
-import com.example.tutor_app.Dashboard.ui.Searchfragment.FragmentSearch;
+import com.example.tutor_app.Dashboard.ui.Student.SearchFragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.Searchfragment.InstituteSearchFragment;
-import com.example.tutor_app.Dashboard.ui.Searchfragment.TeacherSearchFragment;
+import com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment.TeacherSearchFragment;
 import com.example.tutor_app.R;
-
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 

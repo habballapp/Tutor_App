@@ -1,7 +1,6 @@
-package com.example.tutor_app.Dashboard.ui.Profile.Student.EditProfile;
+package com.example.tutor_app.Dashboard.ui.Student.ProfileEdite;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,11 +9,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
 import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -30,9 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.AddressClass;
-import com.example.tutor_app.Dashboard.ui.Profile.Student.StateVO;
-import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
+import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
