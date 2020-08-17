@@ -25,7 +25,8 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
     private MyAdapter myAdapter;
     private boolean isFromView = false;
     private int totalChecked = 0;
-    private List<String> spinner_timings = new ArrayList<>();;
+    private List<String> spinner_timings = new ArrayList<>();
+    ;
 
     public MyAdapter(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
@@ -96,8 +97,7 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
                                 spinner_timings.add(listState.get(position).getTitle());
 
 
-                        }
-                        else{
+                        } else {
                             totalChecked--;
                             if (spinner_timings.contains(listState.get(position).getTitle()))
                                 spinner_timings.remove(listState.get(position).getTitle());
@@ -106,15 +106,15 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
 
 
                         Log.i("Checked", String.valueOf(totalChecked));
-                    }
-                    else {
+                    } else {
                         buttonView.setChecked(false);
                         if (isChecked) {
 
                             Toast.makeText(getContext(),
                                     "Limit reached!!!", Toast.LENGTH_SHORT).show();
                         } else {
-                            totalChecked--; Log.i("Checked Remove", String.valueOf(totalChecked));
+                            totalChecked--;
+                            Log.i("Checked Remove", String.valueOf(totalChecked));
                         }
                     }
                 }
@@ -140,8 +140,6 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
                 ed_spinnerTimings1.putString("timingSelected", String.valueOf(json1));
                 ed_spinnerTimings1.apply();
                 Log.i("timingSelected", String.valueOf(json1));
-
-
 
 
             }

@@ -188,7 +188,7 @@ public class SelectClass extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.textcolor));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(50, 0, 50, 0);
+                    text.setPadding(40, 0, 40, 0);
 
                     return view;
                 }
@@ -200,7 +200,7 @@ public class SelectClass extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.textcolor));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(50, 0, 50, 0);
+                    text.setPadding(40, 0, 40, 0);
                     return view;
                 }
             };
@@ -218,13 +218,13 @@ public class SelectClass extends Fragment {
                     else if (position==0){
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
                     }
                     else
                     {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
                     }
                 }
 

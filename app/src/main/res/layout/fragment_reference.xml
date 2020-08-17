@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:id="@+id/container"
     tools:context=".Dashboard.ui.Teacher.TeacherForms.ReferenceFragment">
 
     <ScrollView
@@ -14,43 +14,25 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF">
-
-
-            <LinearLayout
-                android:id="@+id/ln_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/logo"
-                    >
-                </ImageView>
-
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp">
 
             <LinearLayout
                 android:id="@+id/ln_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ln_logo"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 android:weightSum="2">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:gravity="center"
-                    android:textAllCaps="true"
                     android:text="References"
+                    android:textAllCaps="false"
                     android:theme="@style/TextStyle"
 
                     />
@@ -63,11 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ln_text"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                android:orientation="vertical"
-                android:weightSum="18">
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/name"
@@ -76,11 +54,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:hint="@string/name"
+                    android:padding="10dp"
                     android:theme="@style/EditText" />
 
 
@@ -91,10 +66,10 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/relation"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/relation"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -104,11 +79,9 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:drawablePadding="10dp"
+                    android:hint="@string/occupation"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/occupation"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -118,11 +91,9 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
+                    android:hint="@string/address"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/address"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -131,13 +102,11 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
+                    android:hint="@string/telephone"
+                    android:inputType="number"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/telephone"
                     android:theme="@style/EditText"
                     tools:ignore="TextFields" />
 
@@ -149,10 +118,10 @@
                 android:id="@+id/relativevToSlide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
                 android:layout_below="@+id/ln_reference"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
                 android:visibility="gone"
 
                 >
@@ -173,9 +142,9 @@
                         android:background="@drawable/editbox"
                         android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                         android:drawablePadding="10dp"
+                        android:hint="@string/name"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/name"
                         android:theme="@style/EditText" />
 
 
@@ -186,10 +155,11 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/relation"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/relation"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -201,9 +171,9 @@
                         android:background="@drawable/editbox"
                         android:drawableLeft="@drawable/ic_work_black_24dp"
                         android:drawablePadding="10dp"
+                        android:hint="@string/occupation"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/occupation"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -212,13 +182,13 @@
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
-                        android:inputType="number"
                         android:background="@drawable/editbox"
                         android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                         android:drawablePadding="10dp"
+                        android:hint="@string/address"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/address"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -227,13 +197,13 @@
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
-                        android:inputType="number"
                         android:background="@drawable/editbox"
                         android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
                         android:drawablePadding="10dp"
+                        android:hint="@string/telephone"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:paddingLeft="30dp"
-                        android:hint="@string/telephone"
                         android:theme="@style/EditText" />
 
 
@@ -243,42 +213,32 @@
 
             <RelativeLayout
                 android:id="@+id/relativeZaplon"
-                android:background="@drawable/editbox"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/relativevToSlide"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/editbox">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/add_reference"
-                    />
+                    android:text="@string/add_reference" />
             </RelativeLayout>
-
 
 
             <RelativeLayout
                 android:id="@+id/btn_refernce_next"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_below="@+id/relativeZaplon"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"
-                android:padding="5dp"
-                android:paddingStart="30dp"
-                android:paddingLeft="30dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/btn_signin_txt"
@@ -286,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:padding="5dp"
-                    android:text="SAVE"
+                    android:text="Save"
                     android:theme="@style/ButtonTextRound" />
 
                 <ImageView
@@ -294,16 +254,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:padding="5dp"
                     android:src="@drawable/ic_arrow_forward_black_24dp" />
 
             </RelativeLayout>
-
-
         </RelativeLayout>
-
     </ScrollView>
-
-
 </RelativeLayout>

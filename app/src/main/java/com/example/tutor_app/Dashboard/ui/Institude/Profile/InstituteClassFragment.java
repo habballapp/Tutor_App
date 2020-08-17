@@ -159,7 +159,7 @@ public class InstituteClassFragment extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
 
                     return view;
                 }
@@ -171,7 +171,7 @@ public class InstituteClassFragment extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
                     return view;
                 }
             };
@@ -184,12 +184,23 @@ public class InstituteClassFragment extends Fragment {
 
             spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                     if (position > 0) {
 
                         profileStudent.putString("class", String.valueOf(classes.get(position)));
                         profileStudent.apply();
                         Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
+                    }
+                    else if (position==0){
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+                    else
+                    {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     }
                 }
 

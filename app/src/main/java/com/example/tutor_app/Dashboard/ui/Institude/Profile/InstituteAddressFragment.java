@@ -147,7 +147,7 @@ public class InstituteAddressFragment extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
 
                     return view;
                 }
@@ -159,16 +159,27 @@ public class InstituteAddressFragment extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
                     return view;
                 }
             };
             spinner1.setAdapter(spinner1_adapter);
             spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     spinner_gender = gender.get(position);
+                    if (position==0){
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+                    else
+                    {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
                 }
 
                 @Override
@@ -182,14 +193,14 @@ public class InstituteAddressFragment extends Fragment {
 
             for (int i = 8; i <= 11; i++) {
                 timings.add(i + ":00 am");
-                timings.add(i + ":30 am");
+                timings.add(i + ":50 am");
             }
             timings.add("12:00 pm");
-            timings.add("12:30 pm");
+            timings.add("12:50 pm");
             for (int i = 1; i <= 11; i++) {
 
                 timings.add(i + ":00 pm");
-                timings.add(i + ":30 pm");
+                timings.add(i + ":50 pm");
             }
             timings.add("12:00 am");
 
@@ -202,7 +213,7 @@ public class InstituteAddressFragment extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
 
                     return view;
                 }
@@ -214,16 +225,28 @@ public class InstituteAddressFragment extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
                     return view;
                 }
             };
             spinner2.setAdapter(spinner2_adapter);
             spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     spinner_timings = timings.get(position);
+                    if (position==0){
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+                    else
+                    {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+
                 }
 
                 @Override
@@ -263,7 +286,7 @@ public class InstituteAddressFragment extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
 
                     return view;
                 }
@@ -275,16 +298,27 @@ public class InstituteAddressFragment extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
                     return view;
                 }
             };
             spinner_edt_area.setAdapter(spinner_area_adapter);
             spinner_edt_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     spinner_area = area.get(position);
+                    if (position==0){
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+                    else
+                    {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
 
                 }
 

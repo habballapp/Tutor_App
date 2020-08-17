@@ -111,7 +111,9 @@
                         android:layout_height="match_parent"
                         android:layout_toLeftOf="@+id/spinner_area_imageview"
                         android:background="@null"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        android:gravity="center_vertical"
+                        android:paddingStart="20dp"/>
 
                     <Spinner
                         android:id="@+id/spinner_edt_area"
@@ -174,6 +176,7 @@
                         android:background="@null"
                         android:gravity="center_vertical"
                         android:padding="10dp"
+                        android:paddingStart="20dp"
                         android:visibility="gone" />
 
                     <Spinner
@@ -211,6 +214,8 @@
                         android:layout_toLeftOf="@+id/spinner_timings_imageview"
                         android:background="@null"
                         android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:paddingStart="20dp"
                         android:visibility="gone" />
 
                     <Spinner

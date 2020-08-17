@@ -9,20 +9,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
-
     <LinearLayout
         android:id="@+id/ln_login1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         android:weightSum="18">
 
@@ -32,13 +27,8 @@
             android:id="@+id/edt_etitlement"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:paddingLeft="30dp"
             android:hint="@string/entitlement"
             android:theme="@style/EditText" />
 
@@ -50,9 +40,7 @@
             android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
             android:padding="10dp"
-            android:paddingLeft="30dp"
             android:hint="@string/organization"
             android:theme="@style/EditText" />
 
@@ -66,9 +54,7 @@
             android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
             android:padding="10dp"
-            android:paddingLeft="30dp"
             android:hint="@string/from"
             android:theme="@style/EditText" />
 
@@ -79,10 +65,7 @@
             android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_work_black_24dp"
-            android:drawablePadding="10dp"
             android:padding="10dp"
-            android:paddingLeft="30dp"
             android:hint="@string/till"
             android:theme="@style/EditText" />
 

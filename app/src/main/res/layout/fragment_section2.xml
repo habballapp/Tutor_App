@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#fff"
     android:orientation="vertical"
     tools:context=".Dashboard.ui.Teacher.TeacherForms.Qualification">
@@ -10,49 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
         <RelativeLayout
             android:id="@+id/rl_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-            <RelativeLayout
-                android:id="@+id/ln_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/logo"
-                    >
-                </ImageView>
-
-            </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp">
 
             <LinearLayout
                 android:id="@+id/ln_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ln_logo"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:weightSum="2">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:gravity="center"
-                    android:textAllCaps="true"
                     android:text="@string/qualification"
+                    android:textAllCaps="false"
                     android:theme="@style/TextStyle"
 
                     />
@@ -67,8 +45,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln_text"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
 
                 >
 
@@ -76,35 +52,27 @@
                     android:id="@+id/ln_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:weightSum="18">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/qualification"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
                         android:hint="@string/qualification"
+                        android:padding="10dp"
                         android:theme="@style/EditText" />
-
 
                     <EditText
                         android:id="@+id/subject"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
+                     
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
                         android:hint="@string/subjects"
+                        android:padding="10dp"
+                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -112,13 +80,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
+                     
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/institute"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/institute"
+                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -126,14 +92,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:inputType="number"
+                     
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/pyear"
+                        android:inputType="number"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/pyear"
+                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -141,38 +105,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
+                     
+                        android:background="@drawable/editbox"
+                        android:hint="@string/grade"
+                        android:padding="10dp"
+                      
                         android:theme="@style/EditText" />
 
 
                 </LinearLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/relativeZaplon"
-                android:background="@drawable/editbox"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/relativevToSlide"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/editbox">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                  android:hint="@string/qualification"
-                    />
+                    android:hint="@string/qualification" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -181,9 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeZaplon"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginTop="20dp"
                 android:visibility="gone"
 
                 >
@@ -192,21 +148,17 @@
                     android:id="@+id/ln_login1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:weightSum="18">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/qualification1"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
+                     
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/qualification"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -215,12 +167,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                        android:hint="@string/subjects"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -228,13 +177,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/institute"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -242,14 +187,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:inputType="number"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/pyear"
+                        android:inputType="number"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/pyear"
+                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -257,37 +199,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
+                        android:background="@drawable/editbox"
+                        android:hint="@string/grade"
+                        android:padding="10dp"
                         android:theme="@style/EditText" />
 
                 </LinearLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/relativeZaplon1"
-                android:background="@drawable/editbox"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/relativevToSlide1"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/editbox">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                  android:hint="@string/add_qualification"
-                    />
+                    android:hint="@string/add_qualification" />
             </RelativeLayout>
 
 
@@ -298,30 +232,23 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeZaplon1"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
-                android:visibility="gone"
-                >
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/ln_login2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:weightSum="18">
+                   >
 
                     <EditText
                         android:id="@+id/qualification2"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/qualification"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/qualification"
                         android:theme="@style/EditText" />
 
 
@@ -330,12 +257,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                        android:hint="@string/subjects"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -343,13 +267,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/institute"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -357,14 +277,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:inputType="number"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/pyear"
+                        android:inputType="number"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/pyear"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -372,36 +288,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
+                        android:background="@drawable/editbox"
+                        android:hint="@string/grade"
+                        android:padding="10dp"
                         android:theme="@style/EditText" />
                 </LinearLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/relativeZaplon2"
-                android:background="@drawable/editbox"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/relativevToSlide2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/editbox">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                  android:hint="@string/add_qualification"
-                    />
+                    android:hint="@string/add_qualification" />
             </RelativeLayout>
 
 
@@ -411,44 +319,32 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeZaplon2"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
-                android:visibility="gone"
-                >
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/ln_login3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:weightSum="18">
+                   >
 
                     <EditText
                         android:id="@+id/qualification3"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/qualification"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/qualification"
                         android:theme="@style/EditText" />
-
-
                     <EditText
                         android:id="@+id/subject3"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                        android:hint="@string/subjects"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/subjects"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -456,13 +352,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/institute"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/institute"
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -470,14 +362,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:inputType="number"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        android:hint="@string/pyear"
+                        android:inputType="number"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/pyear"
+                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -485,37 +374,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
+                        android:background="@drawable/editbox"
+                        android:hint="@string/grade"
+                        android:padding="10dp"
                         android:theme="@style/EditText" />
 
                 </LinearLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/relativeZaplon3"
-                android:background="@drawable/editbox"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/relativevToSlide3"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/editbox">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                  android:hint="@string/add_qualification"
-                    />
+                    android:hint="@string/add_qualification" />
             </RelativeLayout>
 
 
@@ -526,8 +407,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeZaplon3"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
                 android:visibility="gone"
 
                 >
@@ -537,7 +416,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:weightSum="18">
+                   >
 
 
                     <EditText
@@ -545,13 +424,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
+                     
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                   
+                        android:hint="@string/qualification"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/qualification"
+                      
                         android:theme="@style/EditText" />
 
 
@@ -560,12 +438,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
+                     
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
+                   
+                        android:hint="@string/subjects"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/subjects"
+                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -573,13 +451,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
+                     
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                   
+                        android:hint="@string/institute"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/institute"
+                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -587,14 +464,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:inputType="number"
+                     
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                   
+                        android:hint="@string/pyear"
+                        android:inputType="number"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/pyear"
+                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -602,74 +478,61 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
-                        android:padding="10dp"
-                        android:paddingLeft="30dp"
-                      android:hint="@string/grade"
                         android:layout_marginBottom="10dp"
+                     
+                        android:background="@drawable/editbox"
+                   
+                        android:hint="@string/grade"
+                        android:padding="10dp"
+                      
                         android:theme="@style/EditText" />
 
 
                 </LinearLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/relativeZaplon4"
-                android:background="@drawable/editbox"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_below="@+id/relativevToSlide4"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/editbox">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                  android:hint="@string/add_qualification"
-                    />
+                    android:hint="@string/add_qualification" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/btn_qualification_next"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_below="@+id/relativeZaplon4"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_round"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                >
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/btn_signin_txt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:padding="5dp"
-                  android:text="NEXT"
+                    android:gravity="center"
+                    android:text="Next"
                     android:theme="@style/ButtonTextRound" />
 
                 <ImageView
                     android:id="@+id/btn_signin_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:padding="5dp"
+                    android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_arrow_forward_black_24dp" />
-
             </RelativeLayout>
         </RelativeLayout>
 

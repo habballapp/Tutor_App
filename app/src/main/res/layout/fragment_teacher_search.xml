@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/txt_location"
             android:layout_width="match_parent"
-            android:text="AREA"
+            android:text="Area"
             android:theme="@style/TextStyle"
             android:gravity="center"
             android:layout_height="wrap_content">
