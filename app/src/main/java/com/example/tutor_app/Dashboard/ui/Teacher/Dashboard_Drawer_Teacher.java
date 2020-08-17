@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Teacher.TeacherDashboard;
+package com.example.tutor_app.Dashboard.ui.Teacher;
 
 import android.app.AlertDialog;
 import android.content.Context;

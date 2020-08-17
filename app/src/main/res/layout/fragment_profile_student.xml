@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:id="@+id/container"
     tools:context=".Dashboard.ui.Student.Profile.ProfileStudent">
 
     <ScrollView
@@ -13,48 +13,26 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#FFFFFF">
-
-
-            <LinearLayout
-                android:id="@+id/ln_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/logo"
-                    >
-                </ImageView>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ln_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ln_logo"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:weightSum="2">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:gravity="center"
-                    android:textAllCaps="true"
                     android:text="Personal Information"
+                    android:textAllCaps="false"
                     android:theme="@style/TextStyle"
 
                     />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -62,11 +40,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ln_text"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                android:orientation="vertical"
-                android:weightSum="18">
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/edt_fullname"
@@ -75,11 +51,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:hint="@string/fullname"
+                    android:padding="10dp"
                     android:theme="@style/EditText" />
 
 
@@ -90,10 +63,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:hint="@string/fathername"
+                    android:padding="10dp"
                     android:theme="@style/EditText" />
 
 
@@ -103,13 +74,12 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:hint="@string/phone1"
+
+
+                    android:inputType="number"
+                    android:padding="10dp"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -118,13 +88,13 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
+                    android:hint="@string/phone2"
+
+
+                    android:inputType="number"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/phone2"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -133,13 +103,14 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
-                    android:inputType="number"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
+
+                    android:hint="@string/phone3"
+
+
+                    android:inputType="number"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
-                    android:hint="@string/phone3"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -149,11 +120,10 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_mail_black_24dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
+
+
                     android:hint="@string/mail"
+                    android:padding="10dp"
                     android:theme="@style/EditText" />
 
             </LinearLayout>
@@ -162,27 +132,21 @@
             <RelativeLayout
                 android:id="@+id/btn_class_next"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_below="@+id/ln_login"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_round"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:paddingStart="30dp"
-                android:paddingLeft="30dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/btn_signin_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:padding="5dp"
-                    android:text="NEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Next"
                     android:theme="@style/ButtonTextRound" />
 
                 <ImageView
@@ -190,16 +154,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:padding="5dp"
                     android:src="@drawable/ic_arrow_forward_black_24dp" />
 
             </RelativeLayout>
-
-
         </RelativeLayout>
-
     </ScrollView>
-
-
 </RelativeLayout>

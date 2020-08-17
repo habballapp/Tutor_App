@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui;
+package com.example.tutor_app.Dashboard.ui.Institude;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,8 +32,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.tutor_app.Dashboard.ui.Profile.Institute.InstituteFragment;
-import com.example.tutor_app.Dashboard.ui.Searchfragment.InstituteSearchFragment;
+import com.example.tutor_app.Dashboard.ui.Institude.Profile.InstituteFragment;
+import com.example.tutor_app.Dashboard.ui.Institude.SearchFragment.InstituteSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 import com.example.tutor_app.Session;

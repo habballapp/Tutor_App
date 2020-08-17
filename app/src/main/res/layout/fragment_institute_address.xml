@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container"
-    tools:context=".Dashboard.ui.Profile.Institute.InstituteAddressFragment">
+    tools:context=".Dashboard.ui.Institude.Profile.InstituteAddressFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
@@ -13,41 +13,37 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#FFFFFF">
 
 
-            <LinearLayout
-                android:id="@+id/ln_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp">
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/ln_logo"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_centerHorizontal="true"-->
+            <!--                android:layout_marginTop="20dp">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/logo"></ImageView>
+            <!--                <ImageView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:background="@drawable/logo"></ImageView>-->
 
-            </LinearLayout>
+            <!--            </LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/ln_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ln_logo"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:weightSum="2">
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:gravity="center"
                     android:text="Institution Information"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:theme="@style/TextStyle"
 
                     />
@@ -60,27 +56,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ln_text"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:orientation="vertical"
                 android:weightSum="18">
 
 
                 <EditText
                     android:id="@+id/edt_address"
+                    style="@style/EditText"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:layout_marginTop="20dp"
                     android:layout_weight="2"
+                    android:autofillHints=""
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_home_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/address"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:paddingLeft="30dp"
-                    android:theme="@style/EditText" />
+                    android:inputType="text" />
 
 
                 <EditText
@@ -90,12 +81,9 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/sno"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -103,14 +91,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
-
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/blockno"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
                 <RelativeLayout
@@ -118,24 +102,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:theme="@style/EditText">
-
-
-                    />
+                   >
 
                     <TextView
                         android:id="@+id/spinner_area_textview"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="match_parent"
                         android:layout_toLeftOf="@+id/spinner_area_imageview"
                         android:background="@null"
-                        android:gravity="center_vertical"
-                        android:padding="10dp"
-                        android:paddingStart="30dp"
-                        android:paddingLeft="30dp"
                         android:visibility="gone" />
 
                     <Spinner
@@ -165,12 +140,9 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/city"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -179,12 +151,9 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/country"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
 
@@ -195,11 +164,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_work_black_24dp"
-                    android:theme="@style/EditText">
-
-
-                    />
+                    >
 
                     <TextView
                         android:id="@+id/spinner_gender_textview"
@@ -209,8 +174,6 @@
                         android:background="@null"
                         android:gravity="center_vertical"
                         android:padding="10dp"
-                        android:paddingStart="30dp"
-                        android:paddingLeft="30dp"
                         android:visibility="gone" />
 
                     <Spinner
@@ -240,18 +203,14 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:theme="@style/EditText">
-
+                    >
                     <TextView
                         android:id="@+id/spinner_timings_textview"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_toLeftOf="@+id/spinner_timings_imageview"
                         android:background="@null"
-                        android:gravity="center_vertical"
                         android:padding="10dp"
-                        android:paddingStart="30dp"
-                        android:paddingLeft="30dp"
                         android:visibility="gone" />
 
                     <Spinner
@@ -281,11 +240,9 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/conveyance_type"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+                  
                     android:theme="@style/EditText"
                     android:visibility="gone" />
             </LinearLayout>
@@ -295,19 +252,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln_login"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="20dp"
-
-                >
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp">
 
                 <TextView
                     android:id="@+id/txt_fees"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="110dp"
-                    android:text="SALARY"
+                    android:gravity="center"
+                    android:text="Salary"
                     android:theme="@style/TextStyle" />
 
                 <LinearLayout
@@ -315,41 +269,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txt_fees"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="30dp"
+
+                    android:padding="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/amount_filter1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/line_bottom"
                         android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="10dp"
-                        android:weightSum="2">
+                        android:weightSum="3">
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
-                            android:text="PKR "
-                            android:textColor="#676A6C" />
+                            android:layout_height="match_parent"
+                            android:text="PKR: "
+                            android:layout_weight="2"
+                            android:paddingStart="10dp"
+                            android:textSize="14sp"
+                            android:textColor="@color/textcolor"
+                            android:gravity="center_vertical"
+                            />
 
                         <EditText
                             android:id="@+id/et_amount1"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/textcolor"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:textSize="14sp"
                             android:background="@android:color/transparent"
                             android:inputType="number"
-                            android:paddingLeft="5dp"
-                            android:textColor="#676A6C"
-                            android:textColorHint="#676A6C"
-                            android:textSize="14sp" />
+                          />
                     </LinearLayout>
 
                     <RelativeLayout
@@ -369,56 +323,48 @@
                     <LinearLayout
                         android:id="@+id/amount_filter2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/line_bottom"
                         android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="10dp"
-                        android:weightSum="2">
+                        android:weightSum="3">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
-                            android:text="PKR "
-                            android:textColor="#676A6C" />
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="PKR: "
+                            android:gravity="center_vertical"
+                            android:textSize="14sp"
+                            android:paddingStart="10dp"
+                            android:textColor="@color/textcolor" />
 
                         <EditText
                             android:id="@+id/et_amount2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
                             android:background="@android:color/transparent"
                             android:inputType="number"
-                            android:textColor="#676A6C"
-                            android:textColorHint="#676A6C"
                             android:textSize="14sp" />
                     </LinearLayout>
-
                 </LinearLayout>
-
-
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:id="@+id/btn_profile_next"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_below="@+id/rl_salary"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"
-                android:padding="5dp"
-                android:paddingStart="30dp"
-                android:paddingLeft="30dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/btn_signin_txt"
@@ -426,16 +372,10 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:padding="5dp"
-                    android:text="CREATE PROFILE"
+                    android:text="Create Profile"
+                    android:textAllCaps="false"
                     android:theme="@style/ButtonTextRound" />
-
-
             </RelativeLayout>
-
-
         </RelativeLayout>
-
     </ScrollView>
-
-
 </FrameLayout>

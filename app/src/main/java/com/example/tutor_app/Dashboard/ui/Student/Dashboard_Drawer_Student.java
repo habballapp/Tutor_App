@@ -31,7 +31,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.tutor_app.Dashboard.ui.Student.ProfileEdite.EditProfile;
+import com.example.tutor_app.Dashboard.ui.Student.ProfileEdit.EditProfile;
 import com.example.tutor_app.Dashboard.ui.Student.Profile.ProfileStudent;
 import com.example.tutor_app.Dashboard.ui.Student.SearchFragment.FragmentSearch;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;

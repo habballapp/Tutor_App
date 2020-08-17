@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Searchfragment;
+package com.example.tutor_app.Dashboard.ui.Institude.SearchFragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;

@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Profile.Institute;
+package com.example.tutor_app.Dashboard.ui.Institude.Profile;
 
 import android.content.Context;
 import android.content.SharedPreferences;

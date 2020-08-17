@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tutor_app.Dashboard.ui.Student.SearchFragment.FragmentSearch;
-import com.example.tutor_app.Dashboard.ui.Searchfragment.InstituteSearchFragment;
+import com.example.tutor_app.Dashboard.ui.Institude.SearchFragment.InstituteSearchFragment;
 import com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment.TeacherSearchFragment;
 import com.example.tutor_app.R;
 

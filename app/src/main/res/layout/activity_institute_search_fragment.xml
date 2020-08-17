@@ -4,16 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffff"
-
-    tools:context=".Dashboard.ui.Searchfragment.InstituteSearchFragment">
-
+    tools:context=".Dashboard.ui.Institude.SearchFragment.InstituteSearchFragment">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
     <RelativeLayout
         android:id="@+id/rl_child"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
+
+        android:layout_marginTop="20dp"
         >
 
 
@@ -35,8 +37,6 @@
             android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_work_black_24dp"
-            android:theme="@style/EditText"
             >
 
             <Spinner
@@ -66,9 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_child"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         >
 
 
@@ -90,8 +88,6 @@
             android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:background="@drawable/editbox"
-            android:drawableLeft="@drawable/ic_work_black_24dp"
-            android:theme="@style/EditText"
             >
 
             <Spinner
@@ -120,32 +116,26 @@
     <RelativeLayout
         android:id="@+id/rl_next"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="60dp"
-        android:paddingStart="30dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
         android:padding="5dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
         android:layout_below="@+id/rl_location"
         android:background="@drawable/btn_round"
-        android:layout_centerHorizontal="true"
         android:orientation="horizontal"
-        android:paddingLeft="30dp"
         >
         <TextView
             android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ButtonTextRound"
-            android:text="NEXT"
-            android:layout_centerInParent="true"
+            android:text="Next"
+            android:gravity="center"
+            android:textAllCaps="false"
             android:padding="5dp"
             />
 
 
     </RelativeLayout>
 
-
-
-
+</RelativeLayout>
 </RelativeLayout>

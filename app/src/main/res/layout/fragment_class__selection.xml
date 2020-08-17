@@ -16,43 +16,20 @@
         <RelativeLayout
             android:id="@+id/scrollview1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    <RelativeLayout
-        android:id="@+id/ln_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:id="@+id/heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/logo"
-            >
-        </ImageView>
-
-    </RelativeLayout>
+            android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/ln_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ln_logo"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        android:weightSum="2">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:gravity="center"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:text="@string/class_title"
             android:theme="@style/TextStyle"
 
@@ -65,9 +42,9 @@
             android:id="@+id/ln_login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:orientation="vertical"
             android:layout_below="@id/ln_text"
             android:weightSum="3">
@@ -76,23 +53,18 @@
             <RelativeLayout
                 android:id="@+id/edt_class"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_weight="1"
+                android:layout_height="50dp"
                 android:background="@drawable/editbox"
-                android:drawableLeft="@drawable/ic_work_black_24dp"
-                android:theme="@style/EditText"
                 >
                 <TextView
                     android:id="@+id/spinner_class_textview"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="match_parent"
                     android:layout_toLeftOf="@+id/spinner_class_imageview"
                     android:padding="10dp"
                     android:gravity="center_vertical"
-                    android:paddingLeft="30dp"
                     android:visibility="gone"
-                    android:background="@null"
-                    android:paddingStart="30dp" />
+                    android:background="@null" />
                 <Spinner
                     android:id="@+id/spinner_class"
                     android:layout_width="match_parent"
@@ -120,9 +92,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/edt_class"
-                android:layout_weight="1"
-                android:background="@drawable/editbox"
-                android:theme="@style/EditText">
+                android:background="@drawable/editbox">
                 <TextView
                     android:id="@+id/spinner_subject_textview"
                     android:layout_width="match_parent"
@@ -130,10 +100,8 @@
                     android:layout_toLeftOf="@+id/spinner_subject_imageview"
                     android:padding="10dp"
                     android:gravity="center_vertical"
-                    android:paddingLeft="30dp"
                     android:visibility="gone"
-                    android:background="@null"
-                    android:paddingStart="30dp" />
+                    android:background="@null" />
                 <Spinner
                     android:id="@+id/spinner_subject"
                     android:layout_width="match_parent"
@@ -149,7 +117,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignTop="@id/spinner_subject"
                     android:layout_alignEnd="@+id/spinner_subject"
-                    android:layout_alignRight="@+id/spinner_subject"
+                    android:layout_alignParentEnd="@+id/spinner_subject"
                     android:layout_alignBottom="@+id/spinner_subject"
                     android:src="@drawable/ic_arrow_drop_down_black_24dp"
                     android:theme="@style/Spinner" />
@@ -161,13 +129,11 @@
                 android:layout_below="@id/edt_subject"
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:inputType="text"
+                android:textSize="14sp"
                 android:background="@drawable/editbox"
-                android:drawableLeft="@drawable/ic_school_black_24dp"
-                android:drawablePadding="10dp"
-                android:padding="10dp"
-                android:paddingLeft="30dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:hint="@string/school"
                 android:theme="@style/EditText" />
 
@@ -178,8 +144,6 @@
                 android:layout_below="@id/edt_school"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:inputType="text"
                 android:backgroundTint="#F5F5F5"
                 android:layout_gravity="center_vertical|end"
                 android:background="@drawable/editbox"
@@ -189,41 +153,19 @@
             <Button
                 android:id="@+id/btn_profile_next"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_below="@id/txt"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/btn_round"
                 android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
                 android:orientation="horizontal"
                 android:padding="5dp"
-                android:paddingStart="30dp"
-                android:paddingLeft="30dp"
-                android:text="NEXT"
+                android:textAllCaps="false"
+                android:text="Next"
                 android:theme="@style/ButtonTextRound" />
 
 
         </RelativeLayout>
-
-
-
-<!--        <TextView-->
-<!--            android:id="@+id/btn_signin_txt"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:padding="5dp"-->
-<!--            android:text="NEXT"-->
-<!--            android:theme="@style/ButtonTextRound" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/btn_signin_image"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:padding="5dp"-->
-<!--            android:src="@drawable/ic_arrow_forward_black_24dp" />-->
-
         </RelativeLayout>
 
     </ScrollView>

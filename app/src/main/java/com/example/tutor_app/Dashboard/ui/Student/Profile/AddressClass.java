@@ -75,7 +75,7 @@ public class AddressClass extends Fragment {
         spinner1 = (Spinner) root.findViewById(R.id.spinner_gender);
         spinner2 = (Spinner) root.findViewById(R.id.spinner_timings);
         spinner3 = (Spinner) root.findViewById(R.id.spinner_area);
-        edt_house_number = root.findViewById(R.id.edt_house_number);
+        edt_house_number = root.findViewById(R.id.edt_house_num);
         edt_bno = root.findViewById(R.id.edt_bno);
         edt_street = root.findViewById(R.id.edt_street);
         edt_block = root.findViewById(R.id.edt_block);
@@ -158,7 +158,7 @@ public class AddressClass extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
 
                     return view;
                 }
@@ -170,16 +170,28 @@ public class AddressClass extends Fragment {
                     TextView text = (TextView) view.findViewById(android.R.id.text1);
                     text.setTextColor(getResources().getColor(R.color.text_color_selection));
                     text.setTextSize((float) 13.6);
-                    text.setPadding(30, 0, 30, 0);
+                    text.setPadding(50, 0, 50, 0);
                     return view;
                 }
             };
             spinner1.setAdapter(spinner1_adapter);
             spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     spinner_gender = gender.get(position);
+                    if (position==0){
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+                    else
+                    {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+
                 }
 
                 @Override
@@ -265,10 +277,20 @@ public class AddressClass extends Fragment {
             spinner3.setAdapter(spinner_area_adapter);
             spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     spinner_area = area.get(position);
-
+                    if (position==0){
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+                    else
+                    {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
                 }
 
                 @Override

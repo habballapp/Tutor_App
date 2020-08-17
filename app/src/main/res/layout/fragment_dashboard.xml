@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Dashboard.ui.Teacher.TeacherDashboard.Dashboard_Drawer_Teacher">
+    tools:context=".Dashboard.ui.Teacher.Dashboard_Drawer_Teacher">
 
     <ScrollView
         android:id="@+id/dashboard"
@@ -15,31 +15,30 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            >
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp">
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="150dp"
-                android:layout_marginRight="40dp">
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:layout_marginLeft="150dp"-->
+            <!--                android:layout_marginRight="40dp">-->
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_home_black_24dp"
-                    android:text="HOME"
-                    android:theme="@style/TextStyle"
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:drawableLeft="@drawable/ic_home_black_24dp"-->
+            <!--                    android:text="HOME"-->
+            <!--                    android:theme="@style/TextStyle"-->
 
-                    />
+            <!--                    />-->
 
-            </LinearLayout>
+            <!--            </LinearLayout>-->
 
             <RelativeLayout
                 android:id="@+id/btn_search"
@@ -48,7 +47,7 @@
                 android:layout_below="@+id/rl_checkbox"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"
@@ -96,8 +95,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:text="DEMO"
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
@@ -142,8 +141,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:text="TEACHER"
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
@@ -184,8 +183,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:text="FEE"
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
@@ -225,8 +224,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
                         android:text="NUMBER OF SUBJECT"
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
@@ -245,25 +244,21 @@
             </LinearLayout>
 
 
-
-
         </RelativeLayout>
 
     </ScrollView>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:padding="10dp">-->
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="70dp"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:padding="10dp">-->
 
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/logo" />-->
-<!--    </LinearLayout>-->
-
-
+    <!--        <ImageView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:src="@drawable/logo" />-->
+    <!--    </LinearLayout>-->
 
 
 </RelativeLayout>
