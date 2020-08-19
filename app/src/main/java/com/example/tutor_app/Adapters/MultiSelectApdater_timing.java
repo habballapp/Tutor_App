@@ -19,20 +19,20 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<StateVO> {
+public class MultiSelectApdater_timing extends ArrayAdapter<StateVO> {
     private Context mContext;
     private ArrayList<StateVO> listState;
-    private MyAdapter myAdapter;
+    private MultiSelectApdater_timing multiSelectApdatertiming;
     private boolean isFromView = false;
     private int totalChecked = 0;
     private List<String> spinner_timings = new ArrayList<>();
     ;
 
-    public MyAdapter(Context context, int resource, List<StateVO> objects) {
+    public MultiSelectApdater_timing(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.listState = (ArrayList<StateVO>) objects;
-        this.myAdapter = this;
+        this.multiSelectApdatertiming = this;
     }
 
     @Override

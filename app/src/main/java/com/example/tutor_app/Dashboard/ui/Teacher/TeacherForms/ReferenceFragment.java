@@ -57,7 +57,7 @@ public class ReferenceFragment extends Fragment {
     //profile
     String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic,
             edt_permanent_address, edt_dob, edt_nationality, edt_religion, edt_phone1, edt_phone2,
-            edt_email, edt_age, imageBitmapBase64, gender, conveyance, OrganizationName, present_address;
+            edt_email, edt_age, imageBitmapBase64, gender, conveyance, OrganizationName, present_address,experience_year;
     String spinner_conveyance_txt, spinner_profession, date_of_submission,catogery;
     //Qualification
     String qualification, edt_institute, edt_passing_year, edt_grade,SubjectSpecialization,SubjectSpecialization1,
@@ -119,6 +119,7 @@ public class ReferenceFragment extends Fragment {
         date_of_submission = sharedPreferences.getString("dateofsubmission", "");
         conveyance = sharedPreferences.getString("personalconveyance", "");
         catogery = sharedPreferences.getString("IfInstituteOther", "");
+        experience_year = sharedPreferences.getString("experienceYear", "");
 
       //  edt_occupation = sharedPreferences.getString("email", "");
         spinner_conveyance_txt = sharedPreferences.getString("personalconveyance", "");
@@ -172,6 +173,7 @@ public class ReferenceFragment extends Fragment {
         edt_institute4 = sharedPreferences.getString("InstituteUniversity4", "");
         edt_passing_year4 = sharedPreferences.getString("YearOfPassing4", "");
         edt_grade4 = sharedPreferences.getString("gradedivision4", "");
+
 
         //JobExperience
         final SharedPreferences job_experience = getContext().getSharedPreferences("SendData",
@@ -479,6 +481,7 @@ public class ReferenceFragment extends Fragment {
         map.put("fbid","");
         map.put("IfInstituteOther",catogery);
         map.put("classtoteach", edt_classes_track);
+        map.put("classyears", experience_year);
 
 
         map.put("JobEntitlement",edt_etitlement);

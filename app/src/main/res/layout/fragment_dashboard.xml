@@ -15,53 +15,26 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp">
-
-
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="20dp"-->
-            <!--                android:layout_marginLeft="150dp"-->
-            <!--                android:layout_marginRight="40dp">-->
-
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="match_parent"-->
-            <!--                    android:layout_weight="1"-->
-            <!--                    android:drawableLeft="@drawable/ic_home_black_24dp"-->
-            <!--                    android:text="HOME"-->
-            <!--                    android:theme="@style/TextStyle"-->
-
-            <!--                    />-->
-
-            <!--            </LinearLayout>-->
-
+            android:layout_marginRight="30dp">
             <RelativeLayout
                 android:id="@+id/btn_search"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_below="@+id/rl_checkbox"
+                android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginRight="40dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"
-                android:padding="5dp"
-                android:paddingStart="30dp"
-                android:paddingLeft="30dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/btn_signin_txt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:padding="5dp"
-                    android:text="SEARCH"
+                    android:gravity="center"
+                    android:text="Search"
                     android:theme="@style/ButtonTextRound" />
 
                 <ImageView
@@ -69,7 +42,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:padding="5dp"
                     android:src="@drawable/ic_search_black_24dp" />
 
@@ -81,9 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_search"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="40dp">
+                android:layout_marginTop="30dp">
 
                 <LinearLayout
                     android:id="@+id/ln_demo"
@@ -97,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:text="DEMO"
+                        android:text="DEMO: "
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
@@ -124,9 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln_layout"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
                 android:orientation="horizontal"
 
                 >
@@ -143,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:text="TEACHER"
+                        android:text="TEACHER: "
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
@@ -166,9 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln_below"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
                 android:orientation="horizontal"
 
                 >
@@ -185,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:text="FEE"
+                        android:text="FEE: "
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
@@ -207,9 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln_fees"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
                 android:orientation="horizontal"
 
                 >
@@ -226,7 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:text="NUMBER OF SUBJECT"
+                        android:text="NUMBER OF SUBJECT: "
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 

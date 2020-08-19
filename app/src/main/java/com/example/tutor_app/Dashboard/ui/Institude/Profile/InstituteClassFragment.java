@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -51,6 +52,7 @@ public class InstituteClassFragment extends Fragment {
     List<String> classes = new ArrayList<>();
     List<String> subjects = new ArrayList<>();
     private StateVO stateVO;
+    private String Filter_selected;
     //    private RecyclerView rl_recycler;
     private RelativeLayout btn_class_add, btn_class_next, add_more;
     private EditText ctype, stype;
@@ -63,6 +65,8 @@ public class InstituteClassFragment extends Fragment {
     private JSONObject response = new JSONObject();
     private TextView spinner_class_textview, spinner_subject_textview;
     String selectedsubject = "";
+    private CheckBox mCheckBox;
+    private EditText subject_select;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -76,6 +80,8 @@ public class InstituteClassFragment extends Fragment {
         spinner_subject = root.findViewById(R.id.spinner_subject);
         spinner_class_textview = root.findViewById(R.id.spinner_class_textview);
         spinner_subject_textview = root.findViewById(R.id.spinner_subject_textview);
+        //subject_select = root.findViewById(R.id.select_subject);
+       // subject_select.setVisibility(View.GONE);
         txt = root.findViewById(R.id.txt);
 //        ctype = root.findViewById(R.id.ctype);
 //        stype = root.findViewById(R.id.stype);
@@ -186,22 +192,29 @@ public class InstituteClassFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                     if (position > 0) {
-
+                       // subject_select.setVisibility(View.VISIBLE);
                         profileStudent.putString("class", String.valueOf(classes.get(position)));
                         profileStudent.apply();
                         Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
                     }
-                    else if (position==0){
-                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
-                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
-                    }
-                    else
-                    {
-                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
-                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
-                    }
+                   else if (position==0){
+                      //  subject_select.setVisibility(View.GONE);
+                       ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                       ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                       ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                   }
+                   else
+                   {
+
+                       ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                       ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                       ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+
+
+
+                   }
+
+
                 }
 
                 @Override

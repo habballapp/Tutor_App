@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:id="@+id/container"
-    tools:context=".Dashboard.ui.Teacher.Profile.ProfileTeacher">
+    tools:context=".Dashboard.ui.Teacher.TeacherForms.ProfileTeacher">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,10 +29,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:gravity="center"
                     android:text="Personal Information"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:theme="@style/TextStyle"
 
                     />
@@ -70,8 +69,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/fathername"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
@@ -84,8 +81,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/mothername"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
@@ -99,8 +94,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
+               
                     android:hint="@string/age"
                     android:inputType="number"
                     android:padding="10dp"
@@ -190,7 +184,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
                     android:drawablePadding="10dp"
                     android:hint="@string/cnic"
                     android:inputType="number"
@@ -205,8 +198,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/paddress"
                     android:inputType="text"
                     android:padding="10dp"
@@ -220,8 +211,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/permanent_address"
                     android:inputType="text"
                     android:padding="10dp"
@@ -269,8 +258,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
+               
                     android:hint="@string/nationality"
                     android:inputType="text"
                     android:padding="10dp"
@@ -284,8 +272,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                    android:drawablePadding="10dp"
+               
                     android:hint="@string/religion"
                     android:inputType="text"
                     android:padding="10dp"
@@ -298,7 +285,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="1.125"
                     android:background="@drawable/editbox"
-                    android:paddingLeft="30dp"
+                    android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingRight="5dp"
                     android:paddingBottom="10dp"
@@ -330,8 +317,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/phone1"
                     android:selectAllOnFocus="true"
                     android:inputType="number"
@@ -346,8 +331,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/phone2"
                     android:inputType="number"
                     android:padding="10dp"
@@ -406,7 +389,18 @@
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:theme="@style/Spinner" />
                 </RelativeLayout>
-
+                <EditText
+                    android:id="@+id/experience_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/editbox"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/experience_year"
+                    android:padding="10dp"
+                    android:paddingLeft="30dp"
+                    android:theme="@style/EditText" />
                 <RelativeLayout
                     android:id="@+id/edt_conveyance"
                     android:layout_width="match_parent"
@@ -454,8 +448,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="10dp"
                     android:hint="@string/conveyance_type"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
@@ -515,7 +507,6 @@
                 android:layout_height="45dp"
                 android:layout_below="@+id/btn_profile_upload"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"
                 android:padding="5dp">
@@ -539,7 +530,28 @@
 
             </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/back"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/btn_profile_next"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/btn_round"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
+                    <TextView
+                        android:id="@+id/back_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:gravity="center"
+                    android:text="Draft"
+                        android:theme="@style/ButtonTextRound" />
+
+
+                </RelativeLayout>
         </RelativeLayout>
         </RelativeLayout>
 

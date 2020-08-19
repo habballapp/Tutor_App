@@ -30,7 +30,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import com.example.tutor_app.Dashboard.ui.Teacher.Profile.ProfileTeacher;
+import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.ProfileTeacher;
 import com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment.TeacherSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;

@@ -35,10 +35,12 @@
     <string name="nationality">Nationality</string>
     <string name="religion">Religion</string>
     <string name="phone1">Phone#1</string>
+    <string name="subject">Subject</string>
     <string name="dos">Date Of Submission</string>
     <string name="phone2">Phone#2</string>
     <string name="phone3">Phone#3</string>
     <string name="mail">Email</string>
+    <string name="experience_year">Total Experience</string>
     <string name="cperson">Contact Person</string>
     <string name="profession">Are you a Teacher by Profession?</string>
     <string name="conveyance">Do you have conveyance?</string>g
@@ -86,6 +88,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="home_second">Home Second</string>
     <string name="school">School/College</string>
+    <string name="session_year">Session Year</string>
     <string name="info">To add another child to your account you must complete and submit your application first and select add child option to add another child</string>
     <string name="ctype">Enter Class</string>
     <string name="stype">Enter Subject</string>

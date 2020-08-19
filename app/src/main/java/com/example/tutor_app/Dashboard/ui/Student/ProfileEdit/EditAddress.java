@@ -29,7 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Adapters.MyAdapter;
+import com.example.tutor_app.Adapters.MultiSelectApdater_timing;
 import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
@@ -217,8 +217,8 @@ public class EditAddress extends Fragment {
             }
 
 
-            MyAdapter myAdapter = new MyAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs);
-            spinner2.setAdapter(myAdapter);
+            MultiSelectApdater_timing multiSelectApdatertiming = new MultiSelectApdater_timing(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs);
+            spinner2.setAdapter(multiSelectApdatertiming);
 
             spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override

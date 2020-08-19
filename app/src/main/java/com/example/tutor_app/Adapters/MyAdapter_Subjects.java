@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
 import com.example.tutor_app.R;
@@ -56,6 +58,8 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
             holder = new ViewHolder();
             holder.mTextView = (TextView) convertView
                     .findViewById(R.id.text);
+            holder.select_subject = (EditText) convertView
+                    .findViewById(R.id.select_subject);
             holder.mCheckBox = (CheckBox) convertView
                     .findViewById(R.id.checkbox);
             convertView.setTag(holder);
@@ -127,13 +131,31 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
         isFromView = true;
         holder.mCheckBox.setChecked(listState.get(position).isSelected());
         isFromView = false;
-
-        if ((position == 0)) {
+        if (position==0){
+            holder.mCheckBox.setVisibility(View.INVISIBLE);
+            holder.select_subject.setVisibility(View.GONE);
+            holder.mTextView.setOnClickListener(null);
+        }
+       else if ((position>11)) {
 
             holder.mCheckBox.setVisibility(View.INVISIBLE);
+            holder.mTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.select_subject.setVisibility(View.VISIBLE);
+                    String otherSubject = holder.select_subject.getText().toString();
+                    Log.i("subjectOther" ,otherSubject);
+
+                    Toast.makeText(mContext, "aaaaaaaaaaaa", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
 
         } else {
+            holder.select_subject.setVisibility(View.GONE);
             holder.mCheckBox.setVisibility(View.VISIBLE);
+            holder.mTextView.setOnClickListener(null);
 
         }
 
@@ -190,5 +212,6 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
     private class ViewHolder {
         private TextView mTextView;
         private CheckBox mCheckBox;
+        private EditText select_subject;
     }
 }

@@ -135,11 +135,22 @@ public class FragmentSearch extends Fragment {
         spinner_location.setAdapter(adapter_location);
         spinner_location.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                 Log.i("Area", String.valueOf(area.get(position)));
                 profileStudent.putString("locationarea", String.valueOf(area.get(position)));
                 profileStudent.apply();
+                if (position==0){
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                    ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                    ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                }
+                else
+                {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                    ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                    ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                }
             }
 
             @Override

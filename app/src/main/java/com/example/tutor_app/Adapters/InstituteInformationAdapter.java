@@ -173,12 +173,17 @@ class InstituteInformationAdapter extends RecyclerView.Adapter<InstituteInformat
 
         holder.spinner_class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-
-//                    profileStudent.putString("class", String.valueOf(classes.get(position)));
-//                    profileStudent.apply();
-//                    Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                if (position==0){
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(context.getResources().getColor(R.color.text_color_selection));
+                    ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                    ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                }
+                else
+                {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(context.getResources().getColor(R.color.textcolor));
+                    ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                    ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
                 }
             }
 

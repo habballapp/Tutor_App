@@ -1,4 +1,4 @@
-package com.example.tutor_app.Dashboard.ui.Teacher.Profile;
+package com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -70,7 +70,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private FragmentTransaction fragmentTransaction;
     private EditText edt_fullname, edt_fname, edt_mtongue, edt_cnic, edt_present_address,
             edt_permanent_address, edt_nationality, edt_religion, edt_phone1, edt_phone2,
-            edt_email, edt_conveyance_txt, edt_age;
+            edt_email, edt_conveyance_txt, edt_age, experience_year;
     private String selectedFileType, imageName;
     private String imageBitmapBase64 = "";
     private TextView FileName;
@@ -85,7 +85,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     //   private static final String[] paths = {"Are you a Teacher by Profession?", "Yes", "No"};
     //    private static final String[] paths1 = {"Do you have conveyance?", "Yes", "No"};
     private List<String> paths, paths1;
-    private String Filter_selected = "";
+    private String Filter_selected = "", Filter_selected1 = "";
     private int year1, year2, month1, month2, date1, date2;
     private String fromDate, toDate;
     private ImageButton first_date_btn, second_date_btn;
@@ -94,7 +94,6 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private TextView spinner_category_textview, spinner_conveyance_textview, spinner_gender_textview, teacher_profession_textview;
     private ImageView image_view_uploaded_image;
     final List<EditText> allFields = new ArrayList<EditText>();
-
 
 
     private String getRealPathFromURI(Uri contentURI) {
@@ -123,7 +122,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     }
 
     private Bitmap convertBase64ToBitmap(String b64) {
-        final String pureBase64Encoded = b64.substring(b64.indexOf(",")  + 1);
+        final String pureBase64Encoded = b64.substring(b64.indexOf(",") + 1);
         byte[] imageAsBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
@@ -210,13 +209,13 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         final SharedPreferences.Editor profileTeacher = personal_profile.edit();
 
 
-
-
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
         edt_conveyance_txt = root.findViewById(R.id.edt_conveyance_txt);
         edt_fullname = root.findViewById(R.id.edt_fullname);
         edt_fname = root.findViewById(R.id.edt_fname);
         edt_mtongue = root.findViewById(R.id.edt_mtongue);
+        experience_year = root.findViewById(R.id.experience_year);
+
         loader = new Loader(getContext());
 
         edt_cnic = root.findViewById(R.id.edt_cnic);
@@ -249,7 +248,6 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         spinner_conveyance_textview = root.findViewById(R.id.spinner_conveyance_textview);
 
 
-
         first_date_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -276,7 +274,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         catogery.add("Tution Job");
         catogery.add("Both");
 
-         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("UserId", "");
         if (!userid.equals("")) {
@@ -317,9 +315,18 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             spinner1.setAdapter(spinner1_adapter);
             spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     profileTeacher.putString("gender", String.valueOf(gender.get(position)));
+                    if (position == 0) {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                    } else {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                    }
                 }
 
                 @Override
@@ -355,9 +362,18 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             spinner_catogery.setAdapter(spinner_adapter2);
             spinner_catogery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     profileTeacher.putString("IfInstituteOther", String.valueOf(catogery.get(position)));
+                    if (position == 0) {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                    } else {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                    }
                 }
 
                 @Override
@@ -375,7 +391,6 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             paths1.add("Do you have conveyance?");
             paths1.add("Yes");
             paths1.add("No");
-
 
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, paths) {
@@ -405,9 +420,29 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             teacher_profession.setAdapter(adapter);
             teacher_profession.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     profileTeacher.putString("teacherbyprofession", String.valueOf(paths.get(position)));
+                    if (position == 0) {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                    } else {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                    }
+//                    Filter_selected1 = paths.get(position);
+//
+//                    if (Filter_selected1.equals("Yes")){
+//                        experience_year.setVisibility(View.VISIBLE);
+//                    }
+//                    else
+//                    {
+//
+//                        experience_year.setVisibility(View.GONE);
+//                    }
+
 
                 }
 
@@ -445,15 +480,21 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             spinner_conveyance.setAdapter(adapter1);
             spinner_conveyance.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
 
                     if (position == 0) {
 
                         edt_conveyance_txt.setVisibility(View.GONE);
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
 
                     } else {
 
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
 
                     }
                     Filter_selected = paths1.get(position);
@@ -482,7 +523,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             btn_profile_upload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(checkFields()) {
+                    if (checkFields()) {
                         openImageChooserDialog();
 
                     }
@@ -509,14 +550,13 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         allFields.add(edt_nationality);
 
 
-
         btn_profile_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                         Context.MODE_PRIVATE);
                 userid = sharedPreferences1.getString("UserId", "");
-                if (! userid.equals("")) {
+                if (!userid.equals("")) {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
                     fragmentTransaction.commit();
@@ -529,7 +569,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     Log.i("TeacherID", userid);
 
                     if (checkFields()) {
-                        if (! imageBitmapBase64.equals("")) {
+                        if (!imageBitmapBase64.equals("")) {
 
                             fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
@@ -575,7 +615,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         Log.i("first_date.getText()", String.valueOf(first_date.getText()));
         if (ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && teacher_profession.getSelectedItemPosition() != 0
                 && spinner_catogery.getSelectedItemPosition() != 0 && spinner_conveyance.getSelectedItemPosition() != 0
-                && ! first_date.getText().toString().equals("Date Of Birth") && ! second_date.getText().toString().equals("Date Of Submission")
+                && !first_date.getText().toString().equals("Date Of Birth") && !second_date.getText().toString().equals("Date Of Submission")
 
         ) {
 
@@ -594,6 +634,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             profileTeacher.putString("phoneno1", String.valueOf(edt_phone1.getText()));
             profileTeacher.putString("phoneno2", String.valueOf(edt_phone2.getText()));
             profileTeacher.putString("email", String.valueOf(edt_email.getText()));
+            profileTeacher.putString("experienceYear", String.valueOf(experience_year.getText()));
             profileTeacher.putString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
             profileTeacher.apply();
 
@@ -818,8 +859,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     edt_cnic.setText(response.getString("CnicNo"));
                     edt_present_address.setText(response.getString("PresentAddress"));
                     edt_permanent_address.setText(response.getString("PermanentAddress"));
-                    Date DateOfBirth=new SimpleDateFormat("yyyy-MM-dd").parse(response.getString("DateOfBirth"));
-                    Date DateOfFormSubmission=new SimpleDateFormat("yyyy-MM-dd").parse(response.getString("DateOfFormSubmission"));
+                    Date DateOfBirth = new SimpleDateFormat("yyyy-MM-dd").parse(response.getString("DateOfBirth"));
+                    Date DateOfFormSubmission = new SimpleDateFormat("yyyy-MM-dd").parse(response.getString("DateOfFormSubmission"));
 
                     first_date.setText(format.format(DateOfBirth));
                     first_date_btn.setEnabled(false);
@@ -857,6 +898,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         };
         Volley.newRequestQueue(getContext()).add(sr);
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -868,12 +910,12 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
-                        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
                     fragmentTransaction.commit();
                     return true;
 
-                    }
+                }
 
 
                 return false;

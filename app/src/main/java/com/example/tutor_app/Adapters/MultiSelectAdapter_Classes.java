@@ -18,15 +18,15 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter2 extends ArrayAdapter<StateVO> {
+public class MultiSelectAdapter_Classes extends ArrayAdapter<StateVO> {
     private Context mContext;
     private ArrayList<StateVO> listState;
-    private MyAdapter2 myAdapter;
+    private MultiSelectAdapter_Classes myAdapter;
     private boolean isFromView = false;
     private int totalChecked = 0;
     private List<String> selectedClasses= new ArrayList<>();
 
-    public MyAdapter2(Context context, int resource, List<StateVO> objects) {
+    public MultiSelectAdapter_Classes(Context context, int resource, List<StateVO> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.listState = (ArrayList<StateVO>) objects;

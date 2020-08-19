@@ -22,4 +22,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:paddingEnd="20dp"/>
+    <EditText
+        android:id="@+id/select_subject"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:inputType="text"
+        android:layout_below="@+id/checkbox"
+        android:background="@drawable/editbox"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:paddingLeft="30dp"
+        android:hint="@string/subject"
+        android:theme="@style/EditText" />
+
 </RelativeLayout>
