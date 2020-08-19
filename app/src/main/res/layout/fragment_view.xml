@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:id="@+id/container"
-    tools:context=".Dashboard.ui.View.ViewFragmentStudent">
+    tools:context=".Dashboard.ui.View.Student_view_Teachers">
 
     <!-- TODO: Update blank fragment layout -->
 

@@ -97,12 +97,12 @@ public class ViewFragmentInstitute extends Fragment {
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, Url, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.i("View", String.valueOf(response));
+                Log.i("All_data ", String.valueOf(response));
                 loader.hideLoader();
                 if(response.length()<=0){
 
                     txt_nodata.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(),"No Teachers Available",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"No Teachers are Available",Toast.LENGTH_LONG).show();
                 }
                 else{
 

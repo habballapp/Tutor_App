@@ -63,11 +63,12 @@
     <string name="telephone">Telephone</string>
     <string name="add_reference">Add More Reference </string>
 
-    <string name="rname">Name:</string>
-    <string name="rcontact">Contact:</string>
-    <string name="remail">Email:</string>
-    <string name="rsubjects">Subjects:</string>
-    <string name="rfees">Fees:</string>
+    <string name="rname">Name:  </string>
+    <string name="teach_age">Age:   </string>
+    <string name="teach_qualification"> Qualification:  </string>
+    <string name="experience"> Experience:  </string>
+    <string name="rsubjects">Subjects:  </string>
+    <string name="teach_address">Address:   </string>
     <string name="Demo">Demo</string>
     <string name="NoData">No Teachers Available</string>
 

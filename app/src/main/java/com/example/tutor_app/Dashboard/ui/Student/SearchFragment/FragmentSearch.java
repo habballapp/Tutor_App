@@ -26,7 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MyAdapter_Child;
 import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
-import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
+import com.example.tutor_app.Dashboard.ui.View.Student_view_Teachers;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.MyJsonArrayRequest;
@@ -101,7 +101,7 @@ public class FragmentSearch extends Fragment {
             @Override
             public void onClick(View v) {
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new ViewFragmentStudent());
+                fragmentTransaction.replace(R.id.nav_host_fragment, new Student_view_Teachers());
                 fragmentTransaction.commit();
             }
         });

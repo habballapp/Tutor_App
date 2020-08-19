@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,20 +24,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
-import com.example.tutor_app.Model_Classes.AreaFragment_List;
-import com.example.tutor_app.Model_Classes.ViewStudent_List;
 import com.example.tutor_app.Model_Classes.View_List;
-import com.example.tutor_app.MyJsonArrayRequest;
 import com.example.tutor_app.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -181,14 +173,13 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
 
             name = (TextView)itemView.findViewById(R.id.name);
             name_value = (TextView)itemView.findViewById(R.id.name_value);
-            contact = (TextView)itemView.findViewById(R.id.tv_contact);
-            contact_value = (TextView)itemView.findViewById(R.id.contact_value);
-            email = (TextView)itemView.findViewById(R.id.email_value);
-            email_value = (TextView)itemView.findViewById(R.id.email_value);
+            //contact = (TextView)itemView.findViewById(R.id.tv_contact);
+         //   contact_value = (TextView)itemView.findViewById(R.id.contact_value);
+           //  email_value = (TextView)itemView.findViewById(R.id.email_value);
             subjects = (TextView)itemView.findViewById(R.id.tv_subjects);
             subjects_value = (TextView)itemView.findViewById(R.id.subjects_value);
-            fees = (TextView)itemView.findViewById(R.id.tv_fees);
-            fees_value = (TextView)itemView.findViewById(R.id.fees_value);
+         //   fees = (TextView)itemView.findViewById(R.id.tv_fees);
+          //  fees_value = (TextView)itemView.findViewById(R.id.fees_value);
             profile_image = itemView.findViewById(R.id.profile_image);
             request_demo = itemView.findViewById(R.id.request_demo);
         }

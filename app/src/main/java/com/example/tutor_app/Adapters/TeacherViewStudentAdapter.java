@@ -174,14 +174,14 @@ public class TeacherViewStudentAdapter extends RecyclerView.Adapter<TeacherViewS
 
             name = (TextView)itemView.findViewById(R.id.name);
             name_value = (TextView)itemView.findViewById(R.id.name_value);
-            contact = (TextView)itemView.findViewById(R.id.tv_contact);
-            contact_value = (TextView)itemView.findViewById(R.id.contact_value);
-            email = (TextView)itemView.findViewById(R.id.tv_email);
-            email_value = (TextView)itemView.findViewById(R.id.email_value);
+            //contact = (TextView)itemView.findViewById(R.id.tv_contact);
+           // contact_value = (TextView)itemView.findViewById(R.id.contact_value);
+            //email = (TextView)itemView.findViewById(R.id.tv_email);
+           // email_value = (TextView)itemView.findViewById(R.id.email_value);
             subjects = (TextView)itemView.findViewById(R.id.tv_subjects);
             subjects_value = (TextView)itemView.findViewById(R.id.subjects_value);
-            fees = (TextView)itemView.findViewById(R.id.tv_fees);
-            fees_value = (TextView)itemView.findViewById(R.id.fees_value);
+           // fees = (TextView)itemView.findViewById(R.id.tv_fees);
+           // fees_value = (TextView)itemView.findViewById(R.id.fees_value);
             profile_image = itemView.findViewById(R.id.profile_image);
             request_demo = itemView.findViewById(R.id.request_demo);
         }

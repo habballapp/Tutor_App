@@ -21,9 +21,7 @@ import android.widget.TextView;
 
 import com.example.tutor_app.Dashboard.ui.View.TeacherViewInstitute;
 import com.example.tutor_app.Dashboard.ui.View.TeacherViewStudent;
-import com.example.tutor_app.Dashboard.ui.View.ViewFragmentStudent;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
-import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 
 import java.util.ArrayList;

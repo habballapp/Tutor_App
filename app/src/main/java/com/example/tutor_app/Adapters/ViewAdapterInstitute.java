@@ -60,15 +60,12 @@ public class ViewAdapterInstitute extends RecyclerView.Adapter<ViewAdapterInstit
 
     @Override
     public void onBindViewHolder(@NonNull final ViewAdapterInstitute.ViewHolder holder, final int position) {
-
-//        holder.name.setText(view_list.get(position).getName());
         holder.name_value.setText(view_list.get(position).getFullName());
-//        holder.contact.setText(view_list.get(position).getContact());
-        holder.contact_value.setText(view_list.get(position).getPhoneNo1());
-//        holder.email.setText(view_list.get(position).getEmail());
-        holder.email_value.setText(view_list.get(position).getEmail());
-//        holder.subjects.setText(view_list.get(position).getSubjects());
-        holder.subjects_value.setText(view_list.get(position).getPreferredSubjects());
+//        holder.txt_age_value.setText(view_list.get(position).getClassName());
+//        holder.qualification_value.setText(view_list.get(position).getClassName());
+//        holder.experience_value.setText(view_list.get(position).getClassName());
+//        holder.subjects_value.setText(view_list.get(position).getPreferredSubjects());
+//        holder.address_value.setText(view_list.get(position).);
         holder.profile_image.setImageBitmap(convertBase64ToBitmap(view_list.get(position).getTutorImage()));
 //        holder.fees.setText(view_list.get(position).getFees());
 //        holder.fees_value.setText(view_list.get(position).getFees_value());
@@ -163,29 +160,21 @@ public class ViewAdapterInstitute extends RecyclerView.Adapter<ViewAdapterInstit
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView name,name_value,contact,contact_value,email,email_value,subjects,subjects_value,
-                fees,fees_value;
+        public TextView name_value,txt_age_value, qualification_value,experience_value,subjects_value,address_value;
         public CircleImageView profile_image;
         public Button request_demo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name = (TextView)itemView.findViewById(R.id.name);
             name_value = (TextView)itemView.findViewById(R.id.name_value);
-            contact = (TextView)itemView.findViewById(R.id.tv_contact);
-            contact_value = (TextView)itemView.findViewById(R.id.contact_value);
-            email = (TextView)itemView.findViewById(R.id.email_value);
-            email_value = (TextView)itemView.findViewById(R.id.email_value);
-            subjects = (TextView)itemView.findViewById(R.id.tv_subjects);
+            txt_age_value = (TextView)itemView.findViewById(R.id.txt_age_value);
+            qualification_value = (TextView)itemView.findViewById(R.id.qualification_value);
+            experience_value = (TextView)itemView.findViewById(R.id.experience_value);
             subjects_value = (TextView)itemView.findViewById(R.id.subjects_value);
-            fees = (TextView)itemView.findViewById(R.id.tv_fees);
-            fees_value = (TextView)itemView.findViewById(R.id.fees_value);
+            address_value = (TextView)itemView.findViewById(R.id.address_value);
             profile_image = itemView.findViewById(R.id.profile_image);
             request_demo = itemView.findViewById(R.id.request_demo);
-
-
         }
     }
 }

@@ -45,7 +45,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ViewFragmentStudent extends Fragment {
+public class Student_view_Teachers extends Fragment {
 
     private RecyclerView rl_recycler;
     RecyclerView.Adapter adapter;
