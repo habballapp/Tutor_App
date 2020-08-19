@@ -45,7 +45,7 @@ import java.util.Map;
 
 public class ReferenceFragment extends Fragment {
 
-    private RelativeLayout btn_reference_user, mrelativevToSlide, mRelativeZaplon;
+    private RelativeLayout btn_reference_user, mrelativevToSlide, mRelativeZaplon ,back;
     private boolean isVisible = false;
     private ExpandOrCollapse mAnimationManager;
     JSONObject response;
@@ -97,6 +97,7 @@ public class ReferenceFragment extends Fragment {
         edt_telephone1 = root.findViewById(R.id.edt_telephone1);
         edt_present_address = root.findViewById(R.id.edt_present_address);
         edt_present_address1 = root.findViewById(R.id.edt_present_address1);
+        back = root.findViewById(R.id.back);
         loader = new Loader(getContext());
 
 
@@ -279,7 +280,7 @@ public class ReferenceFragment extends Fragment {
     }
 
     private void viewProfile() {
-
+        back.setVisibility(View.GONE);
         loader.showLoader();
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);

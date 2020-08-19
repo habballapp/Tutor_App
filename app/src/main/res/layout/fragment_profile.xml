@@ -507,6 +507,7 @@
                 android:layout_height="45dp"
                 android:layout_below="@+id/btn_profile_upload"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"
                 android:padding="5dp">
@@ -535,7 +536,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_below="@+id/btn_profile_next"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/btn_round"
                     android:orientation="horizontal"

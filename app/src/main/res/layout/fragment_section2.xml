@@ -92,12 +92,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                     
                         android:background="@drawable/editbox"
                         android:hint="@string/pyear"
                         android:inputType="number"
                         android:padding="10dp"
-                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -105,15 +103,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginBottom="10dp"
-                     
                         android:background="@drawable/editbox"
                         android:hint="@string/grade"
                         android:padding="10dp"
-                      
                         android:theme="@style/EditText" />
-
-
                 </LinearLayout>
 
             </RelativeLayout>
@@ -139,7 +132,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeZaplon"
-                android:layout_marginTop="20dp"
                 android:visibility="gone"
 
                 >
@@ -155,7 +147,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                     
                         android:background="@drawable/editbox"
                         android:hint="@string/qualification"
                         android:padding="10dp"
@@ -231,7 +222,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeZaplon1"
-                android:layout_marginTop="20dp"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -318,7 +308,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeZaplon2"
-                android:layout_marginTop="20dp"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -406,7 +395,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeZaplon3"
-                android:layout_marginTop="20dp"
                 android:visibility="gone"
 
                 >
@@ -424,12 +412,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                     
                         android:background="@drawable/editbox"
-                   
                         android:hint="@string/qualification"
                         android:padding="10dp"
-                      
                         android:theme="@style/EditText" />
 
 
@@ -438,12 +423,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                     
                         android:background="@drawable/editbox"
-                   
                         android:hint="@string/subjects"
                         android:padding="10dp"
-                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -451,12 +433,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                     
                         android:background="@drawable/editbox"
-                   
                         android:hint="@string/institute"
                         android:padding="10dp"
-                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -464,13 +443,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                     
                         android:background="@drawable/editbox"
-                   
                         android:hint="@string/pyear"
                         android:inputType="number"
                         android:padding="10dp"
-                      
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -479,12 +455,9 @@
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="10dp"
-                     
                         android:background="@drawable/editbox"
-                   
                         android:hint="@string/grade"
                         android:padding="10dp"
-                      
                         android:theme="@style/EditText" />
 
 
@@ -498,6 +471,7 @@
                 android:layout_height="55dp"
                 android:layout_below="@+id/relativevToSlide4"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/editbox">
 
                 <TextView
@@ -511,8 +485,8 @@
                 android:id="@+id/btn_qualification_next"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:layout_marginBottom="10dp"
                 android:layout_below="@+id/relativeZaplon4"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/btn_round"
                 android:padding="5dp">
 
@@ -538,7 +512,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_below="@+id/btn_qualification_next"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"

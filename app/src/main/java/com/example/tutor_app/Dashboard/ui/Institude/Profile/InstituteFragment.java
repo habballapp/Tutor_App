@@ -47,7 +47,7 @@ import java.util.Map;
 public class InstituteFragment extends Fragment {
 
     private Spinner spinner_type;
-    private RelativeLayout btn_class_next;
+    private RelativeLayout btn_class_next ,back;
     private List<String> itype;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_institutename, edt_phone1, edt_phone2, edt_phone3, edt_email, contact_person, edt_other;
@@ -86,6 +86,7 @@ public class InstituteFragment extends Fragment {
         itype.add("Other");
 
         btn_class_next = root.findViewById(R.id.btn_class_next);
+        back = root.findViewById(R.id.back);
 
 
         edt_institutename = root.findViewById(R.id.edt_institutename);
@@ -265,6 +266,7 @@ public class InstituteFragment extends Fragment {
         }
         Log.i("institutedebug", String.valueOf(map));
 
+
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -348,6 +350,7 @@ public class InstituteFragment extends Fragment {
 
 
                 try {
+                    back.setVisibility(View.GONE);
                     edt_institutename.setText(response.getString("InstituteName"));
                     spinner_type_textview.setText(response.getString("TypeOfInstitute"));
                     edt_phone1.setText(response.getString("ContactNo1"));

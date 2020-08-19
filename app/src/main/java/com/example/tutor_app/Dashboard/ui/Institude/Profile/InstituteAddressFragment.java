@@ -51,7 +51,7 @@ public class InstituteAddressFragment extends Fragment {
 
     private Spinner spinner1, spinner2, spinner_edt_area;
     private ArrayAdapter<String> spinner_area_adapter;
-    private RelativeLayout btn_profile_next;
+    private RelativeLayout btn_profile_next ,back;
     private List<String> gender, timings, area;
     private EditText edt_address, edt_street, edt_block, edt_city, edt_country, et_amount1, et_amount2;
     String URL_INSTITUTE = "http://pci.edusol.co/InstitutePortal/instituteregistrationsubmit.php";
@@ -98,6 +98,7 @@ public class InstituteAddressFragment extends Fragment {
         spinner_area_textview = root.findViewById(R.id.spinner_area_textview);
         spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
         spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
+        back = root.findViewById(R.id.back);
 
 
         institutename = sharedPreferences.getString("nameofInstitute", "");
@@ -106,7 +107,7 @@ public class InstituteAddressFragment extends Fragment {
         phone3 = sharedPreferences.getString("contactno3", "");
         email = sharedPreferences.getString("email", "");
         cperson = sharedPreferences.getString("contactperson", "");
-//        ctype = sharedPreferences.getString("otherclass", "");
+//        ctype = sharedPreferences.getStFring("otherclass", "");
 //        stype = sharedPreferences.getString("othersubjects", "");
         classes = sharedPreferences.getString("class", "");
         subjects = sharedPreferences.getString("subjects", "");
@@ -405,7 +406,7 @@ public class InstituteAddressFragment extends Fragment {
     }
 
     private void getProfileData() throws JSONException {
-
+    back.setVisibility(View.GONE);
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("UserId", "");

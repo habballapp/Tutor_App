@@ -126,7 +126,7 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
                 text.setTextColor(context.getColor(R.color.text_color_selection));
                 text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
+                text.setPadding(50, 0, 50, 0);
 
                 return view;
             }
@@ -138,26 +138,26 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
                 text.setTextColor(context.getResources().getColor(R.color.text_color_selection));
                 text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
+                text.setPadding(50, 0, 50, 0);
                 return view;
             }
         };
-         holder.spinner_area.setAdapter(spinner_area_adapter);
-         holder.spinner_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-             profileArea_of_interest.putString("prefarea",(String.valueOf(area.get(position))));
-             profileArea_of_interest.apply();
-             Log.i("AreaSelected", area.get(position) + " - " + position);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+    //     holder.spinner_area.setAdapter(spinner_area_adapter);
+       //  holder.spinner_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//             profileArea_of_interest.putString("prefarea",(String.valueOf(area.get(position))));
+//             profileArea_of_interest.apply();
+//             Log.i("AreaSelected", area.get(position) + " - " + position);
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
 //        final ArrayList<StateVO> listClasses = new ArrayList<>();
 //        for (int i = 0; i < classes.size(); i++) {
@@ -181,7 +181,7 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
                 text.setTextColor(context.getColor(R.color.text_color_selection));
                 text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
+                text.setPadding(50, 0, 50, 0);
 
                 return view;
             }
@@ -193,7 +193,7 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
                 text.setTextColor(context.getResources().getColor(R.color.text_color_selection));
                 text.setTextSize((float) 13.6);
-                text.setPadding(30, 0, 30, 0);
+                text.setPadding(50, 0, 50, 0);
                 return view;
             }
         };
@@ -239,7 +239,7 @@ public class AreaFragmentAdapter extends RecyclerView.Adapter<AreaFragmentAdapte
 
             super(itemView);
 
-            spinner_area = itemView.findViewById(R.id.spinner_area);
+            //spinner_area = itemView.findViewById(R.id.spinner_area);
             edt_pref_subject = itemView.findViewById(R.id.edt_pref_subject);
             spinner_class = itemView.findViewById(R.id.spinner_class);
 

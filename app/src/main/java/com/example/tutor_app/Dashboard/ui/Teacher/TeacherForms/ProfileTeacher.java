@@ -66,7 +66,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    private RelativeLayout btn_profile_next, btn_profile_upload;
+    private RelativeLayout btn_profile_next, btn_profile_upload ,back;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_fullname, edt_fname, edt_mtongue, edt_cnic, edt_present_address,
             edt_permanent_address, edt_nationality, edt_religion, edt_phone1, edt_phone2,
@@ -215,6 +215,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         edt_fname = root.findViewById(R.id.edt_fname);
         edt_mtongue = root.findViewById(R.id.edt_mtongue);
         experience_year = root.findViewById(R.id.experience_year);
+        back = root.findViewById(R.id.back);
 
         loader = new Loader(getContext());
 
@@ -759,6 +760,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     }
 
     private void viewProfile() {
+        back.setVisibility(View.GONE);
         JSONObject map = new JSONObject();
         loader.showLoader();
 

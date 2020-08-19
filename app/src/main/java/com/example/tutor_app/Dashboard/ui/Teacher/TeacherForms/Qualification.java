@@ -45,7 +45,7 @@ public class Qualification extends Fragment {
     private RelativeLayout mRelativeZaplon,mRelativeZaplon1,mRelativeZaplon2,mRelativeZaplon3,mRelativeZaplon4,mRelativeZaplon5;
     private RelativeLayout mRelativeToSlide,mRelativeToSlide1,mRelativeToSlide2,mRelativeToSlide3,mRelativeToSlide4,mRelativeToSlide5;
     private ExpandOrCollapse mAnimationManager;
-    private RelativeLayout btn_qualification_next;
+    private RelativeLayout btn_qualification_next ,back;
     private FragmentTransaction fragmentTransaction;
     JSONObject response;
     private EditText qualification ,subject ,edt_institute, edt_passing_year ,edt_grade;
@@ -62,7 +62,7 @@ public class Qualification extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_section2, container, false);
-
+        back = root.findViewById(R.id.back);
         loader = new Loader(getContext());
         mAnimationManager = new ExpandOrCollapse();
 
@@ -340,7 +340,7 @@ public class Qualification extends Fragment {
     }
 
     private void viewProfile() {
-
+        back.setVisibility(View.GONE);
         loader.showLoader();
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",

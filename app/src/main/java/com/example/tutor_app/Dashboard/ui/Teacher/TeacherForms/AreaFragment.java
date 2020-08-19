@@ -14,7 +14,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -25,6 +27,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.AreaFragmentAdapter;
 import com.example.tutor_app.Adapters.AreaFragmentAdapterView;
+import com.example.tutor_app.Adapters.MultiSelectApdater_T_Area;
+import com.example.tutor_app.Adapters.MultiSelectApdater_timing;
+import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.AreaFragment_List;
 import com.example.tutor_app.R;
@@ -46,16 +51,18 @@ import java.util.Map;
  */
 public class AreaFragment extends Fragment {
 
-    private RelativeLayout btn_area_next,btn_area_add;
+    private RelativeLayout btn_area_next, btn_area_add, back;
     private RecyclerView rl_recycler;
     RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private FragmentTransaction fragmentTransaction;
     private List<String> area;
+    private List<String> select_area;
     private List<AreaFragment_List> list = new ArrayList<>();
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     JSONObject response;
     private Loader loader;
+    private Spinner spinr_area;
     String edt_classes_track, edt_pref_subject, spinner_area;
 
     @Override
@@ -65,12 +72,13 @@ public class AreaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_area, container, false);
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         btn_area_add = root.findViewById(R.id.btn_area_add);
+        back = root.findViewById(R.id.back);
         final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData_AreaFragment",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor areaFragment = area_fragmnt_data.edit();
         loader = new Loader(getContext());
 
-//        spinner_area = root.findViewById(R.id.spinner_area);
+        spinr_area = root.findViewById(R.id.spin_area);
 //        edt_classes_track = root.findViewById(R.id.edt_classes_track);
 //        edt_pref_subject = root.findViewById(R.id.edt_pref_subject);
 
@@ -94,10 +102,34 @@ public class AreaFragment extends Fragment {
         area.add(" SITE Town");
         area.add("Lyari Town");
         area.add(" Malir Town");
+        ArrayList<StateVO> listVOs = new ArrayList<>();
+
+        for (int i = 0; i < area.size(); i++) {
+            StateVO stateVO = new StateVO();
+            stateVO.setTitle(area.get(i));
+            stateVO.setSelected(false);
+            listVOs.add(stateVO);
+        }
 
 
+        MultiSelectApdater_T_Area multiSelectApdater_t_area = new MultiSelectApdater_T_Area(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs);
+        spinr_area.setAdapter(multiSelectApdater_t_area);
 
-        list.add(new AreaFragment_List(" "," "," "));
+        spinr_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        list.add(new AreaFragment_List(" ", " ", " "));
 
         layoutManager = new LinearLayoutManager(getContext());
 
@@ -116,14 +148,12 @@ public class AreaFragment extends Fragment {
         Type type = new TypeToken<JSONObject>() {
         }.getType();
 
-        if (! str_response.equals("")) {
+        if (!str_response.equals("")) {
             response = gson.fromJson(str_response, type);
             Log.i("JobExperience", String.valueOf(response));
 
             viewProfile();
         }
-
-
 
 
         btn_area_next = root.findViewById(R.id.btn_area_next);
@@ -141,12 +171,10 @@ public class AreaFragment extends Fragment {
         });
 
 
-
-
         btn_area_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (! str_response.equals("")) {
+                if (!str_response.equals("")) {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new ReferenceFragment());
                     fragmentTransaction.commit();
@@ -158,14 +186,12 @@ public class AreaFragment extends Fragment {
                     edt_pref_subject = area_fragmnt_data.getString("prefsubject", "");
                     spinner_area = area_fragmnt_data.getString("prefarea", "");
 
-                    if(!edt_classes_track.equals("") && !edt_pref_subject.equals("") && !spinner_area.equals(""))
-                    {
+                    if (!edt_classes_track.equals("") && !edt_pref_subject.equals("") && !spinner_area.equals("")) {
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_host_fragment, new ReferenceFragment());
                         fragmentTransaction.commit();
 
-                    }
-                    else {
+                    } else {
 
                         if (edt_classes_track.equals("")) {
                             Toast.makeText(getContext(), "Please Enter Class Field", Toast.LENGTH_SHORT).show();
@@ -180,7 +206,6 @@ public class AreaFragment extends Fragment {
                 }
 
 
-
             }
         });
 
@@ -188,7 +213,7 @@ public class AreaFragment extends Fragment {
     }
 
     private void viewProfile() {
-
+        back.setVisibility(View.GONE);
         loader.showLoader();
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
@@ -203,9 +228,8 @@ public class AreaFragment extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-              //  Log.i("Area of Interest", String.valueOf(response));
+                //  Log.i("Area of Interest", String.valueOf(response));
                 loader.hideLoader();
-
 
 
                 try {
@@ -214,7 +238,7 @@ public class AreaFragment extends Fragment {
                     layoutManager = new LinearLayoutManager(getContext());
 
                     rl_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                    adapter = new AreaFragmentAdapterView(getContext(),area);
+                    adapter = new AreaFragmentAdapterView(getContext(), area);
                     rl_recycler.setAdapter(adapter);
 
                     btn_area_add.setVisibility(View.GONE);
@@ -222,7 +246,6 @@ public class AreaFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
 
 
             }
@@ -244,6 +267,7 @@ public class AreaFragment extends Fragment {
         };
         Volley.newRequestQueue(getContext()).add(sr);
     }
+
     @Override
     public void onResume() {
         super.onResume();

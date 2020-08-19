@@ -50,7 +50,7 @@ public class SelectClass extends Fragment {
     public Spinner spinner_class,spinner_subject;
     private StateVO stateVO;
     RecyclerView.Adapter adapter;
-    private Button btn_profile_next;
+    private Button btn_profile_next ,back;
     private FragmentTransaction fragmentTransaction;
     List<String> classes = new ArrayList<>();
     List<String> subjects = new ArrayList<>();
@@ -77,6 +77,7 @@ public class SelectClass extends Fragment {
         txt = root.findViewById(R.id.txt);
         spinner_class_textview = root.findViewById(R.id.spinner_class_textview);
         spinner_subject_textview = root.findViewById(R.id.spinner_subject_textview);
+        back = root.findViewById(R.id.back);
 //        rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
        // classes.add("Class " + count);
@@ -346,6 +347,7 @@ public class SelectClass extends Fragment {
 
     private void viewProfile() throws JSONException {
         edt_school.setEnabled(false);
+        back.setVisibility(View.GONE);
 //        spinner_class.setSelected();
         spinner_class.setClickable(false);
         spinner_class.setEnabled(false);

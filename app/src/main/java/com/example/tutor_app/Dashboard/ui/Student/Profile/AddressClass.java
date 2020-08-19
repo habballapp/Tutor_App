@@ -53,7 +53,7 @@ public class AddressClass extends Fragment {
 
 
     private Spinner spinner1, spinner2,spinner3;
-    private RelativeLayout btn_profile_next;
+    private RelativeLayout btn_profile_next ,back;
     private ArrayAdapter<String> spinner1_adapter,spinner_area_adapter;
     private List<String> gender, timings,area;
     private EditText edt_house_number, edt_bno, edt_street, edt_block, edt_area, edt_city, edt_country;
@@ -86,6 +86,8 @@ public class AddressClass extends Fragment {
         spinner_area_textview = root.findViewById(R.id.spinner_area_textview);
         spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
         spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
+        back = root.findViewById(R.id.back);
+
         loader = new Loader(getContext());
         final List<EditText> allFields =new ArrayList<EditText>();
 
@@ -559,6 +561,7 @@ public class AddressClass extends Fragment {
 
     private void viewProfile() throws JSONException {
         btn_profile_next.setVisibility(View.GONE);
+        back.setVisibility(View.GONE);
 
         edt_house_number.setEnabled(false);
         edt_bno.setEnabled(false);
