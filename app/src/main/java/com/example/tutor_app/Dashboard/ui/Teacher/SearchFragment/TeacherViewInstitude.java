@@ -1,8 +1,9 @@
-package com.example.tutor_app.Dashboard.ui.View;
+package com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,9 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Adapters.TeacherViewStudentAdapter;
-import com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment.TeacherSearchFragment;
+import com.example.tutor_app.Adapters.TeacherVIewInstituteAdapter;
 import com.example.tutor_app.Loader.Loader;
+import com.example.tutor_app.Model_Classes.InstitudeView_List;
 import com.example.tutor_app.Model_Classes.ViewStudent_List;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -41,16 +42,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class TeacherViewInstitude extends Fragment {
 
-public class TeacherViewInstitute extends Fragment {
 
     private RecyclerView rl_recycler;
     RecyclerView.Adapter adapter;
     private List<ViewStudent_List> list = new ArrayList<>();
     String Url = "http://pci.edusol.co/TeacherPortal/searchstudent_institutesubmit.php";
     String area,userid;
-    private Loader loader;
     private TextView txt_nodata;
+    private Loader loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,11 +62,12 @@ public class TeacherViewInstitute extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_view, container, false);
 
-        rl_recycler = root.findViewById(R.id.rv_fragment_payments);
+
+        rl_recycler = root.findViewById(R.id.rv_search);
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
-        txt_nodata.setText("No Institute Available");
         loader = new Loader(getContext());
+        txt_nodata.setText("No Institude Available");
 
 
         try {
@@ -86,6 +91,8 @@ public class TeacherViewInstitute extends Fragment {
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("SearchData",
                 Context.MODE_PRIVATE);
         area = sharedPreferences2.getString("area", "");
+
+        Log.i("Area2",area);
         Log.i("Id",userid);
 
         map.put("teacherid",userid);
@@ -107,13 +114,13 @@ public class TeacherViewInstitute extends Fragment {
                 if(response.length() <= 0){
 
                     txt_nodata.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(),"No Institute Available",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"No Institude Available",Toast.LENGTH_LONG).show();
 
                 }
                 else{
                     Gson gson = new Gson();
-                    Type type = new TypeToken<List<ViewStudent_List>>() {}.getType();
-                    adapter = new TeacherViewStudentAdapter(getContext(), (List<ViewStudent_List>) gson.fromJson(response.toString(), type));
+                    Type type = new TypeToken<List<InstitudeView_List>>() {}.getType();
+                    adapter = new TeacherVIewInstituteAdapter((List<InstitudeView_List>) gson.fromJson(response.toString(), type), getContext());
                     rl_recycler.setAdapter(adapter);
 
                 }
@@ -151,7 +158,7 @@ public class TeacherViewInstitute extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                 FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new TeacherSearchFragment()).addToBackStack("null");
                     fragmentTransaction.commit();
                     return true;

@@ -67,6 +67,7 @@
     <string name="teach_age">Age:   </string>
     <string name="teach_qualification"> Qualification:  </string>
     <string name="experience"> Experience:  </string>
+    <string name="classes_name"> Class:  </string>
     <string name="rsubjects">Subjects:  </string>
     <string name="teach_address">Address:   </string>
     <string name="Demo">Demo</string>
@@ -93,4 +94,12 @@
     <string name="info">To add another child to your account you must complete and submit your application first and select add child option to add another child</string>
     <string name="ctype">Enter Class</string>
     <string name="stype">Enter Subject</string>
+
+    <string name="file_thumbnail">File thumbnail</string>
+    <string name="uri">Uri : %1$s</string>
+    <string name="size">Size :  %1$d</string>
+    <string name="mime">Mime: %1$s</string>
+    <string name="type">Type : %1$d</string>
+    <string name="name1">Name : %1$s</string>
+    <string name="bucketname">BucketName : %1$s</string>
 </resources>

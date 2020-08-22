@@ -33,6 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -40,11 +41,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Adapters.MultipleFilesAdapter;
 import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.Qualification;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
+import com.jaiselrahman.filepicker.activity.FilePickerActivity;
+import com.jaiselrahman.filepicker.config.Configurations;
+import com.jaiselrahman.filepicker.model.MediaFile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,11 +67,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    private RelativeLayout btn_profile_next, btn_profile_upload ,back;
+    private RelativeLayout btn_profile_next, btn_profile_upload, back, btn_upload_files;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_fullname, edt_fname, edt_mtongue, edt_cnic, edt_present_address,
             edt_permanent_address, edt_nationality, edt_religion, edt_phone1, edt_phone2,
@@ -94,103 +100,29 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private TextView spinner_category_textview, spinner_conveyance_textview, spinner_gender_textview, teacher_profession_textview;
     private ImageView image_view_uploaded_image;
     final List<EditText> allFields = new ArrayList<EditText>();
-
-
-    private String getRealPathFromURI(Uri contentURI) {
-
-        String thePath = "no-path-found";
-        String[] filePathColumn = {MediaStore.Images.Media.DISPLAY_NAME};
-        Cursor cursor = getContext().getContentResolver().query(contentURI, filePathColumn, null, null, null);
-        if (cursor.moveToFirst()) {
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            thePath = cursor.getString(columnIndex);
-        }
-        cursor.close();
-        return thePath;
-    }
-
-    public static String encodeTobase64(Bitmap image) {
-        Bitmap immagex = image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immagex.compress(Bitmap.CompressFormat.JPEG, 30, baos);
-        byte[] b = baos.toByteArray();
-
-        String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
-
-        Log.e("LOOK", imageEncoded);
-        return imageEncoded;
-    }
-
-    private Bitmap convertBase64ToBitmap(String b64) {
-        final String pureBase64Encoded = b64.substring(b64.indexOf(",") + 1);
-        byte[] imageAsBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case SELECT_FILE: {
-                if (resultCode == RESULT_OK && data != null) {
-                    final Uri imageUri = data.getData();
-                    System.out.println("data" + data.getData());
-
-                    Bundle extras = data.getExtras();
-                    Bitmap bmp = (Bitmap) extras.get("data");
-                    System.out.println("bmp " + bmp);
-
-                    InputStream imageStream = null;
-                    try {
-                        imageStream = getContext().getContentResolver().openInputStream(imageUri);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("imageStream  " + imageStream);
-
-                    Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                    System.out.println("yourSelectedImage  " + yourSelectedImage);
-
-                    imageBitmapBase64 = encodeTobase64(yourSelectedImage);
-                    Log.e("imageBase64", imageBitmapBase64);
-                    imageName = getRealPathFromURI(imageUri);
-                    // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
-                }
-                break;
-
-            }
-            case REQUEST_CAMERA: {
-                if (resultCode == RESULT_OK && data != null) {
-                    Bundle extras = data.getExtras();
-                    // Get the returned image from extra
-                    Bitmap bmp = (Bitmap) extras.get("data");
-                    imageBitmapBase64 = encodeTobase64(bmp);
-                    Log.e("imageBase64", imageBitmapBase64);
-
-                    Calendar c = Calendar.getInstance();
-                    SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyyhhmmss");
-                    String datetime = dateformat.format(c.getTime());
-                    System.out.println(datetime);
-
-                    imageName = datetime + ".jpg";
-//                    FileName.setText(imageName);
-                    // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
-                }
-                break;
-            }
-
-        }
-    }
-
+    //multiple files
+    private final static int FILE_REQUEST_CODE = 1;
+    private MultipleFilesAdapter fileListAdapter;
+    private ArrayList<MediaFile> mediaFiles = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        //multiple files setAdapter
+        //  RecyclerView recyclerView = root.findViewById(R.id.file_list);
+        btn_upload_files = root.findViewById(R.id.btn_upload_files);
+        // fileListAdapter = new MultipleFilesAdapter(mediaFiles);
+        // recyclerView.setAdapter(fileListAdapter);
+
+
+        btn_upload_files.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooserDialog();
+            }
+        });
 
         final SharedPreferences job_experience = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
@@ -524,10 +456,11 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             btn_profile_upload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (checkFields()) {
-                        openImageChooserDialog();
-
-                    }
+                    openImageChooserDialog();
+//                    if (checkFields()) {
+//                        openImageChooserDialog();
+//
+//                    }
 
                 }
             });
@@ -710,6 +643,27 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         builder.show();
     }
 
+    private void openFileChooserDialog() {
+        final CharSequence[] items = {"File Manager", "Cancel"};
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext());
+        builder.setTitle("Add Files");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+
+                if (items[item].equals("File Manager")) {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -761,6 +715,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
     private void viewProfile() {
         back.setVisibility(View.GONE);
+        btn_profile_upload.setVisibility(View.GONE);
+        btn_upload_files.setVisibility(View.GONE);
         JSONObject map = new JSONObject();
         loader.showLoader();
 
@@ -824,7 +780,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
                 second_date.setEnabled(false);
                 second_date.setTextColor(getResources().getColor(R.color.text_color_selection));
-
+                experience_year.setEnabled(false);
+                experience_year.setTextColor(getResources().getColor(R.color.text_color_selection));
                 spinner1.setClickable(false);
                 spinner1.setEnabled(false);
 //        spinner1.setVisibility(View.GONE);
@@ -875,6 +832,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     spinner_category_textview.setText(response.getString("TutorCategory"));
                     spinner_conveyance_textview.setText(response.getString("PersonalConveyance"));
                     teacher_profession_textview.setText(response.getString("TeacherByProfession"));
+                    experience_year.setText(response.getString("TotalExperience"));
                     image_view_uploaded_image.setVisibility(View.VISIBLE);
                     image_view_uploaded_image.setImageBitmap(convertBase64ToBitmap(response.getString("TutorImage")));
                     btn_profile_upload.setVisibility(View.GONE);
@@ -924,6 +882,136 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             }
         });
 
+    }
+
+    private String getRealPathFromURI(Uri contentURI) {
+
+        String thePath = "no-path-found";
+        String[] filePathColumn = {MediaStore.Images.Media.DISPLAY_NAME};
+        Cursor cursor = getContext().getContentResolver().query(contentURI, filePathColumn, null, null, null);
+        if (cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            thePath = cursor.getString(columnIndex);
+        }
+        cursor.close();
+        return thePath;
+    }
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immagex = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immagex.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+        byte[] b = baos.toByteArray();
+
+        String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
+
+        Log.e("LOOK", imageEncoded);
+        return imageEncoded;
+    }
+
+    private Bitmap convertBase64ToBitmap(String b64) {
+        final String pureBase64Encoded = b64.substring(b64.indexOf(",") + 1);
+        byte[] imageAsBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case SELECT_FILE: {
+                if(resultCode == RESULT_OK ) {
+                    if(null != data) { // checking empty selection
+                        if(null != data.getClipData()) { // checking multiple selection or not
+                            for(int i = 0; i < data.getClipData().getItemCount(); i++) {
+                                Uri uri = data.getClipData().getItemAt(i).getUri();
+                                Log.i("multiple_select" , String.valueOf(uri));
+                            }
+                        } else {
+
+                            final Uri imageUri = data.getData();
+                            System.out.println("data" + data.getData());
+//
+//                    Bundle extras = data.getExtras();
+//                    Bitmap bmp = (Bitmap) extras.get("dx`xata");
+//                    System.out.println("bmp " + bmp);
+
+                            InputStream imageStream = null;
+                            try {
+                                imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println("imageStream  " + imageStream);
+
+                            Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                            System.out.println("yourSelectedImage  " + yourSelectedImage);
+
+                            imageBitmapBase64 = encodeTobase64(yourSelectedImage);
+                            Log.e("imageBase64", imageBitmapBase64);
+                            imageName = getRealPathFromURI(imageUri);
+                            // image_view_uploaded_image.setImageBitmap(imageName);
+                            Toast.makeText(getContext(), "selected images" + imageName, Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+//              //  Log.i("data_image" , String.valueOf(data.getClipData()));
+//                if (resultCode == RESULT_OK && data != null) {
+//                    final Uri imageUri = data.getData();
+//                    System.out.println("data" + data.getData());
+////
+////                    Bundle extras = data.getExtras();
+////                    Bitmap bmp = (Bitmap) extras.get("dx`xata");
+////                    System.out.println("bmp " + bmp);
+//
+//                    InputStream imageStream = null;
+//                    try {
+//                        imageStream = getContext().getContentResolver().openInputStream(imageUri);
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
+//                    System.out.println("imageStream  " + imageStream);
+//
+//                    Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+//                    System.out.println("yourSelectedImage  " + yourSelectedImage);
+//
+//                    imageBitmapBase64 = encodeTobase64(yourSelectedImage);
+//                    Log.e("imageBase64", imageBitmapBase64);
+//                    imageName = getRealPathFromURI(imageUri);
+//                    // image_view_uploaded_image.setImageBitmap(imageName);
+//                    Toast.makeText(getContext(), "selected images" + imageName, Toast.LENGTH_LONG).show();
+//
+//                }
+                else {
+                    Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                }
+                break;
+
+            }
+            case REQUEST_CAMERA: {
+                if (resultCode == RESULT_OK && data != null) {
+                    Bundle extras = data.getExtras();
+                    // Get the returned image from extra
+                    Bitmap bmp = (Bitmap) extras.get("data");
+                    imageBitmapBase64 = encodeTobase64(bmp);
+                    Log.e("imageBase64", imageBitmapBase64);
+
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyyhhmmss");
+                    String datetime = dateformat.format(c.getTime());
+                    System.out.println(datetime);
+
+                    imageName = datetime + ".jpg";
+//                    FileName.setText(imageName);
+                    // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+
+
+        }
     }
 }
 

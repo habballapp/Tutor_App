@@ -1,9 +1,8 @@
-package com.example.tutor_app.Dashboard.ui.View;
+package com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,19 +41,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class TeacherViewStudent extends Fragment {
 
+    private RecyclerView rv_search;
 
-    private RecyclerView rl_recycler;
     RecyclerView.Adapter adapter;
     private List<ViewStudent_List> list = new ArrayList<>();
     String Url = "http://pci.edusol.co/TeacherPortal/searchstudent_institutesubmit.php";
     String area,userid;
-    private TextView txt_nodata;
     private Loader loader;
+    private TextView txt_nodata;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,12 +59,11 @@ public class TeacherViewStudent extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_view, container, false);
 
-
-        rl_recycler = root.findViewById(R.id.rv_fragment_payments);
-        rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        rv_search = root.findViewById(R.id.rv_search);
+        rv_search.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
+        txt_nodata.setText("No Students Available");
         loader = new Loader(getContext());
-        txt_nodata.setText("No Student Available");
 
 
         try {
@@ -91,8 +87,6 @@ public class TeacherViewStudent extends Fragment {
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("SearchData",
                 Context.MODE_PRIVATE);
         area = sharedPreferences2.getString("area", "");
-
-        Log.i("Area2",area);
         Log.i("Id",userid);
 
         map.put("teacherid",userid);
@@ -103,6 +97,8 @@ public class TeacherViewStudent extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
+                Log.i("search_institude" , String.valueOf(result));
+
                 JSONArray response = null;
                 loader.hideLoader();
                 try {
@@ -121,7 +117,7 @@ public class TeacherViewStudent extends Fragment {
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<ViewStudent_List>>() {}.getType();
                     adapter = new TeacherViewStudentAdapter(getContext(), (List<ViewStudent_List>) gson.fromJson(response.toString(), type));
-                    rl_recycler.setAdapter(adapter);
+                    rv_search.setAdapter(adapter);
 
                 }
 
@@ -158,7 +154,7 @@ public class TeacherViewStudent extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                 FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new TeacherSearchFragment()).addToBackStack("null");
                     fragmentTransaction.commit();
                     return true;

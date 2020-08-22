@@ -72,7 +72,7 @@ public class ReferenceFragment extends Fragment {
     String edt_etitlement, edt_organization, edt_from, edt_till;
 
     //AreaFragment
-    String edt_classes_track, edt_pref_subject, spinner_area;
+    String edt_classes_track, edt_pref_subject, area_selected;
 
 
     @Override
@@ -80,11 +80,14 @@ public class ReferenceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_reference, container, false);
+        // area select
+        final SharedPreferences area_selected_data = getContext().getSharedPreferences("SendData_AreaFragment",
+                Context.MODE_PRIVATE);
+        area_selected =area_selected_data.getString("prefarea" ,"");
+        Log.i("Selected_Area" ,area_selected);
         // profile teacher
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
-
-
         name = root.findViewById(R.id.name);
         name1 = root.findViewById(R.id.name1);
         edt_relation = root.findViewById(R.id.edt_relation);
@@ -132,12 +135,12 @@ public class ReferenceFragment extends Fragment {
         edt_till = sharedPreferences.getString("till","");
         //  edt_classes_track = sharedPreferences.getString("classtoteach", "");
         edt_pref_subject  = sharedPreferences.getString("prefsubject","");
-        spinner_area = sharedPreferences.getString("prefarea","");
+        area_selected = sharedPreferences.getString("prefarea","");
         gender = sharedPreferences.getString("gender","");
         SubjectSpecialization = sharedPreferences.getString("SubjectSpecialization","");
         OrganizationName = sharedPreferences.getString("OrganizationName","");
 
-
+        Log.i("totalExperience" ,experience_year);
 
         // Qualification
         //  final SharedPreferences qualification_data = getContext().getSharedPreferences("SendData",
@@ -190,7 +193,7 @@ public class ReferenceFragment extends Fragment {
 
         edt_classes_track = area_fragmnt_data.getString("classtoteach", "");
         edt_pref_subject = area_fragmnt_data.getString("prefsubject", "");
-        spinner_area = area_fragmnt_data.getString("prefarea", "");
+        area_selected = area_selected_data.getString("prefarea", "");
 
 
         mAnimationManager = new ExpandOrCollapse();
@@ -376,9 +379,9 @@ public class ReferenceFragment extends Fragment {
 //        map.put("prefarea", jsonArray2);
 
         JSONArray areaArray = new JSONArray();
-        if (! spinner_area.equals(""))
-            areaArray.put(spinner_area);
-        map.put("prefarea",spinner_area);
+        if (! area_selected.equals(""))
+            areaArray.put(area_selected);
+        map.put("prefarea",area_selected);
 
         JSONArray qualificationArray = new JSONArray();
         Log.i("debugQualification", qualification);
@@ -482,7 +485,7 @@ public class ReferenceFragment extends Fragment {
         map.put("fbid","");
         map.put("IfInstituteOther",catogery);
         map.put("classtoteach", edt_classes_track);
-        map.put("classyears", experience_year);
+        map.put("TotalExperience", experience_year);
 
 
         map.put("JobEntitlement",edt_etitlement);
@@ -518,12 +521,12 @@ public class ReferenceFragment extends Fragment {
                 Log.i("AddProfile", String.valueOf(response));
                 loader.hideLoader();
                 try {
-                    if (! response.getString("userid").equals("null"))
+                    if (!response.getString("userid").equals("null"))
                         Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
                     else
                         Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
-                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Error ."+e, Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 

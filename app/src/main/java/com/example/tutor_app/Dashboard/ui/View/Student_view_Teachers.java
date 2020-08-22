@@ -109,7 +109,7 @@ public class Student_view_Teachers extends Fragment {
                 else{
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<View_List>>() {}.getType();
-                    adapter = new ViewAdapter(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
+                   // adapter = new ViewAdapter(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
                     rl_recycler.setAdapter(adapter);
 
                 }

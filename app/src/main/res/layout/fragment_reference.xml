@@ -69,7 +69,7 @@
                     android:drawablePadding="10dp"
                     android:hint="@string/relation"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+             
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -81,7 +81,7 @@
                     android:background="@drawable/editbox"
                     android:hint="@string/occupation"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+             
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -93,7 +93,6 @@
                     android:background="@drawable/editbox"
                     android:hint="@string/address"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -106,7 +105,6 @@
                     android:hint="@string/telephone"
                     android:inputType="number"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText"
                     tools:ignore="TextFields" />
 
@@ -119,9 +117,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln_reference"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
                 android:visibility="gone"
 
                 >
@@ -140,11 +135,10 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        
                         android:hint="@string/name"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
+                 
                         android:theme="@style/EditText" />
 
 
@@ -155,11 +149,10 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                        android:drawablePadding="10dp"
+                        
                         android:hint="@string/relation"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
+                 
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -169,11 +162,10 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_work_black_24dp"
-                        android:drawablePadding="10dp"
+                      
                         android:hint="@string/occupation"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
+                 
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -183,12 +175,11 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                        android:drawablePadding="10dp"
+                      
                         android:hint="@string/address"
                         android:inputType="number"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
+                 
                         android:theme="@style/EditText" />
 
                     <EditText
@@ -198,12 +189,11 @@
                         android:layout_marginTop="20dp"
                         android:layout_weight="2"
                         android:background="@drawable/editbox"
-                        android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
-                        android:drawablePadding="10dp"
+                      
                         android:hint="@string/telephone"
                         android:inputType="number"
                         android:padding="10dp"
-                        android:paddingLeft="30dp"
+                 
                         android:theme="@style/EditText" />
 
 
@@ -216,6 +206,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/relativevToSlide"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/editbox">
 
@@ -234,7 +225,7 @@
                 android:layout_below="@+id/relativeZaplon"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"

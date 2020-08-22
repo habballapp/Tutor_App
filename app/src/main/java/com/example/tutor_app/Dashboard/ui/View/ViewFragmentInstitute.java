@@ -21,8 +21,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Adapters.ViewAdapter;
-import com.example.tutor_app.Adapters.ViewAdapterInstitute;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.Model_Classes.View_List;
 import com.example.tutor_app.MyJsonArrayRequest;
@@ -109,7 +107,7 @@ public class ViewFragmentInstitute extends Fragment {
 
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<View_List>>() {}.getType();
-                    adapter = new ViewAdapterInstitute(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
+                  //  adapter = new ViewAdapterInstitute(getContext(), (List<View_List>) gson.fromJson(response.toString(), type));
                     rl_recycler.setAdapter(adapter);
                 }
             }

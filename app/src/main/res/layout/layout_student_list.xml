@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_squared"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+
+        <LinearLayout
+            android:id="@+id/ll_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:src="@drawable/profilepic"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
+
+        </LinearLayout>
+       
+<RelativeLayout
+    android:id="@+id/rl_fields"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_below="@+id/ll_heading">
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rname"
+            android:theme="@style/NormalText"
+
+            />
+
+        <TextView
+            android:id="@+id/name_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/name"
+            android:text=""
+            android:paddingStart="10dp"
+            android:theme="@style/NormalText"
+
+            />
+
+
+
+        <TextView
+            android:id="@+id/txt_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:paddingTop="5dp"
+            android:text="@string/classes_name"
+            android:theme="@style/NormalText"
+
+            />
+
+        <TextView
+            android:id="@+id/class_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:paddingTop="5dp"
+            android:paddingStart="10dp"
+            android:layout_toEndOf="@+id/txt_class"
+            android:text=""
+            android:theme="@style/NormalText"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_subjects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:layout_below="@+id/txt_class"
+            android:text="@string/rsubjects"
+            android:theme="@style/NormalText"
+
+            />
+
+        <TextView
+            android:id="@+id/subjects_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_class"
+            android:paddingTop="5dp"
+            android:paddingStart="10dp"
+            android:layout_toEndOf="@+id/tv_subjects"
+            android:text=""
+            android:theme="@style/NormalText" />
+
+
+</RelativeLayout>
+        <Button
+            android:id="@+id/request_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_fields"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:background="@drawable/btn_round"
+            android:text="@string/Demo"
+            android:theme="@style/ButtonTextRound" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

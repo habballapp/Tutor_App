@@ -20,7 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tutor_app.Model_Classes.ViewStudent_List;
+import com.example.tutor_app.Model_Classes.InstitudeView_List;
 import com.example.tutor_app.R;
 
 import org.json.JSONException;
@@ -32,56 +32,55 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class TeacherViewStudentAdapter extends RecyclerView.Adapter<TeacherViewStudentAdapter.ViewHolder> {
+public class TeacherVIewInstituteAdapter extends RecyclerView.Adapter<TeacherVIewInstituteAdapter.ViewHolder> {
 
 
-    private List<ViewStudent_List> ViewStudent_List;
+    private List<InstitudeView_List> view_list;
     Context context;
-    String Url = "http://pci.edusol.co/TeacherPortal/RequestDemo.php";
+    String Url = "http://pci.edusol.co/InstitutePortal/RequestDemo.php";
     String userid;
 
-    public TeacherViewStudentAdapter(Context context, List<ViewStudent_List> list) {
-        this.ViewStudent_List = list;
+
+    public TeacherVIewInstituteAdapter(List<InstitudeView_List> view_list, Context context) {
+        this.view_list = view_list;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public TeacherViewStudentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TeacherVIewInstituteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.layout_student_list, null);
-        return new TeacherViewStudentAdapter.ViewHolder(inflate);
+        return new TeacherVIewInstituteAdapter.ViewHolder(inflate);
 
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final TeacherViewStudentAdapter.ViewHolder holder, final int position) {
-
-//        holder.name.setText(ViewStudent_List.get(position).getName());
-        holder.name_value.setText(ViewStudent_List.get(position).getName());
-        holder.class_value.setText(ViewStudent_List.get(position).getClassName());
-        holder.subjects_value.setText(ViewStudent_List.get(position).getSubjects());
+    public void onBindViewHolder(@NonNull final TeacherVIewInstituteAdapter.ViewHolder holder, final int position) {
+        holder.name_value.setText(view_list.get(position).getName());
+        holder.class_value.setText(view_list.get(position).getClassName());
+        holder.subjects_value.setText(view_list.get(position).getSubjects());
         holder.profile_image.setVisibility(View.GONE);
 
 
-        if (ViewStudent_List.get(position).getStatus().equals("null")) {
+        if (view_list.get(position).getStatus().equals("null")) {
             holder.request_demo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     try {
-                        RequestDemo(holder, ViewStudent_List.get(position).getId(), ViewStudent_List.get(position).getType(), ViewStudent_List.get(position).getJobId());
+                        RequestDemo(holder, view_list.get(position).getId(), view_list.get(position).getType(), view_list.get(position).getJobId());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                 }
             });
-        } else if (ViewStudent_List.get(position).getStatus().equals("Scheduled")) {
+        } else if (view_list.get(position).getStatus().equals("Scheduled")) {
             holder.request_demo.setEnabled(false);
             holder.request_demo.setText("Demo Scheduled");
             holder.request_demo.setBackground(context.getResources().getDrawable(R.drawable.btn_round_gray));
-        } else if (ViewStudent_List.get(position).getStatus().equals("Pending")) {
+        } else if (view_list.get(position).getStatus().equals("Pending")) {
             holder.request_demo.setEnabled(false);
             holder.request_demo.setText("\tDemo Requested\t");
             holder.request_demo.setBackground(context.getResources().getDrawable(R.drawable.btn_round_gray));
@@ -90,7 +89,7 @@ public class TeacherViewStudentAdapter extends RecyclerView.Adapter<TeacherViewS
 
     }
 
-    private void RequestDemo(final ViewHolder holder, String id, String type, String JobId) throws JSONException {
+    private void RequestDemo(final TeacherVIewInstituteAdapter.ViewHolder holder, String id, String type, String JobId) throws JSONException {
 
         JSONObject map = new JSONObject();
 
@@ -143,6 +142,9 @@ public class TeacherViewStudentAdapter extends RecyclerView.Adapter<TeacherViewS
 
 
     }
+
+
+
 //    private Bitmap convertBase64ToBitmap(String b64) {
 //        final String pureBase64Encoded = b64.substring(b64.indexOf(",")  + 1);
 //        byte[] imageAsBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
@@ -151,7 +153,7 @@ public class TeacherViewStudentAdapter extends RecyclerView.Adapter<TeacherViewS
 
     @Override
     public int getItemCount() {
-        return ViewStudent_List.size();
+        return view_list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

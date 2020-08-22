@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:id="@+id/container"
     tools:context=".Dashboard.ui.Teacher.TeacherForms.ProfileTeacher">
 
     <ScrollView
@@ -58,7 +58,7 @@
                     android:drawablePadding="10dp"
                     android:hint="@string/fullname"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+                    
                     android:theme="@style/EditText" />
 
 
@@ -71,7 +71,7 @@
                     android:background="@drawable/editbox"
                     android:hint="@string/fathername"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+            
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -83,7 +83,6 @@
                     android:background="@drawable/editbox"
                     android:hint="@string/mothername"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
 
@@ -94,11 +93,9 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-               
                     android:hint="@string/age"
                     android:inputType="number"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
                 <RelativeLayout
@@ -114,11 +111,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_toLeftOf="@+id/spinner_gender_imageview"
-                        android:background="@null"
-                        android:gravity="center_vertical"
-                        android:padding="10dp"
-                        android:paddingStart="30dp"
-                        android:paddingLeft="30dp"
+                        android:theme="@style/Spinner_text"
                         android:visibility="gone" />
 
                     <Spinner
@@ -135,7 +128,6 @@
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_gender"
                         android:layout_alignEnd="@+id/spinner_gender"
-                        android:layout_alignRight="@+id/spinner_gender"
                         android:layout_alignBottom="@+id/spinner_gender"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:theme="@style/Spinner" />
@@ -148,14 +140,13 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox">
+
                     <TextView
                         android:id="@+id/spinner_category_textview"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
-                        android:layout_toLeftOf="@+id/spinner_category_imageview"
-                        android:background="@null"
-                        android:gravity="center_vertical"
-                        android:padding="10dp"
+                        android:layout_toStartOf="@+id/spinner_category_imageview"
+                        android:theme="@style/Spinner_text"
                         android:visibility="gone" />
 
                     <Spinner
@@ -172,11 +163,11 @@
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_category"
                         android:layout_alignEnd="@+id/spinner_category"
-                        android:layout_alignRight="@+id/spinner_category"
                         android:layout_alignBottom="@+id/spinner_category"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:theme="@style/Spinner" />
                 </RelativeLayout>
+
                 <EditText
                     android:id="@+id/edt_cnic"
                     android:layout_width="match_parent"
@@ -188,7 +179,7 @@
                     android:hint="@string/cnic"
                     android:inputType="number"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+                    
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -201,7 +192,6 @@
                     android:hint="@string/paddress"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -214,7 +204,6 @@
                     android:hint="@string/permanent_address"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
                 <LinearLayout
@@ -224,10 +213,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="1.125"
                     android:background="@drawable/editbox"
-                    android:paddingLeft="30dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="10dp"
                     android:weightSum="2">
 
                     <TextView
@@ -235,8 +220,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
-                        android:focusableInTouchMode="true"
                         android:focusable="true"
+                        android:paddingStart="20dp"
+                        android:focusableInTouchMode="true"
                         android:gravity="center_vertical"
                         android:text="Date Of Birth" />
 
@@ -258,11 +244,9 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-               
                     android:hint="@string/nationality"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -272,12 +256,11 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
-               
                     android:hint="@string/religion"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
+
                 <LinearLayout
                     android:id="@+id/date_filter1"
                     android:layout_width="match_parent"
@@ -285,9 +268,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="1.125"
                     android:background="@drawable/editbox"
-                    android:paddingLeft="20dp"
                     android:paddingTop="10dp"
-                    android:paddingRight="5dp"
                     android:paddingBottom="10dp"
                     android:weightSum="2">
 
@@ -296,6 +277,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
+                        android:paddingStart="20dp"
                         android:gravity="center_vertical"
                         android:selectAllOnFocus="true"
                         android:text="Date Of Submission" />
@@ -318,10 +300,9 @@
                     android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:hint="@string/phone1"
-                    android:selectAllOnFocus="true"
                     android:inputType="number"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+                    android:selectAllOnFocus="true"
                     android:theme="@style/EditText" />
 
                 <EditText
@@ -334,7 +315,7 @@
                     android:hint="@string/phone2"
                     android:inputType="number"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+                    
                     android:theme="@style/EditText" />
 
 
@@ -348,7 +329,7 @@
                     android:drawablePadding="10dp"
                     android:hint="@string/mail"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+                    
                     android:theme="@style/EditText" />
 
 
@@ -366,8 +347,7 @@
                         android:layout_height="55dp"
                         android:layout_toLeftOf="@+id/teacher_profession_imageview"
                         android:background="@null"
-                        android:gravity="center_vertical"
-                        android:padding="10dp"
+                        android:theme="@style/Spinner_text"
                         android:visibility="gone" />
 
                     <Spinner
@@ -389,6 +369,7 @@
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:theme="@style/Spinner" />
                 </RelativeLayout>
+
                 <EditText
                     android:id="@+id/experience_year"
                     android:layout_width="match_parent"
@@ -399,8 +380,9 @@
                     android:drawablePadding="10dp"
                     android:hint="@string/experience_year"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+                    
                     android:theme="@style/EditText" />
+
                 <RelativeLayout
                     android:id="@+id/edt_conveyance"
                     android:layout_width="match_parent"
@@ -413,12 +395,8 @@
                         android:id="@+id/spinner_conveyance_textview"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
-                        android:layout_toLeftOf="@+id/spinner_conveyance_imageview"
-                        android:background="@null"
-                        android:gravity="center_vertical"
-                        android:padding="10dp"
-                        android:paddingStart="30dp"
-                        android:paddingLeft="30dp"
+                        android:layout_toStartOf="@+id/spinner_conveyance_imageview"
+                        android:theme="@style/Spinner_text"
                         android:visibility="gone" />
 
                     <Spinner
@@ -435,7 +413,6 @@
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_conveyance"
                         android:layout_alignEnd="@+id/spinner_conveyance"
-                        android:layout_alignRight="@+id/spinner_conveyance"
                         android:layout_alignBottom="@+id/spinner_conveyance"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:theme="@style/Spinner" />
@@ -450,86 +427,143 @@
                     android:background="@drawable/editbox"
                     android:hint="@string/conveyance_type"
                     android:padding="10dp"
-                    android:paddingLeft="30dp"
+                    
                     android:theme="@style/EditText"
                     android:visibility="gone" />
 
 
             </LinearLayout>
+
             <RelativeLayout
-                android:layout_below="@+id/ln_login"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/ln_login"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp">
-            <ImageView
-                android:id="@+id/image_view_uploaded_image"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                />
 
-            <RelativeLayout
-                android:id="@+id/btn_profile_upload"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@+id/image_view_uploaded_image"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/btn_round"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-
-                <TextView
-                    android:id="@+id/btn_txt_upload"
+                <RelativeLayout
+                    android:id="@+id/ll_pic_files"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:gravity="center"
-                    android:text="Upload Photo"
-                    android:theme="@style/ButtonTextRound" />
-
-                <ImageView
-                    android:id="@+id/btn_signin_upload"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_file_upload_black_24dp" />
+                    android:orientation="horizontal"
+                    >
 
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/image_view_uploaded_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone" />
 
-            <RelativeLayout
-                android:id="@+id/btn_profile_next"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@+id/btn_profile_upload"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/btn_round"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/btn_signin_txt"
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/file_list"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:visibility="gone" />-->
+                    <ImageView
+                        android:id="@+id/file_view_uploaded_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/ll_files"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:text="Next"
-                    android:gravity="center"
-                    android:theme="@style/ButtonTextRound" />
-
-                <ImageView
-                    android:id="@+id/btn_signin_image"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_arrow_forward_black_24dp" />
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/ll_pic_files"
+                    android:weightSum="2">
+                    <RelativeLayout
+                        android:id="@+id/btn_profile_upload"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_round"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="5dp">
 
-            </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/btn_txt_upload"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Upload Photo"
+                            android:theme="@style/ButtonTextRound" />
+
+                        <ImageView
+                            android:id="@+id/btn_signin_upload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:paddingEnd="10dp"
+                            android:src="@drawable/ic_file_upload_black_24dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btn_upload_files"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/btn_round"
+                        android:orientation="horizontal"
+                       >
+
+
+                        <TextView
+                            android:id="@+id/txt_upload_file"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Upload Files"
+                            android:theme="@style/ButtonTextRound" />
+
+                        <ImageView
+                            android:id="@+id/img_upload_file"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:paddingEnd="10dp"
+                            android:src="@drawable/ic_file_upload_black_24dp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btn_profile_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/ll_files"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/btn_round"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/btn_signin_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Next"
+                        android:theme="@style/ButtonTextRound" />
+
+                    <ImageView
+                        android:id="@+id/btn_signin_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_arrow_forward_black_24dp" />
+
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/back"
@@ -546,14 +580,14 @@
                         android:id="@+id/back_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
                         android:gravity="center"
-                    android:text="Draft"
+                        android:padding="5dp"
+                        android:text="Draft"
                         android:theme="@style/ButtonTextRound" />
 
 
                 </RelativeLayout>
-        </RelativeLayout>
+            </RelativeLayout>
         </RelativeLayout>
 
     </ScrollView>

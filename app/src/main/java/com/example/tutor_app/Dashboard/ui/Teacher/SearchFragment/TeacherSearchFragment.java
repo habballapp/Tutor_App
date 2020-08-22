@@ -19,8 +19,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.tutor_app.Dashboard.ui.View.TeacherViewInstitute;
-import com.example.tutor_app.Dashboard.ui.View.TeacherViewStudent;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 
@@ -34,6 +32,7 @@ public class TeacherSearchFragment extends Fragment {
     private List<String> area;
     private RelativeLayout rl_search_institute,rl_search_student;
     private FragmentTransaction fragmentTransaction;
+
 
 
 
@@ -132,7 +131,7 @@ public class TeacherSearchFragment extends Fragment {
             public void onClick(View v) {
 
                 fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, new TeacherViewInstitute()).addToBackStack("tag");
+                fragmentTransaction.replace(R.id.nav_host_fragment, new TeacherViewInstitude()).addToBackStack("tag");
                 fragmentTransaction.commit();
                 
             }

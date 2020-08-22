@@ -33,7 +33,12 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/textcolor</item>
     </style>
-
+    <style name="Spinner_text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/textcolor</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">20dp</item>
+    </style>
     <style name="Text">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#ffffff</item>

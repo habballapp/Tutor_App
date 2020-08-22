@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -64,6 +65,7 @@ public class AreaFragment extends Fragment {
     private Loader loader;
     private Spinner spinr_area;
     String edt_classes_track, edt_pref_subject, spinner_area;
+    private TextView text_area_selected;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +74,7 @@ public class AreaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_area, container, false);
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         btn_area_add = root.findViewById(R.id.btn_area_add);
+        text_area_selected = root.findViewById(R.id.text_area_selected);
         back = root.findViewById(R.id.back);
         final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData_AreaFragment",
                 Context.MODE_PRIVATE);
@@ -118,8 +121,9 @@ public class AreaFragment extends Fragment {
         spinr_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
+                areaFragment.putString("prefarea",(String.valueOf(area.get(position))));
+                areaFragment.apply();
+             Log.i("AreaSelected", area.get(position) + " - " + position);
             }
 
             @Override
@@ -213,8 +217,12 @@ public class AreaFragment extends Fragment {
     }
 
     private void viewProfile() {
-        back.setVisibility(View.GONE);
+
         loader.showLoader();
+        btn_area_add.setVisibility(View.GONE);
+        spinr_area.setEnabled(false);
+        spinr_area.setClickable(false);
+        back.setVisibility(View.GONE);
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -228,13 +236,36 @@ public class AreaFragment extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //  Log.i("Area of Interest", String.valueOf(response));
-                loader.hideLoader();
+                 Log.i("Area_Of_Interest", String.valueOf(response));
 
+                loader.hideLoader();
+                try {
+
+                    JSONArray areaSelect = response.getJSONArray("AreaOfInterested");
+                    Log.i("areaSelect", String.valueOf(areaSelect));
+                    for (int i = 0; i < areaSelect.length(); i++) {
+                        try {
+                            String id = areaSelect.getJSONObject(i).getString("PreferredArea");
+                            Log.i("TAG", "id "+ id );
+                            //you can set value to text view here
+
+                            text_area_selected.setText(id);
+                            text_area_selected.setVisibility(View.VISIBLE);
+                            text_area_selected.setEnabled(false);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    //spinner_area_textview.setText(areaSelect.toJSONObject().getString("PreferredArea"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 try {
                     JSONArray area = response.getJSONArray("AreaOfInterest");
                     Log.i("Area22", String.valueOf(area));
+
                     layoutManager = new LinearLayoutManager(getContext());
 
                     rl_recycler.setLayoutManager(new LinearLayoutManager(getContext()));

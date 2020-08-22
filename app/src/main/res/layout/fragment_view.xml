@@ -6,32 +6,23 @@
     android:background="#fff"
     android:id="@+id/container"
     tools:context=".Dashboard.ui.View.Student_view_Teachers">
-
-    <!-- TODO: Update blank fragment layout -->
-
-
     <RelativeLayout
-        android:id="@+id/ln_logo"
+        android:id="@+id/txt_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/logo"
-            >
-        </ImageView>
-
-
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:id="@+id/txt_location"
+            android:layout_width="match_parent"
+            android:text="Institute"
+            android:theme="@style/TextStyle"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
-
     <TextView
         android:id="@+id/txt_nodata"
         android:layout_width="wrap_content"
-        android:text="@string/NoData"
         android:layout_centerInParent="true"
         android:theme="@style/TextStyle"
         android:visibility="gone"
@@ -41,22 +32,17 @@
         android:id="@+id/rl_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@id/ln_logo"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_below="@+id/txt_heading"
         android:layout_marginBottom="10dp">
-
-
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_fragment_payments"
+            android:id="@+id/rv_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:isScrollContainer="false"
             android:layout_marginBottom="20dp"
-            android:layout_centerHorizontal="true"
-            android:nestedScrollingEnabled="false" />
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
