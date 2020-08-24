@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Next"
+                android:text="Search"
                 android:theme="@style/ButtonTextRound" />
         </RelativeLayout>
     </RelativeLayout>

@@ -1,21 +1,28 @@
 package com.example.tutor_app.Dashboard.ui.Institude.Profile;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,10 +34,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.Institude.Dashboard_Drawer_Institute;
 import com.example.tutor_app.Dashboard.ui.Institude.Profile.InstituteClassFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Signin.SignIn;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -57,6 +66,8 @@ public class InstituteFragment extends Fragment {
     private TextView spinner_type_textview;
     String Url = "http://pci.edusol.co/InstitutePortal/view_profile_api.php";
     private Loader loader;
+    String reg_ex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
+    private Boolean changed = false;
 
 
     @Override
@@ -383,7 +394,7 @@ public class InstituteFragment extends Fragment {
     }
 
     private void getProfileData() {
-
+     
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("UserId", "");
@@ -416,18 +427,89 @@ public class InstituteFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-
-                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-                    fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
-                    fragmentTransaction.commit();
-                    return true;
-
-                }
+//                    if (changed) {
+//                        DiscardPopup();
+//                        return true;
+//                    } else {
+                        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                        fragmentTransaction.commit();
+                        return true;
+                    }
+//                }
 
 
                 return false;
             }
         });
 
+    }
+    private void DiscardPopup() {
+        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view_popup = inflater.inflate(R.layout.discard_changes, null);
+        TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
+        tv_discard.setText("Alert");
+        TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
+        tv_discard_txt.setText("Are you sure, you want discard Changes?");
+        alertDialog.setView(view_popup);
+        alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
+        layoutParams.y = 200;
+        layoutParams.x = -70;// top margin
+        alertDialog.getWindow().setAttributes(layoutParams);
+        Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
+        btn_discard.setText("Discard");
+        btn_discard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+                alertDialog.dismiss();
+
+            }
+        });
+
+        ImageButton img_email = (ImageButton) view_popup.findViewById(R.id.btn_close);
+        img_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+    }
+    private void checkFields() {
+        String reg_ex = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+
+
+
+        String name = edt_institutename.getText().toString();
+        String email = edt_email.getText().toString();
+        String phone1 = edt_phone1.getText().toString();
+        String phone2 = edt_phone2.getText().toString();
+        String phone3 = edt_phone3.getText().toString();
+        String conct_person = contact_person.getText().toString();
+        if (name.equals("")
+                || email.equals("")
+                || phone1.equals("")
+                || phone2.equals("")
+                || phone3.equals("")
+                || conct_person.equals("")
+                || !name.matches(reg_ex)
+                || !email.matches(reg_ex)
+                || !phone1.matches(reg_ex)
+                || !phone2.matches(reg_ex)
+                || !phone2.matches(reg_ex)
+                || !conct_person.matches(reg_ex)
+        ) {
+            btn_class_next.setEnabled(false);
+            btn_class_next.setBackground(getResources().getDrawable(R.drawable.btn_round_gray));
+
+        } else {
+            btn_class_next.setEnabled(true);
+            btn_class_next.setBackground(getResources().getDrawable(R.drawable.btn_round_blue));
+        }
     }
 }

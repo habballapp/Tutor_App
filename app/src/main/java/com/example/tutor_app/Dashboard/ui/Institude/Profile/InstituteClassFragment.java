@@ -344,7 +344,6 @@ public class InstituteClassFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-
                     FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new InstituteFragment()).addToBackStack("null");
                     fragmentTransaction.commit();
