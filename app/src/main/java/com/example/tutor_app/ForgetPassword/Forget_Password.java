@@ -143,8 +143,8 @@ public class Forget_Password extends AppCompatActivity {
 //                }
         };
         Volley.newRequestQueue(getApplication()).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplication());
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(getApplication());
+        // requestQueue.add(sr);
 
 
     }

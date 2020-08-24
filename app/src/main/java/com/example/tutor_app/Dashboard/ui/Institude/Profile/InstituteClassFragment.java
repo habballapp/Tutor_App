@@ -27,6 +27,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tutor_app.Adapters.MultiSelectAdapter_Subjects;
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
 import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
 import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.ExpandOrCollapse;
@@ -149,13 +150,6 @@ public class InstituteClassFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-
-        SharedPreferences institute_profile = getContext().getSharedPreferences("SendData",
-                Context.MODE_PRIVATE);
-        final SharedPreferences.Editor profileInstitute = institute_profile.edit();
-
-//        final MyAdapter2 Adapter_Classes = new MyAdapter2(getContext(), android.R.layout.simple_spinner_dropdown_item,listClasses);
-//        spinner_class.setAdapter(Adapter_Classes);
         if (str_response.equals("")) {
 
             ArrayAdapter<String> adapter_class = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, classes) {
@@ -234,7 +228,7 @@ public class InstituteClassFragment extends Fragment {
                 listSubjects.add(stateVO);
             }
 
-            MyAdapter_Subjects Adapter_Subjects = new MyAdapter_Subjects(getContext(), android.R.layout.simple_spinner_dropdown_item, listSubjects);
+            MultiSelectAdapter_Subjects Adapter_Subjects = new MultiSelectAdapter_Subjects(getContext(), android.R.layout.simple_spinner_dropdown_item, listSubjects);
             spinner_subject.setAdapter(Adapter_Subjects);
         }
 //
@@ -286,17 +280,17 @@ public class InstituteClassFragment extends Fragment {
 
                 if (str_response.equals("")) {
 
-                    if(spinner_class.getSelectedItemPosition() !=0 && !selectedsubject.equals("")){
+                  //  if(spinner_class.getSelectedItemPosition() !=0 && !selectedsubject.equals("")){
 
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteAddressFragment()).addToBackStack("tag");
                         fragmentTransaction.commit();
 
-                    }
-                    else
-                    {
-                        Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
-                    }
+//                    }
+//                    else
+//                    {
+//                        Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+//                    }
 
                 }
                 else{

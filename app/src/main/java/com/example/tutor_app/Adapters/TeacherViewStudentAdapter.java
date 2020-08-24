@@ -138,8 +138,8 @@ public class TeacherViewStudentAdapter extends RecyclerView.Adapter<TeacherViewS
             }
         };
         Volley.newRequestQueue(context).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(context);
+        // requestQueue.add(sr);
 
 
     }

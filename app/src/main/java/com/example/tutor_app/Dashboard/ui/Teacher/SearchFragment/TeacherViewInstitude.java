@@ -143,8 +143,8 @@ public class TeacherViewInstitude extends Fragment {
             }
         };
         Volley.newRequestQueue(getContext()).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        // requestQueue.add(sr);
 
 
     }

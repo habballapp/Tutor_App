@@ -260,8 +260,8 @@ public class SignIn extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(this).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(sr);
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(sr);
     }
 
 
@@ -470,8 +470,8 @@ public class SignIn extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(SignIn.this).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(SignIn.this);
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(SignIn.this);
+        // requestQueue.add(sr);
 
 
     }
@@ -542,8 +542,8 @@ public class SignIn extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(SignIn.this).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(SignIn.this);
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(SignIn.this);
+        // requestQueue.add(sr);
 
 
     }

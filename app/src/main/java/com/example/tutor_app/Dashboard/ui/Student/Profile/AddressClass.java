@@ -31,6 +31,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MultiSelectApdater_timing;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -61,7 +62,7 @@ public class AddressClass extends Fragment {
     String Url_Sprofile = "https://pci.edusol.co/StudentPortal/studenttutorformsubmit.php";
     String spinner_gender,spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege, spinnerTimings;
     String userid;
-    TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview;
+    TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview ,back_txt;
     JSONObject response = new JSONObject();
     private Loader loader;
     String timingSelected ="";
@@ -87,6 +88,7 @@ public class AddressClass extends Fragment {
         spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
         spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
         back = root.findViewById(R.id.back);
+        back_txt = root.findViewById(R.id.back_txt);
 
         loader = new Loader(getContext());
         final List<EditText> allFields =new ArrayList<EditText>();
@@ -554,14 +556,24 @@ public class AddressClass extends Fragment {
 //                }
         };
         Volley.newRequestQueue(getContext()).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        // requestQueue.add(sr);
     }
 
 
     private void viewProfile() throws JSONException {
         btn_profile_next.setVisibility(View.GONE);
-        back.setVisibility(View.GONE);
+        back.setVisibility(View.VISIBLE);
+
+        back_txt.setText("Back");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+            }
+        });
 
         edt_house_number.setEnabled(false);
         edt_bno.setEnabled(false);

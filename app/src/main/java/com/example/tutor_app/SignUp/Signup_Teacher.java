@@ -153,8 +153,8 @@ public class Signup_Teacher extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(this).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // requestQueue.add(sr);
     }
 
 

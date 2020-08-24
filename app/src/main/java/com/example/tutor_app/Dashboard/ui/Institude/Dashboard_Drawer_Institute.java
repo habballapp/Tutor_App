@@ -75,9 +75,9 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
          drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.container, new HomeFragment());
-        fragmentTransaction.commit();
+//        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.add(R.id.container, new HomeFragment());
+//        fragmentTransaction.commit();
 
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
@@ -288,8 +288,6 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         }
     }
     private void logoutUser() {
-
-
         final AlertDialog alertDialog = new AlertDialog.Builder(Dashboard_Drawer_Institute.this).create();
         LayoutInflater inflater = LayoutInflater.from(Dashboard_Drawer_Institute.this);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);

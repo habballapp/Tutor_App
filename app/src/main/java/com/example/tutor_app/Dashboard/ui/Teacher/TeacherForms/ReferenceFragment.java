@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -27,6 +28,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.AreaFragment;
 import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.ExpandOrCollapse;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -50,6 +52,7 @@ public class ReferenceFragment extends Fragment {
     private ExpandOrCollapse mAnimationManager;
     JSONObject response;
     private Loader loader;
+    private TextView back_txt;
     String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit.php";
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     private EditText name, edt_relation, edt_occupation_ref, edt_telephone, edt_present_address, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
@@ -101,6 +104,7 @@ public class ReferenceFragment extends Fragment {
         edt_present_address = root.findViewById(R.id.edt_present_address);
         edt_present_address1 = root.findViewById(R.id.edt_present_address1);
         back = root.findViewById(R.id.back);
+        back_txt = root.findViewById(R.id.back_txt);
         loader = new Loader(getContext());
 
 
@@ -283,8 +287,18 @@ public class ReferenceFragment extends Fragment {
     }
 
     private void viewProfile() {
-        back.setVisibility(View.GONE);
+
         loader.showLoader();
+        back.setVisibility(View.VISIBLE);
+        back_txt.setText("Back");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+            }
+        });
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -554,8 +568,8 @@ public class ReferenceFragment extends Fragment {
         };
         
         Volley.newRequestQueue(getContext()).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        // requestQueue.add(sr);
     }
 
 

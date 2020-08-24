@@ -37,7 +37,7 @@ public class TeacherVIewInstituteAdapter extends RecyclerView.Adapter<TeacherVIe
 
     private List<InstitudeView_List> view_list;
     Context context;
-    String Url = "http://pci.edusol.co/InstitutePortal/RequestDemo.php";
+    String Url = "http://pci.edusol.co/TeacherPortal/RequestDemo.php";
     String userid;
 
 
@@ -137,8 +137,8 @@ public class TeacherVIewInstituteAdapter extends RecyclerView.Adapter<TeacherVIe
             }
         };
         Volley.newRequestQueue(context).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(context);
+        // requestQueue.add(sr);
 
 
     }

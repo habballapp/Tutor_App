@@ -1,18 +1,25 @@
 package com.example.tutor_app.Dashboard.ui.Institude.Profile;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,9 +36,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.Institude.Dashboard_Drawer_Institute;
 import com.example.tutor_app.Dashboard.ui.Institude.Profile.InstituteClassFragment;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
+import com.example.tutor_app.Signin.SignIn;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -59,7 +69,7 @@ public class InstituteAddressFragment extends Fragment {
     String institutename, phone1, phone2, phone3, email, cperson, typeofInstitute, ctype, stype, classes, subjects,
             spinner_gender, spinner_timings, otherinstitute, spinner_area ,otherSubject;
     String userid;
-    TextView spinner_area_textview, spinner_timings_textview, spinner_gender_textview;
+    TextView spinner_area_textview, spinner_timings_textview, spinner_gender_textview ,back_txt;
     JSONObject response = new JSONObject();
     private Loader loader;
 
@@ -74,12 +84,12 @@ public class InstituteAddressFragment extends Fragment {
 //        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
 //                Context.MODE_PRIVATE);
 
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
-        userid = sharedPreferences1.getString("UserId", "");
+        userid = sharedPreferences1.getString("userid", "");
         loader = new Loader(getContext());
 
-        Log.i("userid", userid);
+        Log.i("userid_new", userid);
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
@@ -100,6 +110,7 @@ public class InstituteAddressFragment extends Fragment {
         spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
         spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
         back = root.findViewById(R.id.back);
+        back_txt = root.findViewById(R.id.back_txt);
 
 
         institutename = sharedPreferences.getString("nameofInstitute", "");
@@ -108,13 +119,13 @@ public class InstituteAddressFragment extends Fragment {
         phone3 = sharedPreferences.getString("contactno3", "");
         email = sharedPreferences.getString("email", "");
         cperson = sharedPreferences.getString("contactperson", "");
-//        ctype = sharedPreferences.getStFring("otherclass", "");
-//        stype = sharedPreferences.getString("othersubjects", "");
-        classes = sharedPreferences.getString("class", "");
-        subjects = sharedPreferences.getString("subjects", "");
-        otherSubject = sharedPreferences.getString("OtherSubject", "");
+       classes = sharedPreferences.getString("class", "");
+        subjects = sharedPreferences.getString("Select_subject", "");
+        otherSubject = sharedPreferences.getString("otherSubject", "");
         typeofInstitute = sharedPreferences.getString("typeofInstitute", "");
         otherinstitute = sharedPreferences.getString("IfInstituteOther", "");
+        Log.i("subject_aaa" ,subjects);
+        Log.i("Other_subject" ,otherSubject);
 
 
         Gson gson = new Gson();
@@ -409,10 +420,10 @@ public class InstituteAddressFragment extends Fragment {
 
     private void getProfileData() throws JSONException {
     back.setVisibility(View.GONE);
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
-                Context.MODE_PRIVATE);
-        userid = sharedPreferences1.getString("UserId", "");
-        Log.i("UserId", userid);
+//        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+//                Context.MODE_PRIVATE);
+//        userid = sharedPreferences1.getString("UserId", "");
+//        Log.i("UserId", userid);
 
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
                 Context.MODE_PRIVATE);
@@ -434,8 +445,6 @@ public class InstituteAddressFragment extends Fragment {
 
         JSONObject map = new JSONObject();
         loader.showLoader();
-
-        /* ** Convert the string to json from adapter While putting in shared preference as well ** */
         Gson gson = new Gson();
         Type type = new TypeToken<List<String>>() {
         }.getType();
@@ -448,10 +457,6 @@ public class InstituteAddressFragment extends Fragment {
         map.put("typeofInstitute", typeofInstitute);
         map.put("contactperson", cperson);
         map.put("email", email);
-
-
-//        List<String> selectedClasses = gson.fromJson(classes, type);
-//        JSONArray jsonArray1 = new JSONArray(selectedClasses);
         map.put("class", classes);
         map.put("subjects", jsonArray);
         map.put("contactno1", phone1);
@@ -459,8 +464,6 @@ public class InstituteAddressFragment extends Fragment {
         map.put("contactno3", phone3);
         map.put("salaryfrom", et_amount1.getText().toString());
         map.put("salaryto", et_amount2.getText().toString());
-//        map.put("otherclass",ctype );
-//        map.put("othersubjects",ctype );
         map.put("streetnum", edt_street.getText().toString());
         map.put("blocknum", edt_block.getText().toString());
         map.put("area", spinner_area);
@@ -470,14 +473,6 @@ public class InstituteAddressFragment extends Fragment {
         map.put("timing", spinner_timings);
         map.put("address", String.valueOf(edt_address.getText()));
         map.put("IfInstituteOther", otherinstitute);
-        map.put("subjects" ,otherSubject);
-
-        /* ** Convert the string to json from adapter While putting in shared preference as well ** */
-//        List<String> selectedtimings = gson.fromJson(spinner_timings, type);
-//
-//        JSONArray jsonArray_timings = new JSONArray(selectedtimings);
-//
-//        map.put("timing", jsonArray_timings);
 
         map.put("userid", userid);
 
@@ -491,29 +486,14 @@ public class InstituteAddressFragment extends Fragment {
                 loader.hideLoader();
                 try {
                     if (!response.getString("instituteformId").equals("null"))
-                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
+                        DiscardPopup("Successfully" ,"Your profile created successfully. ");
+
                     else
                         Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
-
-
-//                    if(response != null && !response.isEmpty()){
-
-//                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
-//                        try {
-//                            JSONObject obj = new JSONObject(response);
-//                            Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-
-//                    }
-//                    else
-//                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
 
             }
 
@@ -522,6 +502,7 @@ public class InstituteAddressFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
 
                 loader.hideLoader();
+                DiscardPopup("Error"  , "Network Connection");
                 Toast.makeText(getContext(),"Error",Toast.LENGTH_SHORT).show();
 
                 error.printStackTrace();
@@ -534,47 +515,23 @@ public class InstituteAddressFragment extends Fragment {
                 return map;
             }
 
-//                @Override
-//                public String getBodyContentType() {
-//                    return "json";
-//                }
-//
-//                @Override
-//                protected Map<String, String> getParams() throws AuthFailureError {
-//                    Map<String, String> map = new HashMap<>();
-//                    map.put("'name'", "'"+name+"'");
-//                    map.put("fathername", fathername);
-//                    map.put("email", email);
-//                    map.put("class", classes);
-//                    map.put("subjects", subjects);
-//                    map.put("contactno1", contactno1);
-//                    map.put("contactno2", contactno2);
-//                    map.put("contactno3", contactno3);
-//                    map.put("schoolcollege", schoolcollege);
-//                    map.put("housenum",edt_house_number.getText().toString());
-//                    map.put("buildingname",edt_bno.getText().toString());
-//                    map.put("streetnum",edt_street.getText().toString());
-//                    map.put("blocknum",edt_block.getText().toString());
-//                    map.put("area",edt_area.getText().toString());
-//                    map.put("city",edt_city.getText().toString());
-//                    map.put("country",edt_country.getText().toString());
-//                    map.put("gender",spinner_gender);
-//                    map.put("desiredtiming",spinner_timings);
-//                    map.put("userid",userid);
-//
-//                    Log.i("AddressClassDebug", String.valueOf(map));
-//
-//                    return map;
-//                }
         };
         Volley.newRequestQueue(getContext()).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(sr);
     }
 
 
     private void viewProfile() throws JSONException {
         btn_profile_next.setVisibility(View.GONE);
+        back.setVisibility(View.VISIBLE);
+        back_txt.setText("Back");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+            }
+        });
 
         edt_address.setEnabled(false);
         edt_street.setEnabled(false);
@@ -586,10 +543,6 @@ public class InstituteAddressFragment extends Fragment {
         et_amount1.setEnabled(false);
         et_amount2.setEnabled(false);
 
-
-//        spinner1 = (Spinner) root.findViewById(R.id.spinner_gender);
-//        spinner2 = (Spinner) root.findViewById(R.id.spinner_timings);
-//        spinner3 = (Spinner) root.findViewById(R.id.spinner_area);
         edt_address.setText(response.getString("Address"));
         edt_address.setTextColor(getResources().getColor(R.color.text_color_selection));
 
@@ -652,6 +605,38 @@ public class InstituteAddressFragment extends Fragment {
             }
         });
 
+    }
+    private void DiscardPopup(String heading , String message) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view_popup = inflater.inflate(R.layout.successful_popup, null);
+        TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
+        tv_discard.setText(heading);
+        TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
+        tv_discard_txt.setText(message);
+        alertDialog.setView(view_popup);
+        alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
+        layoutParams.y = 200;
+        layoutParams.x = -70;// top margin
+        alertDialog.getWindow().setAttributes(layoutParams);
+        ImageButton img_email = (ImageButton) view_popup.findViewById(R.id.btn_close);
+        img_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+            }
+        });
+
+        alertDialog.show();
     }
 }
 

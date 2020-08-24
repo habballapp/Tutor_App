@@ -134,8 +134,8 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
             }
         };
         Volley.newRequestQueue(context).add(sr);
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(sr);
+        // RequestQueue requestQueue = Volley.newRequestQueue(context);
+        // requestQueue.add(sr);
 
 
     }
