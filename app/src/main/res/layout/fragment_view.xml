@@ -5,17 +5,17 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:id="@+id/container"
-    tools:context=".Dashboard.ui.View.Student_view_Teachers">
+   >
     <RelativeLayout
-        android:id="@+id/txt_heading"
+        android:id="@+id/ll_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         >
         <TextView
-            android:id="@+id/txt_location"
+            android:id="@+id/txt_heading"
             android:layout_width="match_parent"
-            android:text="Institute"
+            android:text=""
             android:theme="@style/TextStyle"
             android:gravity="center"
             android:layout_height="wrap_content"/>
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_below="@+id/txt_heading"
+        android:layout_below="@+id/ll_heading"
         android:layout_marginBottom="10dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search"

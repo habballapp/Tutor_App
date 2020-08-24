@@ -27,6 +27,8 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
     private MyAdapter_Subjects myAdapter;
     private boolean isFromView = false;
     private List<String> selectedSubjects = new ArrayList<>();
+    SharedPreferences personal_profile;
+
 
 
     public MyAdapter_Subjects(Context context, int resource, List<StateVO> objects) {
@@ -70,6 +72,7 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
 
 
         holder.mTextView.setText(listState.get(position).getTitle());
+
 //         To check weather checked event fire from getview() or user input
 //        isFromView = true;
 //        holder.mCheckBox.setChecked(listState.get(position).isSelected());
@@ -128,9 +131,13 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
 //        });
 
         // To check weather checked event fire from getview() or user input
+
         isFromView = true;
         holder.mCheckBox.setChecked(listState.get(position).isSelected());
         isFromView = false;
+       personal_profile = getContext().getSharedPreferences("SendData",
+                Context.MODE_PRIVATE);
+         final SharedPreferences.Editor profileStudent = personal_profile.edit();
         if (position==0){
             holder.mCheckBox.setVisibility(View.INVISIBLE);
             holder.select_subject.setVisibility(View.GONE);
@@ -145,7 +152,7 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
                     holder.select_subject.setVisibility(View.VISIBLE);
                     String otherSubject = holder.select_subject.getText().toString();
                     Log.i("subjectOther" ,otherSubject);
-
+                        profileStudent.putString("OtherSubject" ,otherSubject);
                     Toast.makeText(mContext, "aaaaaaaaaaaa", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -172,9 +179,6 @@ public class MyAdapter_Subjects extends ArrayAdapter<StateVO> {
                     Gson gson = new Gson();
                     String json = gson.toJson(selectedSubjects);
 
-                    SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
-                            Context.MODE_PRIVATE);
-                    final SharedPreferences.Editor profileStudent = personal_profile.edit();
                     Log.i("Subjects", String.valueOf(selectedSubjects));
                     profileStudent.putString("subjects", String.valueOf(json));
                     profileStudent.apply();

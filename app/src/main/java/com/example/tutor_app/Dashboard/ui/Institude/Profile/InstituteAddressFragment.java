@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.Institude.Profile.InstituteClassFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -56,7 +57,7 @@ public class InstituteAddressFragment extends Fragment {
     private EditText edt_address, edt_street, edt_block, edt_city, edt_country, et_amount1, et_amount2;
     String URL_INSTITUTE = "http://pci.edusol.co/InstitutePortal/instituteregistrationsubmit.php";
     String institutename, phone1, phone2, phone3, email, cperson, typeofInstitute, ctype, stype, classes, subjects,
-            spinner_gender, spinner_timings, otherinstitute, spinner_area;
+            spinner_gender, spinner_timings, otherinstitute, spinner_area ,otherSubject;
     String userid;
     TextView spinner_area_textview, spinner_timings_textview, spinner_gender_textview;
     JSONObject response = new JSONObject();
@@ -111,6 +112,7 @@ public class InstituteAddressFragment extends Fragment {
 //        stype = sharedPreferences.getString("othersubjects", "");
         classes = sharedPreferences.getString("class", "");
         subjects = sharedPreferences.getString("subjects", "");
+        otherSubject = sharedPreferences.getString("OtherSubject", "");
         typeofInstitute = sharedPreferences.getString("typeofInstitute", "");
         otherinstitute = sharedPreferences.getString("IfInstituteOther", "");
 
@@ -468,6 +470,7 @@ public class InstituteAddressFragment extends Fragment {
         map.put("timing", spinner_timings);
         map.put("address", String.valueOf(edt_address.getText()));
         map.put("IfInstituteOther", otherinstitute);
+        map.put("subjects" ,otherSubject);
 
         /* ** Convert the string to json from adapter While putting in shared preference as well ** */
 //        List<String> selectedtimings = gson.fromJson(spinner_timings, type);

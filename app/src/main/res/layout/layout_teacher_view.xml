@@ -42,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rname"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -52,6 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/name"
             android:text=""
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -61,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/name"
             android:text="@string/teach_age"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -72,6 +76,8 @@
             android:layout_below="@+id/name"
             android:layout_toEndOf="@+id/name"
             android:text=" "
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -81,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_age"
             android:text="@string/teach_qualification"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -92,6 +99,8 @@
             android:layout_below="@+id/txt_age_value"
             android:layout_toEndOf="@+id/txt_qualification"
             android:text=""
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -102,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_qualification"
             android:text="@string/experience"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -113,6 +123,8 @@
             android:layout_below="@+id/txt_qualification"
             android:layout_toEndOf="@+id/txt_experience"
             android:text=" "
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -123,6 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_experience"
             android:text="@string/rsubjects"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
 
             />
@@ -134,6 +147,8 @@
             android:layout_below="@+id/txt_experience"
             android:layout_toEndOf="@+id/tv_subjects"
             android:text=""
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText" />
 
         <TextView
@@ -142,6 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_subjects"
             android:text="@string/teach_address"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
             android:visibility="visible"
 
@@ -154,6 +170,8 @@
             android:layout_below="@+id/tv_subjects"
             android:layout_toEndOf="@+id/txt_address"
             android:text=" "
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
             android:theme="@style/NormalText"
             android:visibility="visible" />
 </RelativeLayout>

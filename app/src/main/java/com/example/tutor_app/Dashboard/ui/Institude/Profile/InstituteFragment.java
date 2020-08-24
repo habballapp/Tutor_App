@@ -52,7 +52,7 @@ public class InstituteFragment extends Fragment {
     private FragmentTransaction fragmentTransaction;
     private EditText edt_institutename, edt_phone1, edt_phone2, edt_phone3, edt_email, contact_person, edt_other;
     private String Filter_selected = "";
-    String userid, viewProfile_userid;
+    String userid, viewProfile_userid , otherSubjects;
     ArrayAdapter<String> adapter1;
     private TextView spinner_type_textview;
     String Url = "http://pci.edusol.co/InstitutePortal/view_profile_api.php";
@@ -400,6 +400,7 @@ public class InstituteFragment extends Fragment {
         edt_phone3.setText(sharedPreferences2.getString("ContactNo3", ""));
         edt_email.setText(sharedPreferences2.getString("Email", ""));
         contact_person.setText(sharedPreferences2.getString("ContactPerson", ""));
+
 
         Log.i("Email", String.valueOf(edt_email.getText()));
         Log.i("ContactPerson", String.valueOf(contact_person.getText()));
