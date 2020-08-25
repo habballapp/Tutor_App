@@ -52,7 +52,7 @@ import java.util.Map;
  */
 public class AreaFragment extends Fragment {
 
-    private RelativeLayout btn_area_next, btn_area_add, back;
+    private RelativeLayout btn_area_next, btn_area_add, back ,edt_area;
     private RecyclerView rl_recycler;
     RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -75,6 +75,7 @@ public class AreaFragment extends Fragment {
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         btn_area_add = root.findViewById(R.id.btn_area_add);
         text_area_selected = root.findViewById(R.id.text_area_selected);
+        edt_area = root.findViewById(R.id.edt_area);
         back = root.findViewById(R.id.back);
         final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData_AreaFragment",
                 Context.MODE_PRIVATE);
@@ -220,8 +221,6 @@ public class AreaFragment extends Fragment {
 
         loader.showLoader();
         btn_area_add.setVisibility(View.GONE);
-        spinr_area.setEnabled(false);
-        spinr_area.setClickable(false);
         back.setVisibility(View.GONE);
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
@@ -251,6 +250,7 @@ public class AreaFragment extends Fragment {
 
                             text_area_selected.setText(id);
                             text_area_selected.setVisibility(View.VISIBLE);
+                            text_area_selected.setTextColor(getResources().getColor(R.color.text_color_selection));
                             text_area_selected.setEnabled(false);
                         } catch (JSONException e) {
                             e.printStackTrace();

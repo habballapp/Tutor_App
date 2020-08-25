@@ -1,5 +1,7 @@
 package com.example.tutor_app.Dashboard.ui.Institude.SearchFragment;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -48,6 +50,7 @@ public class InstituteSearchFragment extends Fragment {
     private Map<String, String> childsMap = new HashMap<>();
     String Url = "http://pci.edusol.co/InstitutePortal/searchtutorApi.php";
     String userid;
+    private TextView tool_bar_heading;
     private Loader loader;
 
 
@@ -57,7 +60,10 @@ public class InstituteSearchFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.activity_institute_search_fragment, container, false);
-
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
+        tool_bar_heading.setText("Search");
         area = new ArrayList<>();
         area.add("Select Area");
         area.add("Baldia Town");
@@ -239,7 +245,7 @@ public class InstituteSearchFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-
+                    tool_bar_heading.setText("Dashboard");
                     FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
                     fragmentTransaction.commit();

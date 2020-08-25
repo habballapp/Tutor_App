@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -72,6 +74,8 @@ public class InstituteAddressFragment extends Fragment {
     TextView spinner_area_textview, spinner_timings_textview, spinner_gender_textview ,back_txt;
     JSONObject response = new JSONObject();
     private Loader loader;
+    private TextView tool_bar_heading;
+
 
 
     @Override
@@ -79,7 +83,9 @@ public class InstituteAddressFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_institute_address, container, false);
-
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
 
 //        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
 //                Context.MODE_PRIVATE);
@@ -527,6 +533,7 @@ public class InstituteAddressFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tool_bar_heading.setText("Dashboard");
                 FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                 fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
                 fragmentTransaction.commit();
@@ -630,6 +637,7 @@ public class InstituteAddressFragment extends Fragment {
         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
+                tool_bar_heading.setText("Dashboard");
                 FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                 fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
                 fragmentTransaction.commit();

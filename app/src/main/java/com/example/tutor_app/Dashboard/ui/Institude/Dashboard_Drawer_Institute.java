@@ -62,6 +62,8 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
     private List<String> institute = new ArrayList<>();
     private Map<String, String> intituteMap = new HashMap<>();
     private Session session;
+    private ImageButton search_button;
+    private TextView tool_bar_heading;
     private boolean doubleBackToExitPressedOnce = false;
     DrawerLayout drawer;
 
@@ -70,7 +72,11 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_new);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
+        tool_bar_heading.setText("Dashboard");
         setSupportActionBar(toolbar);
+
         session = new Session(this);
 
          drawer = findViewById(R.id.drawer_layout);
@@ -144,6 +150,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (id == 0) {
+                            tool_bar_heading.setText("Dashboard");
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
@@ -152,7 +159,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                         } else if (id == 1) {
 
                         } else if (id == 2) {
-
+                            tool_bar_heading.setText("Add Profile");
                             SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
@@ -173,7 +180,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
                         }
                         else if (id == 3) {
-
+                            tool_bar_heading.setText("Add Job");
                             SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
@@ -195,6 +202,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
                         }
                         else if (id == 4) {
+                            tool_bar_heading.setText("Search");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new InstituteSearchFragment());
@@ -214,6 +222,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                         navigationExpandableListView.setSelected(groupPosition, childPosition);
                         if (groupPosition == 1) {
+                            tool_bar_heading.setText("View Job");
                             String selectedInstitute = institute.get(childPosition).replaceAll("\t\t\t", "");
                             String selectedInstituteId = intituteMap.get(selectedInstitute);
 

@@ -16,7 +16,22 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/blue_color"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tool_bar_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@android:color/white"
+                android:text="Dashboard"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:fontFamily="serif"
+                android:gravity="center_vertical"/>
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
     <include layout="@layout/content_dashboard__drawer" />

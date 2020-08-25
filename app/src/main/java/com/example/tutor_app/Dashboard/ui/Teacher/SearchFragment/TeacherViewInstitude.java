@@ -53,7 +53,7 @@ public class TeacherViewInstitude extends Fragment {
     private List<ViewStudent_List> list = new ArrayList<>();
     String Url = "http://pci.edusol.co/TeacherPortal/searchstudent_institutesubmit.php";
     String area,userid;
-    private TextView txt_nodata;
+    private TextView txt_nodata ,txt_heading;
     private Loader loader;
 
     @Override
@@ -67,7 +67,9 @@ public class TeacherViewInstitude extends Fragment {
         rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
         loader = new Loader(getContext());
-        txt_nodata.setText("No Institude Available");
+        txt_heading= root.findViewById(R.id.txt_heading);
+        txt_heading.setText("Institute");
+        txt_nodata.setText("No Institute Available");
 
 
         try {
@@ -114,7 +116,7 @@ public class TeacherViewInstitude extends Fragment {
                 if(response.length() <= 0){
 
                     txt_nodata.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(),"No Institude Available",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"No Institute Available",Toast.LENGTH_LONG).show();
 
                 }
                 else{

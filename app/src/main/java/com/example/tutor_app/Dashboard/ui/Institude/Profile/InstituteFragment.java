@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -68,6 +70,7 @@ public class InstituteFragment extends Fragment {
     private Loader loader;
     String reg_ex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
     private Boolean changed = false;
+    private TextView tool_bar_heading;
 
 
     @Override
@@ -75,6 +78,9 @@ public class InstituteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_institute, container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
@@ -297,6 +303,7 @@ public class InstituteFragment extends Fragment {
                 edt_institutename.setTextColor(getResources().getColor(R.color.text_color_selection));
                 spinner_type.setEnabled(false);
                 spinner_type.setClickable(false);
+                spinner_type.setVisibility(View.GONE);
                 spinner_type_textview.setVisibility(View.VISIBLE);
                 spinner_type_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
                 edt_phone1.setEnabled(false);
@@ -394,7 +401,7 @@ public class InstituteFragment extends Fragment {
     }
 
     private void getProfileData() {
-     
+
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("UserId", "");
@@ -426,6 +433,7 @@ public class InstituteFragment extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+                tool_bar_heading.setText("Dashboard");
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 //                    if (changed) {
 //                        DiscardPopup();

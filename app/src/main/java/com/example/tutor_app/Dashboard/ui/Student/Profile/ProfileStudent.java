@@ -11,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -43,6 +46,7 @@ public class ProfileStudent extends Fragment {
     String userid, viewProfile_userid;
     String Url = "http://pci.edusol.co/StudentPortal/view_profile_api.php";
     private Loader loader;
+    private TextView tool_bar_heading;
 
 
 
@@ -53,6 +57,10 @@ public class ProfileStudent extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View root = inflater.inflate(R.layout.fragment_profile_student, container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
+        loader = new Loader(getContext());
 
         btn_class_next = root.findViewById(R.id.btn_class_next);
         edt_email = root.findViewById(R.id.edt_email);
@@ -241,6 +249,7 @@ public class ProfileStudent extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+                tool_bar_heading.setText("Dashboard");
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");

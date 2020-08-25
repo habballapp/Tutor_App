@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:isScrollContainer="false"
-                    android:nestedScrollingEnabled="false" />
+                  />
 
             </RelativeLayout>
 
@@ -66,23 +66,10 @@
                 android:layout_height="55dp"
                 android:layout_below="@+id/rl_recycler"
                 android:layout_marginTop="20dp"
-                android:layout_weight="2"
+
                 android:background="@drawable/editbox"
 
                 >
-
-                <TextView
-                    android:id="@+id/text_area_selected"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_toStartOf="@+id/spinner_gender_imageview"
-                    android:background="@null"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/textcolor"
-                    android:visibility="gone" />
-
                 <Spinner
                     android:id="@+id/spin_area"
                     android:layout_width="match_parent"
@@ -101,6 +88,20 @@
                     android:src="@drawable/ic_arrow_drop_down_black_24dp"
                     android:theme="@style/Spinner" />
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/text_area_selected"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/rl_recycler"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/textcolor"
+                android:visibility="visible" />
 
             <RelativeLayout
                 android:id="@+id/btn_area_add"

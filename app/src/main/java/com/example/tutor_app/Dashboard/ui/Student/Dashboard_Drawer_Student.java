@@ -63,6 +63,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
     private Map<String, String> childMap = new HashMap<>();
     private Session session;
     DrawerLayout drawer;
+    private TextView tool_bar_heading;
     private boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -74,9 +75,8 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         session = new Session(this);
         drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.container, new HomeFragment());
-        fragmentTransaction.commit();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
+        tool_bar_heading.setText("Dashboard");
         Log.i("12487654", "in dashboard");
 
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
@@ -138,13 +138,14 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                         if (id == 0) {
                             Log.i("Dashboard", "Dashboard Activity");
+                            tool_bar_heading.setText("Dashboard");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
-
+                            tool_bar_heading.setText("View Profile");
                             SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileStudent1 = personal_profile1.edit();
@@ -170,6 +171,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 //                            Toast.makeText(getApplicationContext(), "Edit Profile", Toast.LENGTH_LONG).show();
 
                         } else if (id == 3) {
+                            tool_bar_heading.setText("Profile");
                             SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileStudent1 = personal_profile1.edit();
@@ -191,7 +193,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                         }
                         else if (id == 4) {
-
+                            tool_bar_heading.setText("Search");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch()).addToBackStack("tag");
@@ -212,6 +214,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                         navigationExpandableListView.setSelected(groupPosition, childPosition);
                         if (groupPosition == 1) {
+                            tool_bar_heading.setText("View Profile");
                             String selectedChild = childs.get(childPosition).replaceAll("\t\t\t", "");
                             String selectedChildId = childMap.get(selectedChild);
 
@@ -230,6 +233,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                            // drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (groupPosition == 2) {
+                            tool_bar_heading.setText("Edit Profile");
                             String selectedChild = childs.get(childPosition).replaceAll("\t\t\t", "");
                             String selectedChildId = childMap.get(selectedChild);
 

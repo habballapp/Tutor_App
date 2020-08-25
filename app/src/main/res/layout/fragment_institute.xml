@@ -38,14 +38,13 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ln_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ln_text"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                android:weightSum="18">
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/edt_institutename"
@@ -62,20 +61,10 @@
                     android:id="@+id/itype"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:layout_below="@+id/edt_institutename"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/editbox">
-
-                    <TextView
-                        android:id="@+id/spinner_type_textview"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_toLeftOf="@+id/spinner_type_imageview"
-                        android:background="@null"
-                        android:gravity="center_vertical"
-                        android:padding="10dp"
-                        android:paddingStart="20dp"
-                        android:visibility="gone" />
+                    android:background="@drawable/editbox"
+                    android:visibility="visible">
 
                     <Spinner
                         android:id="@+id/spinner_type"
@@ -97,13 +86,27 @@
                         android:theme="@style/Spinner" />
                 </RelativeLayout>
 
+                <TextView
+                    android:id="@+id/spinner_type_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/edt_institutename"
+                    android:background="@drawable/editbox"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:paddingStart="20dp"
+                    android:layout_above="@+id/edt_other"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"/>
+
 
                 <EditText
                     android:id="@+id/edt_other"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:layout_below="@+id/itype"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:hint="@string/oname"
                     android:padding="10dp"
@@ -115,12 +118,12 @@
                     android:id="@+id/edt_phone1"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:layout_below="@+id/edt_other"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:hint="@string/phone1"
-                    android:maxLength="11"
                     android:inputType="number"
+                    android:maxLength="11"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
@@ -129,12 +132,12 @@
                     android:id="@+id/edt_phone2"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:layout_below="@+id/edt_phone1"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:hint="@string/phone2"
-                    android:maxLength="11"
                     android:inputType="number"
+                    android:maxLength="11"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
@@ -143,12 +146,12 @@
                     android:id="@+id/edt_phone3"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:layout_below="@+id/edt_phone2"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:hint="@string/phone3"
-                    android:maxLength="11"
                     android:inputType="number"
+                    android:maxLength="11"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
@@ -157,8 +160,8 @@
                     android:id="@+id/edt_email"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:layout_below="@+id/edt_phone3"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:hint="@string/mail"
                     android:padding="10dp"
@@ -169,15 +172,15 @@
                     android:id="@+id/contact_person"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:layout_below="@+id/edt_email"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="2"
                     android:background="@drawable/editbox"
                     android:hint="@string/cperson"
                     android:padding="10dp"
                     android:paddingLeft="30dp"
                     android:theme="@style/EditText" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
             <RelativeLayout

@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,8 @@ public class SelectClass extends Fragment {
     public Spinner spinner_class,spinner_subject;
     private StateVO stateVO;
     RecyclerView.Adapter adapter;
-    private Button btn_profile_next ,back;
+    private Button btn_profile_next ;
+    private RelativeLayout back;
     private FragmentTransaction fragmentTransaction;
     List<String> classes = new ArrayList<>();
     List<String> subjects = new ArrayList<>();

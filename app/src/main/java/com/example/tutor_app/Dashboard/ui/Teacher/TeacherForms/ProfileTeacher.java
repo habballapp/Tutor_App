@@ -31,6 +31,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -104,12 +106,15 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private final static int FILE_REQUEST_CODE = 1;
     private MultipleFilesAdapter fileListAdapter;
     private ArrayList<MediaFile> mediaFiles = new ArrayList<>();
+    private TextView tool_bar_heading;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
         //multiple files setAdapter
         //  RecyclerView recyclerView = root.findViewById(R.id.file_list);
         btn_upload_files = root.findViewById(R.id.btn_upload_files);
@@ -580,31 +585,31 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 Toast.makeText(getContext(), "Please Enter All Fields", Toast.LENGTH_SHORT).show();
                 if (first_date.getText().toString().equals("DD-MM-YYYY")) {
                     first_date.setError("this field required");
-                    first_date.setPadding(0, 10, 20, 0);
+                    first_date.setPadding(0, 10, 40, 0);
                     first_date.requestFocus();
                 }
                 if (second_date.getText().toString().equals("DD-MM-YYYY")) {
                     second_date.setError("this field required");
-                    second_date.setPadding(0, 10, 20, 0);
+                    second_date.setPadding(0, 10, 40, 0);
                     second_date.requestFocus();
                 }
                 if (spinner1.getSelectedItemPosition() == 0) {
                     ((TextView) spinner1.getSelectedView()).setError("Error message");
-                    spinner1.setPadding(0, 10, 20, 0);
+                    spinner1.setPadding(0, 10, 40, 0);
                     spinner1.requestFocus();
                 }
                 if (spinner_catogery.getSelectedItemPosition() == 0) {
                     ((TextView) spinner_catogery.getSelectedView()).setError("Error message");
-                    spinner_catogery.setPadding(0, 10, 20, 0);
+                    spinner_catogery.setPadding(0, 10, 40, 0);
                     spinner_catogery.requestFocus();
                 }
                 if (teacher_profession.getSelectedItemPosition() == 0) {
-                    teacher_profession.setPadding(0, 10, 20, 0);
+                    teacher_profession.setPadding(0, 10, 40, 0);
                     ((TextView) teacher_profession.getSelectedView()).setError("Error message");
                     teacher_profession.requestFocus();
                 }
                 if (spinner_conveyance.getSelectedItemPosition() == 0) {
-                    spinner_conveyance.setPadding(0, 10, 20, 0);
+                    spinner_conveyance.setPadding(0, 10, 40, 0);
                     ((TextView) spinner_conveyance.getSelectedView()).setError("Error message");
                     spinner_conveyance.requestFocus();
                 }
@@ -613,8 +618,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             return false;
 //                             first_date.setError("this field required");
 //                             second_date.setError("this field required");
-//                             first_date.setPadding(0, 10, 20, 0);
-//                             second_date.setPadding(0, 10, 20, 0);
+//                             first_date.setPadding(0, 10, 40, 0);
+//                             second_date.setPadding(0, 10, 40, 0);
 
         }
     }
@@ -868,6 +873,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+                tool_bar_heading.setText("Dashboard");
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
                     FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();

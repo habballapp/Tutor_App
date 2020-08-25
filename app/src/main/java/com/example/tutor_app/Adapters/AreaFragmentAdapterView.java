@@ -36,22 +36,21 @@ public class AreaFragmentAdapterView extends RecyclerView.Adapter<AreaFragmentAd
         return new AreaFragmentAdapterView.ViewHolder(inflate);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(@NonNull AreaFragmentAdapterView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         try {
             holder.spinner_class_textview.setText(area.getJSONObject(position).getString("ClassToTeach"));
+            holder.spinner_class_textview.setEnabled(false);
+            holder.spinner_class_textview.setTextColor(context.getColor(R.color.text_color_selection));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        try {
-//            holder.spinner_area_textview.setText(area.getJSONObject(position).getString("PreferredArea"));
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
         try {
             holder.edt_pref_subject.setText(area.getJSONObject(position).getString("PreferredSubjects"));
+                holder.edt_pref_subject.setTextColor(context.getColor(R.color.text_color_selection));
+                holder.edt_pref_subject.setEnabled(false);
         } catch (JSONException e) {
             e.printStackTrace();
         }

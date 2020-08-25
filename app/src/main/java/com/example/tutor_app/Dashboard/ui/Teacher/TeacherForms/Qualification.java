@@ -42,54 +42,31 @@ import java.util.Map;
 public class Qualification extends Fragment {
 
     private boolean isVisible = false;
-    private RelativeLayout mRelativeZaplon,mRelativeZaplon1,mRelativeZaplon2,mRelativeZaplon3,mRelativeZaplon4,mRelativeZaplon5;
-    private RelativeLayout mRelativeToSlide,mRelativeToSlide1,mRelativeToSlide2,mRelativeToSlide3,mRelativeToSlide4,mRelativeToSlide5;
+    private RelativeLayout mRelativeZaplon, mRelativeZaplon1, mRelativeZaplon2, mRelativeZaplon3, mRelativeZaplon4, mRelativeZaplon5;
+    private RelativeLayout mRelativeToSlide, mRelativeToSlide1, mRelativeToSlide2, mRelativeToSlide3, mRelativeToSlide4, mRelativeToSlide5;
     private ExpandOrCollapse mAnimationManager;
-    private RelativeLayout btn_qualification_next ,back;
+    private RelativeLayout btn_qualification_next, back;
     private FragmentTransaction fragmentTransaction;
     JSONObject response;
-    private EditText qualification ,subject ,edt_institute, edt_passing_year ,edt_grade;
-    private EditText qualification1 ,subject1 ,edt_institute1, edt_passing_year1 ,edt_grade1;
-    private EditText qualification2 ,subject2 ,edt_institute2, edt_passing_year2 ,edt_grade2;
-    private EditText qualification3 ,subject3 ,edt_institute3, edt_passing_year3 ,edt_grade3;
-    private EditText qualification4 ,subject4 ,edt_institute4, edt_passing_year4 ,edt_grade4;
+    private EditText qualification, subject, edt_institute, edt_passing_year, edt_grade;
+    private EditText qualification1, subject1, edt_institute1, edt_passing_year1, edt_grade1;
+    private EditText qualification2, subject2, edt_institute2, edt_passing_year2, edt_grade2;
+    private EditText qualification3, subject3, edt_institute3, edt_passing_year3, edt_grade3;
+    private EditText qualification4, subject4, edt_institute4, edt_passing_year4, edt_grade4;
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     private Loader loader;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)     {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_section2, container, false);
-        back = root.findViewById(R.id.back);
-        loader = new Loader(getContext());
-        mAnimationManager = new ExpandOrCollapse();
-
-        SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
-                Context.MODE_PRIVATE);
-        String str_response = personal_profile1.getString("ViewProfileData", "");
-
-        Log.i("In Qualification", str_response);
-
-        Gson gson = new Gson();
-        Type type = new TypeToken<JSONObject>() {
-        }.getType();
-
-        if (! str_response.equals("")) {
-            response = gson.fromJson(str_response, type);
-            Log.i("responsedata", String.valueOf(response));
-
-            viewProfile();
-        }
-
-
         mRelativeZaplon = root.findViewById(R.id.relativeZaplon);
         mRelativeZaplon1 = root.findViewById(R.id.relativeZaplon1);
         mRelativeZaplon2 = root.findViewById(R.id.relativeZaplon2);
         mRelativeZaplon3 = root.findViewById(R.id.relativeZaplon3);
         mRelativeZaplon4 = root.findViewById(R.id.relativeZaplon4);
-
 
 
         mRelativeToSlide = root.findViewById(R.id.relativevToSlide);
@@ -129,8 +106,29 @@ public class Qualification extends Fragment {
         edt_institute4 = root.findViewById(R.id.edt_institute4);
         edt_passing_year4 = root.findViewById(R.id.edt_passing_year4);
         edt_grade4 = root.findViewById(R.id.edt_grade4);
+        back = root.findViewById(R.id.back);
+        loader = new Loader(getContext());
+        mAnimationManager = new ExpandOrCollapse();
 
-        final List<EditText> allFields =new ArrayList<EditText>();
+        SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
+                Context.MODE_PRIVATE);
+        String str_response = personal_profile1.getString("ViewProfileData", "");
+
+        Log.i("In Qualification", str_response);
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<JSONObject>() {
+        }.getType();
+
+        if (!str_response.equals("")) {
+            response = gson.fromJson(str_response, type);
+            Log.i("responsedata", String.valueOf(response));
+
+            viewProfile();
+        }
+
+
+        final List<EditText> allFields = new ArrayList<EditText>();
 
         allFields.add(qualification);
         allFields.add(subject);
@@ -255,10 +253,9 @@ public class Qualification extends Fragment {
 //            profileTeacher_Qualification.putString("YearOfPassing4"," ");
 //            profileTeacher_Qualification.putString("gradedivision4"," ");
 //
-//        }
-
-
+//
                     profileTeacher_Qualification.apply();
+
 
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new JobExperienceFragment());
@@ -275,7 +272,7 @@ public class Qualification extends Fragment {
                 if (!isVisible) {
                     mAnimationManager.expand(mRelativeToSlide, 1000);
                     isVisible = true;
-                } else if (isVisible){
+                } else if (isVisible) {
                     mAnimationManager.expand(mRelativeToSlide, 1000);
                     isVisible = false;
                 }
@@ -288,7 +285,7 @@ public class Qualification extends Fragment {
                 if (!isVisible) {
                     mAnimationManager.expand(mRelativeToSlide1, 1000);
                     isVisible = true;
-                } else if (isVisible){
+                } else if (isVisible) {
                     mAnimationManager.expand(mRelativeToSlide1, 1000);
                     isVisible = false;
                 }
@@ -300,7 +297,7 @@ public class Qualification extends Fragment {
                 if (!isVisible) {
                     mAnimationManager.expand(mRelativeToSlide2, 1000);
                     isVisible = true;
-                } else if (isVisible){
+                } else if (isVisible) {
                     mAnimationManager.expand(mRelativeToSlide2, 1000);
                     isVisible = false;
                 }
@@ -313,7 +310,7 @@ public class Qualification extends Fragment {
                 if (!isVisible) {
                     mAnimationManager.expand(mRelativeToSlide3, 1000);
                     isVisible = true;
-                } else if (isVisible){
+                } else if (isVisible) {
                     mAnimationManager.expand(mRelativeToSlide3, 1000);
                     isVisible = false;
                 }
@@ -326,14 +323,12 @@ public class Qualification extends Fragment {
                 if (!isVisible) {
                     mAnimationManager.expand(mRelativeToSlide4, 1000);
                     isVisible = true;
-                } else if (isVisible){
+                } else if (isVisible) {
                     mAnimationManager.expand(mRelativeToSlide4, 1000);
                     isVisible = false;
                 }
             }
         });
-
-
 
 
         return root;
@@ -342,7 +337,6 @@ public class Qualification extends Fragment {
     private void viewProfile() {
         back.setVisibility(View.GONE);
         loader.showLoader();
-
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -416,12 +410,12 @@ public class Qualification extends Fragment {
                                         edt_grade4.setText(qualification_teacher.getJSONObject(4).getString("GradeDivision"));
                                     }
 
+
                                 }
 
                             }
                         }
                     }
-//                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -444,6 +438,64 @@ public class Qualification extends Fragment {
         };
         Volley.newRequestQueue(getContext()).add(sr);
     }
+
+    private void checkFields() {
+
+
+        qualification.setEnabled(false);
+        qualification.setTextColor(getResources().getColor(R.color.text_color_selection));
+        subject.setEnabled(false);
+        subject.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute.setEnabled(false);
+        edt_institute.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year.setEnabled(false);
+        edt_passing_year.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade.setEnabled(false);
+        edt_grade.setTextColor(getResources().getColor(R.color.text_color_selection));
+        qualification1.setEnabled(false);
+        qualification1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        subject1.setEnabled(false);
+        subject1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute1.setEnabled(false);
+        edt_institute1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year1.setEnabled(false);
+        edt_passing_year1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade1.setEnabled(false);
+        edt_grade1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        qualification2.setEnabled(false);
+        qualification2.setTextColor(getResources().getColor(R.color.text_color_selection));
+        subject2.setEnabled(false);
+        subject2.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute2.setEnabled(false);
+        edt_institute2.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year2.setEnabled(false);
+        edt_passing_year2.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade2.setEnabled(false);
+        edt_grade2.setTextColor(getResources().getColor(R.color.text_color_selection));
+        qualification3.setEnabled(false);
+        qualification3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        subject3.setEnabled(false);
+        subject3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute3.setEnabled(false);
+        edt_institute3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year3.setEnabled(false);
+        edt_passing_year3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade3.setEnabled(false);
+        edt_grade3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        qualification4.setEnabled(false);
+        qualification4.setTextColor(getResources().getColor(R.color.text_color_selection));
+        subject4.setEnabled(false);
+        subject4.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute4.setEnabled(false);
+        edt_institute4.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year4.setEnabled(false);
+        edt_passing_year4.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade4.setEnabled(false);
+        edt_grade4.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();

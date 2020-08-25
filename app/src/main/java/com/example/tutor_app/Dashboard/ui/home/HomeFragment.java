@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
@@ -33,7 +34,6 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
         btn_search = root.findViewById(R.id.btn_search);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

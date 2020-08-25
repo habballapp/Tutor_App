@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -51,6 +53,7 @@ public class FragmentSearch extends Fragment {
     private Map<String, String> childsMap = new HashMap<>();
     String Url = "http://pci.edusol.co/StudentPortal/searchtutorApi.php";
     String userid;
+    private TextView tool_bar_heading;
     private Loader loader;
 
 
@@ -61,6 +64,10 @@ public class FragmentSearch extends Fragment {
         // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_search, container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
+        tool_bar_heading.setText("Search");
         loader = new Loader(getContext());
 
         area = new ArrayList<>();
@@ -279,6 +286,7 @@ public class FragmentSearch extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+                tool_bar_heading.setText("Dashboard");
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     //Toast.makeText(getContext(), "backStack", Toast.LENGTH_SHORT).show();
                   //  FragmentManager fragmentManager = getActivity().getFragmentManager();

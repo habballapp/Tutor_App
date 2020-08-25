@@ -51,7 +51,7 @@ public class TeacherViewStudent extends Fragment {
     String Url = "http://pci.edusol.co/TeacherPortal/searchstudent_institutesubmit.php";
     String area,userid;
     private Loader loader;
-    private TextView txt_nodata;
+    private TextView txt_nodata ,txt_heading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +62,8 @@ public class TeacherViewStudent extends Fragment {
         rv_search = root.findViewById(R.id.rv_search);
         rv_search.setLayoutManager(new LinearLayoutManager(this.getContext()));
         txt_nodata = root.findViewById(R.id.txt_nodata);
+        txt_heading = root.findViewById(R.id.txt_heading);
+        txt_heading.setText("Students");
         txt_nodata.setText("No Students Available");
         loader = new Loader(getContext());
 

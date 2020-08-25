@@ -48,6 +48,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
     private FragmentTransaction fragmentTransaction;
     String userid;
     private Session session;
+    private TextView tool_bar_heading;
     private boolean doubleBackToExitPressedOnce = false;
     DrawerLayout drawer;
 
@@ -58,6 +59,8 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_new);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
+
         setSupportActionBar(toolbar);
         session = new Session(this);
 
@@ -67,7 +70,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, new HomeFragment());
         fragmentTransaction.commit();
-
+        tool_bar_heading.setText("Dashboard");
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("userid", "");
@@ -111,6 +114,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (id == 0) {
+                            tool_bar_heading.setText("Dashboard");
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
@@ -118,6 +122,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
+                            tool_bar_heading.setText("Profile");
                             SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                                     Context.MODE_PRIVATE);
                             userid = sharedPreferences1.getString("userid", "");
@@ -137,6 +142,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 
                         }
                         else if (id == 2) {
+                            tool_bar_heading.setText("Profile");
                             SharedPreferences personal_profile = getSharedPreferences("ViewData",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileTeacher = personal_profile.edit();
@@ -149,7 +155,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 
                         } else if (id == 3) {
 
-
+                            tool_bar_heading.setText("Search");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.add(R.id.nav_host_fragment, new TeacherSearchFragment()).addToBackStack("tag");
                             fragmentTransaction.commit();
@@ -165,48 +171,9 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                         return false;
                     }
                 });
-//                .addOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-//                    @Override
-//                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//                        navigationExpandableListView.setSelected(groupPosition, childPosition);
-//                        if (groupPosition == 3 && childPosition == 0) {
-//                            Log.i("Payments Summary", "Child");
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.container_ret, new Payment_Summary()).addToBackStack("tag");
-//                            ;
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        } else if (groupPosition == 3 && childPosition == 1) {
-//                            Log.i("Payment Request", "Child");
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.container_ret, new CreatePaymentRequestFragment()).addToBackStack(null);
-//                            ;
-//                            fragmentTransaction.commit();
-//                        } else if (groupPosition == 2 && childPosition == 0) {
-//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                            fragmentTransaction.replace(R.id.container_ret, new PlaceOrderFragment()).addToBackStack("tag");
-//                            ;
-//                            fragmentTransaction.commit();
-//                            drawer.closeDrawer(GravityCompat.START);
-//                        }
-//                        drawer.closeDrawer(GravityCompat.START);
-//                        return false;
-//                    }
-//                });
+//
 
         navigationExpandableListView.setSelected(0);
-
-
-
-//
-//
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_profile, R.id.nav_search,R.id.nav_profile_student)
-//                .setDrawerLayout(drawer)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     @Override

@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -53,6 +55,8 @@ public class ReferenceFragment extends Fragment {
     JSONObject response;
     private Loader loader;
     private TextView back_txt;
+    private TextView tool_bar_heading;
+    private FragmentTransaction fragmentTransaction;
     String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit.php";
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     private EditText name, edt_relation, edt_occupation_ref, edt_telephone, edt_present_address, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
@@ -83,6 +87,9 @@ public class ReferenceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_reference, container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
         // area select
         final SharedPreferences area_selected_data = getContext().getSharedPreferences("SendData_AreaFragment",
                 Context.MODE_PRIVATE);
@@ -294,7 +301,8 @@ public class ReferenceFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                tool_bar_heading.setText("Dashboard");
+                fragmentTransaction = getChildFragmentManager().beginTransaction();
                 fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
                 fragmentTransaction.commit();
             }
@@ -384,11 +392,11 @@ public class ReferenceFragment extends Fragment {
         if (! edt_pref_subject.equals(""))
             subArray.put(edt_pref_subject);
 
-//        List<String> classTeach = gson.fromJson(edt_classes_track, type);
-//        JSONArray jsonArray1 = new JSONArray(classTeach);
-//        map.put("classtoteach", jsonArray1);
+        List<String> classTeach = gson.fromJson(edt_classes_track, type);
+        JSONArray jsonArray1 = new JSONArray(classTeach);
+        map.put("classtoteach", jsonArray1);
 
-//        List<String> prefArea = gson.fromJson(spinner_area, type);
+//        List<String> prefArea = gson.fromJson(are, type);
 //        JSONArray jsonArray2 = new JSONArray(prefArea);
 //        map.put("prefarea", jsonArray2);
 
@@ -553,7 +561,7 @@ public class ReferenceFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), "Error No Response.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error No Response."+error, Toast.LENGTH_LONG).show();
                 error.printStackTrace();
             }
         }) {
@@ -573,6 +581,7 @@ public class ReferenceFragment extends Fragment {
     }
 
 
+
     @Override
     public void onResume() {
         super.onResume();
@@ -583,7 +592,7 @@ public class ReferenceFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new AreaFragment()).addToBackStack("null");
                     fragmentTransaction.commit();
                     return true;
@@ -594,9 +603,5 @@ public class ReferenceFragment extends Fragment {
         });
 
     }
-
-
-
-
 }
 

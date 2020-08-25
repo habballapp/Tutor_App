@@ -35,6 +35,12 @@
                     android:theme="@style/TextStyle"
 
                     />
+                <ImageView
+                    android:id="@+id/image_view_uploaded_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone" />
 
 
             </LinearLayout>
@@ -427,7 +433,6 @@
                     android:background="@drawable/editbox"
                     android:hint="@string/conveyance_type"
                     android:padding="10dp"
-                    
                     android:theme="@style/EditText"
                     android:visibility="gone" />
 
@@ -447,13 +452,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     >
-
-                    <ImageView
-                        android:id="@+id/image_view_uploaded_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="20dp"
-                        android:visibility="gone" />
 
 <!--                    <androidx.recyclerview.widget.RecyclerView-->
 <!--                        android:id="@+id/file_list"-->

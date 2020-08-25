@@ -2,8 +2,12 @@ package com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -32,10 +36,11 @@ public class TeacherSearchFragment extends Fragment {
     private List<String> area;
     private RelativeLayout rl_search_institute,rl_search_student;
     private FragmentTransaction fragmentTransaction;
+    private TextView tool_bar_heading;
 
 
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,6 +69,13 @@ public class TeacherSearchFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_teacher_search, container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
+        tool_bar_heading.setText("Search");
+
+
+
 
         SharedPreferences personal_profile = getContext().getSharedPreferences("SearchData",
                 Context.MODE_PRIVATE);
@@ -161,6 +173,7 @@ public class TeacherSearchFragment extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+                tool_bar_heading.setText("Dashboard");
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
