@@ -1,16 +1,21 @@
 package com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +54,7 @@ import java.util.Map;
 
 public class ReferenceFragment extends Fragment {
 
-    private RelativeLayout btn_reference_user, mrelativevToSlide, mRelativeZaplon ,back;
+    private RelativeLayout btn_reference_user, mrelativevToSlide, mRelativeZaplon, back;
     private boolean isVisible = false;
     private ExpandOrCollapse mAnimationManager;
     JSONObject response;
@@ -64,11 +69,11 @@ public class ReferenceFragment extends Fragment {
     //profile
     String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic,
             edt_permanent_address, edt_dob, edt_nationality, edt_religion, edt_phone1, edt_phone2,
-            edt_email, edt_age, imageBitmapBase64, gender, conveyance, OrganizationName, present_address,experience_year;
-    String spinner_conveyance_txt, spinner_profession, date_of_submission,catogery;
+            edt_email, edt_age, imageBitmapBase64, gender, conveyance, OrganizationName, present_address, experience_year;
+    String spinner_conveyance_txt, spinner_profession, date_of_submission, catogery;
     //Qualification
-    String qualification, edt_institute, edt_passing_year, edt_grade,SubjectSpecialization,SubjectSpecialization1,
-            SubjectSpecialization2,SubjectSpecialization3,SubjectSpecialization4;
+    String qualification, edt_institute, edt_passing_year, edt_grade, SubjectSpecialization, SubjectSpecialization1,
+            SubjectSpecialization2, SubjectSpecialization3, SubjectSpecialization4;
 
     String qualification1, subject1, edt_institute1, edt_passing_year1, edt_grade1;
     String qualification2, subject2, edt_institute2, edt_passing_year2, edt_grade2;
@@ -88,13 +93,13 @@ public class ReferenceFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_reference, container, false);
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ((AppCompatActivity) getActivity()).getSupportActionBar();
         tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
         // area select
         final SharedPreferences area_selected_data = getContext().getSharedPreferences("SendData_AreaFragment",
                 Context.MODE_PRIVATE);
-        area_selected =area_selected_data.getString("prefarea" ,"");
-        Log.i("Selected_Area" ,area_selected);
+        area_selected = area_selected_data.getString("prefarea", "");
+        Log.i("Selected_Area", area_selected);
         // profile teacher
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
@@ -136,22 +141,22 @@ public class ReferenceFragment extends Fragment {
         catogery = sharedPreferences.getString("IfInstituteOther", "");
         experience_year = sharedPreferences.getString("experienceYear", "");
 
-      //  edt_occupation = sharedPreferences.getString("email", "");
+        //  edt_occupation = sharedPreferences.getString("email", "");
         spinner_conveyance_txt = sharedPreferences.getString("personalconveyance", "");
         spinner_profession = sharedPreferences.getString("teacherbyprofession", "");
         imageBitmapBase64 = sharedPreferences.getString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
         edt_etitlement = sharedPreferences.getString("jobtitle", "");
         edt_organization = sharedPreferences.getString("orgname", "");
-        edt_from  = sharedPreferences.getString("fromto","");
-        edt_till = sharedPreferences.getString("till","");
+        edt_from = sharedPreferences.getString("fromto", "");
+        edt_till = sharedPreferences.getString("till", "");
         //  edt_classes_track = sharedPreferences.getString("classtoteach", "");
-        edt_pref_subject  = sharedPreferences.getString("prefsubject","");
-        area_selected = sharedPreferences.getString("prefarea","");
-        gender = sharedPreferences.getString("gender","");
-        SubjectSpecialization = sharedPreferences.getString("SubjectSpecialization","");
-        OrganizationName = sharedPreferences.getString("OrganizationName","");
+        edt_pref_subject = sharedPreferences.getString("prefsubject", "");
+        area_selected = sharedPreferences.getString("prefarea", "");
+        gender = sharedPreferences.getString("gender", "");
+        SubjectSpecialization = sharedPreferences.getString("SubjectSpecialization", "");
+        OrganizationName = sharedPreferences.getString("OrganizationName", "");
 
-        Log.i("totalExperience" ,experience_year);
+        Log.i("totalExperience", experience_year);
 
         // Qualification
         //  final SharedPreferences qualification_data = getContext().getSharedPreferences("SendData",
@@ -220,7 +225,7 @@ public class ReferenceFragment extends Fragment {
         Type type = new TypeToken<JSONObject>() {
         }.getType();
 
-        if (! str_response.equals("")) {
+        if (!str_response.equals("")) {
             response = gson.fromJson(str_response, type);
             Log.i("JobExperience", String.valueOf(response));
 
@@ -330,32 +335,51 @@ public class ReferenceFragment extends Fragment {
                     if (references.length() > 0) {
 
                         name.setText(references.getJSONObject(0).getString("Name"));
+                        name.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        name.setEnabled(false);
                         edt_relation.setText(references.getJSONObject(0).getString("Relation"));
+                        edt_relation.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        edt_relation.setEnabled(false);
                         edt_occupation_ref.setText(references.getJSONObject(0).getString("Occupation"));
+                        edt_occupation_ref.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        edt_occupation_ref.setEnabled(false);
                         edt_present_address.setText(references.getJSONObject(0).getString("Address"));
+                        edt_present_address.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        edt_present_address.setEnabled(false);
                         edt_telephone.setText(references.getJSONObject(0).getString("TelephoneNo"));
+                        edt_telephone.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        edt_telephone.setEnabled(false);
 
 
                         if (references.length() > 1) {
 
                             mrelativevToSlide.setVisibility(View.VISIBLE);
                             name1.setText(references.getJSONObject(0).getString("Name"));
+                            name1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            name1.setEnabled(false);
                             edt_relation1.setText(references.getJSONObject(0).getString("Relation"));
+                            edt_relation1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            edt_relation1.setEnabled(false);
                             edt_occupation1.setText(references.getJSONObject(0).getString("Occupation"));
+                            edt_occupation1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            edt_occupation1.setEnabled(false);
                             edt_present_address1.setText(references.getJSONObject(0).getString("Address"));
+                            edt_present_address1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            edt_present_address1.setEnabled(false);
                             edt_telephone1.setText(references.getJSONObject(0).getString("TelephoneNo"));
-
+                            edt_telephone1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            edt_telephone1.setEnabled(false);
 
 
                         }
                     }
 
-                        } catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
 
-            }, new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
@@ -374,7 +398,6 @@ public class ReferenceFragment extends Fragment {
 
 
     }
-
 
 
     private void uploadData() throws JSONException {
@@ -389,7 +412,7 @@ public class ReferenceFragment extends Fragment {
 //        JSONArray jsonArray = new JSONArray(selectedSubjects);
 //
         JSONArray subArray = new JSONArray();
-        if (! edt_pref_subject.equals(""))
+        if (!edt_pref_subject.equals(""))
             subArray.put(edt_pref_subject);
 
         List<String> classTeach = gson.fromJson(edt_classes_track, type);
@@ -401,9 +424,9 @@ public class ReferenceFragment extends Fragment {
 //        map.put("prefarea", jsonArray2);
 
         JSONArray areaArray = new JSONArray();
-        if (! area_selected.equals(""))
+        if (!area_selected.equals(""))
             areaArray.put(area_selected);
-        map.put("prefarea",area_selected);
+        map.put("prefarea", area_selected);
 
         JSONArray qualificationArray = new JSONArray();
         Log.i("debugQualification", qualification);
@@ -411,71 +434,71 @@ public class ReferenceFragment extends Fragment {
         Log.i("debugQualification", qualification2);
         Log.i("debugQualification", qualification3);
         Log.i("debugQualification", qualification4);
-        if (! qualification.equals(""))
+        if (!qualification.equals(""))
             qualificationArray.put(qualification);
-        if (! qualification1.equals(""))
+        if (!qualification1.equals(""))
             qualificationArray.put(qualification1);
-        if (! qualification2.equals(""))
+        if (!qualification2.equals(""))
             qualificationArray.put(qualification2);
-        if (! qualification3.equals(""))
+        if (!qualification3.equals(""))
             qualificationArray.put(qualification3);
-        if (! qualification4.equals(""))
+        if (!qualification4.equals(""))
             qualificationArray.put(qualification4);
 
         JSONArray subspecArray = new JSONArray();
-        if (! SubjectSpecialization.equals(""))
+        if (!SubjectSpecialization.equals(""))
             subspecArray.put(SubjectSpecialization);
-        if (! SubjectSpecialization1.equals(""))
+        if (!SubjectSpecialization1.equals(""))
             subspecArray.put(SubjectSpecialization1);
-        if (! SubjectSpecialization2.equals(""))
+        if (!SubjectSpecialization2.equals(""))
             subspecArray.put(SubjectSpecialization2);
-        if (! qualification3.equals(""))
+        if (!qualification3.equals(""))
             subspecArray.put(SubjectSpecialization3);
-        if (! SubjectSpecialization3.equals(""))
+        if (!SubjectSpecialization3.equals(""))
             subspecArray.put(SubjectSpecialization4);
 
         JSONArray insArray = new JSONArray();
-        if (! edt_institute.equals(""))
+        if (!edt_institute.equals(""))
             insArray.put(edt_institute);
         if (!edt_institute1.equals(""))
             insArray.put(edt_institute1);
-        if (! edt_institute2.equals(""))
+        if (!edt_institute2.equals(""))
             insArray.put(edt_institute2);
-        if (! edt_institute3.equals(""))
+        if (!edt_institute3.equals(""))
             insArray.put(edt_institute3);
-        if (! edt_institute4.equals(""))
+        if (!edt_institute4.equals(""))
             insArray.put(edt_institute4);
 
         JSONArray gradeArray = new JSONArray();
-        if (! edt_grade.equals(""))
+        if (!edt_grade.equals(""))
             gradeArray.put(edt_grade);
         if (!edt_grade1.equals(""))
             gradeArray.put(edt_grade1);
-        if (! edt_grade2.equals(""))
+        if (!edt_grade2.equals(""))
             gradeArray.put(edt_grade2);
-        if (! edt_grade3.equals(""))
+        if (!edt_grade3.equals(""))
             gradeArray.put(edt_grade3);
-        if (! edt_grade4.equals(""))
+        if (!edt_grade4.equals(""))
             gradeArray.put(edt_grade4);
 
         JSONArray passingArray = new JSONArray();
-        if (! edt_passing_year.equals(""))
+        if (!edt_passing_year.equals(""))
             passingArray.put(edt_passing_year);
         if (!edt_passing_year1.equals(""))
             passingArray.put(edt_passing_year1);
-        if (! edt_passing_year2.equals(""))
+        if (!edt_passing_year2.equals(""))
             passingArray.put(edt_passing_year2);
         if (!edt_passing_year3.equals(""))
             passingArray.put(edt_passing_year3);
-        if (! edt_passing_year4.equals(""))
+        if (!edt_passing_year4.equals(""))
             passingArray.put(edt_passing_year4);
 
         map.put("qualification", qualificationArray);
-        map.put("SubjectSpecialization",subspecArray);
+        map.put("SubjectSpecialization", subspecArray);
         map.put("edt_grade", gradeArray);
         map.put("edt_passing_year", passingArray);
-        map.put("prefsubject",edt_pref_subject);
-        map.put("OrganizationName",OrganizationName);
+        map.put("prefsubject", edt_pref_subject);
+        map.put("OrganizationName", OrganizationName);
 
 
         Log.i("Qualification", String.valueOf(qualificationArray));
@@ -486,39 +509,39 @@ public class ReferenceFragment extends Fragment {
 
 //        map.put("Regno", "1");
 //        map.put("secretcode", "2");
-        map.put("age",edt_fname);
-        map.put("age",edt_age);
-        map.put("fullname",edt_fullname);
-        map.put("gender",gender);
-        map.put("email",edt_email);
-        map.put("cnicno",edt_cnic);
-        map.put("mothnametounge",edt_mtongue);
-        map.put("dob",edt_dob);
-        map.put("email",edt_email);
-        map.put("fathusname",edt_fname);
-        map.put("dateofsubmission","");
-        map.put("nationality",edt_nationality);
-        map.put("religion",edt_religion);
+        map.put("age", edt_fname);
+        map.put("age", edt_age);
+        map.put("fullname", edt_fullname);
+        map.put("gender", gender);
+        map.put("email", edt_email);
+        map.put("cnicno", edt_cnic);
+        map.put("mothnametounge", edt_mtongue);
+        map.put("dob", edt_dob);
+        map.put("email", edt_email);
+        map.put("fathusname", edt_fname);
+        map.put("dateofsubmission", "");
+        map.put("nationality", edt_nationality);
+        map.put("religion", edt_religion);
         map.put("presentadd", present_address);
-        map.put("permanentadd",edt_permanent_address);
-        map.put("phoneno1",edt_phone1);
-        map.put("phoneno2",edt_phone2);
-        map.put("phoneno3","");
-        map.put("fbid","");
-        map.put("IfInstituteOther",catogery);
+        map.put("permanentadd", edt_permanent_address);
+        map.put("phoneno1", edt_phone1);
+        map.put("phoneno2", edt_phone2);
+        map.put("phoneno3", "");
+        map.put("fbid", "");
+        map.put("IfInstituteOther", catogery);
         map.put("classtoteach", edt_classes_track);
         map.put("TotalExperience", experience_year);
 
 
-        map.put("JobEntitlement",edt_etitlement);
-        map.put("OrganizationName",edt_organization);
-        map.put("FromTo",edt_from);
-        map.put("Till",edt_till);
+        map.put("JobEntitlement", edt_etitlement);
+        map.put("OrganizationName", edt_organization);
+        map.put("FromTo", edt_from);
+        map.put("Till", edt_till);
 
         map.put("dateofsubmission", date_of_submission);
-        map.put("personalconveyance",spinner_conveyance_txt);
-        map.put("teacherbyprofession",spinner_profession);
-        map.put("phoneno3","");
+        map.put("personalconveyance", spinner_conveyance_txt);
+        map.put("teacherbyprofession", spinner_profession);
+        map.put("phoneno3", "");
         map.put("ref1Name", name.getText());
         map.put("ref1Relation", edt_relation.getText());
         map.put("ref1Occupation", edt_occupation_ref.getText());
@@ -532,9 +555,8 @@ public class ReferenceFragment extends Fragment {
         map.put("ref2TelephoneNo", edt_telephone1.getText());
 
 
-
         Log.i("mapAddress", String.valueOf(map));
-        map.put("tutorimageBase64",imageBitmapBase64);
+        map.put("tutorimageBase64", imageBitmapBase64);
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url_Tprofile, map, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -544,15 +566,14 @@ public class ReferenceFragment extends Fragment {
                 loader.hideLoader();
                 try {
                     if (!response.getString("userid").equals("null"))
-                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
+                        DiscardPopup("Successful", "Your profile created successfully. ");
+
                     else
                         Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
-                    Toast.makeText(getContext(), "Error ."+e, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Error ." + e, Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
-
-
 
 
             }
@@ -561,7 +582,7 @@ public class ReferenceFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), "Error No Response."+error, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error No Response." + error, Toast.LENGTH_LONG).show();
                 error.printStackTrace();
             }
         }) {
@@ -574,12 +595,11 @@ public class ReferenceFragment extends Fragment {
 
 
         };
-        
+
         Volley.newRequestQueue(getContext()).add(sr);
         // RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         // requestQueue.add(sr);
     }
-
 
 
     @Override
@@ -602,6 +622,40 @@ public class ReferenceFragment extends Fragment {
             }
         });
 
+    }
+
+    private void DiscardPopup(String heading, String message) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view_popup = inflater.inflate(R.layout.successful_popup, null);
+        TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
+        tv_discard.setText(heading);
+        TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
+        tv_discard_txt.setText(message);
+        alertDialog.setView(view_popup);
+        alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
+        layoutParams.y = 200;
+        layoutParams.x = -70;// top margin
+        alertDialog.getWindow().setAttributes(layoutParams);
+        ImageButton img_email = (ImageButton) view_popup.findViewById(R.id.btn_close);
+        img_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                tool_bar_heading.setText("Dashboard");
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+            }
+        });
+
+        alertDialog.show();
     }
 }
 

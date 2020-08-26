@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:id="@+id/container"
-    tools:context=".Dashboard.ui.View.Student_view_Teachers">
+   >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -64,6 +64,7 @@
                     android:padding="10dp"
                     android:gravity="center_vertical"
                     android:visibility="gone"
+                    android:paddingStart="20dp"
                     android:background="@null" />
                 <Spinner
                     android:id="@+id/spinner_class"
@@ -99,6 +100,7 @@
                     android:layout_height="match_parent"
                     android:layout_toLeftOf="@+id/spinner_subject_imageview"
                     android:padding="10dp"
+                    android:paddingStart="20dp"
                     android:gravity="center_vertical"
                     android:visibility="gone"
                     android:background="@null" />

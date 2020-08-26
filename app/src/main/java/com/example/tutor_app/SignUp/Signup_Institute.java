@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -38,6 +39,7 @@ public class  Signup_Institute extends AppCompatActivity {
     private EditText edt_email,edt_password,edt_fullname,edt_contact;
     private String Url_Institute = "http://pci.edusol.co/Login/signup_institute_data.php";
     private RelativeLayout btn_signup_user;
+    private TextView back_signIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,14 @@ public class  Signup_Institute extends AppCompatActivity {
         edt_password = findViewById(R.id.edt_password);
         edt_fullname = findViewById(R.id.edt_fullname);
         edt_contact = findViewById(R.id.edt_contact);
+        back_signIn = findViewById(R.id.back_signIn);
+        back_signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back = new Intent(Signup_Institute.this , SignIn.class);
+                startActivity(back);
+            }
+        });
 
         final List<EditText> allFields =new ArrayList<EditText>();
 

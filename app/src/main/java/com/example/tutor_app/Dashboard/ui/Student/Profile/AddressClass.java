@@ -1,6 +1,8 @@
 package com.example.tutor_app.Dashboard.ui.Student.Profile;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,13 +15,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -62,7 +67,7 @@ public class AddressClass extends Fragment {
     private EditText edt_house_number, edt_bno, edt_street, edt_block, edt_area, edt_city, edt_country;
     private String Filter_selected = "";
     String Url_Sprofile = "https://pci.edusol.co/StudentPortal/studenttutorformsubmit.php";
-    String spinner_gender,spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege, spinnerTimings;
+    String spinner_gender,spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege,session_year, spinnerTimings;
     String userid;
     TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview ,back_txt;
     JSONObject response = new JSONObject();
@@ -112,6 +117,7 @@ public class AddressClass extends Fragment {
         classes = sharedPreferences.getString("class", "");
         subjects = sharedPreferences.getString("subjects", "");
         schoolcollege = sharedPreferences.getString("schoolcollege", "");
+        session_year = sharedPreferences.getString("session_year", "");
         spinner_timings = sharedPreferences.getString("desiredtiming", "");
 
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
@@ -458,6 +464,7 @@ public class AddressClass extends Fragment {
         map.put("contactno2", contactno2);
         map.put("contactno3", contactno3);
         map.put("schoolcollege", schoolcollege);
+        map.put("classyear" ,session_year);
         map.put("housenum", edt_house_number.getText().toString());
         map.put("buildingname", edt_bno.getText().toString());
         map.put("streetnum", edt_street.getText().toString());
@@ -486,7 +493,7 @@ public class AddressClass extends Fragment {
                 try {
                     loader.hideLoader();
                     if (!response.getString("studenttutorformId").equals("null"))
-                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
+                        DiscardPopup("Successful" , "Your profile created successfully. ");
                     else
                         Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
@@ -495,21 +502,6 @@ public class AddressClass extends Fragment {
                 }
 
                 Log.i("AddProfile", String.valueOf(response));
-//                    if(response != null && !response.isEmpty()){
-//
-//                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
-//                        try {
-//                            JSONObject obj = new JSONObject(response);
-//                            Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                    else
-//                    Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
-
             }
 
         }, new Response.ErrorListener() {
@@ -654,6 +646,39 @@ public class AddressClass extends Fragment {
             }
         });
 
+    }
+    private void DiscardPopup(String heading , String message) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view_popup = inflater.inflate(R.layout.successful_popup, null);
+        TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
+        tv_discard.setText(heading);
+        TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
+        tv_discard_txt.setText(message);
+        alertDialog.setView(view_popup);
+        alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
+        layoutParams.y = 200;
+        layoutParams.x = -70;// top margin
+        alertDialog.getWindow().setAttributes(layoutParams);
+        ImageButton img_email = (ImageButton) view_popup.findViewById(R.id.btn_close);
+        img_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                tool_bar_heading.setText("Dashboard");
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+            }
+        });
+
+        alertDialog.show();
     }
 }
 

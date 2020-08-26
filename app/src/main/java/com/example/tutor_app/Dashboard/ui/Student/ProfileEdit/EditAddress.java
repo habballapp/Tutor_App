@@ -1,22 +1,29 @@
 package com.example.tutor_app.Dashboard.ui.Student.ProfileEdit;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +38,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tutor_app.Adapters.MultiSelectApdater_timing;
 import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -56,18 +64,22 @@ public class EditAddress extends Fragment {
     private EditText edt_house_num, edt_bno, edt_street, edt_block, edt_area, edt_city, edt_country;
     private String Filter_selected = "";
     String Url_Sprofile = "http://pci.edusol.co/StudentPortal/EditProfilesubmit.php";
-    String spinner_gender,spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege, spinnerTimings;
+    String spinner_gender,spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege,session_year, spinnerTimings;
     String userid, Id;
     TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview;
     JSONObject response = new JSONObject();
     private Loader loader;
     String timingSelected ="";
+    private TextView tool_bar_heading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_address_class, container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
 
         spinner1 = (Spinner) root.findViewById(R.id.spinner_gender);
         spinner2 = (Spinner) root.findViewById(R.id.spinner_timings);
@@ -100,12 +112,13 @@ public class EditAddress extends Fragment {
         classes = sharedPreferences.getString("class", "");
         subjects = sharedPreferences.getString("subjects", "");
         schoolcollege = sharedPreferences.getString("schoolcollege", "");
+        session_year = sharedPreferences.getString("session_year", "");
         spinner_timings = sharedPreferences.getString("desiredtiming", "");
 
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
-        userid = sharedPreferences1.getString("UserId", "");
-
+        userid = sharedPreferences1.getString("userid", "");
+        Log.i("new_user" , userid);
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("ViewProfile",
                 Context.MODE_PRIVATE);
         Id = sharedPreferences2.getString("UserId", "");
@@ -222,9 +235,19 @@ public class EditAddress extends Fragment {
 
             spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
-
+//                    if (position==0){
+//                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+//                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+//                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+//                    }
+//                    else
+//                    {
+//                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+//                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+//                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+//                    }
                 }
 
                 @Override
@@ -346,36 +369,6 @@ public class EditAddress extends Fragment {
 
                     timingSelected = sharedPreferences1.getString("timingSelected", "");
                     Log.i("TimingSelected",timingSelected);
-
-//                    String houseno = edt_house_num.getText().toString().trim();
-//                    String buildingno = edt_bno.getText().toString().trim();
-//                    String streetno = edt_street.getText().toString().trim();
-//                    String blockno = edt_block.getText().toString().trim();
-//                    String city = edt_city.getText().toString().trim();
-//                    String area = edt_area.getText().toString().trim();
-//                    String country = edt_country.getText().toString().trim();
-//                    String spinner_timings = spinner2.getText().toString().trim();TimingSelectedTimingSelected
-                    List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
-                    for(int j = 0; j < allFields.size(); j++){
-                        if(TextUtils.isEmpty(allFields.get(j).getText())){
-                            // EditText was empty
-                            //   Fields.add(allFields.get(j).getText().toString());
-                            ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
-                            for(int i = 0; i < ErrorFields.size(); i++)
-                            {
-                                //Fields.add(ErrorFields.get(i).getText().toString());
-                                EditText currentField = ErrorFields.get(i);
-                                currentField.setError("this field required");
-                                ErrorFields.set(i,currentField);
-                                currentField.requestFocus();
-                            }
-
-                        }
-                    }
-
-                    if(ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && spinner3.getSelectedItemPosition()!=0 && !timingSelected.equals(""))
-                    {
-
                         try {
                             Address();
                         } catch (JSONException e) {
@@ -383,13 +376,7 @@ public class EditAddress extends Fragment {
                         }
 
                     }
-                    else
-                    {
-                        Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
-                    }
 
-
-                }
             });
 
             SharedPreferences check_field1 = getContext().getSharedPreferences("CheckField",
@@ -402,15 +389,10 @@ public class EditAddress extends Fragment {
     }
 
     private void getProfileData() throws JSONException {
-
-
-        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
-                Context.MODE_PRIVATE);
-        userid = sharedPreferences1.getString("UserId", "");
-        Log.i("UserId", userid);
-
-
-
+//        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
+//                Context.MODE_PRIVATE);
+//        userid = sharedPreferences1.getString("UserId", "");
+//        Log.i("UserId", userid);
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
                 Context.MODE_PRIVATE);
 
@@ -431,10 +413,10 @@ public class EditAddress extends Fragment {
     }
 
     private void Address() throws JSONException {
-
-
         loader.showLoader();
         JSONObject map = new JSONObject();
+        map.put("userid", userid);
+        map.put("Id", Id);
         map.put("name", name);
         map.put("fathername", fathername);
         map.put("email", email);
@@ -457,6 +439,7 @@ public class EditAddress extends Fragment {
         map.put("contactno2", contactno2);
         map.put("contactno3", contactno3);
         map.put("schoolcollege", schoolcollege);
+        map.put("classyear" ,session_year);
         map.put("housenum", edt_house_num.getText().toString());
         map.put("buildingname", edt_bno.getText().toString());
         map.put("streetnum", edt_street.getText().toString());
@@ -473,8 +456,7 @@ public class EditAddress extends Fragment {
 
         map.put("desiredtiming", jsonArray_timings);
 
-        map.put("userid", userid);
-        map.put("Id", Id);
+
 
         Log.i("mapAddress", String.valueOf(map));
 
@@ -486,7 +468,8 @@ public class EditAddress extends Fragment {
                 try {
                     loader.hideLoader();
                     if (!response.getString("studenttutorformId").equals("null"))
-                        Toast.makeText(getContext(), "User Profile Created.", Toast.LENGTH_LONG).show();
+                        DiscardPopup("Successful" , "Your profile Updated successfully. ");
+
                     else
                         Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
@@ -642,6 +625,39 @@ public class EditAddress extends Fragment {
             }
         });
 
+    }
+    private void DiscardPopup(String heading , String message) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view_popup = inflater.inflate(R.layout.successful_popup, null);
+        TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
+        tv_discard.setText(heading);
+        TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
+        tv_discard_txt.setText(message);
+        alertDialog.setView(view_popup);
+        alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
+        layoutParams.y = 200;
+        layoutParams.x = -70;// top margin
+        alertDialog.getWindow().setAttributes(layoutParams);
+        ImageButton img_email = (ImageButton) view_popup.findViewById(R.id.btn_close);
+        img_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                tool_bar_heading.setText("Dashboard");
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+            }
+        });
+
+        alertDialog.show();
     }
 }
 

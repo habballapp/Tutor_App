@@ -260,7 +260,6 @@
                         android:layout_height="match_parent"
                         android:layout_alignTop="@id/spinner_timings"
                         android:layout_alignEnd="@+id/spinner_timings"
-                        android:layout_alignRight="@+id/spinner_timings"
                         android:layout_alignBottom="@+id/spinner_timings"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"
                         android:theme="@style/Spinner" />

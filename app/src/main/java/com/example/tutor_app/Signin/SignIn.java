@@ -95,31 +95,29 @@ public class SignIn extends AppCompatActivity {
 
         btn_signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               if (edt_email.getText().toString().equals("")) {
+                if (edt_email.getText().toString().equals("")) {
                     edt_email.setError("Please insert email");
 
                 } else if (edt_password.getText().toString().equals("")) {
                     edt_password.setError("Please insert password");
-                }
-                else {
+                } else {
 //
 
-                   if (txt_checkbox.isChecked()) {
-                       username = edt_email.getText().toString();
-                       password = edt_password.getText().toString();
+                    if (txt_checkbox.isChecked()) {
+                        username = edt_email.getText().toString();
+                        password = edt_password.getText().toString();
 
-                       loginPrefsEditor.putBoolean("saveLogin", true);
-                       loginPrefsEditor.putString("username", username);
-                       loginPrefsEditor.putString("password", password);
-                       loginPrefsEditor.apply();
-                   }
-                   try {
-                       Login();
-                   } catch (JSONException e) {
-                       e.printStackTrace();
-                   }
+                        loginPrefsEditor.putBoolean("saveLogin", true);
+                        loginPrefsEditor.putString("username", username);
+                        loginPrefsEditor.putString("password", password);
+                        loginPrefsEditor.apply();
+                    }
+                    try {
+                        Login();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
-
 
 
             }
@@ -154,8 +152,6 @@ public class SignIn extends AppCompatActivity {
     private void Login() throws JSONException {
 
         loader.showLoader();
-//        progressBar.setVisibility(View.VISIBLE);
-        btn_signin_txt.setText("");
 
         StringRequest sr = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
             @SuppressLint("SetTextI18n")
@@ -164,10 +160,7 @@ public class SignIn extends AppCompatActivity {
             public void onResponse(String result) {
                 loader.hideLoader();
                 Log.i("loginData", String.valueOf(result));
-
-//                progressBar.setVisibility(View.GONE);
                 try {
-//                    progressBar.setVisibility(View.GONE);
                     JSONObject obj = new JSONObject(result);
 
                     final SharedPreferences job_experience = getSharedPreferences("SendData",
@@ -260,8 +253,7 @@ public class SignIn extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(this).add(sr);
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(sr);
+
     }
 
 

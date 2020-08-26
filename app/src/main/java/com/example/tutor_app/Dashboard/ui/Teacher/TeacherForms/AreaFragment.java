@@ -222,6 +222,8 @@ public class AreaFragment extends Fragment {
         loader.showLoader();
         btn_area_add.setVisibility(View.GONE);
         back.setVisibility(View.GONE);
+        spinr_area.setVisibility(View.GONE);
+        text_area_selected.setVisibility(View.VISIBLE);
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -236,7 +238,6 @@ public class AreaFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                  Log.i("Area_Of_Interest", String.valueOf(response));
-
                 loader.hideLoader();
                 try {
 
@@ -249,7 +250,6 @@ public class AreaFragment extends Fragment {
                             //you can set value to text view here
 
                             text_area_selected.setText(id);
-                            text_area_selected.setVisibility(View.VISIBLE);
                             text_area_selected.setTextColor(getResources().getColor(R.color.text_color_selection));
                             text_area_selected.setEnabled(false);
                         } catch (JSONException e) {

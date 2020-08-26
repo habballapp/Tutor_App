@@ -46,7 +46,7 @@ public class SelectClass extends Fragment {
 
 
 
-    public EditText edt_school;
+    public EditText edt_school ,session_year;
     public TextView txt;
     public Spinner spinner_class,spinner_subject;
     private StateVO stateVO;
@@ -74,6 +74,7 @@ public class SelectClass extends Fragment {
 //        rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
         edt_school = root.findViewById(R.id.edt_school);
+        session_year = root.findViewById(R.id.session_year);
         spinner_class = root.findViewById(R.id.spinner_class);
         spinner_subject = root.findViewById(R.id.spinner_subject);
         txt = root.findViewById(R.id.txt);
@@ -279,6 +280,7 @@ public class SelectClass extends Fragment {
 
 
         allFields.add(edt_school);
+        allFields.add(session_year);
 
 
 
@@ -288,6 +290,7 @@ public class SelectClass extends Fragment {
             public void onClick(View v) {
 
                 profileStudent.putString("schoolcollege",String.valueOf(edt_school.getText()));
+                profileStudent.putString("session_year",String.valueOf(session_year.getText()));
                 profileStudent.apply();
 
                 SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("CheckField",
@@ -371,6 +374,10 @@ public class SelectClass extends Fragment {
 
         edt_school.setText(response.getString("SchoolCollege"));
         edt_school.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        session_year.setText(response.getString("ClassYear"));
+        session_year.setTextColor(getResources().getColor(R.color.text_color_selection));
+        session_year.setEnabled(false);
     }
     @Override
     public void onResume() {

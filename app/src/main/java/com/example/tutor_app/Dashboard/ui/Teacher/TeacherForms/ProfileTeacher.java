@@ -79,9 +79,10 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private EditText edt_fullname, edt_fname, edt_mtongue, edt_cnic, edt_present_address,
             edt_permanent_address, edt_nationality, edt_religion, edt_phone1, edt_phone2,
             edt_email, edt_conveyance_txt, edt_age, experience_year;
-    private String selectedFileType, imageName;
+    private String selectedFileType, imageName ,fileName;
     private String imageBitmapBase64 = "";
     private TextView FileName;
+    private String FileBitmapBase64 = "";
     private static final int REQUEST_CAMERA = 2;
     private static final int SELECT_FILE = 1;
     private List<String> gender, catogery;
@@ -259,11 +260,11 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     } else {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     }
                 }
 
@@ -306,11 +307,11 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     } else {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     }
                 }
 
@@ -364,11 +365,11 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     } else {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     }
 //                    Filter_selected1 = paths.get(position);
 //
@@ -426,13 +427,13 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                         edt_conveyance_txt.setVisibility(View.GONE);
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
 
                     } else {
 
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                        ((TextView) adapterView.getChildAt(0)).setPadding(40, 0, 40, 0);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
 
                     }
                     Filter_selected = paths1.get(position);
@@ -492,23 +493,24 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         btn_profile_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
+//                SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
+//                        Context.MODE_PRIVATE);
+//                userid = sharedPreferences1.getString("UserId", "");
+                SharedPreferences  sharedPreferences1 = getContext().getSharedPreferences("LoginData",
                         Context.MODE_PRIVATE);
-                userid = sharedPreferences1.getString("UserId", "");
+                userid = sharedPreferences1.getString("userid", "");
                 if (!userid.equals("")) {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
                     fragmentTransaction.commit();
                 } else {
-                    sharedPreferences1 = getContext().getSharedPreferences("LoginData",
-                            Context.MODE_PRIVATE);
-                    userid = sharedPreferences1.getString("userid", "");
+
                     Log.i("ID", userid);
                     //Teacher Id:
                     Log.i("TeacherID", userid);
 
-                    if (checkFields()) {
-                        if (!imageBitmapBase64.equals("")) {
+                   if (checkFields()) {
+                        if (imageBitmapBase64.equals("") && FileBitmapBase64.equals("")) {
 
                             fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
@@ -585,31 +587,31 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 Toast.makeText(getContext(), "Please Enter All Fields", Toast.LENGTH_SHORT).show();
                 if (first_date.getText().toString().equals("DD-MM-YYYY")) {
                     first_date.setError("this field required");
-                    first_date.setPadding(0, 10, 40, 0);
+                    first_date.setPadding(0, 10, 50, 0);
                     first_date.requestFocus();
                 }
                 if (second_date.getText().toString().equals("DD-MM-YYYY")) {
                     second_date.setError("this field required");
-                    second_date.setPadding(0, 10, 40, 0);
+                    second_date.setPadding(0, 10, 50, 0);
                     second_date.requestFocus();
                 }
                 if (spinner1.getSelectedItemPosition() == 0) {
                     ((TextView) spinner1.getSelectedView()).setError("Error message");
-                    spinner1.setPadding(0, 10, 40, 0);
+                    spinner1.setPadding(0, 10, 50, 0);
                     spinner1.requestFocus();
                 }
                 if (spinner_catogery.getSelectedItemPosition() == 0) {
                     ((TextView) spinner_catogery.getSelectedView()).setError("Error message");
-                    spinner_catogery.setPadding(0, 10, 40, 0);
+                    spinner_catogery.setPadding(0, 10, 50, 0);
                     spinner_catogery.requestFocus();
                 }
                 if (teacher_profession.getSelectedItemPosition() == 0) {
-                    teacher_profession.setPadding(0, 10, 40, 0);
+                    teacher_profession.setPadding(0, 10, 50, 0);
                     ((TextView) teacher_profession.getSelectedView()).setError("Error message");
                     teacher_profession.requestFocus();
                 }
                 if (spinner_conveyance.getSelectedItemPosition() == 0) {
-                    spinner_conveyance.setPadding(0, 10, 40, 0);
+                    spinner_conveyance.setPadding(0, 10, 50, 0);
                     ((TextView) spinner_conveyance.getSelectedView()).setError("Error message");
                     spinner_conveyance.requestFocus();
                 }
@@ -618,8 +620,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             return false;
 //                             first_date.setError("this field required");
 //                             second_date.setError("this field required");
-//                             first_date.setPadding(0, 10, 40, 0);
-//                             second_date.setPadding(0, 10, 40, 0);
+//                             first_date.setPadding(0, 10, 50, 0);
+//                             second_date.setPadding(0, 10, 50, 0);
 
         }
     }
@@ -932,6 +934,22 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                             for(int i = 0; i < data.getClipData().getItemCount(); i++) {
                                 Uri uri = data.getClipData().getItemAt(i).getUri();
                                 Log.i("multiple_select" , String.valueOf(uri));
+                                InputStream imageStream = null;
+                                try {
+                                    imageStream = getContext().getContentResolver().openInputStream(uri);
+                                } catch (FileNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                                System.out.println("imageStream  " + imageStream);
+
+                                Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                                System.out.println("yourSelectedImage  " + yourSelectedImage);
+
+                                FileBitmapBase64 = encodeTobase64(yourSelectedImage);
+                                Log.e("imageBase64", FileBitmapBase64);
+                                fileName = getRealPathFromURI(uri);
+                                // image_view_uploaded_image.setImageBitmap(imageName);
+                                Toast.makeText(getContext(), "selected images" + fileName, Toast.LENGTH_LONG).show();
                             }
                         } else {
 

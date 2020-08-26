@@ -122,7 +122,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
-                            tool_bar_heading.setText("Profile");
+                            tool_bar_heading.setText("View Profile");
                             SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                                     Context.MODE_PRIVATE);
                             userid = sharedPreferences1.getString("userid", "");

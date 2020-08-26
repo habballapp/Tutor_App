@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tutor_app.Adapters.MyAdapter_Subjects;
+import com.example.tutor_app.Dashboard.ui.Student.Profile.SelectClass;
 import com.example.tutor_app.Dashboard.ui.Student.Profile.StateVO;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -43,7 +44,7 @@ import java.util.List;
 
 public class EditClass extends Fragment {
 
-    public EditText edt_school;
+    public EditText edt_school ,session_year;
     public TextView txt;
     public Spinner spinner_class,spinner_subject;
     private StateVO stateVO;
@@ -69,6 +70,7 @@ public class EditClass extends Fragment {
         final View root = inflater.inflate(R.layout.fragment_class__selection, container, false);
 //        rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
+        session_year = root.findViewById(R.id.session_year);
         edt_school = root.findViewById(R.id.edt_school);
         spinner_class = root.findViewById(R.id.spinner_class);
         spinner_subject = root.findViewById(R.id.spinner_subject);
@@ -215,7 +217,7 @@ public class EditClass extends Fragment {
                         profileStudent.putString("class", String.valueOf(classes.get(position)));
                         profileStudent.apply();
                         Log.i("Value:", String.valueOf(String.valueOf(classes.get(position))));
-                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
                         ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     }
@@ -272,6 +274,7 @@ public class EditClass extends Fragment {
 
 
         allFields.add(edt_school);
+        allFields.add(session_year);
 
 
 
@@ -281,6 +284,7 @@ public class EditClass extends Fragment {
             public void onClick(View v) {
 
                 profileStudent.putString("schoolcollege",String.valueOf(edt_school.getText()));
+                profileStudent.putString("session_year",String.valueOf(session_year.getText()));
                 profileStudent.apply();
 
                 SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("CheckField",
@@ -289,77 +293,51 @@ public class EditClass extends Fragment {
                 selectedsubject = sharedPreferences1.getString("selectedsubjects", "");
                 Log.i("SelectedSubject",selectedsubject);
 
+//                List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
+//                for(int j = 0; j < allFields.size(); j++){
+//                    if(TextUtils.isEmpty(allFields.get(j).getText())){
+//                        // EditText was empty
+//                        //   Fields.add(allFields.get(j).getText().toString());
+//                        ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
+//                        for(int i = 0; i < ErrorFields.size(); i++)
+//                        {
+//                            //Fields.add(ErrorFields.get(i).getText().toString());
+//                            EditText currentField = ErrorFields.get(i);
+//                            currentField.setError("this field required");
+//                            ErrorFields.set(i,currentField);
+//                            currentField.requestFocus();
+//                        }
+//
+//                    }
+//                }
 
 
 
-                List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
-                for(int j = 0; j < allFields.size(); j++){
-                    if(TextUtils.isEmpty(allFields.get(j).getText())){
-                        // EditText was empty
-                        //   Fields.add(allFields.get(j).getText().toString());
-                        ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
-                        for(int i = 0; i < ErrorFields.size(); i++)
-                        {
-                            //Fields.add(ErrorFields.get(i).getText().toString());
-                            EditText currentField = ErrorFields.get(i);
-                            currentField.setError("this field required");
-                            ErrorFields.set(i,currentField);
-                            currentField.requestFocus();
-                        }
-
-                    }
-                }
-
-
-
-                    if (ErrorFields.isEmpty() && spinner_class.getSelectedItemPosition() != 0 && !selectedsubject.equals("")) {
 
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_host_fragment, new EditAddress());
                         fragmentTransaction.commit();
 
-                    } else {
-                        Toast.makeText(getContext(), "Please Enter All Fields", Toast.LENGTH_SHORT).show();
                     }
 
 
-                selectedsubject="";
 
 
 
-            }
+
         });
 
         return root;
     }
 
     private void viewProfile() throws JSONException {
-//        edt_school.setEnabled(false);
-////        spinner_class.setSelected();
-//        spinner_class.setClickable(false);
-//        spinner_class.setEnabled(false);
-////        spinner_class.setVisibility(View.GONE);
-//
-//        spinner_subject.setClickable(false);
-//        spinner_subject.setEnabled(false);
-//        spinner_subject.setVisibility(View.GONE);
-
-
-
-//        spinner_class_textview.setVisibility(View.GONE);
-//        spinner_class_textview.setText(response.getString("Class"));
-//        spinner_class_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
-
-//        int selectionPosition1 = adapter_class.getPosition(response.getString("Class"));
-//        spinner_class.setSelection(selectionPosition1);
-
             spinner_subject_textview.setVisibility(View.VISIBLE);
             spinner_subject_textview.setText(response.getString("Subjects"));
             spinner_subject_textview.setTextColor(getResources().getColor(R.color.textcolor));
         txt.setVisibility(View.GONE);
 
         edt_school.setText(response.getString("SchoolCollege"));
-        edt_school.setTextColor(getResources().getColor(R.color.textcolor));
+        session_year.setText(response.getString("ClassYear"));
 
 
 
@@ -374,7 +352,6 @@ public class EditClass extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-
                     FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new EditProfile()).addToBackStack("null");
                     fragmentTransaction.commit();
