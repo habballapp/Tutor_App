@@ -129,16 +129,17 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         navigationExpandableListView.addHeaderModel(headerModel);
 
         Log.i("Institute11", String.valueOf(institute));
-//        if(institute.size() <= 0){
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Profile")
+        if(institute.size() <= 0){
+            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Institute")
             );
-        //}else{
-            //navigationExpandableListView.addHeaderModel(new HeaderModel("Edit Profile")
-            //);
-       // }
+        }else{
+            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Institute")
+            );
 
+        }
         navigationExpandableListView.addHeaderModel(new HeaderModel("Add Job")
         );
+
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));

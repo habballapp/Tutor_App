@@ -59,7 +59,7 @@ public class Qualification extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)     {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_section2, container, false);
         mRelativeZaplon = root.findViewById(R.id.relativeZaplon);
@@ -170,90 +170,30 @@ public class Qualification extends Fragment {
                     profileTeacher_Qualification.putString("YearOfPassing", String.valueOf(edt_passing_year.getText()));
                     profileTeacher_Qualification.putString("gradedivision", String.valueOf(edt_grade.getText()));
 
-                    //
-
-//        if (!(String.valueOf(qualification1.getText()) == null) || !(String.valueOf(subject1.getText()) == null) ||
-//                !(String.valueOf(edt_institute1.getText()) == null) || !(String.valueOf(edt_passing_year1.getText()) == null)
-//                || !(String.valueOf(edt_grade1.getText()) == null)) {
                     profileTeacher_Qualification.putString("Qualification1", String.valueOf(qualification1.getText()));
                     profileTeacher_Qualification.putString("SubjectSpec1", String.valueOf(subject1.getText()));
                     profileTeacher_Qualification.putString("InstituteUniversity1", String.valueOf(edt_institute1.getText()));
                     profileTeacher_Qualification.putString("YearOfPassing1", String.valueOf(edt_passing_year1.getText()));
                     profileTeacher_Qualification.putString("gradedivision1", String.valueOf(edt_grade1.getText()));
-//        }
-//        else{
-//
-//            profileTeacher_Qualification.putString("Qualification1"," ");
-//            profileTeacher_Qualification.putString("SubjectSpec1"," ");
-//            profileTeacher_Qualification.putString("InstituteUniversity1"," ");
-//            profileTeacher_Qualification.putString("YearOfPassing1"," ");
-//            profileTeacher_Qualification.putString("gradedivision1"," ");
-//
-//
-//        }
-//            if (!(String.valueOf(qualification2.getText()) == null) || !(String.valueOf(subject2.getText()) == null) ||
-//                    !(String.valueOf(edt_institute2.getText()) == null) || !(String.valueOf(edt_passing_year2.getText()) == null)
-//                    || !(String.valueOf(edt_grade2.getText()) == null) )
-//            {
-                    //
+
                     profileTeacher_Qualification.putString("Qualification2", String.valueOf(qualification2.getText()));
                     profileTeacher_Qualification.putString("SubjectSpec2", String.valueOf(subject2.getText()));
                     profileTeacher_Qualification.putString("InstituteUniversity2", String.valueOf(edt_institute2.getText()));
                     profileTeacher_Qualification.putString("YearOfPassing2", String.valueOf(edt_passing_year2.getText()));
                     profileTeacher_Qualification.putString("gradedivision2", String.valueOf(edt_grade2.getText()));
-//            }
-//            else
-//            {
-//                profileTeacher_Qualification.putString("Qualification2"," ");
-//                profileTeacher_Qualification.putString("SubjectSpec2"," ");
-//                profileTeacher_Qualification.putString("InstituteUniversity2"," ");
-//                profileTeacher_Qualification.putString("YearOfPassing2"," ");
-//                profileTeacher_Qualification.putString("gradedivision2"," ");
-//            }
 //
-//
-//        if (!(String.valueOf(qualification3.getText()) == null) || !(String.valueOf(subject3.getText()) == null) ||
-//                !(String.valueOf(edt_institute3.getText()) == null) || !(String.valueOf(edt_passing_year3.getText()) == null)
-//                || !(String.valueOf(edt_grade3.getText()) == null) )
-//        {
-                    //
                     profileTeacher_Qualification.putString("Qualification3", String.valueOf(qualification3.getText()));
                     profileTeacher_Qualification.putString("SubjectSpec3", String.valueOf(subject3.getText()));
                     profileTeacher_Qualification.putString("InstituteUniversity3", String.valueOf(edt_institute3.getText()));
                     profileTeacher_Qualification.putString("YearOfPassing3", String.valueOf(edt_passing_year3.getText()));
                     profileTeacher_Qualification.putString("gradedivision3", String.valueOf(edt_grade3.getText()));
-//        }
-//        else{
-//
-//            profileTeacher_Qualification.putString("Qualification3"," ");
-//            profileTeacher_Qualification.putString("SubjectSpec3"," ");
-//            profileTeacher_Qualification.putString("InstituteUniversity3"," ");
-//            profileTeacher_Qualification.putString("YearOfPassing3"," ");
-//            profileTeacher_Qualification.putString("gradedivision3"," ");
-//
-//
-//        }
-//        if (!(String.valueOf(qualification4.getText()) == null) || !(String.valueOf(subject4.getText()) == null) ||
-//                !(String.valueOf(edt_institute4.getText()) == null) || !(String.valueOf(edt_passing_year4.getText()) == null)
-//                || !(String.valueOf(edt_grade4.getText()) == null)
-//        ) {
 
                     profileTeacher_Qualification.putString("Qualification4", String.valueOf(qualification4.getText()));
                     profileTeacher_Qualification.putString("SubjectSpec4", String.valueOf(subject4.getText()));
                     profileTeacher_Qualification.putString("InstituteUniversity4", String.valueOf(edt_institute4.getText()));
                     profileTeacher_Qualification.putString("YearOfPassing4", String.valueOf(edt_passing_year4.getText()));
                     profileTeacher_Qualification.putString("gradedivision4", String.valueOf(edt_grade4.getText()));
-//
-//        }
-//        else {
-//
-//            profileTeacher_Qualification.putString("Qualification4", " ");
-//            profileTeacher_Qualification.putString("SubjectSpec4"," ");
-//            profileTeacher_Qualification.putString("InstituteUniversity4"," ");
-//            profileTeacher_Qualification.putString("YearOfPassing4"," ");
-//            profileTeacher_Qualification.putString("gradedivision4"," ");
-//
-//
+
                     profileTeacher_Qualification.apply();
 
 
@@ -354,7 +294,6 @@ public class Qualification extends Fragment {
             public void onResponse(JSONObject response) {
                 Log.i("ViewProfile", String.valueOf(response));
                 loader.hideLoader();
-
                 try {
                     JSONArray qualification_teacher = response.getJSONArray("Qualification");
 //                    for(int i = 0; i < qualification_teacher.length(); i++) {
@@ -363,11 +302,22 @@ public class Qualification extends Fragment {
                         mRelativeToSlide.setVisibility(View.VISIBLE);
 
                         Log.i("qualification_debug", qualification_teacher.getJSONObject(0).getString("Qualification"));
+
                         qualification.setText(qualification_teacher.getJSONObject(0).getString("Qualification"));
                         subject.setText(qualification_teacher.getJSONObject(0).getString("SubjectSpecialization"));
                         edt_institute.setText(qualification_teacher.getJSONObject(0).getString("InstituteUniversity"));
                         edt_passing_year.setText(qualification_teacher.getJSONObject(0).getString("YearOfPassing"));
                         edt_grade.setText(qualification_teacher.getJSONObject(0).getString("GradeDivision"));
+                        qualification.setEnabled(false);
+                        qualification.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        subject.setEnabled(false);
+                        subject.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        edt_institute.setEnabled(false);
+                        edt_institute.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        edt_passing_year.setEnabled(false);
+                        edt_passing_year.setTextColor(getResources().getColor(R.color.text_color_selection));
+                        edt_grade.setEnabled(false);
+                        edt_grade.setTextColor(getResources().getColor(R.color.text_color_selection));
 
                         if (qualification_teacher.length() > 1) {
                             mRelativeToSlide1.setVisibility(View.VISIBLE);
@@ -378,6 +328,16 @@ public class Qualification extends Fragment {
                             edt_institute1.setText(qualification_teacher.getJSONObject(1).getString("InstituteUniversity"));
                             edt_passing_year1.setText(qualification_teacher.getJSONObject(1).getString("YearOfPassing"));
                             edt_grade1.setText(qualification_teacher.getJSONObject(1).getString("GradeDivision"));
+                            qualification1.setEnabled(false);
+                            qualification1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            subject1.setEnabled(false);
+                            subject1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            edt_institute1.setEnabled(false);
+                            edt_institute1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            edt_passing_year1.setEnabled(false);
+                            edt_passing_year1.setTextColor(getResources().getColor(R.color.text_color_selection));
+                            edt_grade1.setEnabled(false);
+                            edt_grade1.setTextColor(getResources().getColor(R.color.text_color_selection));
 
                             if (qualification_teacher.length() > 2) {
                                 mRelativeToSlide2.setVisibility(View.VISIBLE);
@@ -388,6 +348,14 @@ public class Qualification extends Fragment {
                                 edt_institute2.setText(qualification_teacher.getJSONObject(2).getString("InstituteUniversity"));
                                 edt_passing_year2.setText(qualification_teacher.getJSONObject(2).getString("YearOfPassing"));
                                 edt_grade2.setText(qualification_teacher.getJSONObject(2).getString("GradeDivision"));
+                                subject2.setEnabled(false);
+                                subject2.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                edt_institute2.setEnabled(false);
+                                edt_institute2.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                edt_passing_year2.setEnabled(false);
+                                edt_passing_year2.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                edt_grade2.setEnabled(false);
+                                edt_grade2.setTextColor(getResources().getColor(R.color.text_color_selection));
 
                                 if (qualification_teacher.length() > 3) {
                                     mRelativeToSlide3.setVisibility(View.VISIBLE);
@@ -398,6 +366,16 @@ public class Qualification extends Fragment {
                                     edt_institute3.setText(qualification_teacher.getJSONObject(3).getString("InstituteUniversity"));
                                     edt_passing_year3.setText(qualification_teacher.getJSONObject(3).getString("YearOfPassing"));
                                     edt_grade3.setText(qualification_teacher.getJSONObject(3).getString("GradeDivision"));
+                                    qualification3.setEnabled(false);
+                                    qualification3.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                    subject3.setEnabled(false);
+                                    subject3.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                    edt_institute3.setEnabled(false);
+                                    edt_institute3.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                    edt_passing_year3.setEnabled(false);
+                                    edt_passing_year3.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                    edt_grade3.setEnabled(false);
+                                    edt_grade3.setTextColor(getResources().getColor(R.color.text_color_selection));
 
                                     if (qualification_teacher.length() > 4) {
                                         mRelativeToSlide4.setVisibility(View.VISIBLE);
@@ -408,6 +386,16 @@ public class Qualification extends Fragment {
                                         edt_institute4.setText(qualification_teacher.getJSONObject(4).getString("InstituteUniversity"));
                                         edt_passing_year4.setText(qualification_teacher.getJSONObject(4).getString("YearOfPassing"));
                                         edt_grade4.setText(qualification_teacher.getJSONObject(4).getString("GradeDivision"));
+                                        qualification4.setEnabled(false);
+                                        qualification4.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                        subject4.setEnabled(false);
+                                        subject4.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                        edt_institute4.setEnabled(false);
+                                        edt_institute4.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                        edt_passing_year4.setEnabled(false);
+                                        edt_passing_year4.setTextColor(getResources().getColor(R.color.text_color_selection));
+                                        edt_grade4.setEnabled(false);
+                                        edt_grade4.setTextColor(getResources().getColor(R.color.text_color_selection));
                                     }
 
 
@@ -439,62 +427,6 @@ public class Qualification extends Fragment {
         Volley.newRequestQueue(getContext()).add(sr);
     }
 
-    private void checkFields() {
-
-
-        qualification.setEnabled(false);
-        qualification.setTextColor(getResources().getColor(R.color.text_color_selection));
-        subject.setEnabled(false);
-        subject.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_institute.setEnabled(false);
-        edt_institute.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_passing_year.setEnabled(false);
-        edt_passing_year.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_grade.setEnabled(false);
-        edt_grade.setTextColor(getResources().getColor(R.color.text_color_selection));
-        qualification1.setEnabled(false);
-        qualification1.setTextColor(getResources().getColor(R.color.text_color_selection));
-        subject1.setEnabled(false);
-        subject1.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_institute1.setEnabled(false);
-        edt_institute1.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_passing_year1.setEnabled(false);
-        edt_passing_year1.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_grade1.setEnabled(false);
-        edt_grade1.setTextColor(getResources().getColor(R.color.text_color_selection));
-        qualification2.setEnabled(false);
-        qualification2.setTextColor(getResources().getColor(R.color.text_color_selection));
-        subject2.setEnabled(false);
-        subject2.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_institute2.setEnabled(false);
-        edt_institute2.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_passing_year2.setEnabled(false);
-        edt_passing_year2.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_grade2.setEnabled(false);
-        edt_grade2.setTextColor(getResources().getColor(R.color.text_color_selection));
-        qualification3.setEnabled(false);
-        qualification3.setTextColor(getResources().getColor(R.color.text_color_selection));
-        subject3.setEnabled(false);
-        subject3.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_institute3.setEnabled(false);
-        edt_institute3.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_passing_year3.setEnabled(false);
-        edt_passing_year3.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_grade3.setEnabled(false);
-        edt_grade3.setTextColor(getResources().getColor(R.color.text_color_selection));
-        qualification4.setEnabled(false);
-        qualification4.setTextColor(getResources().getColor(R.color.text_color_selection));
-        subject4.setEnabled(false);
-        subject4.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_institute4.setEnabled(false);
-        edt_institute4.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_passing_year4.setEnabled(false);
-        edt_passing_year4.setTextColor(getResources().getColor(R.color.text_color_selection));
-        edt_grade4.setEnabled(false);
-        edt_grade4.setTextColor(getResources().getColor(R.color.text_color_selection));
-
-
-    }
 
     @Override
     public void onResume() {

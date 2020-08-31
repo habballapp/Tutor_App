@@ -75,6 +75,7 @@ public class AreaFragment extends Fragment {
         rl_recycler = root.findViewById(R.id.rv_fragment_payments);
         btn_area_add = root.findViewById(R.id.btn_area_add);
         text_area_selected = root.findViewById(R.id.text_area_selected);
+        text_area_selected.setVisibility(View.GONE);
         edt_area = root.findViewById(R.id.edt_area);
         back = root.findViewById(R.id.back);
         final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData_AreaFragment",
@@ -222,8 +223,6 @@ public class AreaFragment extends Fragment {
         loader.showLoader();
         btn_area_add.setVisibility(View.GONE);
         back.setVisibility(View.GONE);
-        spinr_area.setVisibility(View.GONE);
-        text_area_selected.setVisibility(View.VISIBLE);
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -252,6 +251,7 @@ public class AreaFragment extends Fragment {
                             text_area_selected.setText(id);
                             text_area_selected.setTextColor(getResources().getColor(R.color.text_color_selection));
                             text_area_selected.setEnabled(false);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -265,7 +265,8 @@ public class AreaFragment extends Fragment {
                 try {
                     JSONArray area = response.getJSONArray("AreaOfInterest");
                     Log.i("Area22", String.valueOf(area));
-
+                    text_area_selected.setVisibility(View.VISIBLE);
+                    edt_area.setVisibility(View.GONE);
                     layoutManager = new LinearLayoutManager(getContext());
 
                     rl_recycler.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -133,7 +133,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             final SharedPreferences.Editor profileTeacher = personal_profile.edit();
                             profileTeacher.putString("UserId",userid);
                             profileTeacher.apply();
-
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher()).addToBackStack("tag");

@@ -67,6 +67,7 @@
                 android:layout_below="@+id/rl_recycler"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/editbox"
+                android:visibility="visible"
 
                 >
                 <Spinner
@@ -87,27 +88,26 @@
                     android:src="@drawable/ic_arrow_drop_down_black_24dp"
                     android:theme="@style/Spinner" />
             </RelativeLayout>
-
             <TextView
                 android:id="@+id/text_area_selected"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:background="@null"
+                android:background="@drawable/editbox"
                 android:gravity="center_vertical"
                 android:padding="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/rl_recycler"
+                android:layout_below="@id/rl_recycler"
                 android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
                 android:paddingStart="20dp"
                 android:textColor="@color/textcolor"
-                android:visibility="gone"
-              />
+                android:visibility="visible"
+                />
 
             <RelativeLayout
                 android:id="@+id/btn_area_add"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_below="@+id/edt_area"
+                android:layout_below="@+id/text_area_selected"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal">
@@ -143,24 +143,21 @@
                 android:background="@drawable/btn_round"
                 android:orientation="horizontal"
                 android:padding="5dp"
-                android:paddingStart="30dp"
-                android:paddingLeft="30dp">
+                >
 
                 <TextView
                     android:id="@+id/btn_signin_next_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="NEXT"
+                    android:gravity="center"
                     android:theme="@style/ButtonTextRound" />
 
                 <ImageView
                     android:id="@+id/btn_signin_image_next"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:padding="5dp"
                     android:src="@drawable/ic_arrow_forward_black_24dp" />
 

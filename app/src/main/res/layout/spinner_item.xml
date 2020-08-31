@@ -38,6 +38,6 @@
         android:paddingLeft="30dp"
         android:hint="@string/subject"
         android:theme="@style/EditText"
-        android:autofillHints="" />
+    />
 
 </RelativeLayout>

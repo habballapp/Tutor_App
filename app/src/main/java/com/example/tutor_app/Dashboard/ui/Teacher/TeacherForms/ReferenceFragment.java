@@ -318,6 +318,7 @@ public class ReferenceFragment extends Fragment {
         JSONObject map = new JSONObject();
         try {
             map.put("TutorId", userid);
+            Log.i("mapReference" , String.valueOf(map));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -415,8 +416,11 @@ public class ReferenceFragment extends Fragment {
         if (!edt_pref_subject.equals(""))
             subArray.put(edt_pref_subject);
 
-        List<String> classTeach = gson.fromJson(edt_classes_track, type);
-        JSONArray jsonArray1 = new JSONArray(classTeach);
+//        List<String> classTeach = gson.fromJson(edt_classes_track, type);
+        JSONArray jsonArray1 = new JSONArray();
+        if(!edt_classes_track.equals("")){
+            jsonArray1.put(edt_classes_track);
+        }
         map.put("classtoteach", jsonArray1);
 
 //        List<String> prefArea = gson.fromJson(are, type);
@@ -492,23 +496,16 @@ public class ReferenceFragment extends Fragment {
             passingArray.put(edt_passing_year3);
         if (!edt_passing_year4.equals(""))
             passingArray.put(edt_passing_year4);
-
         map.put("qualification", qualificationArray);
         map.put("SubjectSpecialization", subspecArray);
         map.put("edt_grade", gradeArray);
         map.put("edt_passing_year", passingArray);
         map.put("prefsubject", edt_pref_subject);
         map.put("OrganizationName", OrganizationName);
-
-
         Log.i("Qualification", String.valueOf(qualificationArray));
         Log.i("Subjects", String.valueOf(subspecArray));
         Log.i("Grade", String.valueOf(gradeArray));
         Log.i("Passingyear", String.valueOf(passingArray));
-
-
-//        map.put("Regno", "1");
-//        map.put("secretcode", "2");
         map.put("age", edt_fname);
         map.put("age", edt_age);
         map.put("fullname", edt_fullname);
@@ -526,22 +523,18 @@ public class ReferenceFragment extends Fragment {
         map.put("permanentadd", edt_permanent_address);
         map.put("phoneno1", edt_phone1);
         map.put("phoneno2", edt_phone2);
-        map.put("phoneno3", "");
-        map.put("fbid", "");
+        map.put("phoneno3", "01200323232");
+        map.put("fbid", "asdsadsa");
         map.put("IfInstituteOther", catogery);
         map.put("classtoteach", edt_classes_track);
         map.put("TotalExperience", experience_year);
-
-
         map.put("JobEntitlement", edt_etitlement);
         map.put("OrganizationName", edt_organization);
         map.put("FromTo", edt_from);
         map.put("Till", edt_till);
-
         map.put("dateofsubmission", date_of_submission);
         map.put("personalconveyance", spinner_conveyance_txt);
         map.put("teacherbyprofession", spinner_profession);
-        map.put("phoneno3", "");
         map.put("ref1Name", name.getText());
         map.put("ref1Relation", edt_relation.getText());
         map.put("ref1Occupation", edt_occupation_ref.getText());
@@ -553,16 +546,14 @@ public class ReferenceFragment extends Fragment {
         map.put("ref2Relation", edt_relation1.getText());
         map.put("ref2Occupation", edt_occupation1.getText());
         map.put("ref2TelephoneNo", edt_telephone1.getText());
-
-
+        map.put("tutorimageBase64" , imageBitmapBase64);
+        map.put("documents" , imageBitmapBase64);
         Log.i("mapAddress", String.valueOf(map));
-        map.put("tutorimageBase64", imageBitmapBase64);
-
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url_Tprofile, map, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("AddProfile", String.valueOf(response));
+                Log.i("teacherProfile_url", String.valueOf(response));
                 loader.hideLoader();
                 try {
                     if (!response.getString("userid").equals("null"))

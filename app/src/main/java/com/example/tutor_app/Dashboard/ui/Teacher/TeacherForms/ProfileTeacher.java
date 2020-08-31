@@ -79,7 +79,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private EditText edt_fullname, edt_fname, edt_mtongue, edt_cnic, edt_present_address,
             edt_permanent_address, edt_nationality, edt_religion, edt_phone1, edt_phone2,
             edt_email, edt_conveyance_txt, edt_age, experience_year;
-    private String selectedFileType, imageName ,fileName;
+    private String selectedFileType, imageName, fileName;
     private String imageBitmapBase64 = "";
     private TextView FileName;
     private String FileBitmapBase64 = "";
@@ -114,7 +114,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ((AppCompatActivity) getActivity()).getSupportActionBar();
         tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
         //multiple files setAdapter
         //  RecyclerView recyclerView = root.findViewById(R.id.file_list);
@@ -255,13 +255,15 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-
                     profileTeacher.putString("gender", String.valueOf(gender.get(position)));
+                    Log.i("genderOfteacher" , String.valueOf(gender));
+
                     if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
                         ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     } else {
+
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
                         ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
@@ -304,6 +306,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     profileTeacher.putString("IfInstituteOther", String.valueOf(catogery.get(position)));
+                    profileTeacher.apply();
                     if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
@@ -362,6 +365,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     profileTeacher.putString("teacherbyprofession", String.valueOf(paths.get(position)));
+                    profileTeacher.apply();
                     if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
@@ -496,22 +500,21 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 //                SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
 //                        Context.MODE_PRIVATE);
 //                userid = sharedPreferences1.getString("UserId", "");
-                SharedPreferences  sharedPreferences1 = getContext().getSharedPreferences("LoginData",
+                SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
                         Context.MODE_PRIVATE);
                 userid = sharedPreferences1.getString("userid", "");
-                if (!userid.equals("")) {
-                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
-                    fragmentTransaction.commit();
-                } else {
+//                if (!userid.equals("")) {
+//                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                    fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
+//                    fragmentTransaction.commit();
+//                } else {
+//
+//                    Log.i("ID", userid);
+//                    //Teacher Id:
+//                    Log.i("TeacherID", userid);
 
-                    Log.i("ID", userid);
-                    //Teacher Id:
-                    Log.i("TeacherID", userid);
-
-                   if (checkFields()) {
-                        if (imageBitmapBase64.equals("") && FileBitmapBase64.equals("")) {
-
+                    if (checkFields() && !userid.equals("")) {
+                        if (!imageBitmapBase64.equals("")) {
                             fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
                             fragmentTransaction.commit();
@@ -521,7 +524,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     }
                 }
 
-            }
+
 
 //
 
@@ -536,6 +539,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileTeacher = personal_profile.edit();
+        Log.i("profileTeacher" , String.valueOf(profileTeacher));
         List<EditText> ErrorFields = new ArrayList<EditText>();//empty Edit text arraylist
         for (int j = 0; j < allFields.size(); j++) {
             if (TextUtils.isEmpty(allFields.get(j).getText())) {
@@ -928,12 +932,12 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SELECT_FILE: {
-                if(resultCode == RESULT_OK ) {
-                    if(null != data) { // checking empty selection
-                        if(null != data.getClipData()) { // checking multiple selection or not
-                            for(int i = 0; i < data.getClipData().getItemCount(); i++) {
+                if (resultCode == RESULT_OK) {
+                    if (null != data) { // checking empty selection
+                        if (null != data.getClipData()) { // checking multiple selection or not
+                            for (int i = 0; i < data.getClipData().getItemCount(); i++) {
                                 Uri uri = data.getClipData().getItemAt(i).getUri();
-                                Log.i("multiple_select" , String.valueOf(uri));
+                                Log.i("multiple_select", String.valueOf(uri));
                                 InputStream imageStream = null;
                                 try {
                                     imageStream = getContext().getContentResolver().openInputStream(uri);

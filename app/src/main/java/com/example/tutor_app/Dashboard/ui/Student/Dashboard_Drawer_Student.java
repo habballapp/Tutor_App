@@ -77,7 +77,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
         final NavigationView navigationView = findViewById(R.id.nav_view);
         tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
         tool_bar_heading.setText("Dashboard");
-        Log.i("12487654", "in dashboard");
 
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
@@ -116,8 +115,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
             );
         }
         else{
-//            navigationExpandableListView.addHeaderModel(new HeaderModel("Edit Profile")
-//            );
             HeaderModel headerModel1 = new HeaderModel("Edit Profile");
             for (int i = 0; i < childs.size(); i++)
                 headerModel1.addChildModel(new ChildModel(childs.get(i)));
@@ -144,7 +141,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         }
-                        else if (id == 1) {
+                        else if (id == 1 ) {
                             tool_bar_heading.setText("View Profile");
                             SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);

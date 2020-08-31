@@ -10,14 +10,15 @@
     <ScrollView
         android:id="@+id/dashboard"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp">
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp">
             <RelativeLayout
                 android:id="@+id/btn_search"
                 android:layout_width="match_parent"
@@ -46,13 +47,39 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/spinner_chlds"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@id/btn_search"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/editbox"
+                >
 
+                <Spinner
+                    android:id="@+id/sp_child_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:dropDownWidth="match_parent"
+                    android:popupBackground="@drawable/popupbackground" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@id/sp_child_list"
+                    android:layout_alignEnd="@+id/sp_child_list"
+                    android:layout_alignRight="@+id/sp_child_list"
+                    android:layout_alignBottom="@+id/sp_child_list"
+                    android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:theme="@style/Spinner" />
+            </RelativeLayout>
             <LinearLayout
                 android:id="@+id/ln_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_search"
-                android:layout_marginTop="30dp">
+                android:layout_below="@+id/spinner_chlds"
+                android:layout_marginTop="20dp">
 
                 <LinearLayout
                     android:id="@+id/ln_demo"
@@ -66,23 +93,20 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:text="DEMO: "
+                        android:text="Demo requested: "
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
                     <TextView
+                        android:id="@+id/demo_request_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:text="50"
+                        android:text=""
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom" />
 
                 </LinearLayout>
 
@@ -110,16 +134,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:text="TEACHER: "
+                        android:text="Demo scheduled: "
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
                     <TextView
+                        android:id="@+id/demo_scheduled_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="15dp"
-                        android:text="20"
+                        android:text=""
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
@@ -150,16 +175,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:text="FEE: "
+                        android:text="Demo confirm : "
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
                     <TextView
+                        android:id="@+id/demo_confrm_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:text="5000"
+                        android:text=""
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
@@ -189,16 +215,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:text="NUMBER OF SUBJECT: "
+                        android:text="Demo rejected: "
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
                     <TextView
+                        android:id="@+id/demo_recject_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:text="5"
+                        android:text=""
                         android:textColor="@color/white_color"
                         android:theme="@style/TextNumber" />
 
@@ -206,7 +233,47 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/total_salary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ln_subjects"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
 
+                >
+
+                <LinearLayout
+                    android:id="@+id/txt_total_salary"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/pink_layout_round"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:text="Total salary: "
+                        android:textColor="@color/white_color"
+                        android:theme="@style/TextNumber" />
+
+                    <TextView
+                        android:id="@+id/total_salary_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@color/white_color"
+                        android:theme="@style/TextNumber" />
+
+
+                </LinearLayout>
+            </LinearLayout>
         </RelativeLayout>
 
     </ScrollView>
