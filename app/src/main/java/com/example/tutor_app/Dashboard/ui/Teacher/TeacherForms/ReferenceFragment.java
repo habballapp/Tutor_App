@@ -69,7 +69,7 @@ public class ReferenceFragment extends Fragment {
     //profile
     String edt_fullname, edt_fname, edt_mtongue, edt_occupation, edt_cnic,
             edt_permanent_address, edt_dob, edt_nationality, edt_religion, edt_phone1, edt_phone2,
-            edt_email, edt_age, imageBitmapBase64, gender, conveyance, OrganizationName, present_address, experience_year;
+            edt_email, edt_age, imageBitmapBase64, documents, gender, conveyance, OrganizationName, present_address, experience_year;
     String spinner_conveyance_txt, spinner_profession, date_of_submission, catogery;
     //Qualification
     String qualification, edt_institute, edt_passing_year, edt_grade, SubjectSpecialization, SubjectSpecialization1,
@@ -145,6 +145,7 @@ public class ReferenceFragment extends Fragment {
         spinner_conveyance_txt = sharedPreferences.getString("personalconveyance", "");
         spinner_profession = sharedPreferences.getString("teacherbyprofession", "");
         imageBitmapBase64 = sharedPreferences.getString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
+        documents = sharedPreferences.getString("documents", "");
         edt_etitlement = sharedPreferences.getString("jobtitle", "");
         edt_organization = sharedPreferences.getString("orgname", "");
         edt_from = sharedPreferences.getString("fromto", "");
@@ -546,8 +547,8 @@ public class ReferenceFragment extends Fragment {
         map.put("ref2Relation", edt_relation1.getText());
         map.put("ref2Occupation", edt_occupation1.getText());
         map.put("ref2TelephoneNo", edt_telephone1.getText());
+        map.put("documents" , documents);
         map.put("tutorimageBase64" , imageBitmapBase64);
-        map.put("documents" , imageBitmapBase64);
         Log.i("mapAddress", String.valueOf(map));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url_Tprofile, map, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)

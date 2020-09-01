@@ -122,26 +122,22 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 //        });
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
 
-        HeaderModel headerModel = new HeaderModel("View Job");
-        for (int i = 0; i < institute.size(); i++)
-            headerModel.addChildModel(new ChildModel(institute.get(i)));
-        navigationExpandableListView.addHeaderModel(headerModel);
 
         Log.i("Institute11", String.valueOf(institute));
-        if(institute.size() <= 0){
+        if(institute.size() <=1){
             navigationExpandableListView.addHeaderModel(new HeaderModel("Add Institute")
             );
         }else{
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Institute")
+            HeaderModel headerModel = new HeaderModel("View Job");
+            for (int i = 0; i < institute.size(); i++)
+                headerModel.addChildModel(new ChildModel(institute.get(i)));
+            navigationExpandableListView.addHeaderModel(headerModel);
+            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Job")
             );
-
         }
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Add Job")
-        );
 
-
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
 
         navigationExpandableListView.build()
@@ -151,15 +147,26 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (id == 0) {
+
                             tool_bar_heading.setText("Dashboard");
                             Log.i("Dashboard", "Dashboard Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
-                        } else if (id == 1) {
+                        }
+                        else if (id == 1) {
+                            tool_bar_heading.setText("Search");
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteSearchFragment());
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
 
                         } else if (id == 2) {
+
+
+                        } else if (id == 3 && institute.size()<=1) {
                             tool_bar_heading.setText("Add Profile");
                             SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
@@ -180,7 +187,8 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
                         }
-                        else if (id == 3) {
+
+                        else if (id == 3){
                             tool_bar_heading.setText("Add Job");
                             SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
@@ -203,16 +211,9 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
                         }
                         else if (id == 4) {
-                            tool_bar_heading.setText("Search");
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteSearchFragment());
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
-
-                        } else if (id == 5) {
                             logoutUser();
                         }
+
 
 
                         return false;
@@ -222,7 +223,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                     @Override
                     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                         navigationExpandableListView.setSelected(groupPosition, childPosition);
-                        if (groupPosition == 1) {
+                        if (groupPosition == 2) {
                             tool_bar_heading.setText("View Job");
                             String selectedInstitute = institute.get(childPosition).replaceAll("\t\t\t", "");
                             String selectedInstituteId = intituteMap.get(selectedInstitute);

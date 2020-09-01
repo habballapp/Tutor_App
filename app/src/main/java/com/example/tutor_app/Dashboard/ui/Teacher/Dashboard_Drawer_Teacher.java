@@ -37,6 +37,7 @@ import com.example.tutor_app.R;
 import com.example.tutor_app.Session;
 import com.example.tutor_app.Signin.SignIn;
 import com.google.android.material.navigation.NavigationView;
+import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
 import com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView;
 
@@ -87,26 +88,20 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         drawer.setDrawerListener(toggle);
 
         navigationExpandableListView = findViewById(R.id.expandable_navigation);
-//        footer_item_1 = findViewById(R.id.footer_item_1);
-//        footer_item_1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                drawer.closeDrawer(GravityCompat.START);
-//
-//            }
-//        });
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
-        navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
-
-        );
-        navigationExpandableListView.addHeaderModel(new HeaderModel(" Add Profile")
-        );
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
 
+        if(userid.equals("null")){
+            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Profile")
+            );
+        }
+        else{
+            navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
+
+            );
+        }
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
         navigationExpandableListView.build()
                 .addOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                     @Override
@@ -122,6 +117,15 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
                         }
                         else if (id == 1) {
+
+                            tool_bar_heading.setText("Search");
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction.add(R.id.nav_host_fragment, new TeacherSearchFragment()).addToBackStack("tag");
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
+
+                        }
+                        else if (id == 2) {
                             tool_bar_heading.setText("View Profile");
                             SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                                     Context.MODE_PRIVATE);
@@ -140,7 +144,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
                         }
-                        else if (id == 2) {
+                        else if (id == 3) {
                             tool_bar_heading.setText("Profile");
                             SharedPreferences personal_profile = getSharedPreferences("ViewData",
                                     Context.MODE_PRIVATE);
@@ -149,14 +153,6 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             profileTeacher.apply();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
-
-                        } else if (id == 3) {
-
-                            tool_bar_heading.setText("Search");
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.add(R.id.nav_host_fragment, new TeacherSearchFragment()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 

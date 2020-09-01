@@ -74,7 +74,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    private RelativeLayout btn_profile_next, btn_profile_upload, back, btn_upload_files;
+    private RelativeLayout btn_profile_next, btn_profile_upload, back, btn_upload_files ,btnView_next;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_fullname, edt_fname, edt_mtongue, edt_cnic, edt_present_address,
             edt_permanent_address, edt_nationality, edt_religion, edt_phone1, edt_phone2,
@@ -103,6 +103,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
     private TextView spinner_category_textview, spinner_conveyance_textview, spinner_gender_textview, teacher_profession_textview;
     private ImageView image_view_uploaded_image;
     final List<EditText> allFields = new ArrayList<EditText>();
+    final List<String> stringBase64List = new ArrayList<>();
     //multiple files
     private final static int FILE_REQUEST_CODE = 1;
     private MultipleFilesAdapter fileListAdapter;
@@ -119,6 +120,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         //multiple files setAdapter
         //  RecyclerView recyclerView = root.findViewById(R.id.file_list);
         btn_upload_files = root.findViewById(R.id.btn_upload_files);
+        btnView_next= root.findViewById(R.id.btnView_next);
+        btnView_next.setVisibility(View.GONE);
         // fileListAdapter = new MultipleFilesAdapter(mediaFiles);
         // recyclerView.setAdapter(fileListAdapter);
 
@@ -256,7 +259,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                     profileTeacher.putString("gender", String.valueOf(gender.get(position)));
-                    Log.i("genderOfteacher" , String.valueOf(gender));
+                    Log.i("genderOfteacher", String.valueOf(gender));
 
                     if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
@@ -513,21 +516,28 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 //                    //Teacher Id:
 //                    Log.i("TeacherID", userid);
 
-                    if (checkFields() && !userid.equals("")) {
-                        if (!imageBitmapBase64.equals("")) {
-                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                        } else {
-                            Toast.makeText(getContext(), "Please Upload Image", Toast.LENGTH_SHORT).show();
-                        }
+                if (checkFields() && !userid.equals("")) {
+                    if (!imageBitmapBase64.equals("")) {
+                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
+                        fragmentTransaction.commit();
+                    } else {
+                        Toast.makeText(getContext(), "Please Upload Image", Toast.LENGTH_SHORT).show();
                     }
                 }
-
+            }
 
 
 //
 
+        });
+        btnView_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, new Qualification()).addToBackStack("tag");
+                fragmentTransaction.commit();
+            }
         });
 
 
@@ -539,7 +549,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         final SharedPreferences personal_profile = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         final SharedPreferences.Editor profileTeacher = personal_profile.edit();
-        Log.i("profileTeacher" , String.valueOf(profileTeacher));
+        Log.i("profileTeacher", String.valueOf(profileTeacher));
         List<EditText> ErrorFields = new ArrayList<EditText>();//empty Edit text arraylist
         for (int j = 0; j < allFields.size(); j++) {
             if (TextUtils.isEmpty(allFields.get(j).getText())) {
@@ -580,6 +590,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             profileTeacher.putString("phoneno2", String.valueOf(edt_phone2.getText()));
             profileTeacher.putString("email", String.valueOf(edt_email.getText()));
             profileTeacher.putString("experienceYear", String.valueOf(experience_year.getText()));
+            profileTeacher.putString("documents", String.valueOf(stringBase64List));
             profileTeacher.putString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
             profileTeacher.apply();
 
@@ -726,6 +737,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
     private void viewProfile() {
         back.setVisibility(View.GONE);
+        btnView_next.setVisibility(View.VISIBLE);
+        btn_profile_next.setVisibility(View.GONE);
         btn_profile_upload.setVisibility(View.GONE);
         btn_upload_files.setVisibility(View.GONE);
         JSONObject map = new JSONObject();
@@ -953,7 +966,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                                 Log.e("imageBase64", FileBitmapBase64);
                                 fileName = getRealPathFromURI(uri);
                                 // image_view_uploaded_image.setImageBitmap(imageName);
-                                Toast.makeText(getContext(), "selected images" + fileName, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), "selected files" + fileName, Toast.LENGTH_LONG).show();
+                                stringBase64List.add("data:image/png;base64," + FileBitmapBase64);
                             }
                         } else {
 

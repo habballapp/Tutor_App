@@ -565,7 +565,34 @@
                         android:src="@drawable/ic_arrow_forward_black_24dp" />
 
                 </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/btnView_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/ll_files"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/btn_round"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
+                    <TextView
+                        android:id="@+id/btn_view_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Next"
+                        android:theme="@style/ButtonTextRound" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_arrow_forward_black_24dp" />
+
+                </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/back"
                     android:layout_width="match_parent"

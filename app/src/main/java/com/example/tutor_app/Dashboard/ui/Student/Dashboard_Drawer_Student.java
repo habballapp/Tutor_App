@@ -103,11 +103,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
-        HeaderModel headerModel = new HeaderModel("View Profile");
-        for (int i = 0; i < childs.size(); i++)
-            headerModel.addChildModel(new ChildModel(childs.get(i)));
-        navigationExpandableListView.addHeaderModel(headerModel);
-
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
         Log.i("Child11", String.valueOf(childs));
 
         if(childs.size() <= 0){
@@ -115,15 +111,20 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
             );
         }
         else{
+            HeaderModel headerModel = new HeaderModel("View Profile");
+            for (int i = 0; i < childs.size(); i++)
+                headerModel.addChildModel(new ChildModel(childs.get(i)));
+            navigationExpandableListView.addHeaderModel(headerModel);
             HeaderModel headerModel1 = new HeaderModel("Edit Profile");
             for (int i = 0; i < childs.size(); i++)
                 headerModel1.addChildModel(new ChildModel(childs.get(i)));
             navigationExpandableListView.addHeaderModel(headerModel1);
+            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Child")
+            );
         }
 
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Add Child")
-        );
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
+
+
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
 
         navigationExpandableListView.build()
@@ -131,8 +132,6 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                     @Override
                     public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                         navigationExpandableListView.setSelected(groupPosition);
-
-
                         if (id == 0) {
                             Log.i("Dashboard", "Dashboard Activity");
                             tool_bar_heading.setText("Dashboard");
@@ -141,7 +140,16 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         }
-                        else if (id == 1 ) {
+                        else if (id == 1) {
+                            tool_bar_heading.setText("Search");
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                            fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch()).addToBackStack("tag");
+                            fragmentTransaction.commit();
+                            drawer.closeDrawer(GravityCompat.START);
+
+                        }
+                        else if (id == 2 ) {
                             tool_bar_heading.setText("View Profile");
                             SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
@@ -163,11 +171,11 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 //                            drawer.closeDrawer(GravityCompat.START);
 
                         }
-                        else if (id == 2) {
+                        else if (id == 3) {
 
 //                            Toast.makeText(getApplicationContext(), "Edit Profile", Toast.LENGTH_LONG).show();
 
-                        } else if (id == 3) {
+                        } else if (id == 4) {
                             tool_bar_heading.setText("Profile");
                             SharedPreferences personal_profile1 = getSharedPreferences("ViewProfile",
                                     Context.MODE_PRIVATE);
@@ -189,15 +197,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                             drawer.closeDrawer(GravityCompat.START);
 
                         }
-                        else if (id == 4) {
-                            tool_bar_heading.setText("Search");
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new FragmentSearch()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
 
-                        }
                         else if (id == 5) {
                             logoutUser();
                         }
@@ -210,7 +210,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                     @Override
                     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                         navigationExpandableListView.setSelected(groupPosition, childPosition);
-                        if (groupPosition == 1) {
+                        if (groupPosition == 2) {
                             tool_bar_heading.setText("View Profile");
                             String selectedChild = childs.get(childPosition).replaceAll("\t\t\t", "");
                             String selectedChildId = childMap.get(selectedChild);
@@ -229,7 +229,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                            // drawer.closeDrawer(GravityCompat.START);
                         }
-                        else if (groupPosition == 2) {
+                        else if (groupPosition == 3) {
                             tool_bar_heading.setText("Edit Profile");
                             String selectedChild = childs.get(childPosition).replaceAll("\t\t\t", "");
                             String selectedChildId = childMap.get(selectedChild);
