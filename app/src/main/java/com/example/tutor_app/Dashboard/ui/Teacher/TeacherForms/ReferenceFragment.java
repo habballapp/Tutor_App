@@ -62,7 +62,7 @@ public class ReferenceFragment extends Fragment {
     private TextView back_txt;
     private TextView tool_bar_heading;
     private FragmentTransaction fragmentTransaction;
-    String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit_new.php";
+    String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit.php";
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     private EditText name, edt_relation, edt_occupation_ref, edt_telephone, edt_present_address, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
 
@@ -143,7 +143,7 @@ public class ReferenceFragment extends Fragment {
         spinner_conveyance_txt = sharedPreferences.getString("personalconveyance", "");
         spinner_profession = sharedPreferences.getString("teacherbyprofession", "");
         imageBitmapBase64 = sharedPreferences.getString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
-        documents = sharedPreferences.getString("tutorfileBase64", "");
+        documents = sharedPreferences.getString("documents", "");
         edt_etitlement = sharedPreferences.getString("jobtitle", "");
         edt_organization = sharedPreferences.getString("orgname", "");
         edt_from = sharedPreferences.getString("fromto", "");
@@ -156,7 +156,6 @@ public class ReferenceFragment extends Fragment {
         OrganizationName = sharedPreferences.getString("OrganizationName", "");
 
         Log.i("totalExperience", experience_year);
-
         // Qualification
         //  final SharedPreferences qualification_data = getContext().getSharedPreferences("SendData",
         //        Context.MODE_PRIVATE);
@@ -454,7 +453,11 @@ public class ReferenceFragment extends Fragment {
         if (!edt_from.equals("")){
             fromto.put(edt_from);
         }
-
+        JSONArray documents_files = new JSONArray();
+        if (!documents.equals("")){
+            documents_files.put(documents);
+        }
+        Log.i("documents_files", String.valueOf(documents_files));
         map.put("classtoteach", jsonArray1);
 
 //        List<String> prefArea = gson.fromJson(are, type);
@@ -565,8 +568,8 @@ public class ReferenceFragment extends Fragment {
         map.put("carbike", spinner_conveyance_txt);
 //        map.put("documents", documents);
 //        map.put("tutorimageBase64", imageBitmapBase64);
-        map.put("documents", "");
-        map.put("tutorimageBase64", "");
+        map.put("documents", documents_files);
+        map.put("tutorimageBase64", imageBitmapBase64);
 //Qualifications
 
         map.put("insuni" ,insArray);

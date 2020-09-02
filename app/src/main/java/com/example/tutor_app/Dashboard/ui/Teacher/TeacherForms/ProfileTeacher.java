@@ -380,11 +380,9 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     }
                     Filter_selected1 = paths.get(position);
 
-                    if (Filter_selected1.equals("Yes")){
+                    if (Filter_selected1.equals("Yes")) {
                         experience_year.setVisibility(View.VISIBLE);
-                    }
-                    else
-                    {
+                    } else {
 
                         experience_year.setVisibility(View.GONE);
                     }
@@ -611,7 +609,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             profileTeacher.putString("experienceYear", String.valueOf(experience_year.getText()));
             profileTeacher.putString("documents", String.valueOf(stringBase64List));
             profileTeacher.putString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
-            profileTeacher.putString("tutorfileBase64", String.valueOf("data:image/png;base64," + FileBitmapBase64));
+           // profileTeacher.putString("tutorfileBase64", String.valueOf("data:image/png;base64," + FileBitmapBase64));
             profileTeacher.apply();
 
 
@@ -967,85 +965,85 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         switch (requestCode) {
             case SELECT_FILE: {
                 if (resultCode == RESULT_OK) {
-//                    if (null == data) { // checking empty selection
-//                        if (null != data.getClipData()) {
-                    // checking multiple selection or not
-//                            for (int i = 0; i < data.getClipData().getItemCount(); i++) {
-//                                Uri uri = data.getClipData().getItemAt(i).getUri();
-//                                Log.i("multiple_select", String.valueOf(uri));
-//                                InputStream imageStream = null;
-//                                try {
-//                                    imageStream = getContext().getContentResolver().openInputStream(uri);
-//                                } catch (FileNotFoundException e) {
-//                                    e.printStackTrace();
-//                                }
-//                                System.out.println("imageStream  " + imageStream);
-//
-//                                Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-//                                System.out.println("yourSelectedImage  " + yourSelectedImage);
-//
-//                                FileBitmapBase64 = encodeTobase64(yourSelectedImage);
-//                                Log.e("imageBase64", FileBitmapBase64);
-//                                fileName = getRealPathFromURI(uri);
-//                                // image_view_uploaded_image.setImageBitmap(imageName);
-//                                Toast.makeText(getContext(), "selected files" + fileName, Toast.LENGTH_LONG).show();
-//                                stringBase64List.add("data:image/png;base64," + FileBitmapBase64);
-//                                Log.i("list_of_files" , String.valueOf(stringBase64List.size()));
-//                                for (String individualImage: stringBase64List
-//                                     ) {
-//                                    Log.i("images", individualImage);
-//                                }
-//                            }
-//                        }
-                    final Uri imageUri1 = data.getData();
-                    System.out.println("data" + data.getData());
-//
-//                    Bundle extras = data.getExtras();
-//                    Bitmap bmp = (Bitmap) extras.get("dx`xata");
-//                    System.out.println("bmp " + bmp);
+                    if (null != data) { // checking empty selection
+                        if (null != data.getClipData()) {
+                            // checking multiple selection or not
+                            for (int i = 0; i < data.getClipData().getItemCount(); i++) {
+                                Uri uri = data.getClipData().getItemAt(i).getUri();
+                                Log.i("multiple_select", String.valueOf(uri));
+                                InputStream imageStream = null;
+                                try {
+                                    imageStream = getContext().getContentResolver().openInputStream(uri);
+                                } catch (FileNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                                System.out.println("imageStream  " + imageStream);
 
-                    InputStream imageStream1 = null;
-                    try {
-                        imageStream1 = getContext().getContentResolver().openInputStream(imageUri1);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
+                                Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                                System.out.println("yourSelectedImage  " + yourSelectedImage);
+
+                                FileBitmapBase64 = encodeTobase64(yourSelectedImage);
+                                Log.e("imageBase64", FileBitmapBase64);
+                                fileName = getRealPathFromURI(uri);
+                                // image_view_uploaded_image.setImageBitmap(imageName);
+                                Toast.makeText(getContext(), "selected files" + fileName, Toast.LENGTH_LONG).show();
+                                stringBase64List.add("data:image/png;base64," + FileBitmapBase64);
+                                Log.i("list_of_files", String.valueOf(stringBase64List.size()));
+                                for (String individualImage : stringBase64List
+                                ) {
+                                    Log.i("images", individualImage);
+                                }
+                            }
+                        }
+//                    final Uri imageUri1 = data.getData();
+//                    System.out.println("data" + data.getData());
+////
+////                    Bundle extras = data.getExtras();
+////                    Bitmap bmp = (Bitmap) extras.get("dx`xata");
+////                    System.out.println("bmp " + bmp);
+//
+//                    InputStream imageStream1 = null;
+//                    try {
+//                        imageStream1 = getContext().getContentResolver().openInputStream(imageUri1);
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
+//                    System.out.println("imageStream  " + imageStream1);
+//
+//                    Bitmap yourSelectedImage1 = BitmapFactory.decodeStream(imageStream1);
+//                    System.out.println("yourSelectedImage  " + yourSelectedImage1);
+//                    FileBitmapBase64 = encodeTobase64(yourSelectedImage1);
+//                    Log.e("imageBase64", FileBitmapBase64);
+//                    fileName = getRealPathFromURI(imageUri1);
+//                    // image_view_uploaded_image.setImageBitmap(imageName);
+//                    Toast.makeText(getContext(), "selected file" + fileName, Toast.LENGTH_LONG).show();
+//
                     }
-                    System.out.println("imageStream  " + imageStream1);
+                        else {
+                            final Uri imageUri = data.getData();
+                            System.out.println("data" + data.getData());
+//                            Bundle extras = data.getExtras();
+////                            Bitmap bmp = (Bitmap) extras.get("dx`xata");
+////                            System.out.println("bmp " + bmp);
 
-                    Bitmap yourSelectedImage1 = BitmapFactory.decodeStream(imageStream1);
-                    System.out.println("yourSelectedImage  " + yourSelectedImage1);
-                    FileBitmapBase64 = encodeTobase64(yourSelectedImage1);
-                    Log.e("imageBase64", FileBitmapBase64);
-                    fileName = getRealPathFromURI(imageUri1);
-                    // image_view_uploaded_image.setImageBitmap(imageName);
-                    Toast.makeText(getContext(), "selected file" + fileName, Toast.LENGTH_LONG).show();
+                            InputStream imageStream = null;
+                            try {
+                                imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println("imageStream  " + imageStream);
 
-                    final Uri imageUri = data.getData();
-                    System.out.println("data" + data.getData());
-//
-//                    Bundle extras = data.getExtras();
-//                    Bitmap bmp = (Bitmap) extras.get("dx`xata");
-//                    System.out.println("bmp " + bmp);
+                            Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                            System.out.println("yourSelectedImage  " + yourSelectedImage);
 
-                    InputStream imageStream = null;
-                    try {
-                        imageStream = getContext().getContentResolver().openInputStream(imageUri);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
+                            imageBitmapBase64 = encodeTobase64(yourSelectedImage);
+                            Log.e("imageBase64", imageBitmapBase64);
+                            imageName = getRealPathFromURI(imageUri);
+                            // image_view_uploaded_image.setImageBitmap(imageName);
+                            Toast.makeText(getContext(), "selected images" + imageName, Toast.LENGTH_LONG).show();
+                        }
                     }
-                    System.out.println("imageStream  " + imageStream);
-
-                    Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                    System.out.println("yourSelectedImage  " + yourSelectedImage);
-
-                    imageBitmapBase64 = encodeTobase64(yourSelectedImage);
-                    Log.e("imageBase64", imageBitmapBase64);
-                    imageName = getRealPathFromURI(imageUri);
-                    // image_view_uploaded_image.setImageBitmap(imageName);
-                    Toast.makeText(getContext(), "selected images" + imageName, Toast.LENGTH_LONG).show();
-                }
-
-
 //              //  Log.i("data_image" , String.valueOf(data.getClipData()));
 //                if (resultCode == RESULT_OK && data != null) {
 //                    final Uri imageUri = data.getData();
@@ -1073,37 +1071,38 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 //                    Toast.makeText(getContext(), "selected images" + imageName, Toast.LENGTH_LONG).show();
 //
 //                }
-                else {
-                    Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                    else {
+                        Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                    }
+                    break;
+
                 }
-                break;
+                case REQUEST_CAMERA: {
+                    if (resultCode == RESULT_OK && data != null) {
+                        Bundle extras = data.getExtras();
+                        // Get the returned image from extra
+                        Bitmap bmp = (Bitmap) extras.get("data");
+                        imageBitmapBase64 = encodeTobase64(bmp);
+                        Log.e("imageBase64", imageBitmapBase64);
 
-            }
-            case REQUEST_CAMERA: {
-                if (resultCode == RESULT_OK && data != null) {
-                    Bundle extras = data.getExtras();
-                    // Get the returned image from extra
-                    Bitmap bmp = (Bitmap) extras.get("data");
-                    imageBitmapBase64 = encodeTobase64(bmp);
-                    Log.e("imageBase64", imageBitmapBase64);
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyyhhmmss");
+                        String datetime = dateformat.format(c.getTime());
+                        System.out.println(datetime);
 
-                    Calendar c = Calendar.getInstance();
-                    SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyyhhmmss");
-                    String datetime = dateformat.format(c.getTime());
-                    System.out.println(datetime);
-
-                    imageName = datetime + ".jpg";
+                        imageName = datetime + ".jpg";
 //                    FileName.setText(imageName);
-                    // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getContext(), imageName, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                    }
+                    break;
                 }
-                break;
+
+
             }
-
-
         }
     }
-}
+
 
 
