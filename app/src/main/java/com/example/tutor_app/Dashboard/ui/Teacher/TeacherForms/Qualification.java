@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.Loader.Loader;
 import com.example.tutor_app.R;
 import com.google.gson.Gson;
@@ -270,8 +271,19 @@ public class Qualification extends Fragment {
             }
         });
 
+      //  setDummyData();
 
         return root;
+    }
+
+    private void setDummyData() {
+
+        qualification.setText("asdasd");
+        subject.setText("asdasd");
+        edt_institute.setText("asdasd");
+        edt_passing_year.setText("asdasd");
+        edt_grade.setText("asdasd");
+
     }
 
     private void viewProfile() {
@@ -427,26 +439,30 @@ public class Qualification extends Fragment {
         Volley.newRequestQueue(getContext()).add(sr);
     }
 
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//
+//        getView().setFocusableInTouchMode(true);
+//        getView().requestFocus();
+//        getView().setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                //tool_bar_heading.setText("Dashboard");
+//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+//
+//                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+//                    fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
+//                    fragmentTransaction.commit();
+//                    return true;
+//
+//                }
+//
+//
+//                return false;
+//            }
+//        });
+//
+//    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        getView().setFocusableInTouchMode(true);
-        getView().requestFocus();
-        getView().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    fragmentTransaction = getChildFragmentManager().beginTransaction();
-                    fragmentTransaction.add(R.id.container, new ProfileTeacher()).addToBackStack("null");
-                    fragmentTransaction.commit();
-                    return true;
-
-                }
-                return false;
-            }
-        });
-
-    }
 }

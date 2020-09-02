@@ -62,7 +62,7 @@ public class ReferenceFragment extends Fragment {
     private TextView back_txt;
     private TextView tool_bar_heading;
     private FragmentTransaction fragmentTransaction;
-    String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit.php";
+    String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit_new.php";
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     private EditText name, edt_relation, edt_occupation_ref, edt_telephone, edt_present_address, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
 
@@ -96,10 +96,8 @@ public class ReferenceFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar();
         tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
         // area select
-        final SharedPreferences area_selected_data = getContext().getSharedPreferences("SendData_AreaFragment",
+        final SharedPreferences area_selected_data = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
-        area_selected = area_selected_data.getString("prefarea", "");
-        Log.i("Selected_Area", area_selected);
         // profile teacher
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
@@ -137,22 +135,22 @@ public class ReferenceFragment extends Fragment {
         edt_email = sharedPreferences.getString("email", "");
         edt_email = sharedPreferences.getString("email", "");
         date_of_submission = sharedPreferences.getString("dateofsubmission", "");
-        conveyance = sharedPreferences.getString("personalconveyance", "");
-        catogery = sharedPreferences.getString("IfInstituteOther", "");
+        conveyance = sharedPreferences.getString("teacher_convynce", "");
+        catogery = sharedPreferences.getString("desiredCategory", "");
         experience_year = sharedPreferences.getString("experienceYear", "");
 
         //  edt_occupation = sharedPreferences.getString("email", "");
         spinner_conveyance_txt = sharedPreferences.getString("personalconveyance", "");
         spinner_profession = sharedPreferences.getString("teacherbyprofession", "");
         imageBitmapBase64 = sharedPreferences.getString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
-        documents = sharedPreferences.getString("documents", "");
+        documents = sharedPreferences.getString("tutorfileBase64", "");
         edt_etitlement = sharedPreferences.getString("jobtitle", "");
         edt_organization = sharedPreferences.getString("orgname", "");
         edt_from = sharedPreferences.getString("fromto", "");
         edt_till = sharedPreferences.getString("till", "");
         //  edt_classes_track = sharedPreferences.getString("classtoteach", "");
         edt_pref_subject = sharedPreferences.getString("prefsubject", "");
-        area_selected = sharedPreferences.getString("prefarea", "");
+        area_selected = sharedPreferences.getString("area_selected", "");
         gender = sharedPreferences.getString("gender", "");
         SubjectSpecialization = sharedPreferences.getString("SubjectSpecialization", "");
         OrganizationName = sharedPreferences.getString("OrganizationName", "");
@@ -295,9 +293,20 @@ public class ReferenceFragment extends Fragment {
 
             }
         });
-
+        //setDummyData();
         return root;
     }
+
+//    private void setDummyData() {
+//
+//        name.setText("asdasd");
+//        edt_relation.setText("asdasd");
+//        edt_occupation_ref.setText("asdasd");
+//        edt_present_address.setText("asdasd");
+//        edt_telephone.setText("asdasd");
+//
+//    }
+
 
     private void viewProfile() {
 
@@ -319,7 +328,7 @@ public class ReferenceFragment extends Fragment {
         JSONObject map = new JSONObject();
         try {
             map.put("TutorId", userid);
-            Log.i("mapReference" , String.valueOf(map));
+            Log.i("mapReference", String.valueOf(map));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -413,15 +422,39 @@ public class ReferenceFragment extends Fragment {
 //        List<String> selectedSubjects = gson.fromJson(edt_pref_subject, type);
 //        JSONArray jsonArray = new JSONArray(selectedSubjects);
 //
+
+        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("LoginData",
+                Context.MODE_PRIVATE);
+        String userid = sharedPreferences1.getString("userid", "");
+
+        map.put("userid", userid);
         JSONArray subArray = new JSONArray();
         if (!edt_pref_subject.equals(""))
             subArray.put(edt_pref_subject);
 
 //        List<String> classTeach = gson.fromJson(edt_classes_track, type);
         JSONArray jsonArray1 = new JSONArray();
-        if(!edt_classes_track.equals("")){
+        if (!edt_classes_track.equals("")) {
             jsonArray1.put(edt_classes_track);
         }
+
+        JSONArray job_title = new JSONArray();
+        if (!edt_etitlement.equals("")){
+            job_title.put(edt_etitlement);
+        }
+        JSONArray job_org = new JSONArray();
+        if (!edt_organization.equals("")){
+            job_org.put(edt_organization);
+        }
+        JSONArray till = new JSONArray();
+        if (!edt_till.equals("")){
+            till.put(edt_till);
+        }
+        JSONArray fromto = new JSONArray();
+        if (!edt_from.equals("")){
+            fromto.put(edt_from);
+        }
+
         map.put("classtoteach", jsonArray1);
 
 //        List<String> prefArea = gson.fromJson(are, type);
@@ -431,7 +464,7 @@ public class ReferenceFragment extends Fragment {
         JSONArray areaArray = new JSONArray();
         if (!area_selected.equals(""))
             areaArray.put(area_selected);
-        map.put("prefarea", area_selected);
+        map.put("AreaOfInterested", areaArray);
 
         JSONArray qualificationArray = new JSONArray();
         Log.i("debugQualification", qualification);
@@ -498,44 +531,54 @@ public class ReferenceFragment extends Fragment {
         if (!edt_passing_year4.equals(""))
             passingArray.put(edt_passing_year4);
         map.put("qualification", qualificationArray);
-        map.put("SubjectSpecialization", subspecArray);
-        map.put("edt_grade", gradeArray);
-        map.put("edt_passing_year", passingArray);
-        map.put("prefsubject", edt_pref_subject);
+        map.put("subspec", subspecArray);
+        map.put("gradedivision", gradeArray);
+        map.put("passingyear", passingArray);
+        map.put("prefsubject", subArray);
         map.put("OrganizationName", OrganizationName);
         Log.i("Qualification", String.valueOf(qualificationArray));
         Log.i("Subjects", String.valueOf(subspecArray));
         Log.i("Grade", String.valueOf(gradeArray));
-        Log.i("Passingyear", String.valueOf(passingArray));
-        map.put("age", edt_fname);
-        map.put("age", edt_age);
+
+        //profile teacher
+
         map.put("fullname", edt_fullname);
-        map.put("gender", gender);
-        map.put("email", edt_email);
-        map.put("cnicno", edt_cnic);
-        map.put("mothnametounge", edt_mtongue);
-        map.put("dob", edt_dob);
-        map.put("email", edt_email);
         map.put("fathusname", edt_fname);
-        map.put("dateofsubmission", "");
+        map.put("email", edt_email);
+        map.put("mothnametounge", edt_mtongue);
+        map.put("age", edt_age);
+        map.put("gender", gender);
+        map.put("tutorcategory", catogery);
+        map.put("dob", edt_dob);
+        map.put("cnicno", edt_cnic);
         map.put("nationality", edt_nationality);
         map.put("religion", edt_religion);
-        map.put("presentadd", present_address);
-        map.put("permanentadd", edt_permanent_address);
+        map.put("dateofsubmission", date_of_submission);
         map.put("phoneno1", edt_phone1);
         map.put("phoneno2", edt_phone2);
-        map.put("phoneno3", "01200323232");
-        map.put("fbid", "asdsadsa");
-        map.put("IfInstituteOther", catogery);
-        map.put("classtoteach", edt_classes_track);
-        map.put("TotalExperience", experience_year);
-        map.put("JobEntitlement", edt_etitlement);
-        map.put("OrganizationName", edt_organization);
-        map.put("FromTo", edt_from);
-        map.put("Till", edt_till);
-        map.put("dateofsubmission", date_of_submission);
-        map.put("personalconveyance", spinner_conveyance_txt);
+        map.put("phoneno3", "");
+        map.put("email", edt_email);
         map.put("teacherbyprofession", spinner_profession);
+        map.put("experienceinyears", experience_year);
+        map.put("fbid", "");
+        map.put("personalconveyance",conveyance);
+        map.put("carbike", spinner_conveyance_txt);
+//        map.put("documents", documents);
+//        map.put("tutorimageBase64", imageBitmapBase64);
+        map.put("documents", "");
+        map.put("tutorimageBase64", "");
+//Qualifications
+
+        map.put("insuni" ,insArray);
+        map.put("presentadd", present_address);
+        map.put("permanentadd", edt_permanent_address);
+        map.put("JobEntitlement", job_title);
+        map.put("OrganizationName", job_org);
+        map.put("FromTo", fromto); //array
+        map.put("till", till);
+
+
+       //reference
         map.put("ref1Name", name.getText());
         map.put("ref1Relation", edt_relation.getText());
         map.put("ref1Occupation", edt_occupation_ref.getText());
@@ -547,8 +590,12 @@ public class ReferenceFragment extends Fragment {
         map.put("ref2Relation", edt_relation1.getText());
         map.put("ref2Occupation", edt_occupation1.getText());
         map.put("ref2TelephoneNo", edt_telephone1.getText());
-        map.put("documents" , documents);
-        map.put("tutorimageBase64" , imageBitmapBase64);
+
+        map.put("yesthenwhere" ,"");
+
+
+//        map.put("documents", documents);
+//        map.put("tutorimageBase64", imageBitmapBase64);
         Log.i("mapAddress", String.valueOf(map));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, Url_Tprofile, map, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)

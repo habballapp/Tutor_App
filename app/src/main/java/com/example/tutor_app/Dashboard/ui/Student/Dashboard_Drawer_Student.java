@@ -171,7 +171,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 //                            drawer.closeDrawer(GravityCompat.START);
 
                         }
-                        else if (id == 3) {
+                        else if(id == 3) {
 
 //                            Toast.makeText(getApplicationContext(), "Edit Profile", Toast.LENGTH_LONG).show();
 
@@ -210,7 +210,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
                     @Override
                     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                         navigationExpandableListView.setSelected(groupPosition, childPosition);
-                        if (groupPosition == 2) {
+                        if (groupPosition == 3) {
                             tool_bar_heading.setText("View Profile");
                             String selectedChild = childs.get(childPosition).replaceAll("\t\t\t", "");
                             String selectedChildId = childMap.get(selectedChild);
@@ -229,7 +229,7 @@ public class Dashboard_Drawer_Student extends AppCompatActivity {
 
                            // drawer.closeDrawer(GravityCompat.START);
                         }
-                        else if (groupPosition == 3) {
+                        else if (groupPosition == 4) {
                             tool_bar_heading.setText("Edit Profile");
                             String selectedChild = childs.get(childPosition).replaceAll("\t\t\t", "");
                             String selectedChildId = childMap.get(selectedChild);

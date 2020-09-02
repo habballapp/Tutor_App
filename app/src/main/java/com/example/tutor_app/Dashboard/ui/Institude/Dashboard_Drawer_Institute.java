@@ -66,6 +66,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
     private TextView tool_bar_heading;
     private boolean doubleBackToExitPressedOnce = false;
     DrawerLayout drawer;
+    private List<String> dashboard_titles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 
         session = new Session(this);
 
-         drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
 //        fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //        fragmentTransaction.add(R.id.container, new HomeFragment());
@@ -123,20 +124,22 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
-
-
-        Log.i("Institute11", String.valueOf(institute));
-        if(institute.size() <=1){
+        HeaderModel headerModel = new HeaderModel("View Job");
+        dashboard_titles.add("View Job");
+        for (int i = 0; i < institute.size(); i++)
+            headerModel.addChildModel(new ChildModel(institute.get(i)));
+        navigationExpandableListView.addHeaderModel(headerModel);
+      //  if (institute.size() <= 1) {
             navigationExpandableListView.addHeaderModel(new HeaderModel("Add Institute")
             );
-        }else{
-            HeaderModel headerModel = new HeaderModel("View Job");
-            for (int i = 0; i < institute.size(); i++)
-                headerModel.addChildModel(new ChildModel(institute.get(i)));
-            navigationExpandableListView.addHeaderModel(headerModel);
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Job")
-            );
-        }
+            dashboard_titles.add("Add Institute");
+     //   } else {
+             navigationExpandableListView.addHeaderModel(new HeaderModel("Add Job")
+             );
+
+
+            dashboard_titles.add("Add Job");
+    //    }
 
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
 
@@ -154,8 +157,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
-                        }
-                        else if (id == 1) {
+                        } else if (id == 1) {
                             tool_bar_heading.setText("Search");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
@@ -163,57 +165,53 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
-                        } else if (id == 2) {
-
-
-                        } else if (id == 3 && institute.size()<=1) {
-                            tool_bar_heading.setText("Add Profile");
-                            SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
-                                    Context.MODE_PRIVATE);
-                            final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
-                            profileInstitute1.putString("UserId", "");
-                            profileInstitute1.putString("ViewProfileData", "");
-                            profileInstitute1.apply();
-
-                            SharedPreferences personal_profile = getSharedPreferences("UserId",
-                                    Context.MODE_PRIVATE);
-                            final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                            profileStudent.putString("UserId", "");
-                            profileStudent.apply();
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
+                        }
+                        else if(id==2) {
 
                         }
+                        else if (id == 3) {
+                            tool_bar_heading.setText("Add Institute");
+                                SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
+                                        Context.MODE_PRIVATE);
+                                final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
+                                profileInstitute1.putString("UserId", "");
+                                profileInstitute1.putString("ViewProfileData", "");
+                                profileInstitute1.apply();
 
-                        else if (id == 3){
-                            tool_bar_heading.setText("Add Job");
-                            SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
-                                    Context.MODE_PRIVATE);
-                            final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
-                            profileInstitute1.putString("UserId", "");
-                            profileInstitute1.putString("ViewProfileData", "");
-                            profileInstitute1.apply();
+                                SharedPreferences personal_profile = getSharedPreferences("UserId",
+                                        Context.MODE_PRIVATE);
+                                final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                                profileStudent.putString("UserId", "");
+                                profileStudent.apply();
+                                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                                fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
+                                fragmentTransaction.commit();
+                                drawer.closeDrawer(GravityCompat.START);
+                            }else if (id==4) {
+                                tool_bar_heading.setText("Add Job");
+                                SharedPreferences institute_profile1 = getSharedPreferences("ViewProfile",
+                                        Context.MODE_PRIVATE);
+                                final SharedPreferences.Editor profileInstitute1 = institute_profile1.edit();
+                                profileInstitute1.putString("UserId", "");
+                                profileInstitute1.putString("ViewProfileData", "");
+                                profileInstitute1.apply();
 
-                            SharedPreferences personal_profile = getSharedPreferences("UserId",
-                                    Context.MODE_PRIVATE);
-                            final SharedPreferences.Editor profileStudent = personal_profile.edit();
-                            profileStudent.putString("UserId", userid);
-                            profileStudent.apply();
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
-                            fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
+                                SharedPreferences personal_profile = getSharedPreferences("UserId",
+                                        Context.MODE_PRIVATE);
+                                final SharedPreferences.Editor profileStudent = personal_profile.edit();
+                                profileStudent.putString("UserId", userid);
+                                profileStudent.apply();
+                                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
+                                fragmentTransaction.add(R.id.nav_host_fragment, new InstituteFragment());
+                                fragmentTransaction.commit();
+                                drawer.closeDrawer(GravityCompat.START);
+                            }
 
-
-                        }
-                        else if (id == 4) {
+                            else if (id == 5) {
                             logoutUser();
                         }
-
 
 
                         return false;
@@ -298,6 +296,7 @@ public class Dashboard_Drawer_Institute extends AppCompatActivity {
 //            }
         }
     }
+
     private void logoutUser() {
         final AlertDialog alertDialog = new AlertDialog.Builder(Dashboard_Drawer_Institute.this).create();
         LayoutInflater inflater = LayoutInflater.from(Dashboard_Drawer_Institute.this);

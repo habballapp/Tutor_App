@@ -69,6 +69,8 @@ public class InstituteFragment extends Fragment {
     String Url = "http://pci.edusol.co/InstitutePortal/view_profile_api.php";
     private Loader loader;
     String reg_ex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
+    //String reg_ex = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+
     private Boolean changed = false;
     private TextView tool_bar_heading;
 
@@ -235,13 +237,17 @@ public class InstituteFragment extends Fragment {
                 Log.i("allFields", String.valueOf(allFields));
                 if (viewProfile_userid.equals("")) {
                     if(ErrorFields.isEmpty() && spinner_type.getSelectedItemPosition() != 0){
-
+                        if (edt_email.getText().toString().equals(reg_ex)){
+                            profileInstitute.putString("email", String.valueOf(edt_email.getText()));
+                        }
+                        else {
+                            Toast.makeText(getActivity(), "Wrong Email", Toast.LENGTH_SHORT).show();
+                        }
                         profileInstitute.putString("nameofInstitute", String.valueOf(edt_institutename.getText()));
                         profileInstitute.putString("contactperson", String.valueOf(contact_person.getText()));
                         profileInstitute.putString("contactno1", String.valueOf(edt_phone1.getText()));
                         profileInstitute.putString("contactno2", String.valueOf(edt_phone2.getText()));
                         profileInstitute.putString("contactno3", String.valueOf(edt_phone3.getText()));
-                        profileInstitute.putString("email", String.valueOf(edt_email.getText()));
                         profileInstitute.apply();
 
 

@@ -147,6 +147,8 @@ public class JobExperienceFragment extends Fragment {
         return root;
     }
 
+
+
     private void viewProfile() {
         back.setVisibility(View.GONE);
         loader.showLoader();

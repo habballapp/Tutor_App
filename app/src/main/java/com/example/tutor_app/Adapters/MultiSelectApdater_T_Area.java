@@ -83,22 +83,22 @@ public class MultiSelectApdater_T_Area extends ArrayAdapter<StateVO> {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int getPosition = (Integer) buttonView.getTag();
+              //  int getPosition = (Integer) buttonView.getTag();
 
 
                 if (!isFromView) {
-                    if (totalChecked < 3) {
+                 //   if (totalChecked < 3) {
                         listState.get(position).setSelected(isChecked);
                         buttonView.setChecked(isChecked);
                         if (isChecked) {
-                            totalChecked++;
-                            Log.i("Checked Add", String.valueOf(totalChecked));
+//                            totalChecked++;
+                          //  Log.i("Checked Add", String.valueOf(totalChecked));
                             if (!spinner_area.contains(listState.get(position).getTitle()))
                                 spinner_area.add(listState.get(position).getTitle());
 
 
                         } else {
-                            totalChecked--;
+//                            totalChecked--;
                             if (spinner_area.contains(listState.get(position).getTitle()))
                                 spinner_area.remove(listState.get(position).getTitle());
 
@@ -106,17 +106,17 @@ public class MultiSelectApdater_T_Area extends ArrayAdapter<StateVO> {
 
 
                         Log.i("Checked", String.valueOf(totalChecked));
-                    } else {
-                        buttonView.setChecked(false);
-                        if (isChecked) {
-
-                            Toast.makeText(getContext(),
-                                    "Limit reached!!!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            totalChecked--;
-                            Log.i("Checked Remove", String.valueOf(totalChecked));
-                        }
-                    }
+//                    } else {
+//                        buttonView.setChecked(false);
+//                        if (isChecked) {
+//
+//                            Toast.makeText(getContext(),
+//                                    "Limit reached!!!", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            totalChecked--;
+//                            Log.i("Checked Remove", String.valueOf(totalChecked));
+//                        }
+//                    }
                 }
 
                 Gson gson = new Gson();
@@ -130,18 +130,16 @@ public class MultiSelectApdater_T_Area extends ArrayAdapter<StateVO> {
                 ed_spinnerTimings.apply();
                 Log.i("selectedArea", String.valueOf(json));
 
-                Gson gson1 = new Gson();
-                String json1 = gson1.toJson(spinner_area);
-
-                SharedPreferences sh_spinner_timings1 = getContext().getSharedPreferences("CheckField",
-                        Context.MODE_PRIVATE);
-                final SharedPreferences.Editor ed_spinnerTimings1 = sh_spinner_timings1.edit();
-
-                ed_spinnerTimings1.putString("selectedArea", String.valueOf(json1));
-                ed_spinnerTimings1.apply();
-                Log.i("selectedArea", String.valueOf(json1));
-
-
+//                Gson gson1 = new Gson();
+//                String json1 = gson1.toJson(spinner_area);
+//
+//                SharedPreferences sh_spinner_timings1 = getContext().getSharedPreferences("CheckField",
+//                        Context.MODE_PRIVATE);
+//                final SharedPreferences.Editor ed_spinnerTimings1 = sh_spinner_timings1.edit();
+//
+//                ed_spinnerTimings1.putString("selectedArea", String.valueOf(json1));
+//                ed_spinnerTimings1.apply();
+//                Log.i("selectedArea", String.valueOf(json1));
             }
 
 

@@ -30,6 +30,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
 import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.ProfileTeacher;
 import com.example.tutor_app.Dashboard.ui.Teacher.SearchFragment.TeacherSearchFragment;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
@@ -40,6 +41,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.techatmosphere.expandablenavigation.model.ChildModel;
 import com.techatmosphere.expandablenavigation.model.HeaderModel;
 import com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 
@@ -52,7 +56,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
     private TextView tool_bar_heading;
     private boolean doubleBackToExitPressedOnce = false;
     DrawerLayout drawer;
-
+    private List<String> dashboard_titles = new ArrayList<>();
 
 
     @Override
@@ -75,7 +79,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                 Context.MODE_PRIVATE);
         userid = sharedPreferences1.getString("userid", "");
-        Log.i("ID",userid);
+        Log.i("ID", userid);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -90,17 +94,16 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
         navigationExpandableListView = findViewById(R.id.expandable_navigation);
         navigationExpandableListView.init(this);
         navigationExpandableListView.addHeaderModel(new HeaderModel("Home"));
+        dashboard_titles.add("Home");
         navigationExpandableListView.addHeaderModel(new HeaderModel("Search"));
+        dashboard_titles.add("Search");
+        navigationExpandableListView.addHeaderModel(new HeaderModel("Add Profile")
+        );
+        dashboard_titles.add("Add Profile");
+        navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
+        );
+        dashboard_titles.add("View Profile");
 
-        if(userid.equals("null")){
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Add Profile")
-            );
-        }
-        else{
-            navigationExpandableListView.addHeaderModel(new HeaderModel("View Profile")
-
-            );
-        }
         navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
         navigationExpandableListView.build()
                 .addOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -115,8 +118,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             fragmentTransaction.replace(R.id.nav_host_fragment, new HomeFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
-                        }
-                        else if (id == 1) {
+                        } else if (id == 1) {
 
                             tool_bar_heading.setText("Search");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -124,44 +126,59 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 
+                        } else if (id == 2) {
+                          //  if (dashboard_titles.get((int) id).equals("Add Profile")) {
+                                tool_bar_heading.setText("Profile");
+                                SharedPreferences personal_profile = getSharedPreferences("ViewData",
+                                        Context.MODE_PRIVATE);
+                                final SharedPreferences.Editor profileTeacher = personal_profile.edit();
+                                profileTeacher.putString("UserId", "");
+                                profileTeacher.apply();
+                                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher()).addToBackStack("tag");
+                                fragmentTransaction.commit();
+                                drawer.closeDrawer(GravityCompat.START);
+                        //    }
+                          //  else if (dashboard_titles.get((int) id).equals("View Profile")) {
+
+
                         }
-                        else if (id == 2) {
+                        else if (id==3) {
                             tool_bar_heading.setText("View Profile");
                             SharedPreferences sharedPreferences1 = getSharedPreferences("LoginData",
                                     Context.MODE_PRIVATE);
                             userid = sharedPreferences1.getString("userid", "");
-                            Log.i("ID",userid);
+                            Log.i("ID", userid);
 
                             SharedPreferences personal_profile = getSharedPreferences("ViewData",
                                     Context.MODE_PRIVATE);
                             final SharedPreferences.Editor profileTeacher = personal_profile.edit();
-                            profileTeacher.putString("UserId",userid);
+                            profileTeacher.putString("UserId", userid);
                             profileTeacher.apply();
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             // fragmentTransaction.replace(R.id.container, new Fragment()).addToBackStack("tag1");
                             fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
-
                         }
-                        else if (id == 3) {
-                            tool_bar_heading.setText("Profile");
-                            SharedPreferences personal_profile = getSharedPreferences("ViewData",
-                                    Context.MODE_PRIVATE);
-                            final SharedPreferences.Editor profileTeacher = personal_profile.edit();
-                            profileTeacher.putString("UserId","");
-                            profileTeacher.apply();
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
 
-                        }
+                        //else if (dashboard_titles.get((int) id).equals("View Profile")) {
+//                            tool_bar_heading.setText("Profile");
+//                            SharedPreferences personal_profile = getSharedPreferences("ViewData",
+//                                    Context.MODE_PRIVATE);
+//                            final SharedPreferences.Editor profileTeacher = personal_profile.edit();
+//                            profileTeacher.putString("UserId", "");
+//                            profileTeacher.apply();
+//                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                            fragmentTransaction.add(R.id.nav_host_fragment, new ProfileTeacher()).addToBackStack("tag");
+//                            fragmentTransaction.commit();
+//                            drawer.closeDrawer(GravityCompat.START);
+
+
                         else if (id == 4) {
-
                             logoutUser();
-
                         }
+
 
                         return false;
                     }
@@ -216,6 +233,7 @@ public class Dashboard_Drawer_Teacher extends AppCompatActivity {
 //            }
         }
     }
+
     private void logoutUser() {
 
 

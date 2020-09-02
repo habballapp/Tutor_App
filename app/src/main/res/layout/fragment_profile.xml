@@ -230,9 +230,11 @@
                         android:layout_weight="0.25"
                         android:focusable="true"
                         android:paddingStart="20dp"
+                        android:textColor="@color/textcolor"
                         android:focusableInTouchMode="true"
                         android:gravity="center_vertical"
-                        android:text="Date Of Birth" />
+                        android:textColorHint="@color/text_color_selection"
+                        android:hint="Date Of Birth" />
 
                     <ImageButton
                         android:id="@+id/first_date_btn"
@@ -286,9 +288,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
                         android:paddingStart="20dp"
+                        android:textColor="@color/textcolor"
                         android:gravity="center_vertical"
                         android:selectAllOnFocus="true"
-                        android:text="Date Of Submission" />
+                        android:textColorHint="@color/text_color_selection"
+                        android:hint="Date Of Submission" />
 
                     <ImageButton
                         android:id="@+id/second_date_btn"
@@ -389,7 +393,7 @@
                     android:drawablePadding="10dp"
                     android:hint="@string/experience_year"
                     android:padding="10dp"
-                    
+                    android:visibility="gone"
                     android:theme="@style/EditText" />
 
                 <RelativeLayout

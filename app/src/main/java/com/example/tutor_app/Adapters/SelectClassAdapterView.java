@@ -40,7 +40,6 @@ public class SelectClassAdapterView extends RecyclerView.Adapter<com.example.tut
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull SelectClassAdapterView.ViewHolder holder, int position) {
-
         try {
             JSONObject obj = experience.getJSONObject(position);
             holder.edt_etitlement.setText(obj.getString("JobEntitlement"));
@@ -74,4 +73,5 @@ public class SelectClassAdapterView extends RecyclerView.Adapter<com.example.tut
             edt_till = itemView.findViewById(R.id.edt_till);
         }
     }
+
 }

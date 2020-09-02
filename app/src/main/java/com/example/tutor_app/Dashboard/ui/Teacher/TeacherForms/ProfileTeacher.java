@@ -74,7 +74,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    private RelativeLayout btn_profile_next, btn_profile_upload, back, btn_upload_files ,btnView_next;
+    private RelativeLayout btn_profile_next, btn_profile_upload, back, btn_upload_files, btnView_next;
     private FragmentTransaction fragmentTransaction;
     private EditText edt_fullname, edt_fname, edt_mtongue, edt_cnic, edt_present_address,
             edt_permanent_address, edt_nationality, edt_religion, edt_phone1, edt_phone2,
@@ -120,7 +120,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         //multiple files setAdapter
         //  RecyclerView recyclerView = root.findViewById(R.id.file_list);
         btn_upload_files = root.findViewById(R.id.btn_upload_files);
-        btnView_next= root.findViewById(R.id.btnView_next);
+        btnView_next = root.findViewById(R.id.btnView_next);
         btnView_next.setVisibility(View.GONE);
         // fileListAdapter = new MultipleFilesAdapter(mediaFiles);
         // recyclerView.setAdapter(fileListAdapter);
@@ -170,7 +170,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         edt_email = root.findViewById(R.id.edt_email);
         edt_phone1 = root.findViewById(R.id.edt_phone1);
         edt_phone2 = root.findViewById(R.id.edt_phone2);
-        edt_conveyance_txt = root.findViewById(R.id.edt_conveyance_txt);
+//        edt_conveyance_txt = root.findViewById(R.id.edt_conveyance_txt);
         edt_nationality = root.findViewById(R.id.edt_nationality);
         edt_religion = root.findViewById(R.id.edt_religion);
         btn_profile_upload = root.findViewById(R.id.btn_profile_upload);
@@ -308,7 +308,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
-                    profileTeacher.putString("IfInstituteOther", String.valueOf(catogery.get(position)));
+                    profileTeacher.putString("desiredCategory", String.valueOf(catogery.get(position)));
                     profileTeacher.apply();
                     if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
@@ -378,16 +378,16 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
                         ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
                     }
-//                    Filter_selected1 = paths.get(position);
-//
-//                    if (Filter_selected1.equals("Yes")){
-//                        experience_year.setVisibility(View.VISIBLE);
-//                    }
-//                    else
-//                    {
-//
-//                        experience_year.setVisibility(View.GONE);
-//                    }
+                    Filter_selected1 = paths.get(position);
+
+                    if (Filter_selected1.equals("Yes")){
+                        experience_year.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+
+                        experience_year.setVisibility(View.GONE);
+                    }
 
 
                 }
@@ -427,7 +427,8 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             spinner_conveyance.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-
+                    profileTeacher.putString("teacher_convynce", String.valueOf(paths1.get(position)));
+                    profileTeacher.apply();
 
                     if (position == 0) {
 
@@ -540,8 +541,27 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             }
         });
 
+        //  setDummyData();
 
         return root;
+    }
+
+    private void setDummyData() {
+
+        edt_conveyance_txt.setText("asdasd");
+        edt_fullname.setText("asdasd");
+        edt_fname.setText("asdasd");
+        edt_mtongue.setText("asdasd");
+        edt_age.setText("asdasd");
+        edt_nationality.setText("asdasd");
+        edt_religion.setText("asdasd");
+        edt_cnic.setText("asdasd");
+        edt_present_address.setText("asdasd");
+        edt_permanent_address.setText("asdasd");
+        edt_phone1.setText("asdasd");
+        edt_phone2.setText("asdasd");
+        edt_email.setText("asdasd");
+        experience_year.setText("asdasd");
     }
 
     private boolean checkFields() {
@@ -576,7 +596,6 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
 
 
             profileTeacher.putString("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
-            Log.i("personalconveyance", String.valueOf(edt_conveyance_txt.getText()));
             profileTeacher.putString("fullname", String.valueOf(edt_fullname.getText()));
             profileTeacher.putString("fathusname", String.valueOf(edt_fname.getText()));
             profileTeacher.putString("mothnametounge", String.valueOf(edt_mtongue.getText()));
@@ -592,6 +611,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
             profileTeacher.putString("experienceYear", String.valueOf(experience_year.getText()));
             profileTeacher.putString("documents", String.valueOf(stringBase64List));
             profileTeacher.putString("tutorimageBase64", String.valueOf("data:image/png;base64," + imageBitmapBase64));
+            profileTeacher.putString("tutorfileBase64", String.valueOf("data:image/png;base64," + FileBitmapBase64));
             profileTeacher.apply();
 
 
@@ -857,6 +877,7 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
                     spinner_conveyance_textview.setText(response.getString("PersonalConveyance"));
                     teacher_profession_textview.setText(response.getString("TeacherByProfession"));
                     experience_year.setText(response.getString("TotalExperience"));
+                    experience_year.setVisibility(View.VISIBLE);
                     image_view_uploaded_image.setVisibility(View.VISIBLE);
                     image_view_uploaded_image.setImageBitmap(convertBase64ToBitmap(response.getString("TutorImage")));
                     btn_profile_upload.setVisibility(View.GONE);
@@ -946,57 +967,85 @@ public class ProfileTeacher extends Fragment implements DatePickerDialog.OnDateS
         switch (requestCode) {
             case SELECT_FILE: {
                 if (resultCode == RESULT_OK) {
-                    if (null != data) { // checking empty selection
-                        if (null != data.getClipData()) { // checking multiple selection or not
-                            for (int i = 0; i < data.getClipData().getItemCount(); i++) {
-                                Uri uri = data.getClipData().getItemAt(i).getUri();
-                                Log.i("multiple_select", String.valueOf(uri));
-                                InputStream imageStream = null;
-                                try {
-                                    imageStream = getContext().getContentResolver().openInputStream(uri);
-                                } catch (FileNotFoundException e) {
-                                    e.printStackTrace();
-                                }
-                                System.out.println("imageStream  " + imageStream);
-
-                                Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                                System.out.println("yourSelectedImage  " + yourSelectedImage);
-
-                                FileBitmapBase64 = encodeTobase64(yourSelectedImage);
-                                Log.e("imageBase64", FileBitmapBase64);
-                                fileName = getRealPathFromURI(uri);
-                                // image_view_uploaded_image.setImageBitmap(imageName);
-                                Toast.makeText(getContext(), "selected files" + fileName, Toast.LENGTH_LONG).show();
-                                stringBase64List.add("data:image/png;base64," + FileBitmapBase64);
-                            }
-                        } else {
-
-                            final Uri imageUri = data.getData();
-                            System.out.println("data" + data.getData());
+//                    if (null == data) { // checking empty selection
+//                        if (null != data.getClipData()) {
+                    // checking multiple selection or not
+//                            for (int i = 0; i < data.getClipData().getItemCount(); i++) {
+//                                Uri uri = data.getClipData().getItemAt(i).getUri();
+//                                Log.i("multiple_select", String.valueOf(uri));
+//                                InputStream imageStream = null;
+//                                try {
+//                                    imageStream = getContext().getContentResolver().openInputStream(uri);
+//                                } catch (FileNotFoundException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                System.out.println("imageStream  " + imageStream);
+//
+//                                Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+//                                System.out.println("yourSelectedImage  " + yourSelectedImage);
+//
+//                                FileBitmapBase64 = encodeTobase64(yourSelectedImage);
+//                                Log.e("imageBase64", FileBitmapBase64);
+//                                fileName = getRealPathFromURI(uri);
+//                                // image_view_uploaded_image.setImageBitmap(imageName);
+//                                Toast.makeText(getContext(), "selected files" + fileName, Toast.LENGTH_LONG).show();
+//                                stringBase64List.add("data:image/png;base64," + FileBitmapBase64);
+//                                Log.i("list_of_files" , String.valueOf(stringBase64List.size()));
+//                                for (String individualImage: stringBase64List
+//                                     ) {
+//                                    Log.i("images", individualImage);
+//                                }
+//                            }
+//                        }
+                    final Uri imageUri1 = data.getData();
+                    System.out.println("data" + data.getData());
 //
 //                    Bundle extras = data.getExtras();
 //                    Bitmap bmp = (Bitmap) extras.get("dx`xata");
 //                    System.out.println("bmp " + bmp);
 
-                            InputStream imageStream = null;
-                            try {
-                                imageStream = getContext().getContentResolver().openInputStream(imageUri);
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
-                            }
-                            System.out.println("imageStream  " + imageStream);
-
-                            Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                            System.out.println("yourSelectedImage  " + yourSelectedImage);
-
-                            imageBitmapBase64 = encodeTobase64(yourSelectedImage);
-                            Log.e("imageBase64", imageBitmapBase64);
-                            imageName = getRealPathFromURI(imageUri);
-                            // image_view_uploaded_image.setImageBitmap(imageName);
-                            Toast.makeText(getContext(), "selected images" + imageName, Toast.LENGTH_LONG).show();
-                        }
+                    InputStream imageStream1 = null;
+                    try {
+                        imageStream1 = getContext().getContentResolver().openInputStream(imageUri1);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
+                    System.out.println("imageStream  " + imageStream1);
+
+                    Bitmap yourSelectedImage1 = BitmapFactory.decodeStream(imageStream1);
+                    System.out.println("yourSelectedImage  " + yourSelectedImage1);
+                    FileBitmapBase64 = encodeTobase64(yourSelectedImage1);
+                    Log.e("imageBase64", FileBitmapBase64);
+                    fileName = getRealPathFromURI(imageUri1);
+                    // image_view_uploaded_image.setImageBitmap(imageName);
+                    Toast.makeText(getContext(), "selected file" + fileName, Toast.LENGTH_LONG).show();
+
+                    final Uri imageUri = data.getData();
+                    System.out.println("data" + data.getData());
+//
+//                    Bundle extras = data.getExtras();
+//                    Bitmap bmp = (Bitmap) extras.get("dx`xata");
+//                    System.out.println("bmp " + bmp);
+
+                    InputStream imageStream = null;
+                    try {
+                        imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("imageStream  " + imageStream);
+
+                    Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                    System.out.println("yourSelectedImage  " + yourSelectedImage);
+
+                    imageBitmapBase64 = encodeTobase64(yourSelectedImage);
+                    Log.e("imageBase64", imageBitmapBase64);
+                    imageName = getRealPathFromURI(imageUri);
+                    // image_view_uploaded_image.setImageBitmap(imageName);
+                    Toast.makeText(getContext(), "selected images" + imageName, Toast.LENGTH_LONG).show();
                 }
+
+
 //              //  Log.i("data_image" , String.valueOf(data.getClipData()));
 //                if (resultCode == RESULT_OK && data != null) {
 //                    final Uri imageUri = data.getData();

@@ -116,22 +116,23 @@ public class AreaFragment extends Fragment {
         }
 
 
-        MultiSelectApdater_T_Area multiSelectApdater_t_area = new MultiSelectApdater_T_Area(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs);
-        spinr_area.setAdapter(multiSelectApdater_t_area);
-
-        spinr_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                areaFragment.putString("prefarea",(String.valueOf(area.get(position))));
-                areaFragment.apply();
-             Log.i("AreaSelected", area.get(position) + " - " + position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        MultiSelectApdater_T_Area multiSelectApdater_t_area = new MultiSelectApdater_T_Area(getContext(), android.R.layout.simple_spinner_dropdown_item, listVOs);
+//        spinr_area.setAdapter(multiSelectApdater_t_area);
+//
+//        spinr_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+//                if (position == 0) {
+//                    area.add("Select Area");
+//
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
 
         list.add(new AreaFragment_List(" ", " ", " "));
@@ -217,11 +218,16 @@ public class AreaFragment extends Fragment {
         return root;
     }
 
+
+
     private void viewProfile() {
 
         loader.showLoader();
         btn_area_add.setVisibility(View.GONE);
         back.setVisibility(View.GONE);
+        edt_area.setVisibility(View.VISIBLE);
+        spinr_area.setEnabled(false);
+        text_area_selected.setVisibility(View.VISIBLE);
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);
         String userid = sharedPreferences1.getString("UserId", "");
@@ -238,10 +244,11 @@ public class AreaFragment extends Fragment {
                  Log.i("Area_Of_Interest", String.valueOf(response));
                 loader.hideLoader();
                 try {
-                    text_area_selected.setVisibility(View.VISIBLE);
-                    edt_area.setVisibility(View.GONE);
+
+                    //edt_area.setVisibility(View.GONE);
                     JSONArray areaSelect = response.getJSONArray("AreaOfInterested");
                     Log.i("areaSelect", String.valueOf(areaSelect));
+                    text_area_selected.setVisibility(View.VISIBLE);
                     for (int i = 0; i < areaSelect.length(); i++) {
                         try {
                             String id = areaSelect.getJSONObject(i).getString("PreferredArea");
@@ -263,7 +270,7 @@ public class AreaFragment extends Fragment {
                 try {
                     JSONArray area = response.getJSONArray("AreaOfInterest");
                     Log.i("Area22", String.valueOf(area));
-                    text_area_selected.setVisibility(View.VISIBLE);
+
                     layoutManager = new LinearLayoutManager(getContext());
 
                     rl_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
