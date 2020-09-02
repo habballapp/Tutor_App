@@ -439,30 +439,30 @@ public class Qualification extends Fragment {
         Volley.newRequestQueue(getContext()).add(sr);
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        getView().setFocusableInTouchMode(true);
-//        getView().requestFocus();
-//        getView().setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                //tool_bar_heading.setText("Dashboard");
-//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-//
-//                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-//                    fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
-//                    fragmentTransaction.commit();
-//                    return true;
-//
-//                }
-//
-//
-//                return false;
-//            }
-//        });
-//
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //tool_bar_heading.setText("Dashboard");
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.container, new ProfileTeacher()).addToBackStack("null");
+                    fragmentTransaction.commit();
+                    return true;
+
+                }
+
+
+                return false;
+            }
+        });
+
+    }
 
 }

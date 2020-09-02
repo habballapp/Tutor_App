@@ -79,7 +79,7 @@ public class TeacherVIewInstituteAdapter extends RecyclerView.Adapter<TeacherVIe
         } else if (view_list.get(position).getStatus().equals("Scheduled")) {
             holder.request_demo.setEnabled(false);
             holder.request_demo.setText("Demo Scheduled");
-            holder.request_demo.setBackground(context.getResources().getDrawable(R.drawable.btn_round_gray));
+            holder.request_demo.setBackground(context.getResources().getDrawable(R.drawable.btn_round_green));
         } else if (view_list.get(position).getStatus().equals("Pending")) {
             holder.request_demo.setEnabled(false);
             holder.request_demo.setText("\tDemo Requested\t");

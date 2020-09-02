@@ -77,9 +77,6 @@ public class AreaFragment extends Fragment {
         text_area_selected = root.findViewById(R.id.text_area_selected);
         edt_area = root.findViewById(R.id.edt_area);
         back = root.findViewById(R.id.back);
-        final SharedPreferences area_fragmnt_data = getContext().getSharedPreferences("SendData_AreaFragment",
-                Context.MODE_PRIVATE);
-        final SharedPreferences.Editor areaFragment = area_fragmnt_data.edit();
         loader = new Loader(getContext());
 
         spinr_area = root.findViewById(R.id.spin_area);

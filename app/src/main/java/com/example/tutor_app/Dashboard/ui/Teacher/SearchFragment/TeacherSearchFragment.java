@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.tutor_app.Dashboard.ui.Teacher.TeacherForms.ProfileTeacher;
 import com.example.tutor_app.Dashboard.ui.home.HomeFragment;
 import com.example.tutor_app.R;
 
@@ -119,17 +120,23 @@ public class TeacherSearchFragment extends Fragment {
                 Log.i("Area", String.valueOf(area.get(position)));
                 profileStudent.putString("area", String.valueOf(area.get(position)));
                 profileStudent.apply();
-                if (position==0){
-                    ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
-                    ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                    ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                try {
+                    if (position==0){
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
+                    else
+                    {
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
+                        ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
+                        ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                    }
                 }
-                else
-                {
-                    ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
-                    ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
-                    ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
+                catch (Exception e){
+                    e.printStackTrace();
                 }
+
             }
 
             @Override

@@ -189,13 +189,11 @@ public class SignIn extends AppCompatActivity {
                         if (obj.getString("userrole").equals("Student")) {
                             getProfileData();
                             getChildren();
-                            Toast.makeText(SignIn.this, "Student", Toast.LENGTH_LONG).show();
 
                         } else if (obj.getString("userrole").equals("Teacher")) {
 
                             session.setusename(userid);
                             session.setresponse(String.valueOf(result));
-                            Toast.makeText(SignIn.this, "Teacher", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignIn.this, Dashboard_Drawer_Teacher.class);
                             startActivity(intent);
                             finish();
