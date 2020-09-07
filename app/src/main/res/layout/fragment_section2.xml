@@ -506,7 +506,7 @@
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_arrow_forward_black_24dp" />
             </RelativeLayout>
-            <RelativeLayout
+            <!-- <RelativeLayout
                 android:id="@+id/back"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -527,7 +527,7 @@
                     android:theme="@style/ButtonTextRound" />
 
 
-            </RelativeLayout>
+            </RelativeLayout> -->
         </RelativeLayout>
 
     </ScrollView>

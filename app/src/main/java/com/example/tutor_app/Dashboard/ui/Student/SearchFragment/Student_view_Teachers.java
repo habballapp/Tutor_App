@@ -112,10 +112,7 @@ public class Student_view_Teachers extends Fragment {
                 loader.hideLoader();
                 if(response.length() <= 0){
 
-                    txt_nodata.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(),"No Teachers Available",Toast.LENGTH_LONG).show();
-
-                }
+                    txt_nodata.setVisibility(View.VISIBLE);              }
                 else{
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<ViewTeacher_List>>() {}.getType();

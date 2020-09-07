@@ -107,7 +107,7 @@ public class Qualification extends Fragment {
         edt_institute4 = root.findViewById(R.id.edt_institute4);
         edt_passing_year4 = root.findViewById(R.id.edt_passing_year4);
         edt_grade4 = root.findViewById(R.id.edt_grade4);
-        back = root.findViewById(R.id.back);
+        //back = root.findViewById(R.id.back);
         loader = new Loader(getContext());
         mAnimationManager = new ExpandOrCollapse();
 
@@ -287,7 +287,49 @@ public class Qualification extends Fragment {
     }
 
     private void viewProfile() {
-        back.setVisibility(View.GONE);
+       //  back.setVisibility(View.GONE);
+        qualification1.setEnabled(false);
+        qualification1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        subject1.setEnabled(false);
+        subject1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute1.setEnabled(false);
+        edt_institute1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year1.setEnabled(false);
+        edt_passing_year1.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade1.setEnabled(false);
+        edt_grade1.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        subject2.setEnabled(false);
+        subject2.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute2.setEnabled(false);
+        edt_institute2.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year2.setEnabled(false);
+        edt_passing_year2.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade2.setEnabled(false);
+        edt_grade2.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+        qualification3.setEnabled(false);
+        qualification3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        subject3.setEnabled(false);
+        subject3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute3.setEnabled(false);
+        edt_institute3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year3.setEnabled(false);
+        edt_passing_year3.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade3.setEnabled(false);
+        edt_grade3.setTextColor(getResources().getColor(R.color.text_color_selection));
+
+
+        qualification4.setEnabled(false);
+        qualification4.setTextColor(getResources().getColor(R.color.text_color_selection));
+        subject4.setEnabled(false);
+        subject4.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_institute4.setEnabled(false);
+        edt_institute4.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_passing_year4.setEnabled(false);
+        edt_passing_year4.setTextColor(getResources().getColor(R.color.text_color_selection));
+        edt_grade4.setEnabled(false);
+        edt_grade4.setTextColor(getResources().getColor(R.color.text_color_selection));
         loader.showLoader();
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);

@@ -115,8 +115,8 @@ public class InstituteAddressFragment extends Fragment {
         spinner_area_textview = root.findViewById(R.id.spinner_area_textview);
         spinner_gender_textview = root.findViewById(R.id.spinner_gender_textview);
         spinner_timings_textview = root.findViewById(R.id.spinner_timings_textview);
-        back = root.findViewById(R.id.back);
-        back_txt = root.findViewById(R.id.back_txt);
+         back = root.findViewById(R.id.back);
+         back_txt = root.findViewById(R.id.back_txt);
 
 
         institutename = sharedPreferences.getString("nameofInstitute", "");
@@ -425,7 +425,7 @@ public class InstituteAddressFragment extends Fragment {
     }
 
     private void getProfileData() throws JSONException {
-    back.setVisibility(View.GONE);
+   //  back.setVisibility(View.GONE);
 //        SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("UserId",
 //                Context.MODE_PRIVATE);
 //        userid = sharedPreferences1.getString("UserId", "");

@@ -60,19 +60,19 @@ import java.util.Map;
 public class AddressClass extends Fragment {
 
 
-    private Spinner spinner1, spinner2,spinner3;
-    private RelativeLayout btn_profile_next ,back;
-    private ArrayAdapter<String> spinner1_adapter,spinner_area_adapter;
-    private List<String> gender, timings,area;
+    private Spinner spinner1, spinner2, spinner3;
+    private RelativeLayout btn_profile_next, back;
+    private ArrayAdapter<String> spinner1_adapter, spinner_area_adapter;
+    private List<String> gender, timings, area;
     private EditText edt_house_number, edt_bno, edt_street, edt_block, edt_area, edt_city, edt_country;
     private String Filter_selected = "";
     String Url_Sprofile = "https://pci.edusol.co/StudentPortal/studenttutorformsubmit.php";
-    String spinner_gender,spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege,session_year, spinnerTimings;
+    String spinner_gender, spinner_area, spinner_timings, name, fathername, email, contactno1, contactno2, contactno3, classes, subjects, schoolcollege, session_year, spinnerTimings;
     String userid;
-    TextView spinner_area_textview,spinner_timings_textview,spinner_gender_textview ,back_txt;
+    TextView spinner_area_textview, spinner_timings_textview, spinner_gender_textview, back_txt;
     JSONObject response = new JSONObject();
     private Loader loader;
-    String timingSelected ="";
+    String timingSelected = "";
     private TextView tool_bar_heading;
 
     @Override
@@ -81,7 +81,7 @@ public class AddressClass extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_address_class, container, false);
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ((AppCompatActivity) getActivity()).getSupportActionBar();
         tool_bar_heading = toolbar.findViewById(R.id.tool_bar_heading);
         spinner1 = (Spinner) root.findViewById(R.id.spinner_gender);
         spinner2 = (Spinner) root.findViewById(R.id.spinner_timings);
@@ -90,7 +90,7 @@ public class AddressClass extends Fragment {
         edt_bno = root.findViewById(R.id.edt_bno);
         edt_street = root.findViewById(R.id.edt_street);
         edt_block = root.findViewById(R.id.edt_block);
- //       edt_area = root.findViewById(R.id.edt_area);
+        //       edt_area = root.findViewById(R.id.edt_area);
         edt_city = root.findViewById(R.id.edt_city);
         edt_country = root.findViewById(R.id.edt_country);
         btn_profile_next = root.findViewById(R.id.btn_profile_next);
@@ -101,8 +101,7 @@ public class AddressClass extends Fragment {
         back_txt = root.findViewById(R.id.back_txt);
 
         loader = new Loader(getContext());
-        final List<EditText> allFields =new ArrayList<EditText>();
-
+        final List<EditText> allFields = new ArrayList<EditText>();
 
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SendData",
@@ -125,8 +124,6 @@ public class AddressClass extends Fragment {
         userid = sharedPreferences1.getString("UserId", "");
 
 
-
-
         Gson gson = new Gson();
         Type type = new TypeToken<JSONObject>() {
         }.getType();
@@ -134,7 +131,7 @@ public class AddressClass extends Fragment {
         SharedPreferences personal_profile1 = getContext().getSharedPreferences("ViewProfile",
                 Context.MODE_PRIVATE);
         String str_response = personal_profile1.getString("ViewProfileData", "");
-        if(!str_response.equals("")) {
+        if (!str_response.equals("")) {
             response = gson.fromJson(str_response, type);
             try {
                 viewProfile();
@@ -143,7 +140,7 @@ public class AddressClass extends Fragment {
             }
         }
 
-        if(str_response.equals("")) {
+        if (str_response.equals("")) {
             gender = new ArrayList<>();
             gender.add("Select Preffered Gender");
             gender.add("Male");
@@ -195,13 +192,11 @@ public class AddressClass extends Fragment {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     spinner_gender = gender.get(position);
-                    if (position==0){
+                    if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
                         ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
-                    }
-                    else
-                    {
+                    } else {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
                         ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
@@ -295,13 +290,11 @@ public class AddressClass extends Fragment {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                     spinner_area = area.get(position);
-                    if (position==0){
+                    if (position == 0) {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color_selection));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
                         ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
-                    }
-                    else
-                    {
+                    } else {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
                         ((TextView) adapterView.getChildAt(0)).setPadding(50, 0, 50, 0);
@@ -324,12 +317,12 @@ public class AddressClass extends Fragment {
             }
 
 
-              allFields.add(edt_house_number);
-              allFields.add(edt_bno);
-              allFields.add(edt_street);
-              allFields.add(edt_block);
-              allFields.add(edt_city);
-              allFields.add(edt_country);
+            allFields.add(edt_house_number);
+            allFields.add(edt_bno);
+            allFields.add(edt_street);
+            allFields.add(edt_block);
+            allFields.add(edt_city);
+            allFields.add(edt_country);
 
 
             btn_profile_next.setOnClickListener(new View.OnClickListener() {
@@ -345,8 +338,8 @@ public class AddressClass extends Fragment {
                     SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("CheckField",
                             Context.MODE_PRIVATE);
 
-                   timingSelected = sharedPreferences1.getString("timingSelected", "");
-                   Log.i("TimingSelected",timingSelected);
+                    timingSelected = sharedPreferences1.getString("timingSelected", "");
+                    Log.i("TimingSelected", timingSelected);
 
 //                    String houseno = edt_house_number.getText().toString().trim();
 //                    String buildingno = edt_bno.getText().toString().trim();
@@ -356,37 +349,33 @@ public class AddressClass extends Fragment {
 //                    String area = edt_area.getText().toString().trim();
 //                    String country = edt_country.getText().toString().trim();
 //                    String spinner_timings = spinner2.getText().toString().trim();TimingSelectedTimingSelected
-                    List<EditText> ErrorFields =new ArrayList<EditText>();//empty Edit text arraylist
-                    for(int j = 0; j < allFields.size(); j++){
-                        if(TextUtils.isEmpty(allFields.get(j).getText())){
+                    List<EditText> ErrorFields = new ArrayList<EditText>();//empty Edit text arraylist
+                    for (int j = 0; j < allFields.size(); j++) {
+                        if (TextUtils.isEmpty(allFields.get(j).getText())) {
                             // EditText was empty
                             //   Fields.add(allFields.get(j).getText().toString());
                             ErrorFields.add(allFields.get(j));//add empty Edittext only in this ArayList
-                            for(int i = 0; i < ErrorFields.size(); i++)
-                            {
+                            for (int i = 0; i < ErrorFields.size(); i++) {
                                 //Fields.add(ErrorFields.get(i).getText().toString());
                                 EditText currentField = ErrorFields.get(i);
                                 currentField.setError("this field required");
-                                ErrorFields.set(i,currentField);
+                                ErrorFields.set(i, currentField);
                                 currentField.requestFocus();
                             }
 
                         }
                     }
 
-                    if(ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && spinner3.getSelectedItemPosition()!=0 && !timingSelected.equals(""))
-                    {
+                    if (ErrorFields.isEmpty() && spinner1.getSelectedItemPosition() != 0 && spinner3.getSelectedItemPosition() != 0 && !timingSelected.equals("")) {
 
-                          try {
+                        try {
                             Address();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-                    }
-                    else
-                    {
-                        Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Please Enter All Fields", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -398,9 +387,6 @@ public class AddressClass extends Fragment {
             final SharedPreferences.Editor profileStudent1 = check_field1.edit();
             profileStudent1.putString("timingSelected", "");
             profileStudent1.apply();
-
-
-
 
 
         }
@@ -417,21 +403,20 @@ public class AddressClass extends Fragment {
         Log.i("UserId", userid);
 
 
-
         SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("AddProfilePreviousData",
                 Context.MODE_PRIVATE);
 
-        int selectionPosition= spinner_area_adapter.getPosition(sharedPreferences2.getString("Area",""));
+        int selectionPosition = spinner_area_adapter.getPosition(sharedPreferences2.getString("Area", ""));
         spinner3.setSelection(selectionPosition);
 
-        edt_house_number.setText(sharedPreferences2.getString("HouseNumber",""));
-        edt_bno.setText(sharedPreferences2.getString("BuildingName",""));
-        edt_street.setText(sharedPreferences2.getString("StreetNumber",""));
-        edt_block.setText(sharedPreferences2.getString("BlockNumber",""));
-        edt_city.setText(sharedPreferences2.getString("City",""));
-        edt_country.setText(sharedPreferences2.getString("Country",""));
+        edt_house_number.setText(sharedPreferences2.getString("HouseNumber", ""));
+        edt_bno.setText(sharedPreferences2.getString("BuildingName", ""));
+        edt_street.setText(sharedPreferences2.getString("StreetNumber", ""));
+        edt_block.setText(sharedPreferences2.getString("BlockNumber", ""));
+        edt_city.setText(sharedPreferences2.getString("City", ""));
+        edt_country.setText(sharedPreferences2.getString("Country", ""));
 
-        int selectionPosition1 = spinner1_adapter.getPosition(sharedPreferences2.getString("Gender",""));
+        int selectionPosition1 = spinner1_adapter.getPosition(sharedPreferences2.getString("Gender", ""));
         spinner1.setSelection(selectionPosition1);
 
 
@@ -464,7 +449,7 @@ public class AddressClass extends Fragment {
         map.put("contactno2", contactno2);
         map.put("contactno3", contactno3);
         map.put("schoolcollege", schoolcollege);
-        map.put("classyear" ,session_year);
+        map.put("classyear", session_year);
         map.put("housenum", edt_house_number.getText().toString());
         map.put("buildingname", edt_bno.getText().toString());
         map.put("streetnum", edt_street.getText().toString());
@@ -489,11 +474,11 @@ public class AddressClass extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("edite_profile" , String.valueOf(response));
+                Log.i("edite_profile", String.valueOf(response));
                 try {
                     loader.hideLoader();
                     if (!response.getString("studenttutorformId").equals("null"))
-                        DiscardPopup("Successful" , "Your profile created successfully. ");
+                        DiscardPopup("Successful", "Your profile created successfully. ");
                     else
                         Toast.makeText(getContext(), "Error .", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
@@ -561,7 +546,6 @@ public class AddressClass extends Fragment {
     private void viewProfile() throws JSONException {
         btn_profile_next.setVisibility(View.GONE);
         back.setVisibility(View.VISIBLE);
-
         back_txt.setText("Back");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -623,6 +607,7 @@ public class AddressClass extends Fragment {
         spinner_area_textview.setTextColor(getResources().getColor(R.color.text_color_selection));
         spinner_area_textview.setText(response.getString("Area"));
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -634,7 +619,7 @@ public class AddressClass extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
-                   FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new SelectClass()).addToBackStack("null");
                     fragmentTransaction.commit();
                     return true;
@@ -647,7 +632,8 @@ public class AddressClass extends Fragment {
         });
 
     }
-    private void DiscardPopup(String heading , String message) {
+
+    private void DiscardPopup(String heading, String message) {
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.successful_popup, null);

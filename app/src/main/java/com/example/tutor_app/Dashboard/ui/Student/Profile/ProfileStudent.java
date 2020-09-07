@@ -69,7 +69,7 @@ public class ProfileStudent extends Fragment {
         edt_phone1 = root.findViewById(R.id.edt_phone1);
         edt_phone2 = root.findViewById(R.id.edt_phone2);
         edt_phone3 = root.findViewById(R.id.edt_phone3);
-        back = root.findViewById(R.id.back);
+      //  //back = root.findViewById(R.id.back);
         loader = new Loader(getContext());
 
        // final EditText[] allFields = { edt_email,edt_fullname,edt_phone1,edt_phone2,edt_phone3,edt_fname};
@@ -141,7 +141,6 @@ public class ProfileStudent extends Fragment {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new SelectClass()).addToBackStack("null");
                     fragmentTransaction.commit();
-                    Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
@@ -156,7 +155,7 @@ public class ProfileStudent extends Fragment {
     }
 
     private void viewProfile() {
-        back.setVisibility(View.GONE);
+       //  back.setVisibility(View.GONE);
         loader.showLoader();
         JSONObject map = new JSONObject();
         try {

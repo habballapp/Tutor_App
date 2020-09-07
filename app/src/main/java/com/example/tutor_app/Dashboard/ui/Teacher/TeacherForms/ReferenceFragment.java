@@ -47,6 +47,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +63,7 @@ public class ReferenceFragment extends Fragment {
     private TextView back_txt;
     private TextView tool_bar_heading;
     private FragmentTransaction fragmentTransaction;
-    String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit.php";
+    String Url_Tprofile = "http://pci.edusol.co/TeacherPortal/tutorformsubmit_new.php";
     String Url = "http://pci.edusol.co/TeacherPortal/view_profile_api.php";
     private EditText name, edt_relation, edt_occupation_ref, edt_telephone, edt_present_address, name1, edt_relation1, edt_occupation1, edt_present_address1, edt_telephone1;
 
@@ -113,8 +114,8 @@ public class ReferenceFragment extends Fragment {
         edt_telephone1 = root.findViewById(R.id.edt_telephone1);
         edt_present_address = root.findViewById(R.id.edt_present_address);
         edt_present_address1 = root.findViewById(R.id.edt_present_address1);
-        back = root.findViewById(R.id.back);
-        back_txt = root.findViewById(R.id.back_txt);
+         back = root.findViewById(R.id.back);
+         back_txt = root.findViewById(R.id.back_txt);
         loader = new Loader(getContext());
 
 
@@ -279,8 +280,6 @@ public class ReferenceFragment extends Fragment {
                 }
 
                 if (ErrorFields.isEmpty()) {
-
-                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG);
                     try {
                         uploadData();
                     } catch (JSONException e) {
@@ -292,19 +291,19 @@ public class ReferenceFragment extends Fragment {
 
             }
         });
-        //setDummyData();
+      //  setDummyData();
         return root;
     }
 
-//    private void setDummyData() {
-//
-//        name.setText("asdasd");
-//        edt_relation.setText("asdasd");
-//        edt_occupation_ref.setText("asdasd");
-//        edt_present_address.setText("asdasd");
-//        edt_telephone.setText("asdasd");
-//
-//    }
+    private void setDummyData() {
+
+        name.setText("asdasd");
+        edt_relation.setText("asdasd");
+        edt_occupation_ref.setText("asdasd");
+        edt_present_address.setText("asdasd");
+        edt_telephone.setText("asdasd");
+
+    }
 
 
     private void viewProfile() {
@@ -438,26 +437,39 @@ public class ReferenceFragment extends Fragment {
         }
 
         JSONArray job_title = new JSONArray();
-        if (!edt_etitlement.equals("")){
+        if (!edt_etitlement.equals("")) {
             job_title.put(edt_etitlement);
         }
         JSONArray job_org = new JSONArray();
-        if (!edt_organization.equals("")){
+        if (!edt_organization.equals("")) {
             job_org.put(edt_organization);
         }
         JSONArray till = new JSONArray();
-        if (!edt_till.equals("")){
+        if (!edt_till.equals("")) {
             till.put(edt_till);
         }
         JSONArray fromto = new JSONArray();
-        if (!edt_from.equals("")){
+        if (!edt_from.equals("")) {
             fromto.put(edt_from);
         }
-        JSONArray documents_files = new JSONArray();
-        if (!documents.equals("")){
-            documents_files.put(documents);
-        }
-        Log.i("documents_files", String.valueOf(documents_files));
+        Log.i("documents_files", String.valueOf(documents));
+//        List<String> documents_files = new ArrayList<>();
+//        documents_files = gson.fromJson(documents, type);
+////        if (!documents.equals("")){
+////            documents_files.put(documents);
+////        }
+//        documents = documents.replace("[", "");
+//        documents = documents.replace("]", "");
+//        documents = documents.replace("\"", "");
+//        Log.i("documents_files", String.valueOf(documents));
+//        String[] newDocument = documents.split(",");
+//        Log.i("documents_files", String.valueOf(newDocument));
+////        documents_files = new ArrayList<>(Arrays.asList(newDocument));
+//        documents_files = new ArrayList<>();
+//        for(int i = 0; i < newDocument.length; i++) {
+//
+//        }
+//        Log.i("documents_files", String.valueOf(documents_files));
         map.put("classtoteach", jsonArray1);
 
 //        List<String> prefArea = gson.fromJson(are, type);
@@ -564,15 +576,15 @@ public class ReferenceFragment extends Fragment {
         map.put("teacherbyprofession", spinner_profession);
         map.put("experienceinyears", experience_year);
         map.put("fbid", "");
-        map.put("personalconveyance",conveyance);
+        map.put("personalconveyance", conveyance);
         map.put("carbike", spinner_conveyance_txt);
 //        map.put("documents", documents);
 //        map.put("tutorimageBase64", imageBitmapBase64);
-        map.put("documents", documents_files);
+        map.put("documents", documents);
         map.put("tutorimageBase64", imageBitmapBase64);
 //Qualifications
 
-        map.put("insuni" ,insArray);
+        map.put("insuni", insArray);
         map.put("presentadd", present_address);
         map.put("permanentadd", edt_permanent_address);
         map.put("JobEntitlement", job_title);
@@ -581,7 +593,7 @@ public class ReferenceFragment extends Fragment {
         map.put("till", till);
 
 
-       //reference
+        //reference
         map.put("ref1Name", name.getText());
         map.put("ref1Relation", edt_relation.getText());
         map.put("ref1Occupation", edt_occupation_ref.getText());
@@ -594,7 +606,7 @@ public class ReferenceFragment extends Fragment {
         map.put("ref2Occupation", edt_occupation1.getText());
         map.put("ref2TelephoneNo", edt_telephone1.getText());
 
-        map.put("yesthenwhere" ,"");
+        map.put("yesthenwhere", "");
 
 
 //        map.put("documents", documents);

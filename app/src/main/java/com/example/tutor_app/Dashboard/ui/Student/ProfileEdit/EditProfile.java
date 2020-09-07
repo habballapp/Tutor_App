@@ -138,7 +138,7 @@ public class EditProfile extends Fragment {
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.nav_host_fragment, new EditClass());
                     fragmentTransaction.commit();
-                    Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
+
                 }
                 else{
                     Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();

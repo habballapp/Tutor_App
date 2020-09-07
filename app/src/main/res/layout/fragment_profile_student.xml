@@ -159,7 +159,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <!-- <RelativeLayout
                 android:id="@+id/back"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -180,7 +180,7 @@
                     android:padding="5dp"
                     android:text="Draft"
                     android:theme="@style/ButtonTextRound" />
-            </RelativeLayout>
+            </RelativeLayout> -->
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

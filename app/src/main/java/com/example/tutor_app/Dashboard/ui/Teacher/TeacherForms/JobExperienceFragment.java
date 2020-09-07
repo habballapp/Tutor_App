@@ -64,7 +64,7 @@ public class JobExperienceFragment extends Fragment {
 
         btn_experience_next = root.findViewById(R.id.btn_experience_next);
         btn_experience_add = root.findViewById(R.id.btn_experience_add);
-        back = root.findViewById(R.id.back);
+      //  //back = root.findViewById(R.id.back);
         loader = new Loader(getContext());
 
 
@@ -150,7 +150,9 @@ public class JobExperienceFragment extends Fragment {
 
 
     private void viewProfile() {
-        back.setVisibility(View.GONE);
+
+       //  back.setVisibility(View.GONE);
+
         loader.showLoader();
         SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("ViewData",
                 Context.MODE_PRIVATE);

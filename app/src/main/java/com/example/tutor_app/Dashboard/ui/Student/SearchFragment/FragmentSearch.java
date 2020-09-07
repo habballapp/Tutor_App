@@ -288,8 +288,6 @@ public class FragmentSearch extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 tool_bar_heading.setText("Dashboard");
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    //Toast.makeText(getContext(), "backStack", Toast.LENGTH_SHORT).show();
-                  //  FragmentManager fragmentManager = getActivity().getFragmentManager();
                     fragmentTransaction = getChildFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.container, new HomeFragment()).addToBackStack("null");
                     fragmentTransaction.commit();

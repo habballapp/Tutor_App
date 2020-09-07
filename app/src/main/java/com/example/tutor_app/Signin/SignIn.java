@@ -183,7 +183,6 @@ public class SignIn extends AppCompatActivity {
                         profileStudent.putString("userrole", obj.getString("userrole"));
                         profileStudent.apply();
                         userid = obj.getString("userid");
-                        btn_signin_txt.setText("SIGNIN");
 
 
                         if (obj.getString("userrole").equals("Student")) {
@@ -207,12 +206,10 @@ public class SignIn extends AppCompatActivity {
                     } else {
                         Toast.makeText(SignIn.this, "Username or password is incorrect.", Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
-                        btn_signin_txt.setText("SIGNIN");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     progressBar.setVisibility(View.GONE);
-                    btn_signin_txt.setText("SIGNIN");
 
 
                 }

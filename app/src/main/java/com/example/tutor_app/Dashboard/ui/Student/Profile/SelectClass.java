@@ -80,7 +80,7 @@ public class SelectClass extends Fragment {
         txt = root.findViewById(R.id.txt);
         spinner_class_textview = root.findViewById(R.id.spinner_class_textview);
         spinner_subject_textview = root.findViewById(R.id.spinner_subject_textview);
-        back = root.findViewById(R.id.back);
+       // //back = root.findViewById(R.id.back);
 //        rl_recycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
        // classes.add("Class " + count);
@@ -352,7 +352,7 @@ public class SelectClass extends Fragment {
 
     private void viewProfile() throws JSONException {
         edt_school.setEnabled(false);
-        back.setVisibility(View.GONE);
+       //  back.setVisibility(View.GONE);
 //        spinner_class.setSelected();
         spinner_class.setClickable(false);
         spinner_class.setEnabled(false);

@@ -90,7 +90,7 @@ public class InstituteClassFragment extends Fragment {
 //        rl_recycler = root.findViewById(R.id.rv_fragment);
 //          add_more = root.findViewById(R.id.add_more);
         btn_class_next = root.findViewById(R.id.btn_class_next);
-        back = root.findViewById(R.id.back);
+        //back = root.findViewById(R.id.back);
 
         String msg = "   " + "To add another job to your account you must complete and submit your application first and select add job option to add another job";
 
@@ -318,7 +318,7 @@ public class InstituteClassFragment extends Fragment {
     private void viewProfile() throws JSONException {
         spinner_class.setClickable(false);
         spinner_class.setEnabled(false);
-        back.setVisibility(View.GONE);
+       //  back.setVisibility(View.GONE);
 
         spinner_subject.setClickable(false);
         spinner_subject.setEnabled(false);

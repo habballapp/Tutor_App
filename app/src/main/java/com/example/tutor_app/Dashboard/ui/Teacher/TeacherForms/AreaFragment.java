@@ -76,7 +76,7 @@ public class AreaFragment extends Fragment {
         btn_area_add = root.findViewById(R.id.btn_area_add);
         text_area_selected = root.findViewById(R.id.text_area_selected);
         edt_area = root.findViewById(R.id.edt_area);
-        back = root.findViewById(R.id.back);
+        //back = root.findViewById(R.id.back);
         loader = new Loader(getContext());
 
         spinr_area = root.findViewById(R.id.spin_area);
@@ -221,7 +221,7 @@ public class AreaFragment extends Fragment {
 
         loader.showLoader();
         btn_area_add.setVisibility(View.GONE);
-        back.setVisibility(View.GONE);
+       //  back.setVisibility(View.GONE);
         edt_area.setVisibility(View.VISIBLE);
         spinr_area.setEnabled(false);
         text_area_selected.setVisibility(View.VISIBLE);

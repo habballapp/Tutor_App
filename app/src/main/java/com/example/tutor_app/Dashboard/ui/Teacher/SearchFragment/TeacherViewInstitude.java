@@ -116,7 +116,6 @@ public class TeacherViewInstitude extends Fragment {
                 if(response.length() <= 0){
 
                     txt_nodata.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(),"No Institute Available",Toast.LENGTH_LONG).show();
 
                 }
                 else{

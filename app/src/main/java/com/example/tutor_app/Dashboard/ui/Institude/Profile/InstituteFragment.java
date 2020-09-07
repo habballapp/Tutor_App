@@ -105,7 +105,7 @@ public class InstituteFragment extends Fragment {
         itype.add("Other");
 
         btn_class_next = root.findViewById(R.id.btn_class_next);
-        back = root.findViewById(R.id.back);
+        //back = root.findViewById(R.id.back);
 
 
         edt_institutename = root.findViewById(R.id.edt_institutename);
@@ -254,7 +254,6 @@ public class InstituteFragment extends Fragment {
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment()).addToBackStack("tag");
                         fragmentTransaction.commit();
-                        Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                     }
                     else{
                         Toast.makeText(getContext(),"Please Enter All Fields",Toast.LENGTH_SHORT).show();
@@ -268,7 +267,6 @@ public class InstituteFragment extends Fragment {
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.nav_host_fragment, new InstituteClassFragment()).addToBackStack("tag");
                         fragmentTransaction.commit();
-                        Toast.makeText(getContext()," All Fields",Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -374,7 +372,7 @@ public class InstituteFragment extends Fragment {
 
 
                 try {
-                    back.setVisibility(View.GONE);
+                   //  back.setVisibility(View.GONE);
                     edt_institutename.setText(response.getString("InstituteName"));
                     spinner_type_textview.setText(response.getString("TypeOfInstitute"));
                     edt_phone1.setText(response.getString("ContactNo1"));
